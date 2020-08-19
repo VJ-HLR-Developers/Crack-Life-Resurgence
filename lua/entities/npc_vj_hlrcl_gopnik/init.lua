@@ -1,0 +1,110 @@
+AddCSLuaFile("shared.lua")
+include('shared.lua')
+/*-----------------------------------------------
+	*** Copyright (c) 2012-2019 by DrVrej, All rights reserved. ***
+	No parts of this code or any of its contents may be reproduced, copied, modified or adapted,
+	without the prior written consent of the author, unless otherwise indicated for stand-alone materials.
+-----------------------------------------------*/
+ENT.Model = {"models/vj_hlr/cracklife/chav.mdl"} -- The game will pick a random model from the table when the SNPC is spawned | Add as many as you want
+ENT.BloodColor = "Red" -- The blood type, this will determine what it should use (decal, particle, etc.)
+ENT.CustomBlood_Particle = {"vj_hl_blood_red"}
+ENT.CustomBlood_Decal = {"VJ_HLR_Blood_Red"} -- Decals to spawn when it's damaged
+ENT.VJ_NPC_Class = {"CLASS_CRACKLIFE_CHAV"} -- NPCs with the same class with be allied to each other
+ENT.StartHealth = 60
+
+//ENT.HasDeathAnimation = true -- Does it play an animation when it dies?
+ENT.DeathAnimationTime = 0.47 -- Time until the SNPC spawns its corpse and gets removed
+
+ENT.SoundTbl_FootStep = {"vj_hlr/crack_fx/npc_step1.wav","vj_hlr/crack_fx/npc_step2.wav","vj_hlr/crack_fx/npc_step3.wav","vj_hlr/crack_fx/npc_step4.wav"}
+ENT.SoundTbl_Idle = {"vj_hlr/crack_npc/zombie/zo_idle1.wav","vj_hlr/crack_npc/zombie/zo_idle2.wav","vj_hlr/crack_npc/zombie/zo_idle3.wav","vj_hlr/crack_npc/zombie/zo_idle4.wav"}
+ENT.SoundTbl_Alert = {"vj_hlr/crack_npc/zombie/zo_alert10.wav","vj_hlr/crack_npc/zombie/zo_alert20.wav","vj_hlr/crack_npc/zombie/zo_alert30.wav"}
+ENT.SoundTbl_BeforeMeleeAttack = {"vj_hlr/crack_npc/zombie/zo_attack1.wav","vj_hlr/crack_npc/zombie/zo_attack2.wav"}
+ENT.SoundTbl_Pain = {"vj_hlr/crack_npc/zombie/zo_pain1.wav","vj_hlr/crack_npc/zombie/zo_pain2.wav"}
+ENT.SoundTbl_Death = {"vj_hlr/crack_npc/zombie/zo_pain1.wav","vj_hlr/crack_npc/zombie/zo_pain2.wav"}
+ENT.SoundTbl_MeleeAttackExtra = {"vj_hlr/crack_fx/bat_hit.wav","vj_hlr/crack_fx/bat_hit.wav","vj_hlr/crack_fx/bat_hit.wav"}
+
+ENT.SCI_NextMouthMove = 0
+ENT.SCI_NextMouthDistance = 0
+ENT.SpawnHat = true
+--[[  mouth movement looks terrible
+---------------------------------------------------------------------------------------------------------------------------------------------
+function ENT:CustomOnThink()
+	if CurTime() < self.SCI_NextMouthMove then
+		if self.SCI_NextMouthDistance == 0 then
+			self.SCI_NextMouthDistance = math.random(50,150)
+		else
+			self.SCI_NextMouthDistance = 0
+		end
+		self:SetPoseParameter("m",self.SCI_NextMouthDistance)
+	else
+		self:SetPoseParameter("m",0)
+	end
+end
+---------------------------------------------------------------------------------------------------------------------------------------------
+function ENT:OnPlayCreateSound(SoundData,SoundFile)
+	self.SCI_NextMouthMove = CurTime() + SoundDuration(SoundFile)
+end
+--]]
+---------------------------------------------------------------------------------------------------------------------------------------------
+function ENT:CustomGibOnDeathSounds(dmginfo,hitgroup)
+	VJ_EmitSound(self,"vj_hlr/crack_fx/bodysplat.wav",90,math.random(100,100))
+	VJ_EmitSound(self,"vj_gib/default_gib_splat.wav",90,math.random(100,100))
+	return false
+end
+---------------------------------------------------------------------------------------------------------------------------------------------
+function ENT:CustomOnDeath_BeforeCorpseSpawned(dmginfo,hitgroup)
+	if self.SpawnHat == true then
+		self:SetBodygroup(0,1)
+		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/cracklife/chav_bat.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(8,-8,10)),CollideSound={""}})
+		self.SpawnHat = false
+	end
+end
+---------------------------------------------------------------------------------------------------------------------------------------------
+function ENT:CustomDeathAnimationCode(dmginfo, hitgroup)
+	if self.SpawnHat == true then
+		self:SetBodygroup(0,1)
+		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/cracklife/chav_bat.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(8,-8,10)),CollideSound={""}})
+		self.SpawnHat = false
+	end
+	if hitgroup == HITGROUP_HEAD then
+		self.AnimTbl_Death = {ACT_DIE_GUTSHOT,ACT_DIE_HEADSHOT}
+	else
+		self.AnimTbl_Death = {ACT_DIEBACKWARD,ACT_DIEFORWARD,ACT_DIESIMPLE}
+	end
+end
+---------------------------------------------------------------------------------------------------------------------------------------------
+function ENT:SetUpGibesOnDeath(dmginfo,hitgroup)
+	self.HasDeathSounds = false
+		if self.HasGibDeathParticles == true then
+			local bloodeffect = EffectData()
+			bloodeffect:SetOrigin(self:GetPos() +self:OBBCenter())
+			bloodeffect:SetColor(VJ_Color2Byte(Color(130,19,10)))
+			bloodeffect:SetScale(120)
+			util.Effect("VJ_Blood1",bloodeffect)
+			
+			local bloodspray = EffectData()
+			bloodspray:SetOrigin(self:GetPos())
+			bloodspray:SetScale(8)
+			bloodspray:SetFlags(3)
+			bloodspray:SetColor(0)
+			util.Effect("bloodspray",bloodspray)
+			util.Effect("bloodspray",bloodspray)
+		end
+		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/flesh1.mdl",{BloodDecal="VJ_HLR_Blood_Red",Pos=self:LocalToWorld(Vector(0,0,40))})
+		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/flesh2.mdl",{BloodDecal="VJ_HLR_Blood_Red",Pos=self:LocalToWorld(Vector(0,0,40))})
+		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/flesh3.mdl",{BloodDecal="VJ_HLR_Blood_Red",Pos=self:LocalToWorld(Vector(0,0,40))})
+		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/flesh4.mdl",{BloodDecal="VJ_HLR_Blood_Red",Pos=self:LocalToWorld(Vector(0,0,40))})
+		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/hgib_b_bone.mdl",{BloodDecal="VJ_HLR_Blood_Red",Pos=self:LocalToWorld(Vector(0,0,50))})
+		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/hgib_b_gib.mdl",{BloodDecal="VJ_HLR_Blood_Red",Pos=self:LocalToWorld(Vector(0,0,40))})
+		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/hgib_guts.mdl",{BloodDecal="VJ_HLR_Blood_Red",Pos=self:LocalToWorld(Vector(0,0,40))})
+		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/hgib_hmeat.mdl",{BloodDecal="VJ_HLR_Blood_Red",Pos=self:LocalToWorld(Vector(0,0,45))})
+		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/hgib_lung.mdl",{BloodDecal="VJ_HLR_Blood_Red",Pos=self:LocalToWorld(Vector(0,0,45))})
+		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/hgib_legbone.mdl",{BloodDecal="VJ_HLR_Blood_Red",Pos=self:LocalToWorld(Vector(0,0,15))})
+		return true
+end
+		
+/*-----------------------------------------------
+	*** Copyright (c) 2012-2019 by DrVrej, All rights reserved. ***
+	No parts of this code or any of its contents may be reproduced, copied, modified or adapted,
+	without the prior written consent of the author, unless otherwise indicated for stand-alone materials.
+-----------------------------------------------*/
