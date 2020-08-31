@@ -10,7 +10,7 @@ ENT.BloodColor = "Red" -- The blood type, this will determine what it should use
 ENT.CustomBlood_Particle = {"vj_hl_blood_red"}
 ENT.CustomBlood_Decal = {"VJ_HLR_Blood_Red"} -- Decals to spawn when it's damaged
 ENT.VJ_NPC_Class = {"CLASS_CRACKLIFE_CHAV"} -- NPCs with the same class with be allied to each other
-ENT.StartHealth = 600
+ENT.StartHealth = 1000
 
 ENT.SoundTbl_FootStep = {"vj_hlr/crack_fx/npc_step1.wav","vj_hlr/crack_fx/npc_step2.wav","vj_hlr/crack_fx/npc_step3.wav","vj_hlr/crack_fx/npc_step4.wav"}
 ENT.SoundTbl_Idle = {"vj_hlr/crack_npc/megachav/zo_idle1.wav","vj_hlr/crack_npc/megachav/zo_idle2.wav","vj_hlr/crack_npc/megachav/zo_idle3.wav","vj_hlr/crack_npc/megachav/zo_idle4.wav"}
