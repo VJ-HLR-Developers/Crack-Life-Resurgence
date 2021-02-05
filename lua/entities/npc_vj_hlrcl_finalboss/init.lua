@@ -9,12 +9,14 @@ ENT.Model = {"models/vj_hlr/cracklife/finalboss.mdl"}
 ENT.BloodColor = ""
 ENT.HasBloodParticle = false
 ENT.HasBloodDecal = false
+ENT.Bleeds = false
 ENT.VJ_NPC_Class = {"CLASS_CRACKLIFE"} -- NPCs with the same class with be allied to each other
 ENT.StartHealth = 666666
 ENT.HasSoundTrack = true
 ENT.PropAP_MaxSize = 10
 ENT.SoundTbl_SoundTrack = {"vj_hlr/crack_npc/finalboss/finalboss.mp3"}
 
+ENT.Garg_Type = 2
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomOnInitialize()
 	self:SetCollisionBounds(Vector(80,70,170),Vector(-45,-70,0))
