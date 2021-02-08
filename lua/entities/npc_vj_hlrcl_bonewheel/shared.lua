@@ -1,4 +1,4 @@
-ENT.Base 			= "npc_vj_hlr1_zombie"
+ENT.Base 			= "npc_vj_hlrcl_spooky"
 ENT.Type 			= "ai"
 ENT.PrintName 		= "Bonewheel"
 ENT.Author 			= "DrVrej"
