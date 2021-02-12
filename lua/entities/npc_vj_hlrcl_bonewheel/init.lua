@@ -11,8 +11,24 @@ ENT.SpawnHat = true
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomOnAcceptInput(key, activator, caller, data)
 	//print(key)
+	if key == "event_emit step" then
+		self:FootStepSoundCode()
+	end
+	if key == "event_mattack right" or key == "event_mattack left" or key == "event_mattack both" then
+		self:MeleeAttackCode()
+	end
 	if key == "body" then
 		VJ_EmitSound(self, "vj_hlr/crack_fx/bodydrop.wav", 85, math.random(100,100))
+	end
+end
+---------------------------------------------------------------------------------------------------------------------------------------------
+function ENT:MultipleMeleeAttacks()
+	if math.random(1,2) == 1 then
+		self.AnimTbl_MeleeAttack = {ACT_MELEE_ATTACK1}
+		self.MeleeAttackDamage = 5
+	else
+		self.AnimTbl_MeleeAttack = {ACT_MELEE_ATTACK2}
+		self.MeleeAttackDamage = 5
 	end
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------

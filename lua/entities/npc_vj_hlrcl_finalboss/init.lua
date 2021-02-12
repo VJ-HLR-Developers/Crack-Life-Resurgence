@@ -17,6 +17,7 @@ ENT.PropAP_MaxSize = 10
 ENT.SoundTbl_SoundTrack = {"vj_hlr/crack_npc/finalboss/finalboss.mp3"}
 
 ENT.Garg_Type = 2
+ENT.F_NextSpawn = 0 -- Max 4
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomOnInitialize()
 	self:SetCollisionBounds(Vector(80,70,170),Vector(-45,-70,0))
@@ -57,6 +58,7 @@ function ENT:CustomOnAcceptInput(key,activator,caller,data)
 			timer.Simple(0.3,function()
 				if self:IsValid() then
 					self:Shelling()
+					self:F_SpawnAlly()
 				end
 			end)
 			timer.Simple(0.4,function()
@@ -67,6 +69,7 @@ function ENT:CustomOnAcceptInput(key,activator,caller,data)
 			timer.Simple(0.5,function()
 				if self:IsValid() then
 					self:Shelling()
+					self:F_SpawnAlly()
 				end
 			end)
 			timer.Simple(0.55,function()
@@ -77,6 +80,7 @@ function ENT:CustomOnAcceptInput(key,activator,caller,data)
 			timer.Simple(0.6,function()
 				if self:IsValid() then
 					self:Shelling()
+					self:F_SpawnAlly()
 				end
 			end)
 			timer.Simple(0.65,function()
@@ -87,11 +91,13 @@ function ENT:CustomOnAcceptInput(key,activator,caller,data)
 			timer.Simple(0.7,function()
 				if self:IsValid() then
 					self:Shelling()
+					self:F_SpawnAlly()
 				end
 			end)
 			timer.Simple(0.75,function()
 				if self:IsValid() then
 					self:Shelling()
+					self:F_SpawnAlly()
 				end
 			end)
 	end
@@ -190,6 +196,60 @@ function ENT:SetUpGibesOnDeath(dmginfo,hitgroup)
 		end
 	end)
 	return true, {DeathAnim=true}-- Return to true if it gibbed!
+end
+---------------------------------------------------------------------------------------------------------------------------------------------
+function ENT:F_CreateAlly()
+	local tr = util.TraceLine({
+		start = self:GetPos(),
+		endpos = self:GetPos() + self:GetForward() * math.Rand(-500, 500) + self:GetRight() * math.Rand(-500, 500) + self:GetUp(),
+		filter = self,
+		mask = MASK_ALL,
+	})
+	local spawnpos = tr.HitPos + tr.HitNormal*30
+	local type = VJ_PICK({"npc_vj_hlrcl_bonewheel", "npc_vj_hlrcl_zombozo", "npc_vj_hlrcl_pinkpanther"})
+	local ally = ents.Create(type)
+	ally:SetPos(spawnpos)
+	ally:SetAngles(self:GetAngles())
+	ally:Spawn()
+	ally:Activate()
+	ally:SetMaxHealth(ally:GetHealth() + 2000)
+	ally:SetHealth(ally:GetHealth() + 2000)
+	
+	local effectTeleport = VJ_HLR_Effect_PortalSpawn(spawnpos + Vector(0,0,20))
+	effectTeleport:Fire("Kill","",1)
+	
+	return ally
+end
+---------------------------------------------------------------------------------------------------------------------------------------------
+function ENT:F_SpawnAlly()
+	-- Can have a total of 4, only 1 can be spawned at a time with a delay until another one is spawned
+	if !IsValid(self.F_Ally1) then
+		self.F_Ally1 = self:F_CreateAlly()
+		return 15
+	elseif !IsValid(self.F_Ally2) then
+		self.F_Ally2 = self:F_CreateAlly()
+		return 15
+	elseif !IsValid(self.F_Ally3) then
+		self.F_Ally3 = self:F_CreateAlly()
+		return 15
+	elseif !IsValid(self.F_Ally4) then
+		self.F_Ally4 = self:F_CreateAlly()
+		return 15
+	elseif !IsValid(self.F_Ally5) then
+		self.F_Ally5 = self:F_CreateAlly()
+		return 15
+	end
+	return 8
+end
+---------------------------------------------------------------------------------------------------------------------------------------------
+function ENT:CustomOnRemove()
+	if self.Dead == false then
+		if IsValid(self.F_Ally1) then self.F_Ally1:Remove() end
+		if IsValid(self.F_Ally2) then self.F_Ally2:Remove() end
+		if IsValid(self.F_Ally3) then self.F_Ally3:Remove() end
+		if IsValid(self.F_Ally4) then self.F_Ally4:Remove() end
+		if IsValid(self.F_Ally5) then self.F_Ally5:Remove() end
+	end
 end
 /*-----------------------------------------------
 	*** Copyright (c) 2012-2019 by DrVrej, All rights reserved. ***
