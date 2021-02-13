@@ -201,7 +201,7 @@ end
 function ENT:F_CreateAlly()
 	local tr = util.TraceLine({
 		start = self:GetPos(),
-		endpos = self:GetPos() + self:GetForward() * math.Rand(-500, 500) + self:GetRight() * math.Rand(-500, 500) + self:GetUp(),
+		endpos = self:GetPos() + self:GetForward() * math.Rand(-500, 500) + self:GetRight() * math.Rand(-500, 500) + self:GetUp() * 30,
 		filter = self,
 		mask = MASK_ALL,
 	})
