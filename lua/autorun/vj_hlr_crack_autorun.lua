@@ -25,7 +25,7 @@ if VJExists == true then
 		--VJ.AddNPC("Corrupted Gonarch","npc_vj_hlrcl_gonarch",vCat)
 		--VJ.AddNPC("The Crowbar","npc_vj_hlrcl_crowbar",vCat)
 		--VJ.AddNPC("Disco Vortigaunt","npc_vj_hlrcl_alienslave",vCat)
-		--VJ.AddNPC("Evil Scientist","npc_vj_hlrcl_evilsci",vCat)
+		VJ.AddNPC("Evil Scientist","npc_vj_hlrcl_evilsci",vCat)
 		--VJ.AddNPC("Fat Assassin","npc_vj_hlrcl_fatassassin",vCat)
 		--VJ.AddNPC("Filthy Controller","npc_vj_hlrcl_controller",vCat)
 		--VJ.AddNPC("Foundation Repairmen","npc_vj_hlrcl_agrunt",vCat)
