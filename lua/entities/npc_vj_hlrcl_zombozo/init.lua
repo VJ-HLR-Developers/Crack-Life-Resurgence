@@ -36,6 +36,9 @@ function ENT:CustomOnAcceptInput(key,activator,caller,data)
 			self:Pepsi()
 		end
 	end
+	if key == "ragdoll" then
+		VJ_EmitSound(self, "vj_hlr/crack_fx/bodydrop.wav", 85, 100)
+	end
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomOnAlert(argent)

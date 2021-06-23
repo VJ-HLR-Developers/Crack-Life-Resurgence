@@ -12,9 +12,23 @@ ENT.Bleeds = false
 ENT.HasIdleSounds = false
 ENT.HasAlertSounds = false
 
+ENT.SoundTbl_FootStep = {"vj_hlr/crack_fx/npc_step1.wav","vj_hlr/crack_fx/npc_step2.wav","vj_hlr/crack_fx/npc_step3.wav","vj_hlr/crack_fx/npc_step4.wav"}
 ENT.SoundTbl_BeforeMeleeAttack = {"vj_hlr/null.wav","vj_hlr/null.wav"}
 ENT.SoundTbl_Pain = {"vj_hlr/crack_npc/spooky/s_pain1.wav","vj_hlr/crack_npc/spooky/s_pain2.wav","vj_hlr/crack_npc/spooky/s_pain3.wav"}
 ENT.SoundTbl_Death = {"vj_hlr/crack_npc/spooky/s_die.wav","vj_hlr/crack_npc/spooky/s_die2.wav","vj_hlr/crack_npc/spooky/s_die3.wav"}
+---------------------------------------------------------------------------------------------------------------------------------------------
+function ENT:CustomOnAcceptInput(key, activator, caller, data)
+	//print(key)
+	if key == "event_emit step" then
+		self:FootStepSoundCode()
+	end
+	if key == "event_mattack right" or key == "event_mattack left" or key == "event_mattack both" then
+		self:MeleeAttackCode()
+	end
+	if key == "ragdoll" then
+		VJ_EmitSound(self, "vj_hlr/fx/bodydrop"..math.random(3,4)..".wav", 85, 100)
+	end
+end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomGibOnDeathSounds(dmginfo,hitgroup)
 	VJ_EmitSound(self,"vj_hlr/crack_fx/bodysplat.wav", 90, math.random(100,100))

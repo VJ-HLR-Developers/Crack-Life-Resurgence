@@ -20,7 +20,26 @@ ENT.SoundTbl_Alert = {"vj_hlr/crack_npc/panther/zo_alert10.wav","vj_hlr/crack_np
 ENT.SoundTbl_BeforeMeleeAttack = {"vj_hlr/crack_npc/panther/zo_attack1.wav","vj_hlr/crack_npc/panther/zo_attack2.wav"}
 ENT.SoundTbl_Pain = {"vj_hlr/crack_npc/panther/zo_pain1.wav","vj_hlr/crack_npc/panther/zo_pain2.wav"}
 ENT.SoundTbl_Death = {"vj_hlr/crack_npc/panther/zo_pain1.wav","vj_hlr/crack_npc/panther/zo_pain2.wav"}
-
+---------------------------------------------------------------------------------------------------------------------------------------------
+function ENT:CustomOnAcceptInput(key, activator, caller, data)
+	//print(key)
+	if key == "event_mattack right" or key == "event_mattack left" or key == "event_mattack both" then
+		self:MeleeAttackCode()
+	end
+	if key == "ragdoll" then
+		VJ_EmitSound(self, "vj_hlr/crack_fx/bodydrop.wav", 85, 100)
+	end
+end
+---------------------------------------------------------------------------------------------------------------------------------------------
+function ENT:MultipleMeleeAttacks()
+	if math.random(1, 2) == 1 then
+		self.AnimTbl_MeleeAttack = {ACT_MELEE_ATTACK1}
+		self.MeleeAttackDamage = 10
+	else
+		self.AnimTbl_MeleeAttack = {ACT_MELEE_ATTACK2}
+		self.MeleeAttackDamage = 10
+	end
+end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:SetUpGibesOnDeath(dmginfo,hitgroup)
 	self.HasDeathSounds = false

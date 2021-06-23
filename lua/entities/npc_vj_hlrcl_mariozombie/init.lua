@@ -22,7 +22,19 @@ ENT.SoundTbl_Death = {"vj_hlr/crack_npc/mariozombie/pain1.wav","vj_hlr/crack_npc
 ENT.AlertSoundLevel = 90
 ENT.PainSoundLevel = 90
 ENT.DeathSoundLevel = 90
-
+---------------------------------------------------------------------------------------------------------------------------------------------
+function ENT:CustomOnAcceptInput(key, activator, caller, data)
+	//print(key)
+	if key == "event_emit step" then
+		self:FootStepSoundCode()
+	end
+	if key == "event_mattack right" or key == "event_mattack left" or key == "event_mattack both" then
+		self:MeleeAttackCode()
+	end
+	if key == "ragdoll" then
+		VJ_EmitSound(self, "vj_hlr/crack_fx/bodydrop.wav", 85, 100)
+	end
+end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomGibOnDeathSounds(dmginfo,hitgroup)
 	VJ_EmitSound(self,"vj_hlr/crack_fx/bodysplat.wav", 90, math.random(100,100))

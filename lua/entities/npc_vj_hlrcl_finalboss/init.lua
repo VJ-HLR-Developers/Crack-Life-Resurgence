@@ -201,19 +201,19 @@ end
 function ENT:F_CreateAlly()
 	local tr = util.TraceLine({
 		start = self:GetPos(),
-		endpos = self:GetPos() + self:GetForward() * math.Rand(-500, 500) + self:GetRight() * math.Rand(-500, 500) + self:GetUp() * 30,
+		endpos = self:GetPos() + self:GetForward() * math.Rand(-500, 500) + self:GetRight() * math.Rand(-500, 500) + self:GetUp() * 40,
 		filter = self,
 		mask = MASK_ALL,
 	})
 	local spawnpos = tr.HitPos + tr.HitNormal*30
-	local type = VJ_PICK({"npc_vj_hlrcl_bonewheel", "npc_vj_hlrcl_zombozo", "npc_vj_hlrcl_pinkpanther"})
+	local type = VJ_PICK({"npc_vj_hlrcl_bonewheel", "npc_vj_hlrcl_zombozo", "npc_vj_hlrcl_pinkpanther", "npc_vj_hlrcl_evilsci"})
 	local ally = ents.Create(type)
 	ally:SetPos(spawnpos)
 	ally:SetAngles(self:GetAngles())
 	ally:Spawn()
 	ally:Activate()
-	//ally:SetMaxHealth(ally:GetHealth() + 2000)
-	//ally:SetHealth(ally:GetHealth() + 2000)
+	ally:SetMaxHealth(ally:GetHealth() + 300)
+	ally:SetHealth(ally:GetHealth() + 300)
 	
 	local effectTeleport = VJ_HLR_Effect_PortalSpawn(spawnpos + Vector(0,0,20))
 	effectTeleport:Fire("Kill","",1)
