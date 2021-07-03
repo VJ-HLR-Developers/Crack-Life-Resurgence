@@ -11,7 +11,7 @@ ENT.HasBloodParticle = false
 ENT.HasBloodDecal = false
 ENT.Bleeds = false
 ENT.VJ_NPC_Class = {"CLASS_CRACKLIFE"} -- NPCs with the same class with be allied to each other
-ENT.StartHealth = 666666
+ENT.StartHealth = 66666
 ENT.HasSoundTrack = true
 ENT.PropAP_MaxSize = 10
 ENT.SoundTbl_SoundTrack = {"vj_hlr/crack_npc/finalboss/finalboss.mp3"}
@@ -212,8 +212,8 @@ function ENT:F_CreateAlly()
 	ally:SetAngles(self:GetAngles())
 	ally:Spawn()
 	ally:Activate()
-	ally:SetMaxHealth(ally:GetHealth() + 300)
-	ally:SetHealth(ally:GetHealth() + 300)
+	//ally:SetMaxHealth(ally:GetHealth() + 100)
+	//ally:SetHealth(ally:GetHealth() + 100)
 	
 	local effectTeleport = VJ_HLR_Effect_PortalSpawn(spawnpos + Vector(0,0,20))
 	effectTeleport:Fire("Kill","",1)
