@@ -41,7 +41,7 @@ if VJExists == true then
 		--VJ.AddNPC("Shrek","npc_vj_hlrcl_shrek",vCat)
 		--VJ.AddNPC("Skrillyd","npc_vj_hlrcl_skrillex",vCat)
 		--VJ.AddNPC("Soviet Grunt","npc_vj_hlrcl_sgrunt",vCat)
-		--VJ.AddNPC("Suicide Bomber","npc_vj_hlrcl_terror",vCat)
+		VJ.AddNPC("Suicide Bomber","npc_vj_hlrcl_terror",vCat)
 		VJ.AddNPC("Skellington","npc_vj_hlrcl_spooky",vCat)
 		VJ.AddNPC("The Nimrod Force Fuckshit Triple Mafia Smasher of Crackheads X5000 Alpha Version 133.7","npc_vj_hlrcl_finalboss",vCat)
 		VJ.AddNPC("Viking Gargantua","npc_vj_hlrcl_garg_viking",vCat)

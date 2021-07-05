@@ -32,13 +32,15 @@ function ENT:MultipleMeleeAttacks()
 	end
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
-function ENT:CustomOnDeath_BeforeCorpseSpawned(dmginfo,hitgroup)
+--[[
+function ENT:CustomOnDeath_BeforeCorpseSpawned(dmginfo,hitgroup) 
 	if self.SpawnHat == true then
 		self:SetBodygroup(0,1)
 		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/cracklife/wheel.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,50)),CollideSound={""}})
 		self.SpawnHat = false
 	end
 end
+--]]
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomDeathAnimationCode(dmginfo, hitgroup)
 	if self.SpawnHat == true then
