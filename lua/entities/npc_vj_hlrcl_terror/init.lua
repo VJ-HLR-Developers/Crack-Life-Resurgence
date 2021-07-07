@@ -54,7 +54,7 @@ function ENT:CustomOnAcceptInput(key, activator, caller, data)
 	if key == "melee" then
 		self.SB_VestHit = true -- Signals the code to preform an explosion
 		local d = DamageInfo()
-		d:SetDamage(self:GetHealth())
+		d:SetDamage(self:GetMaxHealth())
 		d:SetAttacker(self)
 		d:SetDamageType(DMG_BLAST) 
 		self:TakeDamageInfo(d)
