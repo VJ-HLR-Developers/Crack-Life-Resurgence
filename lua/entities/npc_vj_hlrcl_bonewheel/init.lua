@@ -7,6 +7,11 @@ include('shared.lua')
 -----------------------------------------------*/
 ENT.Model = {"models/vj_hlr/cracklife/bonewheel.mdl"} -- The game will pick a random model from the table when the SNPC is spawned | Add as many as you want
 ENT.StartHealth = 100
+ENT.VJC_Data = {
+    ThirdP_Offset = Vector(-5, 0, -15), -- The offset for the controller when the camera is in third person
+    FirstP_Bone = "MDLDEC_Bone27", -- If left empty, the base will attempt to calculate a position for first person
+    FirstP_Offset = Vector(5, 0, 5), -- The offset for the controller when the camera is in first person
+}
 ENT.SpawnHat = true
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomOnAcceptInput(key, activator, caller, data)

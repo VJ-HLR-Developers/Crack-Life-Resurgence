@@ -7,7 +7,11 @@ include('shared.lua')
 -----------------------------------------------*/
 ENT.Model = {"models/vj_hlr/cracklife/terror.mdl"} -- The game will pick a random model from the table when the SNPC is spawned | Add as many as you want
 ENT.StartHealth = 80
-
+ENT.VJC_Data = {
+    ThirdP_Offset = Vector(-5, 0, -15), -- The offset for the controller when the camera is in third person
+    FirstP_Bone = "Bip02 Head", -- If left empty, the base will attempt to calculate a position for first person
+    FirstP_Offset = Vector(5, 0, 5), -- The offset for the controller when the camera is in first person
+}
 ENT.BloodColor = "Red" -- The blood type, this will determine what it should use (decal, particle, etc.)
 ENT.CustomBlood_Particle = {"vj_hl_blood_red"}
 ENT.CustomBlood_Decal = {"VJ_HLR_Blood_Red"} -- Decals to spawn when it's damaged
