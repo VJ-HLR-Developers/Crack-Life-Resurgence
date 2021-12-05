@@ -38,7 +38,7 @@ if VJExists == true then
 		VJ.AddNPC("Pink Panther","npc_vj_hlrcl_pinkpanther",vCat)
 		--VJ.AddNPC("Retarded Scientist","npc_vj_hlrcl_scientist",vCat)
 		--VJ.AddNPC("Retarded Security Guard","npc_vj_hlrcl_securityguard",vCat)
-		--VJ.AddNPC("Shrek","npc_vj_hlrcl_shrek",vCat)
+		VJ.AddNPC("Shrek","npc_vj_hlrcl_shrek",vCat)
 		--VJ.AddNPC("Skrillyd","npc_vj_hlrcl_skrillex",vCat)
 		--VJ.AddNPC("Soviet Grunt","npc_vj_hlrcl_sgrunt",vCat)
 		VJ.AddNPC("Suicide Bomber","npc_vj_hlrcl_terror",vCat)
