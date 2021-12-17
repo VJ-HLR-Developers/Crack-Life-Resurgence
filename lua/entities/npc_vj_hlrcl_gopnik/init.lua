@@ -31,6 +31,20 @@ ENT.SoundTbl_MeleeAttackExtra = {"vj_hlr/crack_fx/bat_hit.wav","vj_hlr/crack_fx/
 ENT.SCI_NextMouthMove = 0
 ENT.SCI_NextMouthDistance = 0
 ENT.SpawnHat = true
+---------------------------------------------------------------------------------------------------------------------------------------------
+function ENT:CustomOnAcceptInput(key, activator, caller, data)
+	//print(key)
+	if key == "event_emit step" then
+		self:FootStepSoundCode()
+	end
+	if key == "event_mattack right" or key == "event_mattack left" or key == "event_mattack both" then
+		self:MeleeAttackCode()
+	end
+	if key == "body" then
+		VJ_EmitSound(self, "vj_hlr/crack_fx/bodydrop.wav", 85, 100)
+	end
+end
+---------------------------------------------------------------------------------------------------------------------------------------------
 --[[  mouth movement looks terrible
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomOnThink()

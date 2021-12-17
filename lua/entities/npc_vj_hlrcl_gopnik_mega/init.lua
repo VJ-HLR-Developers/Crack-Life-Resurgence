@@ -27,7 +27,19 @@ ENT.HasWorldShakeOnMove = true -- Should the world shake when it's moving?
 ENT.WorldShakeOnMoveAmplitude = 3
 
 ENT.DeathAnimationTime = 0.47 -- Time until the SNPC spawns its corpse and gets removed
-
+---------------------------------------------------------------------------------------------------------------------------------------------
+function ENT:CustomOnAcceptInput(key, activator, caller, data)
+	//print(key)
+	if key == "event_emit step" then
+		self:FootStepSoundCode()
+	end
+	if key == "event_mattack right" or key == "event_mattack left" or key == "event_mattack both" then
+		self:MeleeAttackCode()
+	end
+	if key == "body" then
+		VJ_EmitSound(self, "vj_hlr/crack_fx/bodydrop.wav", 85, 100)
+	end
+end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomOnInitialize()
 	self:SetCollisionBounds(Vector(32,28,120),Vector(-15,-28,0))
