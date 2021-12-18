@@ -1,6 +1,6 @@
 ENT.Base 			= "npc_vj_hlr1_aliengrunt"
 ENT.Type 			= "ai"
-ENT.PrintName 		= "Foundation Repairmen"
+ENT.PrintName 		= "Foundation Repairman"
 ENT.Author 			= "DrVrej"
 ENT.Contact 		= "http://steamcommunity.com/groups/vrejgaming"
 ENT.Purpose 		= "Spawn it and fight with it!"

@@ -206,7 +206,7 @@ function ENT:F_CreateAlly()
 		mask = MASK_ALL,
 	})
 	local spawnpos = tr.HitPos + tr.HitNormal*30
-	local type = VJ_PICK({"npc_vj_hlrcl_bonewheel","npc_vj_hlrcl_zombozo","npc_vj_hlrcl_pinkpanther","npc_vj_hlrcl_evilsci","npc_vj_hlrcl_terror"})
+	local type = VJ_PICK({"npc_vj_hlrcl_bonewheel","npc_vj_hlrcl_zombozo","npc_vj_hlrcl_pinkpanther","npc_vj_hlrcl_evilsci","npc_vj_hlrcl_terror","npc_vj_hlrcl_houndeye","npc_vj_hlrcl_agrunt","npc_vj_hlrcl_alienslave"})
 	local ally = ents.Create(type)
 	ally:SetPos(spawnpos)
 	ally:SetAngles(self:GetAngles())
@@ -222,7 +222,7 @@ function ENT:F_CreateAlly()
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:F_SpawnAlly()
-	-- Can have a total of 4, only 1 can be spawned at a time with a delay until another one is spawned
+	-- Can have a total of 5, only 1 can be spawned at a time with a delay until another one is spawned
 	if !IsValid(self.F_Ally1) then
 		self.F_Ally1 = self:F_CreateAlly()
 		return 15
@@ -238,6 +238,9 @@ function ENT:F_SpawnAlly()
 	elseif !IsValid(self.F_Ally5) then
 		self.F_Ally5 = self:F_CreateAlly()
 		return 15
+	elseif !IsValid(self.F_Ally6) then
+		self.F_Ally6 = self:F_CreateAlly()
+		return 15
 	end
 	return 8
 end
@@ -249,6 +252,7 @@ function ENT:CustomOnRemove()
 		if IsValid(self.F_Ally3) then self.F_Ally3:Remove() end
 		if IsValid(self.F_Ally4) then self.F_Ally4:Remove() end
 		if IsValid(self.F_Ally5) then self.F_Ally5:Remove() end
+		if IsValid(self.F_Ally6) then self.F_Ally6:Remove() end
 	end
 end
 /*-----------------------------------------------

@@ -5,8 +5,8 @@
 	without the prior written consent of the author, unless otherwise indicated for stand-alone materials.
 --------------------------------------------------*/
 ------------------ Addon Information ------------------
-local PublicAddonName = "Half-Life Resurgence Crack-Life"
-local AddonName = "Half-Life Resurgence Crack-Life"
+local PublicAddonName = "Half-Life Resurgence: Crack-Life"
+local AddonName = "Half-Life Resurgence: Crack-Life"
 local AddonType = "SNPC"
 local AutorunFile = "autorun/vj_hlr_hd_autorun.lua"
 -------------------------------------------------------
@@ -28,7 +28,7 @@ if VJExists == true then
 		VJ.AddNPC("Evil Scientist","npc_vj_hlrcl_evilsci",vCat)
 		VJ.AddNPC("Fat Assassin","npc_vj_hlrcl_fatassassin",vCat)
 		VJ.AddNPC("Filthy Controller","npc_vj_hlrcl_controller",vCat)
-		VJ.AddNPC("Foundation Repairmen","npc_vj_hlrcl_agrunt",vCat)
+		VJ.AddNPC("Foundation Repairman","npc_vj_hlrcl_agrunt",vCat)
 		VJ.AddNPC("Gentlecrab","npc_vj_hlrcl_gentlecrab",vCat)
 		--VJ.AddNPC("Nazi","npc_vj_hlrcl_german",vCat)
 		VJ.AddNPC("Chav","npc_vj_hlrcl_gopnik",vCat)

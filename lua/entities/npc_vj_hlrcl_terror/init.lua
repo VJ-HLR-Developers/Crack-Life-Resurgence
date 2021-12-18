@@ -47,6 +47,10 @@ ENT.SCI_NextMouthMove = 0
 ENT.SCI_NextMouthDistance = 0
 ENT.SB_VestHit = false
 ---------------------------------------------------------------------------------------------------------------------------------------------
+function ENT:CustomOnInitialize()
+	self:SetCollisionBounds(Vector(16,16,70),Vector(-16,-16,-0.1)) --0.1 fixes the bad lighting on the model
+end
+---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomOnAcceptInput(key, activator, caller, data)
 	print(key)
 	if key == "step" then
@@ -153,7 +157,6 @@ function ENT:CustomGibOnDeathSounds(dmginfo, hitgroup)
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomOnTakeDamage_BeforeDamage(dmginfo, hitgroup)
-	-- Instant kill when hit in the gas tank!
 	if hitgroup == HITGROUP_STOMACH then
 		//self.SB_VestHit = true -- Signals the code to preform an explosion
 		dmginfo:SetDamage(self:Health())
