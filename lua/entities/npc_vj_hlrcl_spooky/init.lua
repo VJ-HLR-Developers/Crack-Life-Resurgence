@@ -8,6 +8,9 @@ include('shared.lua')
 ENT.Model = {"models/vj_hlr/cracklife/skellington.mdl"} -- The game will pick a random model from the table when the SNPC is spawned | Add as many as you want
 ENT.VJ_NPC_Class = {"CLASS_CRACKLIFE"} -- NPCs with the same class with be allied to each other
 ENT.Bleeds = false
+//ENT.BloodColor = ""
+ENT.HasBloodParticle = false
+ENT.HasBloodDecal = false
 
 ENT.HasIdleSounds = false
 ENT.HasAlertSounds = false
