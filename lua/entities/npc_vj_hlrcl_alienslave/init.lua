@@ -6,6 +6,7 @@ include('shared.lua')
 	without the prior written consent of the author, unless otherwise indicated for stand-alone materials.
 -----------------------------------------------*/
 ENT.Model = {"models/vj_hlr/cracklife/islave.mdl"} -- The game will pick a random model from the table when the SNPC is spawned | Add as many as you want
+ENT.StartHealth = 100
 ENT.SoundTbl_BeforeRangeAttack = {"vj_hlr/crack_npc/aslave/disco.wav"}
 ENT.VJ_NPC_Class = {"CLASS_CRACKLIFE"}
 ---------------------------------------------------------------------------------------------------------------------------------------------

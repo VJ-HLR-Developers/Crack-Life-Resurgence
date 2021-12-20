@@ -30,7 +30,7 @@ if VJExists == true then
 		VJ.AddNPC("Filthy Controller","npc_vj_hlrcl_controller",vCat)
 		VJ.AddNPC("Foundation Repairman","npc_vj_hlrcl_agrunt",vCat)
 		VJ.AddNPC("Gentlecrab","npc_vj_hlrcl_gentlecrab",vCat)
-		VJ.AddNPC("Nazi","npc_vj_hlrcl_german",vCat)
+		VJ.AddNPC("German Grunt","npc_vj_hlrcl_german",vCat)
 		VJ.AddNPC("Chav","npc_vj_hlrcl_gopnik",vCat)
 		VJ.AddNPC("Chav (Super)","npc_vj_hlrcl_gopnik_super",vCat)
 		VJ.AddNPC("Chav (Mega)","npc_vj_hlrcl_gopnik_mega",vCat)

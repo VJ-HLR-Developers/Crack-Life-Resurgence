@@ -4,7 +4,7 @@ SWEP.Base = "weapon_vj_base"
 SWEP.PrintName = "Tec-9"
 SWEP.Author = "oteek"
 SWEP.Contact = "http://steamcommunity.com/groups/vrejgaming"
-SWEP.Purpose = "This weapon is made for Players and NPCs"
+SWEP.Purpose = "This weapon is made for NPCs"
 SWEP.Instructions = "Controls are like a regular weapon."
 SWEP.Category = "VJ Base"
 	-- NPC Settings ---------------------------------------------------------------------------------------------------------------------------------------------
@@ -13,22 +13,21 @@ SWEP.NPC_ReloadSound = {"vj_hlr/hl1_weapon/glock/glock_reload.wav"} -- Sounds it
 SWEP.NPC_CanBePickedUp = false -- Can this weapon be picked up by NPCs? (Ex: Rebels)
 	-- Main Settings ---------------------------------------------------------------------------------------------------------------------------------------------
 SWEP.MadeForNPCsOnly = true -- Is this weapon meant to be for NPCs only?
-SWEP.WorldModel = "models/vj_hlr/weapons/w_glock_silenced.mdl"
+SWEP.WorldModel = "models/vj_hlr/cracklife/w_tec9.mdl"
 SWEP.HoldType = "pistol"
 SWEP.Spawnable = false
 SWEP.AdminSpawnable = false
 	-- World Model ---------------------------------------------------------------------------------------------------------------------------------------------
-SWEP.WorldModel_Invisible = true -- Should the world model be invisible?
+SWEP.WorldModel_Invisible = false -- Should the world model be invisible?
 SWEP.WorldModel_UseCustomPosition = true -- Should the gun use custom position? This can be used to fix guns that are in the crotch
 SWEP.WorldModel_CustomPositionAngle = Vector(0, 0, 0)
-SWEP.WorldModel_CustomPositionOrigin = Vector(0.3, 0.6, -2.35)
-SWEP.WorldModel_CustomPositionBone = "sides01" -- The bone it will use as the main point
+SWEP.WorldModel_CustomPositionOrigin = Vector(0, 0, 0)
+SWEP.WorldModel_CustomPositionBone = "Bip01 R Hands" -- The bone it will use as the main point
 	-- Primary Fire ---------------------------------------------------------------------------------------------------------------------------------------------
 SWEP.Primary.Damage = 5 -- Damage
 SWEP.Primary.ClipSize = 17 -- Max amount of bullets per clip
 SWEP.Primary.Ammo = "SMG1" -- Ammo type
-SWEP.Primary.Sound = {"vj_hlr/hl1_weapon/glock/glock_silenced1.wav","vj_hlr/hl1_weapon/glock/glock_silenced2.wav"}
-SWEP.Primary.DistantSound = {"vj_hlr/hl1_weapon/glock/glock_silenced_distant.wav"}
+SWEP.Primary.Sound = {"vj_hlr/crack_npc/bigsmoke/fire1.wav"}
 SWEP.PrimaryEffects_ShellType = "VJ_Weapon_PistolShell1"
 SWEP.Primary.TracerType = "VJ_HLR_Tracer"
 

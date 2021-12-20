@@ -8,6 +8,8 @@ include('shared.lua')
 ENT.Model = {"models/vj_hlr/cracklife/hassassin.mdl"} -- The game will pick a random model from the table when the SNPC is spawned | Add as many as you want
 ENT.VJ_NPC_Class = {"CLASS_CRACKLIFE"}
 
+ENT.GrenadeAttackEntity = "obj_vj_hlrcl_pepsinade"
+
 ENT.SoundTbl_FootStep = {"vj_hlr/crack_fx/npc_step1.wav","vj_hlr/crack_fx/npc_step2.wav","vj_hlr/crack_fx/npc_step3.wav","vj_hlr/crack_fx/npc_step4.wav"}
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomOnAcceptInput(key, activator, caller, data)
