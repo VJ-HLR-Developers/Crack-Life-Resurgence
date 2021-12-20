@@ -6,7 +6,7 @@ include('shared.lua')
 	without the prior written consself of the author, unless otherwise indicated for stand-alone materials.
 -----------------------------------------------*/
 ENT.Model = {"models/vj_hlr/cracklife/big_mom.mdl"} -- The game will pick a random model from the table when the SNPC is spawned | Add as many as you want
-local sdCBirth = {"vj_hlr/crack_npc/gonarch/gon_birth1.wav","vj_hlr/crack_npc/gonarch/gon_birth1.wav","vj_hlr/crack_npc/gonarch/gon_birth1.wav"}
+local sdCBirth = {"vj_hlr/crack_npc/gonarch/gon_birth1.wav","vj_hlr/crack_npc/gonarch/gon_birth2.wav","vj_hlr/crack_npc/gonarch/gon_birth3.wav"}
 local sdCBabyDeath = {"vj_hlr/crack_npc/gonarch/gon_childdie1.wav", "vj_hlr/crack_npc/gonarch/gon_childdie2.wav", "vj_hlr/crack_npc/gonarch/gon_childdie3.wav"}
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomOnInitialize()
