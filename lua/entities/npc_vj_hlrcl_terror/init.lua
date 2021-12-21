@@ -128,13 +128,6 @@ function ENT:SetUpGibesOnDeath(dmginfo, hitgroup)
 		bloodspray:SetColor(0)
 		util.Effect("bloodspray",bloodspray)
 		util.Effect("bloodspray",bloodspray)
-		
-		if self.SCI_Type == 2 then
-			local effectdata = EffectData()
-			effectdata:SetOrigin(self:GetPos())
-			util.Effect("HelicopterMegaBomb", effectdata)
-			ParticleEffect("explosion_turret_break_fire", self:GetPos() +self:GetUp() *30, Angle(0,0,0))
-		end
 	end
 	self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/flesh1.mdl",{BloodDecal="VJ_HLR_Blood_Red",Pos=self:LocalToWorld(Vector(0,0,40))})
 	self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/flesh2.mdl",{BloodDecal="VJ_HLR_Blood_Red",Pos=self:LocalToWorld(Vector(0,0,40))})

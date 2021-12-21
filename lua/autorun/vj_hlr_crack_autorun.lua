@@ -8,7 +8,7 @@
 local PublicAddonName = "Half-Life Resurgence: Crack-Life"
 local AddonName = "Half-Life Resurgence: Crack-Life"
 local AddonType = "SNPC"
-local AutorunFile = "autorun/vj_hlr_hd_autorun.lua"
+local AutorunFile = "autorun/vj_hlr_crack_autorun.lua"
 -------------------------------------------------------
 local VJExists = file.Exists("lua/autorun/vj_base_autorun.lua","GAME")
 if VJExists == true then
