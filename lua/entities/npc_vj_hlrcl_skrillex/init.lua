@@ -49,16 +49,21 @@ function ENT:CustomOnInitialize()
 	self:SetCollisionBounds(Vector(16,16,70),Vector(-16,-16,0))
 	self.SoundTbl_Death = {"vj_hlr/crack_npc/skrillex/skrillexbossdie.wav"}
 	
-	-- Crystals
+	-- Radios
 	for i = 1, 2 do
+		local trF = util.TraceLine({
+			start = self:GetPos() + self:GetUp() * 170,
+			endpos = (self:GetPos() + self:GetUp() * 170) + self:GetForward() * math.Rand(-10000, 10000) + self:GetRight() * math.Rand(-1000, 1000) + self:GetUp() * -3000,
+			filter = {self, self.Radio1},
+		})
 		local tr = util.TraceLine({
-			start = self:GetPos(),
-			endpos = self:GetPos() + self:GetForward() * math.Rand(-1000, 1000) + self:GetRight() * math.Rand(-1000, 1000) + self:GetUp() * 170,
-			filter = self,
+			start = trF.HitPos,
+			endpos = trF.HitPos + Vector(0, 0, -3000),
+			filter = {self, self.Radio1},
 		})
 		-- HitNormal = Number between 0 to 1, use this to get the position the trace came from. Ex: Add it to the hit position to make it go farther away.
 		local radio = ents.Create("sent_vj_hlrcl_recorder_huge")
-		radio:SetPos(tr.HitPos - tr.HitNormal*10) -- Take the HitNormal and minus it by 10 units to make it go inside the position a bit
+		radio:SetPos(tr.HitPos) -- Take the HitNormal and minus it by 10 units to make it go inside the position a bit
 		radio:SetAngles(tr.HitNormal:Angle() + Angle(math.Rand(60, 120), math.Rand(-15, 15), math.Rand(-15, 15))) -- 90 = middle and 30 degree difference to make the pitch rotate randomly | yaw and roll are applied a bit of a random number
 		radio.Assignee = self
 		radio:Spawn()
