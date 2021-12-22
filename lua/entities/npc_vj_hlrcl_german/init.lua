@@ -24,6 +24,7 @@ ENT.CustomBlood_Decal = {"VJ_HLR_Blood_Red"}
 
 ENT.AnimTbl_Death = {ACT_DIEBACKWARD,ACT_DIEFORWARD,ACT_DIESIMPLE,ACT_DIE_GUTSHOT} -- Death Animations
 ENT.NextRangeAttackTime = 0
+ENT.SpawnHat = true
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomOnInitialize()
 	self.SoundTbl_FootStep = {"vj_hlr/crack_fx/npc_step1.wav","vj_hlr/crack_fx/npc_step2.wav","vj_hlr/crack_fx/npc_step3.wav","vj_hlr/crack_fx/npc_step4.wav"}
@@ -148,9 +149,21 @@ function ENT:CustomDeathAnimationCode(dmginfo, hitgroup)
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomOnDeath_AfterCorpseSpawned(dmginfo, hitgroup, corpseEnt)
-	VJ_HLR_ApplyCorpseEffects(self, corpseEnt, nil, {ExtraGibs = {"models/vj_hlr/gibs/islavegib.mdl"}})
+	VJ_HLR_ApplyCorpseEffects(self, corpseEnt, nil)
 end
-
+---------------------------------------------------------------------------------------------------------------------------------------------
+function ENT:CustomDeathAnimationCode(dmginfo, hitgroup)
+	if self.SpawnHat == true then
+		self:SetBodygroup(1,1)
+		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/cracklife/w_mp44.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,0)),CollideSound={""}})
+		self.SpawnHat = false
+	end
+	if hitgroup == HITGROUP_HEAD then
+		self.AnimTbl_Death = {ACT_DIE_GUTSHOT,ACT_DIE_HEADSHOT}
+	else
+		self.AnimTbl_Death = {ACT_DIEBACKWARD,ACT_DIEFORWARD,ACT_DIESIMPLE}
+	end
+end
 /*-----------------------------------------------
 	*** Copyright (c) 2012-2019 by DrVrej, All rights reserved. ***
 	No parts of this code or any of its contents may be reproduced, copied, modified or adapted,

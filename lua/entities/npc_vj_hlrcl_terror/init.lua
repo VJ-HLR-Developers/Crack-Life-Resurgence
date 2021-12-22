@@ -52,7 +52,7 @@ function ENT:CustomOnInitialize()
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomOnAcceptInput(key, activator, caller, data)
-	print(key)
+	//print(key)
 	if key == "step" then
 		self:FootStepSoundCode()
 	end

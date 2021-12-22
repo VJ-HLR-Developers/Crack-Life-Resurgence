@@ -40,6 +40,8 @@ if VJExists == true then
 		VJ.AddNPC("Retarded Security Guard","npc_vj_hlrcl_securityguard",vCat)
 		VJ.AddNPC("Shrek","npc_vj_hlrcl_shrek",vCat)
 		VJ.AddNPC("Skrillyd","npc_vj_hlrcl_skrillex",vCat)
+		VJ.AddNPC("Skrillyd's Player","sent_vj_hlrcl_recorder",vCat)
+		--VJ.AddNPC("Skrillyd's Player (Huge)","sent_vj_hlrcl_recorder_huge",vCat)
 		VJ.AddNPC("Soviet Grunt","npc_vj_hlrcl_sgrunt",vCat)
 		VJ.AddNPC("Suicide Bomber","npc_vj_hlrcl_terror",vCat)
 		VJ.AddNPC("Skellington","npc_vj_hlrcl_spooky",vCat)

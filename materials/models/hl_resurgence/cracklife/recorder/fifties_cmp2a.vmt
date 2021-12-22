@@ -1,0 +1,11 @@
+"vertexlitgeneric"
+{
+	// original shader: basetimeslightmap
+	"$detailscale" 2.5
+	"$basetexture" "models/hl_resurgence/cracklife/recorder/fifties_cmp2a"
+	"$surfaceprop" "metal"
+	"$envmap" "environment maps/envmap001a"
+	"$basealphaenvmapmask" "1"
+	"$envmapcontrast" 2
+	"$envmaptint" "[ .5 .5 .5 ]"
+}

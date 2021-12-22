@@ -30,6 +30,20 @@ function ENT:Security_CustomOnInitialize()
 	
 	self:Give("weapon_vj_hlr1_glock17")
 end
+---------------------------------------------------------------------------------------------------------------------------------------------
+function ENT:CustomOnAcceptInput(key, activator, caller, data)
+	//print(key)
+	if key == "step" then
+		self:FootStepSoundCode()
+	elseif key == "shoot" then
+		local wep = self:GetActiveWeapon()
+		if IsValid(wep) then
+			wep:NPCShoot_Primary()
+		end
+	elseif key == "body" then
+		VJ_EmitSound(self, "vj_hlr/crack_fx/bodydrop.wav", 75, 100)
+	end
+end
 /*-----------------------------------------------
 	*** Copyright (c) 2012-2019 by DrVrej, All rights reserved. ***
 	No parts of this code or any of its contents may be reproduced, copied, modified or adapted,

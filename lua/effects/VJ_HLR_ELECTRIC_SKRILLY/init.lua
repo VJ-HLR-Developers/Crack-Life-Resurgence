@@ -38,7 +38,7 @@ function EFFECT:Think()
 	return true
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
-local defColor = Color(138, 43, 226)
+local defColor = Color(0, 225, 225)
 function EFFECT:Render()
 	render.SetMaterial(self.MainMat)
 	render.DrawBeam(self.StartPos, self.EndPos, math.Rand(18, 24), math.Rand(0, 1), math.Rand(0, 1) + ((self.StartPos - self.EndPos):Length() / 128), defColor)

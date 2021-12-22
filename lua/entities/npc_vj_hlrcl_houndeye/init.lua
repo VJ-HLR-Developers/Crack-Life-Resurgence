@@ -38,7 +38,7 @@ function ENT:CustomOnMeleeAttack_BeforeChecks()
 	local color = Color(188, 220, 255) -- The shock wave color
 	local dmg = 15 -- How much damage should the shock wave do?
 	for _, v in ipairs(ents.FindInSphere(self:GetPos(), 400)) do
-		if v != self && v:GetClass() == "npc_vj_hlr1_houndeye" then
+		if v != self && v:GetClass() == "npc_vj_hlrcl_houndeye" then
 			friNum = friNum + 1
 		end
 	end
