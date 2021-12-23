@@ -18,6 +18,15 @@ function ENT:Draw() self:DrawModel() end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 if (!SERVER) then return end
 
+if (CLIENT) then
+	local Name = "Skrillyd's Player (Huge)"
+	local LangName = "sent_vj_hlrcl_recorder_huge"
+	language.Add(LangName, Name)
+	killicon.Add(LangName,"HUD/killicons/default",Color(255,80,0,255))
+	language.Add("#"..LangName, Name)
+	killicon.Add("#"..LangName,"HUD/killicons/default",Color(255,80,0,255))
+end
+
 ENT.VJ_NPC_Class = {"CLASS_CRACKLIFE_CHAV"} -- NPCs with the same class with be allied to each other
 
 -- Custom

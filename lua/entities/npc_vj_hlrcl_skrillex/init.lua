@@ -53,7 +53,7 @@ function ENT:CustomOnInitialize()
 	for i = 1, 2 do
 		local trF = util.TraceLine({
 			start = self:GetPos() + self:GetUp() * 170,
-			endpos = (self:GetPos() + self:GetUp() * 170) + self:GetForward() * math.Rand(-10000, 10000) + self:GetRight() * math.Rand(-1000, 1000) + self:GetUp() * -3000,
+			endpos = (self:GetPos() + self:GetUp() * 170) + self:GetForward() * math.Rand(-10000, 10000) + self:GetRight() * math.Rand(-10000, 10000) + self:GetUp() * -3000,
 			filter = {self, self.Radio1},
 		})
 		local tr = util.TraceLine({
