@@ -111,14 +111,14 @@ function ENT:CustomOnAcceptInput(key, activator, caller, data)
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:F_CreateAlly()
+	local type = VJ_PICK({"npc_vj_hlrcl_gopnik_super","npc_vj_hlrcl_gopnik","npc_vj_hlrcl_gopnik_super","npc_vj_hlrcl_gopnik","npc_vj_hlrcl_gopnik_super","npc_vj_hlrcl_gopnik","npc_vj_hlrcl_gopnik_super","npc_vj_hlrcl_gopnik","npc_vj_hlrcl_gopnik_super","npc_vj_hlrcl_gopnik","npc_vj_hlrcl_gopnik_super","npc_vj_hlrcl_gopnik","npc_vj_hlrcl_gopnik_super","npc_vj_hlrcl_gopnik","npc_vj_hlrcl_gopnik_super","npc_vj_hlrcl_gopnik","npc_vj_hlrcl_gopnik_super","npc_vj_hlrcl_gopnik","npc_vj_hlrcl_gopnik_super","npc_vj_hlrcl_gopnik_mega","npc_vj_hlrcl_gopnik","npc_vj_hlrcl_gopnik_super","npc_vj_hlrcl_gopnik","npc_vj_hlrcl_gopnik_super","npc_vj_hlrcl_gopnik","npc_vj_hlrcl_gopnik_super","npc_vj_hlrcl_gopnik","npc_vj_hlrcl_gopnik_super"})
 	local tr = util.TraceLine({
 		start = self:GetPos(),
 		endpos = self:GetPos() + self:GetForward() * math.Rand(-500, 500) + self:GetRight() * math.Rand(-500, 500) + self:GetUp() * 40,
-		filter = self,
+		filter = {self, type},
 		mask = MASK_ALL,
 	})
 	local spawnpos = tr.HitPos + tr.HitNormal*30
-	local type = VJ_PICK({"npc_vj_hlrcl_gopnik_super","npc_vj_hlrcl_gopnik","npc_vj_hlrcl_gopnik_super","npc_vj_hlrcl_gopnik","npc_vj_hlrcl_gopnik_super","npc_vj_hlrcl_gopnik","npc_vj_hlrcl_gopnik_super","npc_vj_hlrcl_gopnik","npc_vj_hlrcl_gopnik_super","npc_vj_hlrcl_gopnik","npc_vj_hlrcl_gopnik_super","npc_vj_hlrcl_gopnik","npc_vj_hlrcl_gopnik_super","npc_vj_hlrcl_gopnik","npc_vj_hlrcl_gopnik_super","npc_vj_hlrcl_gopnik","npc_vj_hlrcl_gopnik_super","npc_vj_hlrcl_gopnik","npc_vj_hlrcl_gopnik_super","npc_vj_hlrcl_gopnik_mega","npc_vj_hlrcl_gopnik","npc_vj_hlrcl_gopnik_super","npc_vj_hlrcl_gopnik","npc_vj_hlrcl_gopnik_super","npc_vj_hlrcl_gopnik","npc_vj_hlrcl_gopnik_super","npc_vj_hlrcl_gopnik","npc_vj_hlrcl_gopnik_super"})
 	local ally = ents.Create(type)
 	ally:SetPos(spawnpos)
 	ally:SetAngles(self:GetAngles())

@@ -7,7 +7,7 @@ AddCSLuaFile()
 
 ENT.Base 			= "base_entity"
 ENT.Type 			= "ai"
-ENT.PrintName 		= "Skrillyd's Player"
+ENT.PrintName 		= "Skrillyd's Player (Huge)"
 ENT.Author 			= "DrVrej"
 ENT.Contact 		= "http://steamcommunity.com/groups/vrejgaming"
 ENT.Purpose 		= "Used to make simple props and animate them, since prop_dynamic doesn't work properly in Garry's Mod."
