@@ -42,9 +42,9 @@ function ENT:Initialize()
 	self:SetHealth(3000)
 	self:SetAngles(Angle(0,0,0))
 	
-	//self.IdleSd = CreateSound(self, "vj_hlr/crack_npc/skrillex/skrilly.wav")
-	//self.IdleSd:SetSoundLevel(80)
-	//self.IdleSd:Play()
+	self.IdleSd = CreateSound(self, "vj_hlr/crack_fx/industrial1.wav")
+	self.IdleSd:SetSoundLevel(75)
+	self.IdleSd:Play()
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:Think()
