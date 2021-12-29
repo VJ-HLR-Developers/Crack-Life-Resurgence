@@ -48,6 +48,11 @@ if VJExists == true then
 		VJ.AddNPC("The Final Boss","npc_vj_hlrcl_finalboss",vCat)
 		VJ.AddNPC("Viking Gargantua","npc_vj_hlrcl_garg_viking",vCat)
 		VJ.AddNPC("Zombozo","npc_vj_hlrcl_zombozo",vCat)
+		
+		VJ.AddNPC("Steveman","npc_vj_hlrcl_steveman",vCat)
+		--VJ.AddNPC("Guardchav","npc_vj_hlrcl_guardchav",vCat)
+		--VJ.AddNPC("Admin Vladimir","npc_vj_hlrcl_vlad",vCat)
+		--VJ.AddNPC("Blackscary","npc_vj_hlrcl_blackscary",vCat)
 	
 -- !!!!!! DON'T TOUCH ANYTHING BELOW THIS !!!!!! -------------------------------------------------------------------------------------------------------------------------
 	AddCSLuaFile(AutorunFile)
