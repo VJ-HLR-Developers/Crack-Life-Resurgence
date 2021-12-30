@@ -1,0 +1,5 @@
+"VertexLitGeneric"
+{
+	"$basetexture" "models/hl_resurgence/cracklife/vlad/TRK_PIPE"
+	"$surfaceprop" "metal"
+}

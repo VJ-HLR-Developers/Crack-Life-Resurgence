@@ -7,7 +7,7 @@ include('shared.lua')
 -----------------------------------------------*/
 ENT.Model = {"models/vj_hlr/cracklife/superchav.mdl"} -- The game will pick a random model from the table when the SNPC is spawned | Add as many as you want
 ENT.HasIdleSounds = false
-ENT.StartHealth = 180
+ENT.StartHealth = 150
 
 ENT.SoundTbl_Alert = {"vj_hlr/crack_npc/superchav/zo_alert10.wav","vj_hlr/crack_npc/superchav/zo_alert20.wav","vj_hlr/crack_npc/superchav/zo_alert30.wav"}
 ENT.SoundTbl_BeforeMeleeAttack = {"vj_hlr/crack_npc/superchav/zo_attack1.wav","vj_hlr/crack_npc/superchav/zo_attack2.wav"}

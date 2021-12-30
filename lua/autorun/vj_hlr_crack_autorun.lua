@@ -45,14 +45,14 @@ if VJExists == true then
 		VJ.AddNPC("Soviet Grunt","npc_vj_hlrcl_sgrunt",vCat)
 		VJ.AddNPC("Suicide Bomber","npc_vj_hlrcl_terror",vCat)
 		VJ.AddNPC("Skellington","npc_vj_hlrcl_spooky",vCat)
-		VJ.AddNPC("The Final Boss","npc_vj_hlrcl_finalboss",vCat)
+		VJ.AddNPC("The Nimrod Force Fuckshit Triple Mafia Smasher of Crackheads X5000 Alpha Version 133.7","npc_vj_hlrcl_finalboss",vCat)
 		VJ.AddNPC("Viking Gargantua","npc_vj_hlrcl_garg_viking",vCat)
 		VJ.AddNPC("Zombozo","npc_vj_hlrcl_zombozo",vCat)
 		
 		VJ.AddNPC("Steveman","npc_vj_hlrcl_steveman",vCat)
 		--VJ.AddNPC("Guardchav","npc_vj_hlrcl_guardchav",vCat)
-		--VJ.AddNPC("Admin Vladimir","npc_vj_hlrcl_vlad",vCat)
-		--VJ.AddNPC("Blackscary","npc_vj_hlrcl_blackscary",vCat)
+		VJ.AddNPC("Admin Vladimir","npc_vj_hlrcl_vlad",vCat)
+		--VJ.AddNPC(" ","npc_vj_hlrcl_blackscary",vCat)
 	
 -- !!!!!! DON'T TOUCH ANYTHING BELOW THIS !!!!!! -------------------------------------------------------------------------------------------------------------------------
 	AddCSLuaFile(AutorunFile)

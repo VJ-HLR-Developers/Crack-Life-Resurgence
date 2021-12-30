@@ -134,7 +134,7 @@ function ENT:F_CreateAlly()
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:F_SpawnAlly()
-	-- Can have a total of 2, only 1 can be spawned at a time with a delay until another one is spawned
+	-- Can have a total of 3, only 1 can be spawned at a time with a delay until another one is spawned
 	if !IsValid(self.ChavAlly1) then
 		self.ChavAlly1 = self:F_CreateAlly()
 		return 15
