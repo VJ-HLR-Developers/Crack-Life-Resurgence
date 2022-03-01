@@ -61,7 +61,7 @@ function ENT:CustomOnMedic_OnHeal(ent)
 		local d = DamageInfo()
 		d:SetAttacker(ent)
 		d:SetDamageType(DMG_NERVEGAS) 
-		d:SetDamage(200)
+		d:SetDamage(ent:Health())
 		ent:TakeDamageInfo(d)
 		return true
 	end
