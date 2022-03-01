@@ -1,4 +1,5 @@
 "VertexLitGeneric"
 {
 	"$basetexture" "models/hl_resurgence/cracklife/black"
+	"$nodecal" 1
 }

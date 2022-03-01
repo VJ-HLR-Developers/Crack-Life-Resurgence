@@ -1,14 +1,36 @@
-AddCSLuaFile("shared.lua")
-include('shared.lua')
 /*--------------------------------------------------
 	*** Copyright (c) 2012-2021 by DrVrej, All rights reserved. ***
 	No parts of this code or any of its contents may be reproduced, copied, modified or adapted,
 	without the prior written consent of the author, unless otherwise indicated for stand-alone materials.
 --------------------------------------------------*/
+AddCSLuaFile()
+
+ENT.Base 			= "base_entity"
+ENT.Type 			= "ai"
+ENT.PrintName 		= "Skrillyd's Player"
+ENT.Author 			= "oteek"
+ENT.Contact 		= "http://steamcommunity.com/groups/vrejgaming"
+ENT.Purpose 		= "Used to make simple props and animate them, since prop_dynamic doesn't work properly in Garry's Mod."
+ENT.Instructions 	= "Don't change anything."
+ENT.Category		= "VJ Base"
+
+function ENT:Draw() self:DrawModel() end
+
+if CLIENT then
+	local Name = "Skrillyd's Player"
+	local LangName = "sent_vj_hlrcl_recorder_huge"
+	language.Add(LangName, Name)
+	killicon.Add(LangName,"HUD/killicons/default",Color(255,80,0,255))
+	language.Add("#"..LangName, Name)
+	killicon.Add("#"..LangName,"HUD/killicons/default",Color(255,80,0,255))
+end
+---------------------------------------------------------------------------------------------------------------------------------------------
+if (!SERVER) then return end
+
 ENT.VJ_NPC_Class = {"CLASS_CRACKLIFE_CHAV"} -- NPCs with the same class with be allied to each other
 
 -- Custom
-ENT.Assignee = NULL -- Is another entity the owner of this crystal?
+ENT.Assignee = NULL -- Is another entity the owner of this recorder?
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:Initialize()
 	self:SetPos(self:GetPos() + self:GetUp()*100)

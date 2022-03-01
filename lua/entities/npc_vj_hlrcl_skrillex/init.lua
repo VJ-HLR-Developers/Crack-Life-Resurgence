@@ -14,7 +14,7 @@ ENT.CustomBlood_Particle = {"vj_hl_blood_red"}
 ENT.CustomBlood_Decal = {"VJ_HLR_Blood_Red"}
 
 ENT.RangeToMeleeDistance = 0
-ENT.NextRangeAttackTime = 1
+ENT.NextRangeAttackTime = 5
 
 ENT.VJC_Data = {
     ThirdP_Offset = Vector(-5, 0, -15), -- The offset for the controller when the camera is in third person
@@ -39,8 +39,7 @@ ENT.SoundTbl_FootStep = {"vj_hlr/crack_fx/npc_step1.wav","vj_hlr/crack_fx/npc_st
 ENT.SoundTbl_SoundTrack = {"vj_hlr/crack_npc/skrillex/skrillexbattle.mp3"}
 ENT.SoundTbl_BeforeRangeAttack = {"vj_hlr/crack_npc/skrillex/charge.wav"}
 ENT.SoundTbl_RangeAttack = {"vj_hlr/crack_npc/skrillex/fire.wav"}
-ENT.RangeAttackPitch1 = 100
-ENT.RangeAttackPitch2 = 100
+ENT.RangeAttackPitch = VJ_Set(100, 100)
 -- Custom --
 ENT.RadiosDestroyed = false
 ENT.SpawnHat = true

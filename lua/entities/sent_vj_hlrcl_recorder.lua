@@ -15,6 +15,15 @@ ENT.Instructions 	= "Don't change anything."
 ENT.Category		= "VJ Base"
 
 function ENT:Draw() self:DrawModel() end
+
+if CLIENT then
+	local Name = "Skrillyd's Player"
+	local LangName = "sent_vj_hlrcl_recorder"
+	language.Add(LangName, Name)
+	killicon.Add(LangName,"HUD/killicons/default",Color(255,80,0,255))
+	language.Add("#"..LangName, Name)
+	killicon.Add("#"..LangName,"HUD/killicons/default",Color(255,80,0,255))
+end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 if (!SERVER) then return end
 

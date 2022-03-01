@@ -52,7 +52,7 @@ if VJExists == true then
 		VJ.AddNPC("Steveman","npc_vj_hlrcl_steveman",vCat)
 		--VJ.AddNPC("Guardchav","npc_vj_hlrcl_guardchav",vCat)
 		VJ.AddNPC("Admin Vladimir","npc_vj_hlrcl_vlad",vCat)
-		--VJ.AddNPC(" ","npc_vj_hlrcl_blackscary",vCat)
+		VJ.AddNPC(" ","npc_vj_hlrcl_blackscary",vCat)
 	
 -- !!!!!! DON'T TOUCH ANYTHING BELOW THIS !!!!!! -------------------------------------------------------------------------------------------------------------------------
 	AddCSLuaFile(AutorunFile)
