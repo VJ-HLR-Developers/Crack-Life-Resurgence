@@ -227,7 +227,7 @@ function ENT:CustomRangeAttackCode()
 	elec:SetAttachment(2)
 	util.Effect("VJ_HLR_Electric_Skrilly",elec)
 	
-	util.VJ_SphereDamage(self, self, hitpos, 30, 20, DMG_SHOCK, true, false, {Force=90})
+	util.VJ_SphereDamage(self, self, hitpos, 30, 100, DMG_SHOCK, true, false, {Force=90})
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:SetUpGibesOnDeath(dmginfo, hitgroup)
