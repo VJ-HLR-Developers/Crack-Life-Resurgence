@@ -56,6 +56,7 @@ ENT.DisableRangeAttackAnimation = true -- if true, it will disable the animation
 
 ENT.HasDeathRagdoll = false
 ENT.Medic_CanBeHealed = false -- If set to false, this SNPC can't be healed!\
+ENT.SoundTbl_SoundTrack = {"vj_hlr/crack_npc/joj/xfiles.mp3"}
 	-- ====== Sound File Paths ====== --
 -- Leave blank if you don't want any sounds to play
 ENT.SoundTbl_Death = {"vj_hlr/hl1_weapon/mortar/mortarhit.wav"}
@@ -71,8 +72,18 @@ function ENT:CustomOnInitialize()
 	
 	self:SetCollisionBounds(Vector(224, 236, 46), Vector(-224, -236, -17))
 	self:SetPos(self:GetPos() + spawnPos)
+	self.Immune_Bullet = true
+	self.Immune_Blast = true
+	if GetConVar("vj_hlrcl_skipufointro"):GetInt() == 1 then
+		self.HasSoundTrack = true
+		self:StartSoundTrack()
+		timer.Create("jojufo_agruntsp"..self:EntIndex(), 3, 0, function() self:F_SpawnAlly() end)
+		timer.Create("jojufo_snarksp"..self:EntIndex(), 1, 0, function() self:S_SpawnAlly() end)
+		self.Immune_Bullet = false
+		self.Immune_Blast = false
+	end
 	
-	if IsValid(self) then
+	if IsValid(self) && GetConVar("vj_hlrcl_skipufointro"):GetInt() == 0 then
 		self.introsound = VJ_CreateSound(self, "vj_hlr/crack_npc/joj/JOJbossintro.wav", 100)
 		self.shield = ents.Create("prop_dynamic")
 		self.shield:SetPos(self:GetPos())
@@ -89,7 +100,6 @@ function ENT:CustomOnInitialize()
 		timer.Create("jojufo_intro"..self:EntIndex(), 19, 1, function() 
 			self:SetParent(NULL)
 			self.HasSoundTrack = true
-			self.SoundTbl_SoundTrack = {"vj_hlr/crack_npc/joj/xfiles.mp3"}
 			self:StartSoundTrack()
 			self:SetState()
 			timer.Create("jojufo_agruntsp"..self:EntIndex(), 3, 0, function() self:F_SpawnAlly() end)

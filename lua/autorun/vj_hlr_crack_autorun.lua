@@ -70,6 +70,17 @@ if VJExists == true then
 		:(
 		
 		--]]
+		
+		VJ.AddConVar("vj_hlrcl_skipufointro",0)
+		
+if CLIENT then
+	hook.Add("PopulateToolMenu", "VJ_ADDTOMENU_HLRCL", function()
+		spawnmenu.AddToolMenuOption("DrVrej", "SNPC Configures", "Crack-Life", "Crack-Life", "", "", function(Panel)
+			Panel:AddControl("Button", {Text = "#vjbase.menu.general.reset.everything", Command = "vj_hlrcl_skipufointro 0"})
+			Panel:AddControl("Checkbox", {Label = "Skip JOJ UFO intro?", Command = "vj_hlrcl_skipufointro"})
+		end)
+	end)
+end
 	
 -- !!!!!! DON'T TOUCH ANYTHING BELOW THIS !!!!!! -------------------------------------------------------------------------------------------------------------------------
 	AddCSLuaFile(AutorunFile)
