@@ -75,7 +75,7 @@ if VJExists == true then
 		
 if CLIENT then
 	hook.Add("PopulateToolMenu", "VJ_ADDTOMENU_HLRCL", function()
-		spawnmenu.AddToolMenuOption("DrVrej", "SNPC Configures", "Crack-Life", "Crack-Life", "", "", function(Panel)
+		spawnmenu.AddToolMenuOption("DrVrej", "SNPC Configures", "Crack-Life Resurgence", "Crack-Life Resurgence", "", "", function(Panel)
 			Panel:AddControl("Button", {Text = "#vjbase.menu.general.reset.everything", Command = "vj_hlrcl_skipufointro 0"})
 			Panel:AddControl("Checkbox", {Label = "Skip JOJ UFO intro?", Command = "vj_hlrcl_skipufointro"})
 		end)

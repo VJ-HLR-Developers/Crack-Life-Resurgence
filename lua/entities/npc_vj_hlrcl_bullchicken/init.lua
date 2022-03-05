@@ -6,6 +6,7 @@ include('shared.lua')
 	without the prior written consself of the author, unless otherwise indicated for stand-alone materials.
 -----------------------------------------------*/
 ENT.Model = {"models/vj_hlr/cracklife/bullsquid.mdl"} -- The game will pick a random model from the table when the SNPC is spawned | Add as many as you want
+ENT.VJ_NPC_Class = {"CLASS_CRACKLIFE"}
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomOnInitialize()
 	self.SoundTbl_FootStep = {"vj_hlr/pl_step1.wav","vj_hlr/pl_step2.wav","vj_hlr/pl_step3.wav","vj_hlr/pl_step4.wav"}

@@ -12,7 +12,7 @@ ENT.VJ_IsHugeMonster = true
 ENT.StartHealth = 6000 -- The starting health of the NPC
 ENT.HullType = HULL_LARGE
 ENT.SightAngle = 180 -- The sight angle | Example: 180 would make the it see all around it | Measured in degrees and then converted to radians
-ENT.TurningSpeed = 2 -- How fast it can turn
+ENT.TurningSpeed = 20 -- How fast it can turn
 	-- ====== Movement Variables ====== --
 ENT.MovementType = VJ_MOVETYPE_AERIAL -- How does the SNPC move?
 ENT.Aerial_FlyingSpeed_Alerted = 400 -- The speed it should fly with, when it's chasing an enemy, moving away quickly, etc. | Basically running compared to ground SNPCs
@@ -24,6 +24,7 @@ ENT.AA_MinWanderDist = 200 -- Minimum distance that the NPC should go to when wa
 ENT.AA_MoveAccelerate = 8 -- The NPC will gradually speed up to the max movement speed as it moves towards its destination | Calculation = FrameTime * x
 ENT.AA_MoveDecelerate = 4 -- The NPC will slow down as it approaches its destination | Calculation = MaxSpeed / x
 ENT.VJC_Data = {
+	ThirdP_Offset = Vector(-400, 0, -15), -- The offset for the controller when the camera is in third person
     FirstP_Bone = "Bone14", -- If left empty, the base will attempt to calculate a position for first person
     FirstP_Offset = Vector(-50, 0, -40), -- The offset for the controller when the camera is in first person
 	FirstP_ShrinkBone = false, -- Should the bone shrink? Useful if the bone is obscuring the player's view
@@ -73,7 +74,7 @@ function ENT:CustomOnInitialize()
 	self:SetCollisionBounds(Vector(224, 236, 46), Vector(-224, -236, -17))
 	self:SetPos(self:GetPos() + spawnPos)
 	self.Immune_Bullet = true
-	self.Immune_Blast = true
+		self.Immune_Blast = true
 	if GetConVar("vj_hlrcl_skipufointro"):GetInt() == 1 then
 		self.HasSoundTrack = true
 		self:StartSoundTrack()
@@ -288,6 +289,10 @@ function ENT:CustomOnInitialKilled(dmginfo, hitgroup)
 	end
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
+function ENT:Controller_IntMsg(ply, controlEnt)
+	ply:ChatPrint("Your troops spawn automatically.")
+end
+---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomOnPriorToKilled(dmginfo, hitgroup)
 	local expPos = self:GetAttachment(self:LookupAttachment("point")).Pos
 	local spr = ents.Create("env_sprite")
@@ -337,7 +342,7 @@ function ENT:F_CreateAlly()
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:S_CreateAlly()
-	local randnest = math.random(1,5)
+	local randnest = math.random(1,6)
 	if randnest == 1 then
 		self.stype = "npc_vj_hlrcl_snark"
 	else
