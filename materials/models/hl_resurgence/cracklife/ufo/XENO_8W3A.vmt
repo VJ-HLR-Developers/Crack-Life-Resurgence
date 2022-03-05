@@ -1,0 +1,5 @@
+"VertexLitGeneric"
+{
+	"$basetexture" "models/hl_resurgence/cracklife/ufo/XENO_8W3A"
+	$additive 1
+}

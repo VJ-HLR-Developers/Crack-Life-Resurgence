@@ -7,7 +7,7 @@ AddCSLuaFile()
 
 ENT.Base 			= "base_entity"
 ENT.Type 			= "ai"
-ENT.PrintName 		= "Skrillyd's Player"
+ENT.PrintName 		= "UFO Shield"
 ENT.Author 			= "oteek"
 ENT.Contact 		= "http://steamcommunity.com/groups/vrejgaming"
 ENT.Purpose 		= "Used to make simple props and animate them, since prop_dynamic doesn't work properly in Garry's Mod."
@@ -17,8 +17,8 @@ ENT.Category		= "VJ Base"
 function ENT:Draw() self:DrawModel() end
 
 if CLIENT then
-	local Name = "Skrillyd's Player"
-	local LangName = "sent_vj_hlrcl_recorder"
+	local Name = "UFO Shield"
+	local LangName = "sent_vj_hlrcl_ufoshield"
 	language.Add(LangName, Name)
 	killicon.Add(LangName,"HUD/killicons/default",Color(255,80,0,255))
 	language.Add("#"..LangName, Name)
@@ -27,7 +27,7 @@ end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 if (!SERVER) then return end
 
-ENT.VJ_NPC_Class = {"CLASS_CRACKLIFE_CHAV"} -- NPCs with the same class with be allied to each other
+ENT.VJ_NPC_Class = {"CLASS_CRACKLIFE"} -- NPCs with the same class with be allied to each other
 
 -- Custom
 ENT.Assignee = NULL -- Is another entity the owner of this crystal?
@@ -35,51 +35,38 @@ ENT.Assignee = NULL -- Is another entity the owner of this crystal?
 function ENT:Initialize()
 	self:SetPos(self:GetPos() + self:GetUp()*40)
 		
-	self:SetModel("models/vj_hlr/cracklife/recorder.mdl")
+	self:SetModel("models/vj_hlr/cracklife/ufo_shield.mdl")
 	self:SetMoveType(MOVETYPE_FLY)
 	self:SetSolid(SOLID_BBOX)
-	self:SetMaxHealth(200)
-	self:SetHealth(200)
 	self:SetAngles(Angle(0,0,0))
-	
-	self.IdleSd = CreateSound(self, "vj_hlr/crack_npc/skrillex/skrilly.wav")
-	self.IdleSd:SetSoundLevel(80)
-	self.IdleSd:Play()
-end
----------------------------------------------------------------------------------------------------------------------------------------------
-function ENT:Think()
-	util.VJ_SphereDamage(self, self, self:GetPos(), 1024, 2, DMG_NEVERGIB, true, true)
-	self:NextThink(CurTime() + 0.5)
-	return true
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:OnTakeDamage(dmginfo)
-	local gibsCollideSd = {"vj_hlr/crack_fx/metal1.wav"}
+	local gibsCollideSd = {"vj_hlr/crack_fx/concrete1.wav"}
 	self:SetHealth(self:Health() - dmginfo:GetDamage())
-	self:EmitSound(VJ_PICK({"vj_hlr/fx/metal1.wav","vj_hlr/fx/metal3.wav"}), 70)
 	if self:Health() <= 0 then
-		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/metalgib_p1.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,5)),CollideSound=gibsCollideSd})
-		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/metalgib_p2.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,10)),CollideSound=gibsCollideSd})
-		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/metalgib_p3.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,20)),CollideSound=gibsCollideSd})
-		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/metalgib_p4.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,30)),CollideSound=gibsCollideSd})
-		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/metalgib_p5.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,40)),CollideSound=gibsCollideSd})
-		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/metalgib_p6.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,45)),CollideSound=gibsCollideSd})
-		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/metalgib_p7.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,55)),CollideSound=gibsCollideSd})
-		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/metalgib_p8.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,65)),CollideSound=gibsCollideSd})
-		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/metalgib_p9.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,85)),CollideSound=gibsCollideSd})
-		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/metalgib_p10.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,100)),CollideSound=gibsCollideSd})
-		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/metalgib_p11.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,120)),CollideSound=gibsCollideSd})
-		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/metalgib_p1.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,5)),CollideSound=gibsCollideSd})
-		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/metalgib_p2.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,10)),CollideSound=gibsCollideSd})
-		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/metalgib_p3.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,20)),CollideSound=gibsCollideSd})
-		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/metalgib_p4.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,30)),CollideSound=gibsCollideSd})
-		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/metalgib_p5.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,40)),CollideSound=gibsCollideSd})
-		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/metalgib_p6.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,45)),CollideSound=gibsCollideSd})
-		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/metalgib_p7.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,55)),CollideSound=gibsCollideSd})
-		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/metalgib_p8.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,65)),CollideSound=gibsCollideSd})
-		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/metalgib_p9.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,85)),CollideSound=gibsCollideSd})
-		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/metalgib_p10.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,100)),CollideSound=gibsCollideSd})
-		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/metalgib_p11.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,120)),CollideSound=gibsCollideSd})
+		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/cracklife/doritos.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,5)),CollideSound=gibsCollideSd})
+		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/cracklife/doritos.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,10)),CollideSound=gibsCollideSd})
+		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/cracklife/doritos.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,20)),CollideSound=gibsCollideSd})
+		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/cracklife/doritos.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,30)),CollideSound=gibsCollideSd})
+		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/cracklife/doritos.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,40)),CollideSound=gibsCollideSd})
+		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/cracklife/doritos.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,45)),CollideSound=gibsCollideSd})
+		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/cracklife/doritos.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,55)),CollideSound=gibsCollideSd})
+		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/cracklife/doritos.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,65)),CollideSound=gibsCollideSd})
+		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/cracklife/doritos.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,85)),CollideSound=gibsCollideSd})
+		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/cracklife/doritos.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,100)),CollideSound=gibsCollideSd})
+		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/cracklife/doritos.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,120)),CollideSound=gibsCollideSd})
+		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/cracklife/doritos.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,5)),CollideSound=gibsCollideSd})
+		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/cracklife/doritos.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,10)),CollideSound=gibsCollideSd})
+		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/cracklife/doritos.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,20)),CollideSound=gibsCollideSd})
+		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/cracklife/doritos.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,30)),CollideSound=gibsCollideSd})
+		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/cracklife/doritos.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,40)),CollideSound=gibsCollideSd})
+		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/cracklife/doritos.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,45)),CollideSound=gibsCollideSd})
+		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/cracklife/doritos.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,55)),CollideSound=gibsCollideSd})
+		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/cracklife/doritos.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,65)),CollideSound=gibsCollideSd})
+		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/cracklife/doritos.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,85)),CollideSound=gibsCollideSd})
+		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/cracklife/doritos.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,100)),CollideSound=gibsCollideSd})
+		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/cracklife/doritos.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,120)),CollideSound=gibsCollideSd})
 		self:EmitSound(VJ_PICK({"vj_hlr/crack_fx/bustmetal1.wav","vj_hlr/crack_fx/bustmetal2.wav"}), 100)
 		self:Remove()
 	end

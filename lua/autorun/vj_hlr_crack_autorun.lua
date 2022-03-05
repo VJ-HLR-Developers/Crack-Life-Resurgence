@@ -49,10 +49,27 @@ if VJExists == true then
 		VJ.AddNPC("Viking Gargantua","npc_vj_hlrcl_garg_viking",vCat)
 		VJ.AddNPC("Zombozo","npc_vj_hlrcl_zombozo",vCat)
 		
-		VJ.AddNPC("Steveman","npc_vj_hlrcl_steveman",vCat)
-		--VJ.AddNPC("Guardchav","npc_vj_hlrcl_guardchav",vCat)
+		
+		-- 1.1
 		VJ.AddNPC("Admin Vladimir","npc_vj_hlrcl_vlad",vCat)
+		VJ.AddNPC("Steveman","npc_vj_hlrcl_steveman",vCat)
+		
+		
+		-- 1.2
 		VJ.AddNPC(" ","npc_vj_hlrcl_blackscary",vCat)
+		--VJ.AddNPC("Skellington Master","npc_vj_hlrcl_2spooky",vCat)    (not done)
+		VJ.AddNPC("JOJ UFO","npc_vj_hlrcl_joj",vCat)
+		VJ.AddNPC("Snark","npc_vj_hlrcl_snark",vCat)
+		VJ.AddNPC("Snark Nest","npc_vj_hlrcl_snarknest",vCat)
+		
+		--[[
+		
+		VJ.AddNPC("Guardchav","npc_vj_hlrcl_guardchav",vCat)
+		https://www.youtube.com/watch?v=MUDMSzMjAdg
+		https://cdn.discordapp.com/attachments/638363780161732608/949350315415715891/unknown.png
+		:(
+		
+		--]]
 	
 -- !!!!!! DON'T TOUCH ANYTHING BELOW THIS !!!!!! -------------------------------------------------------------------------------------------------------------------------
 	AddCSLuaFile(AutorunFile)

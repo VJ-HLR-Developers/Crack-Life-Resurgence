@@ -1,4 +1,5 @@
 "vertexlitgeneric"
 {
 	"$basetexture" "models/hl_resurgence/cracklife/gman/GMan_Case1"
+	"$nodecal" "1"
 }

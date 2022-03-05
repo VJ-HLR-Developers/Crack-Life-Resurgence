@@ -15,6 +15,7 @@ ENT.CustomBlood_Decal = {"VJ_HLR_Blood_Red"}
 
 ENT.RangeToMeleeDistance = 0
 ENT.NextRangeAttackTime = 5
+ENT.RangeDistance = 4000
 
 ENT.VJC_Data = {
     ThirdP_Offset = Vector(-5, 0, -15), -- The offset for the controller when the camera is in third person

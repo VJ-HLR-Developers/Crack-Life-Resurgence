@@ -45,7 +45,7 @@ function ENT:CustomOnAcceptInput(key, activator, caller, data)
 	end
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
---[[  mouth movement looks terrible
+--  mouth movement looks terrible
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomOnThink()
 	if CurTime() < self.SCI_NextMouthMove then

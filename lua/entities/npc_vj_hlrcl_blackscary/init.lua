@@ -60,19 +60,21 @@ ENT.BreathSoundLevel = 55
 
 ENT.UseCloak = true
 ENT.ControlledCloak = false
+ENT.BossCloak = 0
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomOnInitialize()
 	self:SetCollisionBounds(Vector(16,16,80),Vector(-16,-16,0))
 	local randmusic = math.random(1,50)
-	local bosscloak = math.random(1,2)
 	if randmusic == 1 then
+		self.BossCloak = math.random(0,1)
 		self:SetHealth(1000)
 		self:SetMaxHealth(1000)
 		self.HasSoundTrack = true
 		self.VJ_IsHugeMonster = true
 		self.SoundTbl_SoundTrack = {"vj_hlr/crack_npc/blackscary/bendrowned.mp3"}
-		if bosscloak > 1 then
+		if self.BossCloak == 1 then
 			self.UseCloak = false
+			self.ControlledCloak = false
 		end
 		self.AnimTbl_Run = {ACT_RUN}
 	end
@@ -99,7 +101,7 @@ function ENT:CustomOnThink_AIEnabled()
 				//print("cloak disabled")
 			end
 	end
-	if IsValid(self) && !self.Dead && !controlled then
+	if IsValid(self) && !self.Dead && self.BossCloak == 0 && !controlled then
 		self.UseCloak = true
 		self.ControlledCloak = false
 	end

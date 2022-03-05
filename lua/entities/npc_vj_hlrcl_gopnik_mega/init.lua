@@ -27,6 +27,9 @@ ENT.HasWorldShakeOnMove = true -- Should the world shake when it's moving?
 ENT.WorldShakeOnMoveAmplitude = 3
 
 ENT.DeathAnimationTime = 0.47 -- Time until the SNPC spawns its corpse and gets removed
+
+ENT.SCI_NextMouthMove = 0
+ENT.SCI_NextMouthDistance = 0
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomOnAcceptInput(key, activator, caller, data)
 	//print(key)
@@ -44,7 +47,23 @@ end
 function ENT:CustomOnInitialize()
 	self:SetCollisionBounds(Vector(32,28,120),Vector(-15,-28,0))
 end
-
+---------------------------------------------------------------------------------------------------------------------------------------------
+function ENT:CustomOnThink()
+	if CurTime() < self.SCI_NextMouthMove then
+		if self.SCI_NextMouthDistance == 0 then
+			self.SCI_NextMouthDistance = math.random(50,150)
+		else
+			self.SCI_NextMouthDistance = 0
+		end
+		self:SetPoseParameter("m",self.SCI_NextMouthDistance)
+	else
+		self:SetPoseParameter("m",0)
+	end
+end
+---------------------------------------------------------------------------------------------------------------------------------------------
+function ENT:OnPlayCreateSound(SoundData,SoundFile)
+	self.SCI_NextMouthMove = CurTime() + SoundDuration(SoundFile)
+end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:MultipleMeleeAttacks()
 	if math.random(1,2) == 1 then
