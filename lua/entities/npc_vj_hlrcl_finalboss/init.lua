@@ -201,7 +201,7 @@ end
 function ENT:F_CreateAlly()
 	local tr = util.TraceLine({
 		start = self:GetPos(),
-		endpos = self:GetPos() + self:GetForward() * math.Rand(-500, 500) + self:GetRight() * math.Rand(-500, 500) + self:GetUp() * 40,
+		endpos = self:GetPos() + self:GetForward() * math.Rand(-700, 700) + self:GetRight() * math.Rand(-700, 700) + self:GetUp() * 60,
 		filter = self,
 		mask = MASK_ALL,
 	})
@@ -219,6 +219,11 @@ function ENT:F_CreateAlly()
 	effectTeleport:Fire("Kill","",1)
 	
 	return ally
+end
+---------------------------------------------------------------------------------------------------------------------------------------------
+function ENT:Controller_IntMsg(ply, controlEnt)
+	if self.Garg_Type == 1 then return end
+	ply:ChatPrint("Right Mouse + CTRL: Preform Stomp attack + Shell the fuck out of someone + Spawn minions")
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:F_SpawnAlly()

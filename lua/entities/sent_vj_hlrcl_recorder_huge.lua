@@ -33,7 +33,7 @@ ENT.VJ_NPC_Class = {"CLASS_CRACKLIFE_CHAV"} -- NPCs with the same class with be 
 ENT.Assignee = NULL -- Is another entity the owner of this recorder?
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:Initialize()
-	self:SetPos(self:GetPos() + self:GetUp()*100)
+	self:SetPos(self:GetPos() + self:GetUp())
 		
 	self:SetModel("models/vj_hlr/cracklife/recorder_huge.mdl")
 	self:SetMoveType(MOVETYPE_FLY)

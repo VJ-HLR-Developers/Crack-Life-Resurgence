@@ -74,10 +74,13 @@ function ENT:CustomOnInitialize()
 	self:SetCollisionBounds(Vector(224, 236, 46), Vector(-224, -236, -17))
 	self:SetPos(self:GetPos() + spawnPos)
 	self.Immune_Bullet = true
-		self.Immune_Blast = true
+	self.Immune_Blast = true
+	self.UFOSD_Engine = VJ_CreateSound(self, "vj_hlr/crack_npc/joj/engine.wav", 100)
 	if GetConVar("vj_hlrcl_skipufointro"):GetInt() == 1 then
-		self.HasSoundTrack = true
-		self:StartSoundTrack()
+		if GetConVar("vj_npc_sd_soundtrack"):GetInt() == 0 then
+			self.HasSoundTrack = true
+			self:StartSoundTrack()
+		end
 		timer.Create("jojufo_agruntsp"..self:EntIndex(), 3, 0, function() self:F_SpawnAlly() end)
 		timer.Create("jojufo_snarksp"..self:EntIndex(), 1, 0, function() self:S_SpawnAlly() end)
 		self.Immune_Bullet = false
@@ -85,7 +88,7 @@ function ENT:CustomOnInitialize()
 	end
 	
 	if IsValid(self) && GetConVar("vj_hlrcl_skipufointro"):GetInt() == 0 then
-		self.introsound = VJ_CreateSound(self, "vj_hlr/crack_npc/joj/JOJbossintro.wav", 100)
+		self.UFOSD_IntroSound = VJ_CreateSound(self, "vj_hlr/crack_npc/joj/JOJbossintro.wav", 100)
 		self.shield = ents.Create("prop_dynamic")
 		self.shield:SetPos(self:GetPos())
 		self.shield:SetAngles(self:GetAngles())
@@ -100,8 +103,10 @@ function ENT:CustomOnInitialize()
 		self:SetState(VJ_STATE_FREEZE)
 		timer.Create("jojufo_intro"..self:EntIndex(), 19, 1, function() 
 			self:SetParent(NULL)
-			self.HasSoundTrack = true
-			self:StartSoundTrack()
+			if GetConVar("vj_npc_sd_soundtrack"):GetInt() == 0 then
+				self.HasSoundTrack = true
+				self:StartSoundTrack()
+			end
 			self:SetState()
 			timer.Create("jojufo_agruntsp"..self:EntIndex(), 3, 0, function() self:F_SpawnAlly() end)
 			timer.Create("jojufo_snarksp"..self:EntIndex(), 1, 0, function() self:S_SpawnAlly() end)
@@ -128,15 +133,25 @@ function ENT:CustomRangeAttackCode()
 	elec:SetOrigin(hitpos)
 	elec:SetEntity(self)
 	elec:SetAttachment(1)
+	self.UFOSD_Laser = VJ_CreateSound(self, "vj_hlr/crack_npc/joj/laser.wav", 120)
 	util.Effect("VJ_HLR_UFO_Electric",elec)
-	
 	util.VJ_SphereDamage(self, self, hitpos, 30, 1, DMG_SHOCK, true, false, {Force=1})
+	self.HackyShitBecauseIAmLazy = ents.Create("prop_dynamic")
+	self.HackyShitBecauseIAmLazy:SetPos(hitpos)
+	self.HackyShitBecauseIAmLazy:SetAngles(self:GetAngles())
+	self.HackyShitBecauseIAmLazy:SetModel("models/effects/teleporttrail.mdl")
+	self.HackyShitBecauseIAmLazy:SetSolid(SOLID_NONE)
+	self.HackyShitBecauseIAmLazy:SetRenderMode(RENDERMODE_TRANSCOLOR)
+	self.HackyShitBecauseIAmLazy:SetColor(Color(0,0,0,0))
+	self.HackyShitBecauseIAmLazy:Spawn()
+	self.HackyShitBecauseIAmLazy:Activate()
 	timer.Create("jojufo_explbeam"..self:EntIndex(), 2, 1, function()
 		util.BlastDamage(self, self, hitpos, 400, 200)
 		util.ScreenShake(self:GetPos(), 100, 200, 1, 500)
 		util.Decal("VJ_HLR_Scorch",tr.HitPos+tr.HitNormal,tr.HitPos-tr.HitNormal)
-		VJ_EmitSound(self,{"vj_hlr/crack_fx/explode3.wav","vj_hlr/crack_fx/explode4.wav","vj_hlr/crack_fx/explode5.wav"},90)
-		
+		VJ_EmitSound(self.HackyShitBecauseIAmLazy,{"vj_hlr/crack_fx/explode3.wav","vj_hlr/crack_fx/explode4.wav","vj_hlr/crack_fx/explode5.wav"},90)
+		VJ_STOPSOUND(self.UFOSD_Laser)
+		self.HackyShitBecauseIAmLazy:Remove()
 		local spr = ents.Create("env_sprite")
 		spr:SetKeyValue("model","vj_hl/sprites/zerogxplode.vmt")
 		spr:SetKeyValue("GlowProxySize","2.0")
@@ -205,7 +220,7 @@ function ENT:CustomOnInitialKilled(dmginfo, hitgroup)
 	
 	-- Explode as it goes down
 	function deathCorpse:Think()
-		self:ResetSequence("idle_move")
+		self:ResetSequence("idle")
 		if CurTime() > self.NextExpT then
 			self.NextExpT = CurTime() + 0.2
 			local expPos = self:GetPos() + Vector(math.Rand(-150, 150), math.Rand(-150, 150), math.Rand(-150, -50))
@@ -242,7 +257,7 @@ function ENT:CustomOnInitialKilled(dmginfo, hitgroup)
 		
 		-- Create gibs
 		local gibTbl = UfoExpGibs
-		for _ = 1, 30 do
+		for _ = 1, 35 do
 			local gib = ents.Create("obj_vj_gib")
 			gib:SetModel(VJ_PICK(gibTbl))
 			gib:SetPos(self:GetPos() + Vector(math.random(-100, 100), math.random(-100, 100), math.random(20, 150)))
@@ -279,7 +294,7 @@ function ENT:CustomOnInitialKilled(dmginfo, hitgroup)
 		spr:Spawn()
 		spr:Fire("Kill", "", 1.19)
 		timer.Simple(1.19, function() if IsValid(spr) then spr:Remove() end end)
-		util.BlastDamage(self, self, expPos, 600, 200)
+		util.BlastDamage(self, self, expPos, 800, 800)
 		VJ_EmitSound(self, "vj_hlr/crack_npc/joj/JOJdie.wav", 100, 100)
 		
 		-- flags 0 = No fade!
@@ -318,11 +333,12 @@ function ENT:CustomOnPriorToKilled(dmginfo, hitgroup)
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------------------------------------------------------------
+-- too lazy to merge in to one
 function ENT:F_CreateAlly()
 	local type = "npc_vj_hlrcl_agrunt"
 	local tr = util.TraceLine({
 		start = self:GetPos(),
-		endpos = self:GetPos() + self:GetForward() * math.Rand(-800, -500) + self:GetRight() * math.Rand(-800, 800) + self:GetUp() * 60,
+		endpos = self:GetPos() + self:GetForward() * math.Rand(-1000, -900) + self:GetRight() * math.Rand(-900, 900) + self:GetUp() * -60,
 		filter = {self, type},
 		mask = MASK_ALL,
 	})
@@ -342,11 +358,11 @@ function ENT:F_CreateAlly()
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:S_CreateAlly()
-	local randnest = math.random(1,6)
+	local randnest = math.random(1,10)
 	if randnest == 1 then
-		self.stype = "npc_vj_hlrcl_snark"
-	else
 		self.stype = "npc_vj_hlrcl_snarknest"
+	else
+		self.stype = "npc_vj_hlrcl_snark"
 	end
 	local tr = util.TraceLine({
 		start = self:GetPos(),
@@ -370,7 +386,6 @@ function ENT:S_CreateAlly()
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:F_SpawnAlly()
-	-- Can have a total of 4, only 1 can be spawned at a time with a delay until another one is spawned
 	if !IsValid(self.UFOAlly1) && !IsValid(self.UFOAlly2) && !IsValid(self.UFOAlly3) && !IsValid(self.UFOAlly4)  then
 		self.UFOAlly1 = self:F_CreateAlly()
 		self.UFOAlly2 = self:F_CreateAlly()
@@ -382,7 +397,6 @@ function ENT:F_SpawnAlly()
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:S_SpawnAlly()
-	-- Can have a total of 4, only 1 can be spawned at a time with a delay until another one is spawned
 	if !IsValid(self.SnarkAlly1) then
 		self.SnarkAlly1 = self:S_CreateAlly()
 		return 15
@@ -402,7 +416,10 @@ function ENT:CustomOnRemove()
 	timer.Remove("jojufo_agruntsp"..self:EntIndex())
 	timer.Remove("jojufo_snarksp"..self:EntIndex())
 	if IsValid(self.shield) then self.shield:Remove() end
-	VJ_STOPSOUND(self.introsound)
+	if IsValid(self.HackyShitBecauseIAmLazy) then self.HackyShitBecauseIAmLazy:Remove() end
+	VJ_STOPSOUND(self.UFOSD_IntroSound)
+	VJ_STOPSOUND(self.UFOSD_Engine)
+	VJ_STOPSOUND(self.UFOSD_Laser)
 	if self.Dead == false then
 		if IsValid(self.UFOAlly1) then self.UFOAlly1:Remove() end
 		if IsValid(self.UFOAlly2) then self.UFOAlly2:Remove() end

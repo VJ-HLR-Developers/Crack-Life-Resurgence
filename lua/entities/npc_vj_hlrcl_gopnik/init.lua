@@ -32,6 +32,16 @@ ENT.SCI_NextMouthMove = 0
 ENT.SCI_NextMouthDistance = 0
 ENT.SpawnHat = true
 ---------------------------------------------------------------------------------------------------------------------------------------------
+function ENT:CustomOnInitialize()
+	if GetConVar("vj_hlrcl_oldchavsounds"):GetInt() == 1 then
+		self.SoundTbl_Idle = {"vj_hlr/crack_npc/zombie/old/zo_idle1.wav","vj_hlr/crack_npc/zombie/old/zo_idle2.wav","vj_hlr/crack_npc/zombie/old/zo_idle3.wav","vj_hlr/crack_npc/zombie/old/zo_idle4.wav"}
+		self.SoundTbl_Alert = {"vj_hlr/crack_npc/zombie/old/zo_alert10.wav","vj_hlr/crack_npc/zombie/old/zo_alert20.wav","vj_hlr/crack_npc/zombie/old/zo_alert30.wav"}
+		self.SoundTbl_BeforeMeleeAttack = {"vj_hlr/crack_npc/zombie/old/zo_attack1.wav","vj_hlr/crack_npc/zombie/old/zo_attack2.wav"}
+		self.SoundTbl_Pain = {"vj_hlr/crack_npc/zombie/old/zo_pain1.wav","vj_hlr/crack_npc/zombie/old/zo_pain2.wav"}
+		self.SoundTbl_Death = {"vj_hlr/crack_npc/zombie/old/zo_pain1.wav","vj_hlr/crack_npc/zombie/old/zo_pain2.wav"}
+	end
+end
+---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomOnAcceptInput(key, activator, caller, data)
 	//print(key)
 	if key == "event_emit step" then

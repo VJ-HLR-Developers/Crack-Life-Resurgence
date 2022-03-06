@@ -57,6 +57,7 @@ ENT.GeneralSoundPitch1 = 100
 ENT.BeforeMeleeAttackSoundPitch = VJ_Set(30, 50)
 ENT.BeforeMeleeAttackSoundLevel = 50
 ENT.BreathSoundLevel = 55
+ENT.SoundTbl_SoundTrack = {"vj_hlr/crack_npc/blackscary/bendrowned.mp3"}
 
 ENT.UseCloak = true
 ENT.ControlledCloak = false
@@ -69,9 +70,11 @@ function ENT:CustomOnInitialize()
 		self.BossCloak = math.random(0,1)
 		self:SetHealth(1000)
 		self:SetMaxHealth(1000)
-		self.HasSoundTrack = true
 		self.VJ_IsHugeMonster = true
-		self.SoundTbl_SoundTrack = {"vj_hlr/crack_npc/blackscary/bendrowned.mp3"}
+		if GetConVar("vj_npc_sd_soundtrack"):GetInt() == 0 then
+				self.HasSoundTrack = true
+				self:StartSoundTrack()
+		end
 		if self.BossCloak == 1 then
 			self.UseCloak = false
 			self.ControlledCloak = false

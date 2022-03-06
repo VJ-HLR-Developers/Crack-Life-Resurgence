@@ -11,6 +11,7 @@ local AddonType = "SNPC"
 local AutorunFile = "autorun/vj_hlr_crack_autorun.lua"
 -------------------------------------------------------
 local VJExists = file.Exists("lua/autorun/vj_base_autorun.lua","GAME")
+local HLRExists = file.Exists("lua/autorun/vj_hlr_autorun.lua","GAME")
 if VJExists == true then
 	include('autorun/vj_controls.lua')
 	
@@ -57,7 +58,7 @@ if VJExists == true then
 		
 		-- 1.2
 		VJ.AddNPC(" ","npc_vj_hlrcl_blackscary",vCat)
-		--VJ.AddNPC("Skellington Master","npc_vj_hlrcl_2spooky",vCat)    (not done)
+		VJ.AddNPC("Skellington Master","npc_vj_hlrcl_2spooky",vCat)
 		VJ.AddNPC("JOJ UFO","npc_vj_hlrcl_joj",vCat)
 		VJ.AddNPC("Snark","npc_vj_hlrcl_snark",vCat)
 		VJ.AddNPC("Snark Nest","npc_vj_hlrcl_snarknest",vCat)
@@ -72,12 +73,16 @@ if VJExists == true then
 		--]]
 		
 		VJ.AddConVar("vj_hlrcl_skipufointro",0)
+		VJ.AddConVar("vj_hlrcl_oldchavsounds",0)
 		
 if CLIENT then
 	hook.Add("PopulateToolMenu", "VJ_ADDTOMENU_HLRCL", function()
 		spawnmenu.AddToolMenuOption("DrVrej", "SNPC Configures", "Crack-Life Resurgence", "Crack-Life Resurgence", "", "", function(Panel)
-			Panel:AddControl("Button", {Text = "#vjbase.menu.general.reset.everything", Command = "vj_hlrcl_skipufointro 0"})
+			Panel:AddControl("Button", {Text = "#vjbase.menu.general.reset.everything", Command = "vj_hlrcl_skipufointro 0\nvj_hlrcl_oldchavsounds 0"})
 			Panel:AddControl("Checkbox", {Label = "Skip JOJ UFO intro?", Command = "vj_hlrcl_skipufointro"})
+			Panel:ControlHelp("Skips the 19 second long intro when spawning JOJ UFO.")
+			Panel:AddControl("Checkbox", {Label = "Old Chav Sounds", Command = "vj_hlrcl_oldchavsounds"})
+			Panel:ControlHelp("Enables classic Chav voice acting from the original Crack-Life.\nDoesn't affect Mega & Super Chavs.")
 		end)
 	end)
 end
