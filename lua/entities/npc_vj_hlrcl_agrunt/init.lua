@@ -9,7 +9,7 @@ ENT.Model = {"models/vj_hlr/cracklife/agrunt.mdl"} -- The game will pick a rando
 ENT.VJ_NPC_Class = {"CLASS_CRACKLIFE"}
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomOnInitialize()
-	self:SetCollisionBounds(Vector(25,25,85), Vector(-25,-25,0))
+	self:SetCollisionBounds(Vector(25,25,95), Vector(-25,-25,0))
 	self.SoundTbl_FootStep = {"vj_hlr/hl1_npc/player/pl_ladder1.wav","vj_hlr/hl1_npc/player/pl_ladder2.wav","vj_hlr/hl1_npc/player/pl_ladder3.wav","vj_hlr/hl1_npc/player/pl_ladder4.wav"}
 	self.SoundTbl_Idle = {"vj_hlr/crack_npc/agrunt/ag_idle1.wav","vj_hlr/crack_npc/agrunt/ag_idle2.wav","vj_hlr/crack_npc/agrunt/ag_idle3.wav","vj_hlr/crack_npc/agrunt/ag_idle4.wav","vj_hlr/crack_npc/agrunt/ag_idle5.wav"}
 	self.SoundTbl_Alert = {"vj_hlr/crack_npc/agrunt/ag_alert1.wav","vj_hlr/crack_npc/agrunt/ag_alert2.wav","vj_hlr/crack_npc/agrunt/ag_alert3.wav","vj_hlr/crack_npc/agrunt/ag_alert4.wav","vj_hlr/crack_npc/agrunt/ag_alert5.wav"}

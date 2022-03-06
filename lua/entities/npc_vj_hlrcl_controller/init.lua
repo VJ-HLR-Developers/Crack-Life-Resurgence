@@ -9,7 +9,7 @@ ENT.Model = {"models/vj_hlr/cracklife/controller.mdl"} -- The game will pick a r
 ENT.VJ_NPC_Class = {"CLASS_CRACKLIFE"}
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomOnInitialize()
-	self:SetCollisionBounds(Vector(20, 20, 70), Vector(-20, -20, -10))
+	self:SetCollisionBounds(Vector(35, 35, 100), Vector(-35, -35, -10))
 	self.SoundTbl_Idle = {"vj_hlr/crack_npc/controller/con_idle1.wav","vj_hlr/crack_npc/controller/con_idle2.wav","vj_hlr/crack_npc/controller/con_idle3.wav","vj_hlr/crack_npc/controller/con_idle4.wav","vj_hlr/crack_npc/controller/con_idle5.wav"}
 	self.SoundTbl_Alert = {"vj_hlr/crack_npc/controller/con_alert1.wav","vj_hlr/crack_npc/controller/con_alert2.wav"}
 	self.SoundTbl_RangeAttack = {"vj_hlr/crack_npc/controller/con_attack1.wav","vj_hlr/crack_npc/controller/con_attack2.wav","vj_hlr/crack_npc/controller/con_attack3.wav"}

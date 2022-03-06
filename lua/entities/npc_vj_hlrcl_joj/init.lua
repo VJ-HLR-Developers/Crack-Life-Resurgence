@@ -15,7 +15,7 @@ ENT.SightAngle = 180 -- The sight angle | Example: 180 would make the it see all
 ENT.TurningSpeed = 20 -- How fast it can turn
 	-- ====== Movement Variables ====== --
 ENT.MovementType = VJ_MOVETYPE_AERIAL -- How does the SNPC move?
-ENT.Aerial_FlyingSpeed_Alerted = 400 -- The speed it should fly with, when it's chasing an enemy, moving away quickly, etc. | Basically running compared to ground SNPCs
+ENT.Aerial_FlyingSpeed_Alerted = 600 -- The speed it should fly with, when it's chasing an enemy, moving away quickly, etc. | Basically running compared to ground SNPCs
 ENT.Aerial_FlyingSpeed_Calm = ENT.Aerial_FlyingSpeed_Alerted -- The speed it should fly with, when it's wandering, moving slowly, etc. | Basically walking compared to ground SNPCs
 ENT.Aerial_AnimTbl_Calm = {nil} -- Animations it plays when it's wandering around while idle
 ENT.Aerial_AnimTbl_Alerted = {nil} -- Animations it plays when it's moving while alerted
@@ -75,7 +75,6 @@ function ENT:CustomOnInitialize()
 	self:SetPos(self:GetPos() + spawnPos)
 	self.Immune_Bullet = true
 	self.Immune_Blast = true
-	self.UFOSD_Engine = VJ_CreateSound(self, "vj_hlr/crack_npc/joj/engine.wav", 100)
 	if GetConVar("vj_hlrcl_skipufointro"):GetInt() == 1 then
 		if GetConVar("vj_npc_sd_soundtrack"):GetInt() == 0 then
 			self.HasSoundTrack = true
@@ -85,6 +84,7 @@ function ENT:CustomOnInitialize()
 		timer.Create("jojufo_snarksp"..self:EntIndex(), 1, 0, function() self:S_SpawnAlly() end)
 		self.Immune_Bullet = false
 		self.Immune_Blast = false
+		self.UFOSD_Engine = VJ_CreateSound(self, "vj_hlr/crack_npc/joj/engine.wav", 100)
 	end
 	
 	if IsValid(self) && GetConVar("vj_hlrcl_skipufointro"):GetInt() == 0 then
@@ -107,14 +107,20 @@ function ENT:CustomOnInitialize()
 				self.HasSoundTrack = true
 				self:StartSoundTrack()
 			end
-			self:SetState()
+			self:SetState()			-- activates the AI
 			timer.Create("jojufo_agruntsp"..self:EntIndex(), 3, 0, function() self:F_SpawnAlly() end)
 			timer.Create("jojufo_snarksp"..self:EntIndex(), 1, 0, function() self:S_SpawnAlly() end)
 			self.shield:SetSolid(SOLID_NONE)
 			self.shield:SetColor(Color(0,0,0,0))
 			self.Immune_Bullet = false
 			self.Immune_Blast = false
+			self.UFOSD_Engine = VJ_CreateSound(self, "vj_hlr/crack_npc/joj/engine.wav", 100)
 			if IsValid(self.shield) then self.shield:Remove() end
+			for _,v in pairs(ents.FindInSphere(self:GetPos(), 100000)) do
+				if v:IsPlayer() then
+					v:ScreenFade(SCREENFADE.IN,Color(255,255,0,255),0.5,0)
+				end
+			end
 		end)
 	end
 end
@@ -123,10 +129,32 @@ function ENT:CustomRangeAttackCode()
 	local startpos = self:GetPos()
 	local tr = util.TraceLine({
 		start = startpos,
-		endpos = self:GetEnemy():GetPos() + self:GetForward()*-200,
+		endpos = self:GetEnemy():GetPos() + self:GetUp()*-200,
 		filter = self
 	})
 	local hitpos = tr.HitPos
+	
+	self.OrbSprite = ents.Create("env_sprite")
+	self.OrbSprite:SetKeyValue("model","vj_hl/sprites/exit1.vmt")
+	//self.OrbSprite:SetKeyValue("rendercolor","255 128 0")
+	self.OrbSprite:SetKeyValue("GlowProxySize","2.0")
+	self.OrbSprite:SetKeyValue("HDRColorScale","1.0")
+	self.OrbSprite:SetKeyValue("renderfx","14")
+	self.OrbSprite:SetKeyValue("rendermode","3")
+	self.OrbSprite:SetKeyValue("renderamt","255")
+	self.OrbSprite:SetKeyValue("disablereceiveshadows","0")
+	self.OrbSprite:SetKeyValue("mindxlevel","0")
+	self.OrbSprite:SetKeyValue("maxdxlevel","0")
+	self.OrbSprite:SetKeyValue("framerate","15.0")
+	self.OrbSprite:SetKeyValue("spawnflags","0")
+	self.OrbSprite:SetKeyValue("scale","0.5")
+	self.OrbSprite:SetParent(self)
+	self.OrbSprite:Fire("SetParentAttachment", "point")
+	--self.OrbSprite:Fire("Alpha", "255")
+	self.OrbSprite:Spawn()
+	self.OrbSprite:Fire("Kill","",2)
+	timer.Simple(2,function() if IsValid(self.OrbSprite) then self.OrbSprite:Remove() end end)
+	self:DeleteOnRemove(self.OrbSprite)
 	
 	local elec = EffectData()
 	elec:SetStart(startpos)
@@ -338,7 +366,7 @@ function ENT:F_CreateAlly()
 	local type = "npc_vj_hlrcl_agrunt"
 	local tr = util.TraceLine({
 		start = self:GetPos(),
-		endpos = self:GetPos() + self:GetForward() * math.Rand(-1000, -900) + self:GetRight() * math.Rand(-900, 900) + self:GetUp() * -60,
+		endpos = self:GetPos() + self:GetForward() * math.Rand(-1500, -900) + self:GetRight() * math.Rand(-900, 900) + self:GetUp() * -60,
 		filter = {self, type},
 		mask = MASK_ALL,
 	})
