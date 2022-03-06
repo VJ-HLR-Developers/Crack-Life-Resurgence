@@ -125,12 +125,66 @@ function ENT:CustomOnInitialize()
 	end
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
+function ENT:AttackVJAerialNPCs()
+	local startpos = self:GetPos()
+	local tr2 = util.TraceLine({
+		start = startpos,
+		endpos = self:GetEnemy():GetPos() + self:GetEnemy():OBBCenter(),
+		filter = self
+	})
+	local hitpos2 = tr2.HitPos
+	local elec = EffectData()
+	elec:SetStart(startpos)
+	elec:SetOrigin(hitpos2)
+	elec:SetEntity(self)
+	elec:SetAttachment(1)
+	util.Effect("VJ_HLR_UFO_Aerial",elec)
+	--util.VJ_SphereDamage(self,self,hitpos2,1,1,DMG_SHOCK,true,false,{Force=90})
+	self.UFOSD_Laser = VJ_CreateSound(self, "vj_hlr/crack_npc/joj/laser.wav", 120)
+	self.HackyShitBecauseIAmLazy = ents.Create("prop_dynamic")
+	self.HackyShitBecauseIAmLazy:SetPos(hitpos2)
+	self.HackyShitBecauseIAmLazy:SetAngles(self:GetAngles())
+	self.HackyShitBecauseIAmLazy:SetModel("models/effects/teleporttrail.mdl")
+	self.HackyShitBecauseIAmLazy:SetSolid(SOLID_NONE)
+	self.HackyShitBecauseIAmLazy:SetRenderMode(RENDERMODE_TRANSCOLOR)
+	self.HackyShitBecauseIAmLazy:SetColor(Color(0,0,0,0))
+	self.HackyShitBecauseIAmLazy:Spawn()
+	self.HackyShitBecauseIAmLazy:Activate()
+	timer.Create("jojufo_explbeam"..self:EntIndex(), 0.1, 1, function()
+		util.BlastDamage(self, self, hitpos2, 400, 200)
+		util.Decal("VJ_HLR_Scorch",tr2.HitPos+tr2.HitNormal,tr2.HitPos-tr2.HitNormal)
+		VJ_EmitSound(self.HackyShitBecauseIAmLazy,{"vj_hlr/crack_fx/explode3.wav","vj_hlr/crack_fx/explode4.wav","vj_hlr/crack_fx/explode5.wav"},90)
+		VJ_STOPSOUND(self.UFOSD_Laser)
+		self.HackyShitBecauseIAmLazy:Remove()
+		local spr = ents.Create("env_sprite")
+		spr:SetKeyValue("model","vj_hl/sprites/zerogxplode.vmt")
+		spr:SetKeyValue("GlowProxySize","2.0")
+		spr:SetKeyValue("HDRColorScale","1.0")
+		spr:SetKeyValue("renderfx","14")
+		spr:SetKeyValue("rendermode","5")
+		spr:SetKeyValue("renderamt","255")
+		spr:SetKeyValue("disablereceiveshadows","0")
+		spr:SetKeyValue("mindxlevel","0")
+		spr:SetKeyValue("maxdxlevel","0")
+		spr:SetKeyValue("framerate","15.0")
+		spr:SetKeyValue("spawnflags","0")
+		spr:SetKeyValue("scale","10")
+		spr:SetPos(hitpos2 + self:GetUp()*150)
+		spr:Spawn()
+		spr:Fire("Kill","",0.9)
+		timer.Simple(0.9,function() if IsValid(spr) then spr:Remove() end end)
+		util.ScreenShake(self:GetPos(), 100, 200, 1, 2500)
+		end)
+	return hitpos2
+end
+---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomRangeAttackCode()
+	local controlled = self.VJ_IsBeingControlled
 	local startpos = self:GetPos()
 	local tr = util.TraceLine({
-		start = startpos,
-		endpos = self:GetEnemy():GetPos() + self:GetUp()*-200,
-		filter = self
+			start = startpos,
+			endpos = self:GetEnemy():GetPos() + self:GetUp()*-200,
+			filter = self
 	})
 	local hitpos = tr.HitPos
 	
@@ -156,6 +210,16 @@ function ENT:CustomRangeAttackCode()
 	timer.Simple(2,function() if IsValid(self.OrbSprite) then self.OrbSprite:Remove() end end)
 	self:DeleteOnRemove(self.OrbSprite)
 	
+	if IsValid(self:GetEnemy()) && self:GetEnemy().MovementType == VJ_MOVETYPE_AERIAL then
+		for i = 0.05, 1.95, 0.05 do
+			timer.Simple(i,function()
+				if IsValid(self) && IsValid(self:GetEnemy()) then
+					local hitpos = self:AttackVJAerialNPCs() --this entire code is fucked up man i am doing a lot of mistakes but at least it works right ? ?? #??f.;\
+				end
+			end)
+		end
+	else
+	
 	local elec = EffectData()
 	elec:SetStart(startpos)
 	elec:SetOrigin(hitpos)
@@ -175,7 +239,6 @@ function ENT:CustomRangeAttackCode()
 	self.HackyShitBecauseIAmLazy:Activate()
 	timer.Create("jojufo_explbeam"..self:EntIndex(), 2, 1, function()
 		util.BlastDamage(self, self, hitpos, 400, 200)
-		util.ScreenShake(self:GetPos(), 100, 200, 1, 500)
 		util.Decal("VJ_HLR_Scorch",tr.HitPos+tr.HitNormal,tr.HitPos-tr.HitNormal)
 		VJ_EmitSound(self.HackyShitBecauseIAmLazy,{"vj_hlr/crack_fx/explode3.wav","vj_hlr/crack_fx/explode4.wav","vj_hlr/crack_fx/explode5.wav"},90)
 		VJ_STOPSOUND(self.UFOSD_Laser)
@@ -199,6 +262,7 @@ function ENT:CustomRangeAttackCode()
 		timer.Simple(0.9,function() if IsValid(spr) then spr:Remove() end end)
 		util.ScreenShake(self:GetPos(), 100, 200, 1, 2500)
 	end)
+end
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------------------------------------------------------------
