@@ -31,9 +31,15 @@ ENT.SoundTbl_MeleeAttackExtra = {"vj_hlr/crack_fx/bat_hit.wav","vj_hlr/crack_fx/
 ENT.SCI_NextMouthMove = 0
 ENT.SCI_NextMouthDistance = 0
 ENT.SpawnHat = true
+
+ENT.ChavType = 0
+--[[
+	0 - Regular chav
+	1 - Super chav
+]]--
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomOnInitialize()
-	if GetConVar("vj_hlrcl_oldchavsounds"):GetInt() == 1 then
+	if GetConVar("vj_hlrcl_oldchavsounds"):GetInt() == 1 && self.ChavType == 0 then
 		self.SoundTbl_Idle = {"vj_hlr/crack_npc/zombie/old/zo_idle1.wav","vj_hlr/crack_npc/zombie/old/zo_idle2.wav","vj_hlr/crack_npc/zombie/old/zo_idle3.wav","vj_hlr/crack_npc/zombie/old/zo_idle4.wav"}
 		self.SoundTbl_Alert = {"vj_hlr/crack_npc/zombie/old/zo_alert10.wav","vj_hlr/crack_npc/zombie/old/zo_alert20.wav","vj_hlr/crack_npc/zombie/old/zo_alert30.wav"}
 		self.SoundTbl_BeforeMeleeAttack = {"vj_hlr/crack_npc/zombie/old/zo_attack1.wav","vj_hlr/crack_npc/zombie/old/zo_attack2.wav"}

@@ -14,6 +14,8 @@ ENT.SoundTbl_BeforeMeleeAttack = {"vj_hlr/crack_npc/superchav/zo_attack1.wav","v
 ENT.SoundTbl_Pain = {"vj_hlr/crack_npc/superchav/zo_pain1.wav","vj_hlr/crack_npc/superchav/zo_pain2.wav"}
 ENT.SoundTbl_Death = {"vj_hlr/crack_npc/superchav/zo_pain1.wav","vj_hlr/crack_npc/superchav/zo_pain2.wav"}
 
+ENT.ChavType = 1
+
 /*-----------------------------------------------
 	*** Copyright (c) 2012-2019 by DrVrej, All rights reserved. ***
 	No parts of this code or any of its contents may be reproduced, copied, modified or adapted,
