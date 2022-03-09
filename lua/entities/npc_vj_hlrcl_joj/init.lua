@@ -67,6 +67,7 @@ ENT.GeneralSoundPitch1 = 100
 ENT.DeathSoundLevel = 100
 ---------------------------------------------------------------------------------------------------------------------------------------------
 local spawnPos = Vector(0, 0, 400)
+local colorYellow = Color(255,255,0,255)
 --
 function ENT:CustomOnInitialize()
 	self.ConstantlyFaceEnemyDistance = self.SightDistance
@@ -116,10 +117,8 @@ function ENT:CustomOnInitialize()
 			self.Immune_Blast = false
 			self.UFOSD_Engine = VJ_CreateSound(self, "vj_hlr/crack_npc/joj/engine.wav", 100)
 			if IsValid(self.shield) then self.shield:Remove() end
-			for _,v in pairs(ents.FindInSphere(self:GetPos(), 100000)) do
-				if v:IsPlayer() then
-					v:ScreenFade(SCREENFADE.IN,Color(255,255,0,255),0.5,0)
-				end
+			for _,v in pairs(player.GetHumans()) do
+				v:ScreenFade(SCREENFADE.IN, colorYellow, 0.5, 0)
 			end
 		end)
 	end
