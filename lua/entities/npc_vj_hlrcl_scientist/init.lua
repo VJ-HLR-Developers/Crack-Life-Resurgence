@@ -6,6 +6,7 @@ include('shared.lua')
 	without the prior written consent of the author, unless otherwise indicated for stand-alone materials.
 -----------------------------------------------*/
 ENT.Model = {"models/vj_hlr/cracklife/scientist.mdl"} -- The game will pick a random model from the table when the SNPC is spawned | Add as many as you want
+ENT.SpawnShit = 0
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:SCI_CustomOnInitialize()
 	self:SetCollisionBounds(Vector(16,16,70),Vector(-16,-16,-0.1)) --0.1 fixes the bad lighting on the model
@@ -35,24 +36,33 @@ function ENT:SCI_CustomOnInitialize()
 	end
 	//self:GetPoseParameters(true)
 	
-	self.SCI_NextTieAnnoyanceT = CurTime() + math.Rand(10, 100)
+	self.SCI_NextTieAnnoyanceT = CurTime() + math.Rand(20, 100)
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomOnAcceptInput(key, activator, caller, data)
 	//print(key)
 	if key == "step" or key == "wheelchair" then
 		self:FootStepSoundCode()
-	elseif key == "tie" /*&& !self:BusyWithActivity()*/ then
+	elseif key == "lift" /*&& !self:BusyWithActivity()*/ then
+		self:SetBodygroup(2,2)
+		self.SpawnShit = 2
 		self:StopAllCommonSpeechSounds()
-		self:PlaySoundSystem("GeneralSpeech", sdTie)
+		self:PlaySoundSystem("GeneralSpeech", "vj_hlr/crack_npc/scientist/lift.wav")
 		//VJ_EmitSound(self, {"vj_hlr/hl1_npc/scientist/weartie.wav","vj_hlr/hl1_npc/scientist/ties.wav"}, 80, 100)
 	elseif key == "draw" then
 		self:SetBodygroup(2,1)
+		self.SpawnShit = 1
 	elseif key == "holster" then
 		self:SetBodygroup(2,0)
+		self.SpawnShit = 0
 	elseif key == "body" then
 		VJ_EmitSound(self, "vj_hlr/crack_fx/bodydrop.wav", 75, 100)
 	end
+end
+---------------------------------------------------------------------------------------------------------------------------------------------
+function ENT:Controller_IntMsg(ply, controlEnt)
+	ply:ChatPrint("RELOAD: Toggle scared animations")
+	ply:ChatPrint("LMOUSE: Question everyone if they even lift (if not scared & possible)")
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomOnMedic_OnHeal(ent)
@@ -64,6 +74,15 @@ function ENT:CustomOnMedic_OnHeal(ent)
 		d:SetDamage(ent:Health())
 		ent:TakeDamageInfo(d)
 		return true
+	end
+end
+---------------------------------------------------------------------------------------------------------------------------------------------
+function ENT:CustomOnPriorToKilled(dmginfo, hitgroup)
+	self:SetBodygroup(2,0)
+	if self.SpawnShit == 1 then
+		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/cracklife/bigneedle.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,50)),CollideSound={"vj_hlr/crack_fx/metal1.wav"}})
+	elseif self.SpawnShit == 2 then
+		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/cracklife/camera.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,50)),CollideSound={"vj_hlr/crack_fx/metal1.wav"}})
 	end
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
