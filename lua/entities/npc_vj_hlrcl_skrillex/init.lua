@@ -24,8 +24,6 @@ ENT.VJC_Data = {
 }
 ENT.VJ_IsHugeMonster = true
 
-ENT.AnimTbl_Death = {ACT_DIESIMPLE} -- Death Animations
-
 ENT.HasMeleeAttack = false
 ENT.HasRangeAttack = false
 
@@ -48,7 +46,7 @@ ENT.SpawnHat = true
 function ENT:CustomOnInitialize()
 	self:SetCollisionBounds(Vector(16,16,70),Vector(-16,-16,0))
 	self.SoundTbl_Death = {"vj_hlr/crack_npc/skrillex/skrillexbossdie.wav"}
-	
+	self.AnimTbl_Death = {ACT_DIESIMPLE}
 	-- Radios
 	for i = 1, 2 do
 		local trF = util.TraceLine({
