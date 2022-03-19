@@ -17,7 +17,6 @@ function ENT:CustomOnInitialize()
 	self.SoundTbl_MeleeAttackMiss = {"vj_hlr/hl1_npc/zombie/claw_miss1.wav","vj_hlr/hl1_npc/zombie/claw_miss2.wav"}
 	self.SoundTbl_BeforeMeleeAttack = {"vj_hlr/crack_npc/agrunt/ag_attack1.wav","vj_hlr/crack_npc/agrunt/ag_attack2.wav","vj_hlr/crack_npc/agrunt/ag_attack3.wav"}
 	self.SoundTbl_BeforeRangeAttack = {"vj_hlr/crack_npc/agrunt/ag_attack1.wav"}
-	self.SoundTbl_RangeAttack = {"vj_hlr/crack_npc/agrunt/ag_fire1.wav"}
 	self.SoundTbl_Pain = {"vj_hlr/crack_npc/agrunt/ag_pain1.wav","vj_hlr/crack_npc/agrunt/ag_pain2.wav","vj_hlr/crack_npc/agrunt/ag_pain3.wav","vj_hlr/crack_npc/agrunt/ag_pain4.wav","vj_hlr/crack_npc/agrunt/ag_pain5.wav"}
 	self.SoundTbl_Death = {"vj_hlr/crack_npc/agrunt/ag_die1.wav","vj_hlr/crack_npc/agrunt/ag_die2.wav","vj_hlr/crack_npc/agrunt/ag_die3.wav","vj_hlr/crack_npc/agrunt/ag_die4.wav","vj_hlr/crack_npc/agrunt/ag_die5.wav"}
 end
@@ -30,6 +29,7 @@ function ENT:CustomOnAcceptInput(key, activator, caller, data)
 		self:MeleeAttackCode()
 	elseif key == "event_rattack" then
 		self:RangeAttackCode()
+		VJ_EmitSound(self, "vj_hlr/crack_npc/agrunt/ag_fire1.wav", 75, 100)
 	elseif key == "body" then
 		VJ_EmitSound(self, "vj_hlr/crack_fx/bodydrop.wav", 75, 100)
 	end
