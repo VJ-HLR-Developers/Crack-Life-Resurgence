@@ -45,79 +45,44 @@ function ENT:CustomOnAcceptInput(key,activator,caller,data)
 	end
 	if key == "laser" then
 		self:RangeAttackCode()
-			timer.Simple(0.1,function()
+		for i = 0, 0.5, 0.1 do
+			timer.Simple(i,function()
 				if self:IsValid() then
 					self:Shelling()
+					if GetConVar("vj_hlrcl_allyspawn_finalboss"):GetInt() == 1 then
+						self:F_SpawnAlly()
+					end
 				end
 			end)
-			timer.Simple(0.2,function()
-				if self:IsValid() then
-					self:Shelling()
-				end
-			end)
-			timer.Simple(0.3,function()
-				if self:IsValid() then
-					self:Shelling()
-					self:F_SpawnAlly()
-				end
-			end)
-			timer.Simple(0.4,function()
-				if self:IsValid() then
-					self:Shelling()
-				end
-			end)
-			timer.Simple(0.5,function()
-				if self:IsValid() then
-					self:Shelling()
-					self:F_SpawnAlly()
-				end
-			end)
-			timer.Simple(0.55,function()
-				if self:IsValid() then
-					self:Shelling()
-				end
-			end)
-			timer.Simple(0.6,function()
-				if self:IsValid() then
-					self:Shelling()
-					self:F_SpawnAlly()
-				end
-			end)
-			timer.Simple(0.65,function()
-				if self:IsValid() then
-					self:Shelling()
-				end
-			end)
-			timer.Simple(0.7,function()
-				if self:IsValid() then
-					self:Shelling()
-					self:F_SpawnAlly()
-				end
-			end)
-			timer.Simple(0.75,function()
-				if self:IsValid() then
-					self:Shelling()
-					self:F_SpawnAlly()
-				end
-			end)
+		end
+		timer.Simple(0.5,function()
+			for i = 0, 0.1, 0.05 do
+				timer.Simple(i,function()
+					if self:IsValid() then
+						self:Shelling()
+					end
+				end)
+			end
+		end)
 	end
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:Shelling()
 	if self:IsValid() && IsValid(self:GetEnemy()) then
-	local proj = ents.Create("obj_vj_hlr1_grenade_40mm")
-	proj:SetPos(self:GetAttachment(self:LookupAttachment("eyes")).Pos + Vector(math.random(-10,10),math.random(-100,100),math.random(-50,10)))
-	proj:SetAngles(self:GetAngles())
-	proj:SetOwner(self)
-	proj:Spawn()
-	proj:Activate()
-	local phys = proj:GetPhysicsObject()
-	if phys:IsValid() then
-		phys:Wake()
-		--phys:SetVelocity(self:GetOwner():CalculateProjectile("Curve", pos, self:GetOwner():GetEnemy():GetPos() + self:GetOwner():GetEnemy():OBBCenter(), 1000))
-		phys:SetVelocity(self:GetOwner():CalculateProjectile("Curve", self:GetPos() + self:GetUp(), self:GetEnemy():GetPos() + self:GetEnemy():OBBCenter(), 1000))
-	end
-	VJ_EmitSound(proj:GetOwner(),{"vj_hlr/hl1_weapon/mp5/glauncher.wav","vj_hlr/hl1_weapon/mp5/glauncher2.wav"},90)
+		local proj = ents.Create("obj_vj_hlr1_grenade_40mm")
+		proj:SetPos(self:GetAttachment(self:LookupAttachment("eyes")).Pos + Vector(math.random(-10,10),math.random(-100,100),math.random(-50,10)))
+		proj:SetAngles(self:GetAngles())
+		proj:SetOwner(self)
+		proj:Spawn()
+		proj:Activate()
+		proj.SoundTbl_OnRemove = {"vj_hlr/crack_fx/explode3.wav","vj_hlr/crack_fx/explode4.wav","vj_hlr/crack_fx/explode5.wav"}
+		local phys = proj:GetPhysicsObject()
+			if phys:IsValid() then
+				phys:Wake()
+				--phys:SetVelocity(self:GetOwner():CalculateProjectile("Curve", pos, self:GetOwner():GetEnemy():GetPos() + self:GetOwner():GetEnemy():OBBCenter(), 1000))
+				phys:SetVelocity(self:GetOwner():CalculateProjectile("Curve", self:GetPos() + self:GetUp(), self:GetEnemy():GetPos() + self:GetEnemy():OBBCenter(), 1000))
+			end
+		VJ_EmitSound(proj:GetOwner(),{"vj_hlr/hl1_weapon/mp5/glauncher.wav","vj_hlr/hl1_weapon/mp5/glauncher2.wav"},90)
 end
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------

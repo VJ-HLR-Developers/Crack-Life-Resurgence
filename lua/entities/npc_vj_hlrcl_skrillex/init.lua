@@ -5,6 +5,9 @@ include('shared.lua')
 	No parts of this code or any of its contents may be reproduced, copied, modified or adapted,
 	without the prior written consent of the author, unless otherwise indicated for stand-alone materials.
 -----------------------------------------------*/
+
+-- TODO: make the skrillex recorders rise out of the ground with a sound effect
+
 ENT.Model = {"models/vj_hlr/cracklife/skrillex.mdl"} -- The game will pick a random model from the table when the SNPC is spawned | Add as many as you want
 ENT.VJ_NPC_Class = {"CLASS_CRACKLIFE_CHAV"}
 ENT.StartHealth = 3000
@@ -107,49 +110,57 @@ function ENT:CustomOnAcceptInput(key, activator, caller, data)
 	elseif key == "shoot" then
 		self:RangeAttackCode()
 	elseif key == "spawn" then
-		self:F_SpawnAlly()
+		if GetConVar("vj_hlrcl_allyspawn_skrillex"):GetInt() == 1 then
+			self:F_SpawnAlly()
+		end
 	elseif key == "body" then
 		VJ_EmitSound(self, "vj_hlr/crack_fx/bodydrop.wav", 75, 100)
 	end
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:F_CreateAlly()
-	local type = VJ_PICK({"npc_vj_hlrcl_gopnik_super","npc_vj_hlrcl_gopnik","npc_vj_hlrcl_gopnik_super","npc_vj_hlrcl_gopnik","npc_vj_hlrcl_gopnik_super","npc_vj_hlrcl_gopnik","npc_vj_hlrcl_gopnik_super","npc_vj_hlrcl_gopnik","npc_vj_hlrcl_gopnik_super","npc_vj_hlrcl_gopnik","npc_vj_hlrcl_gopnik_super","npc_vj_hlrcl_gopnik","npc_vj_hlrcl_gopnik_super","npc_vj_hlrcl_gopnik","npc_vj_hlrcl_gopnik_super","npc_vj_hlrcl_gopnik","npc_vj_hlrcl_gopnik_super","npc_vj_hlrcl_gopnik","npc_vj_hlrcl_gopnik_super","npc_vj_hlrcl_gopnik_mega","npc_vj_hlrcl_gopnik","npc_vj_hlrcl_gopnik_super","npc_vj_hlrcl_gopnik","npc_vj_hlrcl_gopnik_super","npc_vj_hlrcl_gopnik","npc_vj_hlrcl_gopnik_super","npc_vj_hlrcl_gopnik","npc_vj_hlrcl_gopnik_super"})
-	local tr = util.TraceLine({
-		start = self:GetPos(),
-		endpos = self:GetPos() + self:GetForward() * math.Rand(-500, 500) + self:GetRight() * math.Rand(-500, 500) + self:GetUp() * 40,
-		filter = {self, type},
-		mask = MASK_ALL,
-	})
-	local spawnpos = tr.HitPos + tr.HitNormal*30
-	local ally = ents.Create(type)
-	ally:SetPos(spawnpos)
-	ally:SetAngles(self:GetAngles())
-	ally:Spawn()
-	ally:Activate()
-	ally.VJ_NPC_Class = self.VJ_NPC_Class
-	//ally:SetMaxHealth(ally:GetHealth() + 100)
-	//ally:SetHealth(ally:GetHealth() + 100)
-	
-	local effectTeleport = VJ_HLR_Effect_PortalSpawn(spawnpos + Vector(0,0,20))
-	effectTeleport:Fire("Kill","",1)
-	
-	return ally
+		local type = "npc_vj_hlrcl_gopnik"
+		local tr = util.TraceLine({
+			start = self:GetPos(),
+			endpos = self:GetPos() + self:GetForward() * math.Rand(-500, 500) + self:GetRight() * math.Rand(-500, 500) + self:GetUp() * 40,
+			filter = {self, type},
+			mask = MASK_ALL,
+		})
+		local spawnpos = tr.HitPos + tr.HitNormal*30
+		local randChav = math.random(1,150)
+		if randChav < 2 then
+			type = "npc_vj_hlrcl_gopnik_mega"
+		elseif randChav > 1 && randChav < 35 then
+			type = "npc_vj_hlrcl_gopnik_super"
+		end
+		local ally = ents.Create(type)
+		ally:SetPos(spawnpos)
+		ally:SetAngles(self:GetAngles())
+		ally:Spawn()
+		ally:Activate()
+		ally.VJ_NPC_Class = self.VJ_NPC_Class
+		//ally:SetMaxHealth(ally:GetHealth() + 100)
+		//ally:SetHealth(ally:GetHealth() + 100)
+		
+		local effectTeleport = VJ_HLR_Effect_PortalSpawn(spawnpos + Vector(0,0,20))
+		effectTeleport:Fire("Kill","",1)
+		
+		return ally
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:F_SpawnAlly()
 	-- Can have a total of 3, only 1 can be spawned at a time with a delay until another one is spawned
-	if !IsValid(self.ChavAlly1) then
-		self.ChavAlly1 = self:F_CreateAlly()
-		return 15
-	elseif !IsValid(self.ChavAlly2) then
-		self.ChavAlly2 = self:F_CreateAlly()
-		return 15
-	elseif !IsValid(self.ChavAlly3) then
-		self.ChavAlly3 = self:F_CreateAlly()
-		return 15
-	end
-	return 8
+		if !IsValid(self.ChavAlly1) then
+			self.ChavAlly1 = self:F_CreateAlly()
+			return 15
+		elseif !IsValid(self.ChavAlly2) then
+			self.ChavAlly2 = self:F_CreateAlly()
+			return 15
+		elseif !IsValid(self.ChavAlly3) then
+			self.ChavAlly3 = self:F_CreateAlly()
+			return 15
+		end
+		return 8
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:Vort_DoElecEffect(sp, hp, hn, a, t)
@@ -279,7 +290,8 @@ function ENT:CustomOnRemove()
 	end
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
-function ENT:CustomDeathAnimationCode(dmginfo, hitgroup)
+function ENT:CustomOnPriorToKilled(dmginfo, hitgroup)
+	--print("test")
 	if self.SpawnHat == true then
 		self:SetBodygroup(1,1)
 		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/cracklife/mac.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,0)),CollideSound={""}})
@@ -298,7 +310,7 @@ function ENT:CustomOnDeath_AfterCorpseSpawned(dmginfo, hitgroup, corpseEnt)
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomDeathAnimationCode(dmginfo, hitgroup)
-	-- bro just don't do anything when headshotted it's that simple
+	-- bro just don't do anything when headshot it's that simple
 end
 /*-----------------------------------------------
 	*** Copyright (c) 2012-2019 by DrVrej, All rights reserved. ***

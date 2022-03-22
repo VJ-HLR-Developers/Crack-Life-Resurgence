@@ -40,7 +40,7 @@ function ENT:CustomOnAcceptInput(key, activator, caller, data)
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomOnFlinch_AfterFlinch(dmginfo, hitgroup)
-	if !self.Dead then
+	if !self.Dead && GetConVar("vj_hlrcl_selfspawn_2spooky"):GetInt() == 1 then
 		timer.Create("skeletonmaster_cloning"..self:EntIndex(), 1.2, 1, function()
 			self:VJ_ACT_PLAYACTIVITY(ACT_DEPLOY, true, false)
 		end)
@@ -48,7 +48,9 @@ function ENT:CustomOnFlinch_AfterFlinch(dmginfo, hitgroup)
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomOnTakeDamage_AfterDamage(dmginfo, hitgroup)
-	self:S_SpawnAlly()
+	if GetConVar("vj_hlrcl_allyspawn_2spooky"):GetInt() == 1 then
+		self:S_SpawnAlly()
+	end
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:SpawnItself()

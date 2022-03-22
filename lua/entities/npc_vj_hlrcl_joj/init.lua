@@ -81,8 +81,10 @@ function ENT:CustomOnInitialize()
 			self.HasSoundTrack = true
 			self:StartSoundTrack()
 		end
-		timer.Create("jojufo_agruntsp"..self:EntIndex(), 3, 0, function() self:F_SpawnAlly() end)
-		timer.Create("jojufo_snarksp"..self:EntIndex(), 1, 0, function() self:S_SpawnAlly() end)
+		if GetConVar("vj_hlrcl_allyspawn_joj"):GetInt() == 1 then
+			timer.Create("jojufo_agruntsp"..self:EntIndex(), 3, 0, function() self:F_SpawnAlly() end)
+			timer.Create("jojufo_snarksp"..self:EntIndex(), 1, 0, function() self:S_SpawnAlly() end)
+		end
 		self.Immune_Bullet = false
 		self.Immune_Blast = false
 		self.UFOSD_Engine = VJ_CreateSound(self, "vj_hlr/crack_npc/joj/engine.wav", 100)
@@ -109,8 +111,10 @@ function ENT:CustomOnInitialize()
 				self:StartSoundTrack()
 			end
 			self:SetState()			-- activates the AI
-			timer.Create("jojufo_agruntsp"..self:EntIndex(), 3, 0, function() self:F_SpawnAlly() end)
-			timer.Create("jojufo_snarksp"..self:EntIndex(), 1, 0, function() self:S_SpawnAlly() end)
+			if GetConVar("vj_hlrcl_allyspawn_joj"):GetInt() == 1 then
+				timer.Create("jojufo_agruntsp"..self:EntIndex(), 3, 0, function() self:F_SpawnAlly() end)
+				timer.Create("jojufo_snarksp"..self:EntIndex(), 1, 0, function() self:S_SpawnAlly() end)
+			end
 			self.shield:SetSolid(SOLID_NONE)
 			self.shield:SetColor(Color(0,0,0,0))
 			self.Immune_Bullet = false
@@ -124,7 +128,7 @@ function ENT:CustomOnInitialize()
 	end
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
-function ENT:AttackVJAerialNPCs()
+function ENT:AttackVJAerialNPCs() -- im retarded
 	local startpos = self:GetPos()
 	local tr2 = util.TraceLine({
 		start = startpos,
@@ -213,7 +217,7 @@ function ENT:CustomRangeAttackCode()
 		for i = 0.05, 1.95, 0.05 do
 			timer.Simple(i,function()
 				if IsValid(self) && IsValid(self:GetEnemy()) then
-					local hitpos = self:AttackVJAerialNPCs() --this entire code is fucked up man i am doing a lot of mistakes but at least it works right ? ?? #??f.;\
+					local hitpos = self:AttackVJAerialNPCs()
 				end
 			end)
 		end

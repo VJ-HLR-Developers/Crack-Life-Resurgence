@@ -62,8 +62,10 @@ function ENT:StartMoveEffects()
 	net.Broadcast()
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
-function ENT:CustomInitialize_CustomTank() 
-	timer.Create("vlad_spawnracists"..self:EntIndex(), 10, 0, function() self:F_SpawnAlly() end)
+function ENT:CustomInitialize_CustomTank()
+	if GetConVar("vj_hlrcl_allyspawn_vlad"):GetInt() == 1 then
+		timer.Create("vlad_spawnracists"..self:EntIndex(), 10, 0, function() self:F_SpawnAlly() end)
+	end
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:GetNearDeathSparkPositions()
