@@ -439,6 +439,7 @@ function ENT:F_CreateAlly()
 	ally:SetAngles(self:GetAngles())
 	ally:Spawn()
 	ally:Activate()
+	ally.VJ_NPC_Class = self.VJ_NPC_Class
 	//ally:SetMaxHealth(ally:GetHealth() + 100)
 	//ally:SetHealth(ally:GetHealth() + 100)
 	
@@ -467,6 +468,7 @@ function ENT:S_CreateAlly()
 	ally:SetAngles(self:GetAngles())
 	ally:Spawn()
 	ally:Activate()
+	ally.VJ_NPC_Class = self.VJ_NPC_Class
 	//ally:SetMaxHealth(ally:GetHealth() + 100)
 	//ally:SetHealth(ally:GetHealth() + 100)
 	

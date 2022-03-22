@@ -224,9 +224,10 @@ function ENT:F_CreateAlly()
 	local ally = ents.Create(type)
 	ally:SetPos(spawnpos)
 	ally:SetAngles(Angle(0, 0, 0))
-	print(ally:GetAngles())
+	//print(ally:GetAngles())
 	ally:Spawn()
 	ally:Activate()
+	ally.VJ_NPC_Class = self.VJ_NPC_Class
 	//ally:SetMaxHealth(ally:GetHealth() + 100)
 	//ally:SetHealth(ally:GetHealth() + 100)
 	

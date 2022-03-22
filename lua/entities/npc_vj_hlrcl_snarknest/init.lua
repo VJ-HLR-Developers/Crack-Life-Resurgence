@@ -51,6 +51,7 @@ function ENT:CustomOnKilled(dmginfo, hitgroup)
 		ent:SetVelocity(self:GetUp()*math.Rand(250,350) + self:GetRight()*math.Rand(-100,100) + self:GetForward()*math.Rand(-100,100))
 		ent:Spawn()
 		ent:Activate()
+		ent.VJ_NPC_Class = self.VJ_NPC_Class
 		if self.Nest_SpawnEnt == "npc_vj_hlrcl_blackscary" then
 			ent.EntitiesToNoCollide = {"npc_vj_hlrcl_blackscary"}
 		end

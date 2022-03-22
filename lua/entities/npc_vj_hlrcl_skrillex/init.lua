@@ -41,6 +41,7 @@ ENT.SoundTbl_RangeAttack = {"vj_hlr/crack_npc/skrillex/fire.wav"}
 ENT.RangeAttackPitch = VJ_Set(100, 100)
 -- Custom --
 ENT.RadiosDestroyed = false
+ENT.RadiosSpawned = false
 ENT.SpawnHat = true
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomOnInitialize()
@@ -48,35 +49,39 @@ function ENT:CustomOnInitialize()
 	self.SoundTbl_Death = {"vj_hlr/crack_npc/skrillex/skrillexbossdie.wav"}
 	self.AnimTbl_Death = {ACT_DIESIMPLE}
 	-- Radios
-	for i = 1, 2 do
-		local trF = util.TraceLine({
-			start = self:GetPos() + self:GetUp() * 170,
-			endpos = (self:GetPos() + self:GetUp() * 170) + self:GetForward() * math.Rand(-10000, 10000) + self:GetRight() * math.Rand(-10000, 10000) + self:GetUp() * -3000,
-			filter = {self, self.Radio1},
-		})
-		local tr = util.TraceLine({
-			start = trF.HitPos,
-			endpos = trF.HitPos + Vector(0, 0, -3000),
-			filter = {self, self.Radio1},
-		})
-		-- HitNormal = Number between 0 to 1, use this to get the position the trace came from. Ex: Add it to the hit position to make it go farther away.
-		local radio = ents.Create("sent_vj_hlrcl_recorder_huge")
-		radio:SetPos(tr.HitPos) -- Take the HitNormal and minus it by 10 units to make it go inside the position a bit
-		radio:SetAngles(tr.HitNormal:Angle() + Angle(math.Rand(60, 120), math.Rand(-15, 15), math.Rand(-15, 15))) -- 90 = middle and 30 degree difference to make the pitch rotate randomly | yaw and roll are applied a bit of a random number
-		radio.Assignee = self
-		radio:Spawn()
-		radio:Activate()
-		
-		if i == 1 then
-			self.Radio1 = radio
-		elseif i == 2 then
-			self.Radio2 = radio
+	timer.Create("skrillyd_spawnradios"..self:EntIndex(), 1, 1, function()
+		for i = 1, 2 do
+			local trF = util.TraceLine({
+				start = self:GetPos() + self:GetUp() * 170,
+				endpos = (self:GetPos() + self:GetUp() * 170) + self:GetForward() * math.Rand(-10000, 10000) + self:GetRight() * math.Rand(-10000, 10000) + self:GetUp() * -3000,
+				filter = {self, self.Radio1},
+			})
+			local tr = util.TraceLine({
+				start = trF.HitPos,
+				endpos = trF.HitPos + Vector(0, 0, -3000),
+				filter = {self, self.Radio1},
+			})
+			-- HitNormal = Number between 0 to 1, use this to get the position the trace came from. Ex: Add it to the hit position to make it go farther away.
+			local radio = ents.Create("sent_vj_hlrcl_recorder_huge")
+			radio:SetPos(tr.HitPos) -- Take the HitNormal and minus it by 10 units to make it go inside the position a bit
+			radio:SetAngles(tr.HitNormal:Angle() + Angle(math.Rand(60, 120), math.Rand(-15, 15), math.Rand(-15, 15))) -- 90 = middle and 30 degree difference to make the pitch rotate randomly | yaw and roll are applied a bit of a random number
+			radio.Assignee = self
+			radio:Spawn()
+			radio:Activate()
+			radio.VJ_NPC_Class = self.VJ_NPC_Class
+			
+			if i == 1 then
+				self.Radio1 = radio
+			elseif i == 2 then
+				self.Radio2 = radio
+			end
 		end
-	end
+		self.RadiosSpawned = true
+	end)
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomOnThink()
-	if self.RadiosDestroyed == false && !IsValid(self.Radio1) && !IsValid(self.Radio2) then
+	if self.RadiosDestroyed == false && self.RadiosDestroyed == true && !IsValid(self.Radio1) && !IsValid(self.Radio2) then
 		self.RadiosDestroyed = true
 		self.HasRangeAttack = true
 		VJ_EmitSound(self, "vj_hlr/crack_npc/skrillex/earrape.wav", 120)
@@ -122,6 +127,7 @@ function ENT:F_CreateAlly()
 	ally:SetAngles(self:GetAngles())
 	ally:Spawn()
 	ally:Activate()
+	ally.VJ_NPC_Class = self.VJ_NPC_Class
 	//ally:SetMaxHealth(ally:GetHealth() + 100)
 	//ally:SetHealth(ally:GetHealth() + 100)
 	
@@ -261,7 +267,7 @@ function ENT:SetUpGibesOnDeath(dmginfo, hitgroup)
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomOnRemove()
-	
+	timer.Remove("skrillyd_spawnradios"..self:EntIndex())
 	if IsValid(self.Radio1) then self.Radio1:Remove() end
 	if IsValid(self.Radio2) then self.Radio2:Remove() end
 	
