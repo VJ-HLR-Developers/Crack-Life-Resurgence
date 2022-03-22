@@ -81,7 +81,7 @@ function ENT:CustomOnInitialize()
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomOnThink()
-	if self.RadiosDestroyed == false && self.RadiosDestroyed == true && !IsValid(self.Radio1) && !IsValid(self.Radio2) then
+	if self.RadiosDestroyed == false && self.RadiosSpawned == true && !IsValid(self.Radio1) && !IsValid(self.Radio2) then
 		self.RadiosDestroyed = true
 		self.HasRangeAttack = true
 		VJ_EmitSound(self, "vj_hlr/crack_npc/skrillex/earrape.wav", 120)
