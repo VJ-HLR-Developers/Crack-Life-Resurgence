@@ -15,7 +15,9 @@ ENT.Instructions 	= "Don't change anything."
 ENT.Category		= "VJ Base"
 
 function ENT:Draw() self:DrawModel() end
-
+---------------------------------------------------------------------------------------------------------------------------------------------
+function ENT:DrawTranslucent() self:Draw() end
+---------------------------------------------------------------------------------------------------------------------------------------------
 if CLIENT then
 	local Name = "Skrillyd's Player"
 	local LangName = "sent_vj_hlrcl_recorder"
