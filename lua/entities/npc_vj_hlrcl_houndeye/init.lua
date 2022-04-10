@@ -7,10 +7,10 @@ include('shared.lua')
 -----------------------------------------------*/
 ENT.Model = {"models/vj_hlr/cracklife/houndeye.mdl"} -- The game will pick a random model from the table when the SNPC is spawned | Add as many as you want
 ENT.VJ_NPC_Class = {"CLASS_CRACKLIFE"}
-
+ENT.Houndeye_Type = 1
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomOnInitialize()
-
+	self:SetCollisionBounds(Vector(20, 20 , 40), Vector(-20, -20, 0))
 	self.SoundTbl_FootStep = {"vj_hlr/crack_npc/houndeye/he_hunt1.wav"}
 	self.SoundTbl_Alert = {"vj_hlr/crack_npc/houndeye/he_alert1.wav"}
 	self.SoundTbl_BeforeMeleeAttack = {"vj_hlr/crack_npc/houndeye/he_attack1.wav"}
@@ -20,6 +20,8 @@ function ENT:CustomOnInitialize()
 	self:SetCollisionBounds(Vector(20, 20 , 40), Vector(-20, -20, 0))
 	
 	self.Houndeye_NextSleepT = CurTime() + math.Rand(0, 15)
+
+	self.AnimTbl_Death = {ACT_DIESIMPLE, ACT_DIEFORWARD, ACT_DIEBACKWARD}
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomOnAcceptInput(key, activator, caller, data)
