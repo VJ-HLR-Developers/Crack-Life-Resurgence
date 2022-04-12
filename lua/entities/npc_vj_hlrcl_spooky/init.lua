@@ -8,7 +8,7 @@ include('shared.lua')
 ENT.Model = {"models/vj_hlr/cracklife/skellington.mdl"} -- The game will pick a random model from the table when the SNPC is spawned | Add as many as you want
 ENT.VJ_NPC_Class = {"CLASS_CRACKLIFE"} -- NPCs with the same class with be allied to each other
 ENT.Bleeds = false
-//ENT.BloodColor = ""
+ENT.BloodColor = ""
 ENT.HasBloodParticle = false
 ENT.HasBloodDecal = false
 
@@ -42,18 +42,26 @@ end
 function ENT:SetUpGibesOnDeath(dmginfo,hitgroup)
 	self.HasDeathSounds = false
 	
-	self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/agib1.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,40))})
-	self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/agib2.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,20))})
-	self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/agib3.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,30))})
-	self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/agib4.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,35))})
-	self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/agib5.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,50))})
-	self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/agib6.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,55))})
-	self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/agib7.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,40))})
-	self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/agib8.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,45))})
-	self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/agib9.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,25))})
-	self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/agib10.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,15))})
+	self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/abone_template1.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,40))})
+	self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/abone_template1.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,20))})
+	self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/abone_template1.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,30))})
+	self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/abone_template1.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,15))})
+	self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/abone_template1.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,35))})
+	self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/bleachbones_pelvis_template1.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,35))})
+	self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/bleachbones_jawbone1.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,50))})
+	self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/bleachbones_bskull_template1.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,55))})
+	self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/bleachbones_ribcage1.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,40))})
+	self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/bleachbones_riblet1.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,45))})
+	self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/bleachbones_riblet1.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,25))})
+	self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/bleachbones_riblet1.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,35))})
 
 	return true -- Return to true if it gibbed!
+end
+---------------------------------------------------------------------------------------------------------------------------------------------
+local gibs = {"models/vj_hlr/gibs/abone_template1.mdl","models/vj_hlr/gibs/abone_template1.mdl","models/vj_hlr/gibs/abone_template1.mdl","models/vj_hlr/gibs/abone_template1.mdl","models/vj_hlr/gibs/abone_template1.mdl","models/vj_hlr/gibs/bleachbones_pelvis_template1.mdl","models/vj_hlr/gibs/bleachbones_jawbone1.mdl","models/vj_hlr/gibs/bleachbones_bskull_template1.mdl","models/vj_hlr/gibs/bleachbones_ribcage1.mdl","models/vj_hlr/gibs/bleachbones_riblet1.mdl","models/vj_hlr/gibs/bleachbones_riblet1.mdl","models/vj_hlr/gibs/bleachbones_riblet1.mdl"}
+--
+function ENT:CustomOnDeath_AfterCorpseSpawned(dmginfo, hitgroup, corpseEnt)
+	VJ_HLR_ApplyCorpseEffects(self, corpseEnt, gibs)
 end
 /*-----------------------------------------------
 	*** Copyright (c) 2012-2019 by DrVrej, All rights reserved. ***
