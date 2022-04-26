@@ -19,7 +19,7 @@ ENT.VJC_Data = {
 }
 ENT.StartHealth = 80
 ENT.BloodColor = "Red" -- The blood type, this will determine what it should use (decal, particle, etc.)
-ENT.CustomBlood_Particle = {"vj_hl_blood_red"}
+ENT.CustomBlood_Particle = {"vj_hlr_blood_red"}
 ENT.CustomBlood_Decal = {"VJ_HLR_Blood_Red"}
 
 ENT.AnimTbl_Death = {ACT_DIEBACKWARD,ACT_DIEFORWARD,ACT_DIESIMPLE,ACT_DIE_GUTSHOT} -- Death Animations
