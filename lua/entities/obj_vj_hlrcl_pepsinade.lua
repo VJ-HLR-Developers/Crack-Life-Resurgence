@@ -17,6 +17,8 @@ ENT.Category		= "VJ Base"
 ENT.Spawnable = true
 ENT.AdminOnly = false
 
+ENT.VJ_IsDetectableDanger = true
+
 if (CLIENT) then
 	local Name = "Pepsi Can"
 	local LangName = "obj_vj_hlrcl_pepsinade"
