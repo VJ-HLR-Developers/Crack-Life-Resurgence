@@ -38,7 +38,7 @@ function ENT:Initialize()
 	self:SetPos(self:GetPos() + self:GetUp()*40)
 		
 	self:SetModel("models/vj_hlr/cracklife/recorder.mdl")
-	self:SetMoveType(MOVETYPE_FLY)
+	self:SetMoveType(MOVETYPE_NONE)
 	self:SetSolid(SOLID_BBOX)
 	self:SetMaxHealth(200)
 	self:SetHealth(200)

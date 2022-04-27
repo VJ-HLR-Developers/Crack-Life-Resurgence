@@ -36,17 +36,17 @@ ENT.Assignee = NULL -- Is another entity the owner of this recorder?
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:Initialize()
 	self:SetPos(self:GetPos() + self:GetUp())
-		
 	self:SetModel("models/vj_hlr/cracklife/recorder_huge.mdl")
-	self:SetMoveType(MOVETYPE_FLY)
+	self:SetMoveType(MOVETYPE_NONE)
 	self:SetSolid(SOLID_VPHYSICS)
 	self:SetMaxHealth(3000)
 	self:SetHealth(3000)
 	self:SetAngles(Angle(0,0,0))
 	
-	self.IdleSd = CreateSound(self, "vj_hlr/crack_fx/industrial1.wav")
+	self.IdleSd = CreateSound(self, "vj_hlr/crack_npc/skrillex/skrilly.wav")
 	self.IdleSd:SetSoundLevel(75)
 	self.IdleSd:Play()
+	self:ResetSequence("rise")
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:Think()
@@ -56,6 +56,7 @@ function ENT:Think()
 	return true
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
+local vecZ80 = Vector(0, 0, 180)
 function ENT:OnTakeDamage(dmginfo)
 	local gibsCollideSd = {"vj_hlr/crack_fx/metal1.wav"}
 	self:SetHealth(self:Health() - dmginfo:GetDamage())
@@ -84,6 +85,27 @@ function ENT:OnTakeDamage(dmginfo)
 		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/metalgib_p10.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,140)),CollideSound=gibsCollideSd})
 		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/metalgib_p11.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,150)),CollideSound=gibsCollideSd})
 		self:EmitSound(VJ_PICK({"vj_hlr/crack_fx/bustmetal1.wav","vj_hlr/crack_fx/bustmetal2.wav"}), 100)
+		local spr = ents.Create("env_sprite")
+		spr:SetKeyValue("model","vj_hl/sprites/zerogxplode.vmt")
+		spr:SetKeyValue("GlowProxySize","2.0")
+		spr:SetKeyValue("HDRColorScale","1.0")
+		spr:SetKeyValue("renderfx","14")
+		spr:SetKeyValue("rendermode","5")
+		spr:SetKeyValue("renderamt","255")
+		spr:SetKeyValue("disablereceiveshadows","0")
+		spr:SetKeyValue("mindxlevel","0")
+		spr:SetKeyValue("maxdxlevel","0")
+		spr:SetKeyValue("framerate","15.0")
+		spr:SetKeyValue("spawnflags","0")
+		spr:SetKeyValue("scale","8")
+		spr:SetPos(self:GetPos() + vecZ80)
+		spr:Spawn()
+		spr:Fire("Kill","",0.9)
+		timer.Simple(0.9, function() if IsValid(spr) then spr:Remove() end end)
+		VJ_EmitSound(self, "vj_hlr/hl1_weapon/mortar/mortarhit.wav", 100, 100)
+		effects.BeamRingPoint(self:GetPos(), 0.4, 0, 900, 64, 0, Color(255, 255, 192, 128), {material="vj_hl/sprites/shockwave", framerate=0, flags=0})
+		--util.BlastDamage(self, self, self:GetPos() + Vector(0,0,150), 600, 200)
+		util.VJ_SphereDamage(self, self, self:GetPos(), 500, 300, DMG_BLAST, false, true)
 		self:Remove()
 	end
 end

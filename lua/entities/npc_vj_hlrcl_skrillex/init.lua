@@ -16,9 +16,12 @@ ENT.BloodColor = "Red" -- The blood type, this will determine what it should use
 ENT.CustomBlood_Particle = {"vj_hlr_blood_red"}
 ENT.CustomBlood_Decal = {"VJ_HLR_Blood_Red"}
 
+ENT.DisableWandering = true
+ENT.DisableChasingEnemy = true
+
 ENT.RangeToMeleeDistance = 0
 ENT.NextRangeAttackTime = 5
-ENT.RangeDistance = 4000
+ENT.RangeDistance = 1000
 
 ENT.VJC_Data = {
     ThirdP_Offset = Vector(-5, 0, -15), -- The offset for the controller when the camera is in third person
@@ -51,6 +54,14 @@ function ENT:CustomOnInitialize()
 	self:SetCollisionBounds(Vector(16,16,70),Vector(-16,-16,0))
 	self.SoundTbl_Death = {"vj_hlr/crack_npc/skrillex/skrillexbossdie.wav"}
 	self.AnimTbl_Death = {ACT_DIESIMPLE}
+	self:AddFlags(FL_NOTARGET)
+	if GetConVar("vj_hlrcl_allyspawn_skrillex"):GetInt() == 1 then
+		timer.Create("skrillex_spawngops"..self:EntIndex(), 3, 0, function()
+			if IsValid(self) then
+				self:F_SpawnAlly()
+			end
+		end)
+	end
 	-- Radios
 	timer.Create("skrillyd_spawnradios"..self:EntIndex(), 1, 1, function()
 		for i = 1, 2 do
@@ -88,6 +99,9 @@ function ENT:CustomOnThink()
 		self.RadiosDestroyed = true
 		self.HasRangeAttack = true
 		VJ_EmitSound(self, "vj_hlr/crack_npc/skrillex/earrape.wav", 120)
+		self.DisableWandering = false
+		self.DisableChasingEnemy = false
+		self:RemoveFlags(FL_NOTARGET)
 	end
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
@@ -109,10 +123,10 @@ function ENT:CustomOnAcceptInput(key, activator, caller, data)
 		self:FootStepSoundCode()
 	elseif key == "shoot" then
 		self:RangeAttackCode()
-	elseif key == "spawn" then
-		if GetConVar("vj_hlrcl_allyspawn_skrillex"):GetInt() == 1 then
-			self:F_SpawnAlly()
-		end
+	//elseif key == "spawn" then
+	//	if GetConVar("vj_hlrcl_allyspawn_skrillex"):GetInt() == 1 then
+	//		self:F_SpawnAlly()
+	//	end
 	elseif key == "body" then
 		VJ_EmitSound(self, "vj_hlr/crack_fx/bodydrop.wav", 75, 100)
 	end
@@ -279,6 +293,7 @@ end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomOnRemove()
 	timer.Remove("skrillyd_spawnradios"..self:EntIndex())
+	timer.Remove("skrillex_spawngops"..self:EntIndex())
 	if IsValid(self.Radio1) then self.Radio1:Remove() end
 	if IsValid(self.Radio2) then self.Radio2:Remove() end
 	
