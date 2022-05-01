@@ -61,7 +61,7 @@ function ENT:CustomOnMeleeAttack_BeforeChecks()
 	effects.BeamRingPoint(self:GetPos(), 0.3, 2, 200, 16, 0, color, {material="vj_hl/sprites/shockwave", framerate=20, flags=0})
 	
 	if self.HasSounds == true && GetConVar("vj_npc_sd_meleeattack"):GetInt() == 0 then
-		VJ_EmitSound(self, {"vj_hlr/crack_npc/houndeye/he_blast1.wav","vj_hlr/crack_npc/houndeye/he_blast2.wav"}, 100, math.random(80,100))
+		VJ_EmitSound(self, {"vj_hlr/crack_npc/houndeye/he_blast1.wav","vj_hlr/crack_npc/houndeye/he_blast2.wav"}, 90, math.random(80,100))
 	end
 	util.VJ_SphereDamage(self, self, self:GetPos(), 400, dmg, self.MeleeAttackDamageType, true, true, {DisableVisibilityCheck=true, Force=80})
 end

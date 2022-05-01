@@ -7,6 +7,7 @@ include('shared.lua')
 -----------------------------------------------*/
 ENT.Model = {"models/vj_hlr/cracklife/sqknest.mdl"}
 ENT.VJ_NPC_Class = {"CLASS_CRACKLIFE"}
+ENT.EntitiesToNoCollide = {"npc_vj_hlrcl_joj"}
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomOnInitialize()
 	self:SetCollisionBounds(Vector(15, 15, 18), Vector(-15, -15, 0))

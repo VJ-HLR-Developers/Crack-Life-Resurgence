@@ -13,6 +13,7 @@ ENT.StartHealth = 6000 -- The starting health of the NPC
 ENT.HullType = HULL_LARGE
 ENT.SightAngle = 180 -- The sight angle | Example: 180 would make the it see all around it | Measured in degrees and then converted to radians
 ENT.TurningSpeed = 20 -- How fast it can turn
+ENT.EntitiesToNoCollide = {"npc_vj_hlrcl_agrunt","npc_vj_hlrcl_snark","npc_vj_hlrcl_snarknest"}
 	-- ====== Movement Variables ====== --
 ENT.MovementType = VJ_MOVETYPE_AERIAL -- How does the SNPC move?
 ENT.Aerial_FlyingSpeed_Alerted = 600 -- The speed it should fly with, when it's chasing an enemy, moving away quickly, etc. | Basically running compared to ground SNPCs
@@ -289,8 +290,6 @@ local UfoExpGibs = {
 }
 --
 function ENT:CustomOnInitialKilled(dmginfo, hitgroup)
-	-- Spawn a animated model of the helicopter that explodes constantly and gets destroyed when it collides with something
-	-- Based on source code
 	local deathCorpse = ents.Create("prop_vj_animatable")
 	deathCorpse:SetModel(self:GetModel())
 	deathCorpse:SetPos(self:GetPos())
@@ -484,11 +483,9 @@ function ENT:S_CreateAlly()
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:F_SpawnAlly()
-	if !IsValid(self.UFOAlly1) && !IsValid(self.UFOAlly2) && !IsValid(self.UFOAlly3) && !IsValid(self.UFOAlly4)  then
+	if !IsValid(self.UFOAlly1) && !IsValid(self.UFOAlly2) then
 		self.UFOAlly1 = self:F_CreateAlly()
 		self.UFOAlly2 = self:F_CreateAlly()
-		self.UFOAlly3 = self:F_CreateAlly()
-		self.UFOAlly4 = self:F_CreateAlly()
 		return 150
 	end
 	return 15
@@ -521,8 +518,6 @@ function ENT:CustomOnRemove()
 	if self.Dead == false then
 		if IsValid(self.UFOAlly1) then self.UFOAlly1:Remove() end
 		if IsValid(self.UFOAlly2) then self.UFOAlly2:Remove() end
-		if IsValid(self.UFOAlly3) then self.UFOAlly3:Remove() end
-		if IsValid(self.UFOAlly4) then self.UFOAlly4:Remove() end
 		if IsValid(self.SnarkAlly1) then self.SnarkAlly1:Remove() end
 		if IsValid(self.SnarkAlly2) then self.SnarkAlly2:Remove() end
 		if IsValid(self.SnarkAlly3) then self.SnarkAlly3:Remove() end

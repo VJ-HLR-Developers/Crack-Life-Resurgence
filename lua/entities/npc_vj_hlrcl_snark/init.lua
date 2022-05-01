@@ -7,7 +7,7 @@ include('shared.lua')
 -----------------------------------------------*/
 ENT.Model = {"models/vj_hlr/cracklife/snark.mdl"} -- The game will pick a random model from the table when the SNPC is spawned | Add as many as you want
 ENT.VJ_NPC_Class = {"CLASS_CRACKLIFE"}
-ENT.EntitiesToNoCollide = {"npc_vj_hlrcl_snark"}
+ENT.EntitiesToNoCollide = {"npc_vj_hlrcl_snark","npc_vj_hlrcl_joj"}
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:Snark_CustomOnInitialize()
 	self:SetCollisionBounds(Vector(5, 5, 10), Vector(-5, -5, 0))
