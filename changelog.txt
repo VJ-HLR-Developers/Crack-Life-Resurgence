@@ -1,0 +1,21 @@
+Changelog for a future update which is coming out at the same time as HL:R's latest update.
+
+[h1][b] 1.3 [/b][/h1]
+[list]
+[*] Pack updated to use latest HL:R features.
+[*] Added toggleable ally spawning for all bosses to Crack-Life: Resurgence SNPC Configures menu under DrVrej tab.
+[*] Scientists can now complain about constantly getting asked if they can lift (replaces the "ridiculous tie" behavior).
+[*] Marked JOJ UFO's laser as "dangerous", making all VJ human based SNPCs run away from it.
+[*] Marked Pepsinade as "dangerous", making all VJ human based SNPCs run away from it.
+[*] Skrillex will not chase any enemies until all music players are destroyed.
+[*] Reduced the amount of spawned Foundation Repairmen from JOJ UFO.
+[*] Fixed JOJ UFO's spawned allies colliding with each other.
+[*] Fixed options in Crack-Life: Resurgence configures not saving after quitting/reloading the game.
+[*] Fixed desynced Foundation Repairman's firing sounds.
+[*] Fixed all skeleton based SNPCs using alien gibs when gibbed.
+[*] Fixed SNPCs spawned by bosses not obeying the VJ relationship tool.
+[*] Fixed Skellington Master occasionally summoning a copy of itself during it's death animations.
+[*] Fixed Skrillex not playing any death animations when killed via a headshot.
+[*] Fixed Skrillex's music players acting weird when dissolved by Combine Balls or used with material/color tools.
+[*] Fixed weird/broken head movement for all of the Chavs.
+[/list]
