@@ -30,6 +30,7 @@ ENT.SoundTbl_Death = {"vj_hlr/hl1_npc/scientist/sci_pain1.wav","vj_hlr/hl1_npc/s
 ENT.SCI_NextMouthMove = 0
 ENT.SCI_NextMouthDistance = 0
 ENT.SpawnHat = true
+ENT.CanUseHD = false
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomOnInitialize()
 	self:SetCollisionBounds(Vector(16,16,70),Vector(-16,-16,-0.1)) --0.1 fixes the bad lighting on the model

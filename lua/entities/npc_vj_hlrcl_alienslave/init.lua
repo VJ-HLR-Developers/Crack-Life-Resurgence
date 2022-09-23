@@ -9,6 +9,7 @@ ENT.Model = {"models/vj_hlr/cracklife/islave.mdl"} -- The game will pick a rando
 ENT.StartHealth = 100
 ENT.SoundTbl_BeforeRangeAttack = {"vj_hlr/crack_npc/aslave/disco.wav"}
 ENT.VJ_NPC_Class = {"CLASS_CRACKLIFE"}
+ENT.CanUseHD = false
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomOnAcceptInput(key, activator, caller, data)
 	//print(key)

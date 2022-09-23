@@ -49,6 +49,7 @@ ENT.RangeAttackPitch = VJ_Set(100, 100)
 ENT.RadiosDestroyed = false
 ENT.RadiosSpawned = false
 ENT.SpawnHat = true
+ENT.CanUseHD = false
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomOnInitialize()
 	self:SetCollisionBounds(Vector(16,16,70),Vector(-16,-16,0))

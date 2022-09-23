@@ -19,6 +19,7 @@ ENT.SoundTbl_FootStep = {"vj_hlr/crack_fx/npc_step1.wav","vj_hlr/crack_fx/npc_st
 ENT.SoundTbl_BeforeMeleeAttack = {"vj_hlr/null.wav","vj_hlr/null.wav"}
 ENT.SoundTbl_Pain = {"vj_hlr/crack_npc/spooky/s_pain1.wav","vj_hlr/crack_npc/spooky/s_pain2.wav","vj_hlr/crack_npc/spooky/s_pain3.wav"}
 ENT.SoundTbl_Death = {"vj_hlr/crack_npc/spooky/s_die.wav","vj_hlr/crack_npc/spooky/s_die2.wav","vj_hlr/crack_npc/spooky/s_die3.wav"}
+ENT.CanUseHD = false
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomOnAcceptInput(key, activator, caller, data)
 	//print(key)

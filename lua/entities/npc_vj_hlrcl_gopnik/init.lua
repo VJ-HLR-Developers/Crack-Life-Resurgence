@@ -37,6 +37,7 @@ ENT.ChavType = 0
 	0 - Regular chav
 	1 - Super chav
 ]]--
+ENT.CanUseHD = false
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomOnInitialize()
 	if GetConVar("vj_hlrcl_oldchavsounds"):GetInt() == 1 && self.ChavType == 0 then

@@ -9,6 +9,7 @@ ENT.Model = {"models/vj_hlr/cracklife/hgrunt.mdl"} -- The game will pick a rando
 ENT.VJ_NPC_Class = {"CLASS_CRACKLIFE_SOVIET"}
 
 ENT.GrenadeAttackEntity = "obj_vj_hlrcl_pepsinade" -- The entity that the SNPC throws | Half Life 2 Grenade: "npc_grenade_frag"
+ENT.CanUseHD = false
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:HECU_CustomOnInitialize()
 	self:SetBodygroup(1,math.random(0,1))

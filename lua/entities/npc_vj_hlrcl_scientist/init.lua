@@ -7,6 +7,7 @@ include('shared.lua')
 -----------------------------------------------*/
 ENT.Model = {"models/vj_hlr/cracklife/scientist.mdl"} -- The game will pick a random model from the table when the SNPC is spawned | Add as many as you want
 ENT.SpawnShit = 0
+ENT.CanUseHD = false
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:SCI_CustomOnInitialize()
 	self:SetCollisionBounds(Vector(16,16,70),Vector(-16,-16,-0.1)) --0.1 fixes the bad lighting on the model

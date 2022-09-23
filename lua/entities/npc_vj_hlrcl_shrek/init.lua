@@ -22,6 +22,7 @@ ENT.NextRangeAttackTime = 0.5
 ENT.HasSoundTrack = true
 ENT.SoundTbl_SoundTrack = {"vj_hlr/crack_npc/shrek/dropspaghetti.mp3"}
 ENT.SoundTbl_FootStep = {"vj_hlr/crack_fx/npc_step1.wav","vj_hlr/crack_fx/npc_step2.wav","vj_hlr/crack_fx/npc_step3.wav","vj_hlr/crack_fx/npc_step4.wav"}
+ENT.CanUseHD = false
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomOnAcceptInput(key, activator, caller, data)
 	if key == "step" then

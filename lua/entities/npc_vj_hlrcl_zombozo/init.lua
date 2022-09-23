@@ -23,7 +23,7 @@ ENT.IdleSoundLevel = 90
 ENT.AlertSoundLevel = 100
 ENT.PainSoundLevel = 90
 ENT.DeathSoundLevel = 90
-
+ENT.CanUseHD = false
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomOnAcceptInput(key,activator,caller,data)
 	//print(key)

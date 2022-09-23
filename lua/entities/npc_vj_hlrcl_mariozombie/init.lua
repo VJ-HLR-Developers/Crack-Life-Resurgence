@@ -22,6 +22,7 @@ ENT.SoundTbl_Death = {"vj_hlr/crack_npc/mariozombie/pain1.wav","vj_hlr/crack_npc
 ENT.AlertSoundLevel = 90
 ENT.PainSoundLevel = 90
 ENT.DeathSoundLevel = 90
+ENT.CanUseHD = false
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomOnAcceptInput(key, activator, caller, data)
 	//print(key)

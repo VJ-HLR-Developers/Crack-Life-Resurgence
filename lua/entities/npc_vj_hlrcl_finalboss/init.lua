@@ -18,6 +18,7 @@ ENT.SoundTbl_SoundTrack = {"vj_hlr/crack_npc/finalboss/finalboss.mp3"}
 
 ENT.Garg_Type = 2
 ENT.F_NextSpawn = 0 -- Max 4
+ENT.CanUseHD = false
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomOnInitialize()
 	self:SetCollisionBounds(Vector(80,70,170),Vector(-45,-70,0))

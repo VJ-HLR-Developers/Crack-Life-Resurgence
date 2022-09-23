@@ -20,6 +20,7 @@ ENT.SoundTbl_Alert = {"vj_hlr/crack_npc/panther/zo_alert10.wav","vj_hlr/crack_np
 ENT.SoundTbl_BeforeMeleeAttack = {"vj_hlr/crack_npc/panther/zo_attack1.wav","vj_hlr/crack_npc/panther/zo_attack2.wav"}
 ENT.SoundTbl_Pain = {"vj_hlr/crack_npc/panther/zo_pain1.wav","vj_hlr/crack_npc/panther/zo_pain2.wav"}
 ENT.SoundTbl_Death = {"vj_hlr/crack_npc/panther/zo_pain1.wav","vj_hlr/crack_npc/panther/zo_pain2.wav"}
+ENT.CanUseHD = false
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomOnAcceptInput(key, activator, caller, data)
 	//print(key)
