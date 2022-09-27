@@ -89,7 +89,7 @@ if CLIENT then
 			Panel:AddControl("Checkbox", {Label = "Skip JOJ UFO intro?", Command = "vj_hlrcl_skipufointro"})
 			Panel:ControlHelp("Skips the 19 second long intro when spawning JOJ UFO.")
 			Panel:AddControl("Checkbox", {Label = "Old Chav Sounds", Command = "vj_hlrcl_oldchavsounds"})
-			Panel:ControlHelp("Enables classic Chav voice acting from the original Crack-Life.\nDoesn't affect Mega & Super Chavs.")
+			Panel:ControlHelp("Force old Chav voice acting from original Crack-Life.\nDoesn't affect Mega & Super Chavs.")
 			Panel:AddControl("Label", {Text = "BOSS ALLY SPAWNING:"})
 			Panel:AddControl("Checkbox", {Label = "Allow Skrillyd to spawn allies", Command = "vj_hlrcl_allyspawn_skrillex"})
 			Panel:AddControl("Checkbox", {Label = "Allow JOJ UFO to spawn allies", Command = "vj_hlrcl_allyspawn_joj"})

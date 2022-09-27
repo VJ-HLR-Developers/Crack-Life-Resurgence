@@ -40,7 +40,8 @@ ENT.ChavType = 0
 ENT.CanUseHD = false
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomOnInitialize()
-	if GetConVar("vj_hlrcl_oldchavsounds"):GetInt() == 1 && self.ChavType == 0 then
+	local randvoice = math.random(1,10)
+	if (GetConVar("vj_hlrcl_oldchavsounds"):GetInt() == 1 && self.ChavType == 0) or (randvoice == 1 && self.ChavType == 0) then
 		self.SoundTbl_Idle = {"vj_hlr/crack_npc/zombie/old/zo_idle1.wav","vj_hlr/crack_npc/zombie/old/zo_idle2.wav","vj_hlr/crack_npc/zombie/old/zo_idle3.wav","vj_hlr/crack_npc/zombie/old/zo_idle4.wav"}
 		self.SoundTbl_Alert = {"vj_hlr/crack_npc/zombie/old/zo_alert10.wav","vj_hlr/crack_npc/zombie/old/zo_alert20.wav","vj_hlr/crack_npc/zombie/old/zo_alert30.wav"}
 		self.SoundTbl_BeforeMeleeAttack = {"vj_hlr/crack_npc/zombie/old/zo_attack1.wav","vj_hlr/crack_npc/zombie/old/zo_attack2.wav"}
