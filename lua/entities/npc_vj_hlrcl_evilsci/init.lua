@@ -12,6 +12,7 @@ ENT.VJC_Data = {
     FirstP_Offset = Vector(5, 0, 5), -- The offset for the controller when the camera is in first person
 }
 ENT.StartHealth = 150
+ENT.HullType = HULL_HUMAN
 ENT.BloodColor = "Red" -- The blood type, this will determine what it should use (decal, particle, etc.)
 ENT.CustomBlood_Particle = {"vj_hlr_blood_red"}
 ENT.CustomBlood_Decal = {"VJ_HLR_Blood_Red"}
@@ -33,7 +34,6 @@ ENT.SpawnHat = true
 ENT.CanUseHD = false
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomOnInitialize()
-	self:SetCollisionBounds(Vector(16,16,70),Vector(-16,-16,-0.1)) --0.1 fixes the bad lighting on the model
 	local randBG = math.random(0, 2)
 	self:SetBodygroup(1, randBG)
 	if randBG == 1 then

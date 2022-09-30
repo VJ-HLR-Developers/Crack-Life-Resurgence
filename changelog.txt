@@ -9,6 +9,7 @@ Changelog for a future update which is coming out at the same time as HL:R's lat
 [*] Marked Pepsinade as "dangerous", making all VJ human based SNPCs run away from it.
 [*] Skrillex will not chase any enemies until all music players are destroyed.
 [*] Reduced the amount of spawned Foundation Repairmen from JOJ UFO.
+[*] Regular Chavs have a small chance to have old voice from original Crack-Life.
 [*] Fixed JOJ UFO's spawned allies colliding with each other.
 [*] Fixed options in Crack-Life: Resurgence configures not saving after quitting/reloading the game.
 [*] Fixed desynced Foundation Repairman's firing sounds.
@@ -18,4 +19,6 @@ Changelog for a future update which is coming out at the same time as HL:R's lat
 [*] Fixed Skrillex not playing any death animations when killed via a headshot.
 [*] Fixed Skrillex's music players acting weird when dissolved by Combine Balls or used with material/color tools.
 [*] Fixed weird/broken head movement for all of the Chavs.
+[*] Fixed Soviet Grunt's bad headshot hitbox.
+[*] Fixed Steveman slightly levitating off the ground.
 [/list]

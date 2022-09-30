@@ -52,7 +52,6 @@ ENT.SpawnHat = true
 ENT.CanUseHD = false
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomOnInitialize()
-	self:SetCollisionBounds(Vector(16,16,70),Vector(-16,-16,0))
 	self.SoundTbl_Death = {"vj_hlr/crack_npc/skrillex/skrillexbossdie.wav"}
 	self.AnimTbl_Death = {ACT_DIESIMPLE}
 	self:AddFlags(FL_NOTARGET)
