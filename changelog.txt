@@ -20,5 +20,7 @@ Changelog for a future update which is coming out at the same time as HL:R's lat
 [*] Fixed Skrillex's music players acting weird when dissolved by Combine Balls or used with material/color tools.
 [*] Fixed weird/broken head movement for all of the Chavs.
 [*] Fixed Soviet Grunt's bad headshot hitbox.
+[*] Fixed Mario Zombie's hitboxes not covering the whole head.
+[*] Fixed weird/very dark lighting on some models.
 [*] Fixed Steveman slightly levitating off the ground.
 [/list]
