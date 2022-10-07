@@ -1,6 +1,6 @@
 /*--------------------------------------------------
 	=============== Autorun File ===============
-	*** Copyright (c) 2012-2019 by DrVrej, All rights reserved. ***
+	*** Copyright (c) 2012-2022 by oteek & DrVrej, All rights reserved. ***
 	No parts of this code or any of its contents may be reproduced, copied, modified or adapted,
 	without the prior written consent of the author, unless otherwise indicated for stand-alone materials.
 --------------------------------------------------*/
@@ -76,7 +76,7 @@ if VJExists == true then
 		VJ.AddNPC("Black Meat Scientist","npc_vj_hlrcl10_scientist",vCat2)
 		VJ.AddNPC("Chronic Smoker","npc_vj_hlrcl10_gus",vCat2)
 		VJ.AddNPC("Cringe Compilator","npc_vj_hlrcl10_camerasci",vCat2)
-		VJ.AddNPC("Drill","npc_vj_hlrcl10_dicksucker",vCat2)
+		VJ.AddNPC("Drill","npc_vj_hlrcl10_drill",vCat2)
 		VJ.AddNPC("Extra Clean","npc_vj_hlrcl10_extraclean",vCat2)
 		VJ.AddNPC("Fairy Grunt","npc_vj_hlrcl10_fairygrunt",vCat2)
 		VJ.AddNPC("Forklifter","npc_vj_hlrcl10_forklift",vCat2)
@@ -88,12 +88,12 @@ if VJExists == true then
 		VJ.AddNPC("Monkey","npc_vj_hlrcl10_monkey",vCat2)
 		VJ.AddNPC("Rocket Gina","npc_vj_hlrcl10_rocketgina",vCat2)
 		VJ.AddNPC("UN Peacekeeper","npc_vj_hlrcl10_unbarney",vCat2)
-		VJ.AddNPC("Vaccinator","npc_vj_hlrcl10_vaccinator",vCat2)
+		VJ.AddNPC("Vaccinator","npc_vj_hlrcl10_cleansuit",vCat2)
 		
 		
 		VJ.AddConVar("vj_hlrcl_skipufointro", 0, {FCVAR_ARCHIVE})
 		VJ.AddConVar("vj_hlrcl_oldchavsounds", 0, {FCVAR_ARCHIVE})
-		VJ.AddConVar("vj_hlrcl_blackscarycloak", 1, {FCVAR_ARCHIVE})
+		VJ.AddConVar("vj_hlrcl_disableracism", 1, {FCVAR_ARCHIVE})
 		-----------------------------------------------------------------------------
 		VJ.AddConVar("vj_hlrcl_allyspawn_2spooky", 1, {FCVAR_ARCHIVE})
 		VJ.AddConVar("vj_hlrcl_selfspawn_2spooky", 1, {FCVAR_ARCHIVE})
@@ -105,12 +105,14 @@ if VJExists == true then
 if CLIENT then
 	hook.Add("PopulateToolMenu", "VJ_ADDTOMENU_HLRCL", function()
 		spawnmenu.AddToolMenuOption("DrVrej", "SNPC Configures", "Crack-Life Resurgence", "Crack-Life Resurgence", "", "", function(Panel)
-			Panel:AddControl("Button", {Text = "#vjbase.menu.general.reset.everything", Command = "vj_hlrcl_skipufointro 0\nvj_hlrcl_oldchavsounds 0\nvj_hlrcl_allyspawn_2spooky 1\nvj_hlrcl_selfspawn_2spooky 1\nvj_hlrcl_allyspawn_finalboss 1\nvj_hlrcl_allyspawn_joj 1\nvj_hlrcl_allyspawn_skrillex 1\nvj_hlrcl_allyspawn_vlad 1"})
+			Panel:AddControl("Button", {Text = "#vjbase.menu.general.reset.everything", Command = "vj_hlrcl_skipufointro 0\nvj_hlrcl_oldchavsounds 0\nvj_hlrcl_disableracism 1\nvj_hlrcl_allyspawn_2spooky 1\nvj_hlrcl_selfspawn_2spooky 1\nvj_hlrcl_allyspawn_finalboss 1\nvj_hlrcl_allyspawn_joj 1\nvj_hlrcl_allyspawn_skrillex 1\nvj_hlrcl_allyspawn_vlad 1"})
 			Panel:AddControl("Checkbox", {Label = "Skip JOJ UFO intro?", Command = "vj_hlrcl_skipufointro"})
 			Panel:ControlHelp("Skips the 19 second long intro when spawning JOJ UFO.")
 			Panel:AddControl("Checkbox", {Label = "Old Chav Sounds", Command = "vj_hlrcl_oldchavsounds"})
 			Panel:ControlHelp("Force old Chav voice acting from original Crack-Life.\nDoesn't affect Mega & Super Chavs.")
-			Panel:AddControl("Label", {Text = "BOSS ALLY SPAWNING:"})
+			Panel:AddControl("Checkbox", {Label = "Anti-Cancel Culture mode", Command = "vj_hlrcl_disableracism"})
+			Panel:ControlHelp("Affects only the Soviet Grunts.")
+			Panel:AddControl("Label", {Text = "BOSS ALLY SPAWNING OPTIONS:"})
 			Panel:AddControl("Checkbox", {Label = "Allow Skrillyd to spawn allies", Command = "vj_hlrcl_allyspawn_skrillex"})
 			Panel:AddControl("Checkbox", {Label = "Allow JOJ UFO to spawn allies", Command = "vj_hlrcl_allyspawn_joj"})
 			Panel:AddControl("Checkbox", {Label = "Allow Admin Vladimir to spawn allies", Command = "vj_hlrcl_allyspawn_vlad"})

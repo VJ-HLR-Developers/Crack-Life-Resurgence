@@ -45,11 +45,6 @@ ENT.GeneralSoundPitch1 = 100
 -- Custom
 ENT.SCI_NextMouthMove = 0
 ENT.SCI_NextMouthDistance = 0
-ENT.SB_VestHit = false
----------------------------------------------------------------------------------------------------------------------------------------------
-function ENT:CustomOnInitialize()
-	self:SetCollisionBounds(Vector(16,16,70),Vector(-16,-16,-0.1)) --0.1 fixes the bad lighting on the model
-end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomOnAcceptInput(key, activator, caller, data)
 	//print(key)

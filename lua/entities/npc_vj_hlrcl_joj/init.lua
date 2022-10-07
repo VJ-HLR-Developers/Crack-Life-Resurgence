@@ -129,7 +129,7 @@ function ENT:CustomOnInitialize()
 	end
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
-function ENT:AttackVJAerialNPCs() -- im retarded
+function ENT:AttackVJAerialNPCs() -- this is retarded but it works and i do not care (subject to change)
 	local startpos = self:GetPos()
 	local tr2 = util.TraceLine({
 		start = startpos,
