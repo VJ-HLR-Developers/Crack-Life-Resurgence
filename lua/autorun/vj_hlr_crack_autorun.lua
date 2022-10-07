@@ -16,7 +16,9 @@ if VJExists == true then
 	include('autorun/vj_controls.lua')
 	
 	local vCat = "HL Resurgence: Crack-Life"
+	local vCat2 = "HL Resurgence: Crack-Life: Anniversary"
 	VJ.AddCategoryInfo(vCat, {Icon = "vj_hl/icons/clcampaign.png"})
+	VJ.AddCategoryInfo(vCat2, {Icon = "vj_hl/icons/cl10.png"})
 
 		--VJ.AddNPC("Adolf Hitler","npc_vj_hlrcl_hitleranth",vCat)
 		VJ.AddNPC("Annoying Houndeye","npc_vj_hlrcl_houndeye",vCat)
@@ -64,12 +66,30 @@ if VJExists == true then
 		VJ.AddNPC("Snark Nest","npc_vj_hlrcl_snarknest",vCat)
 		
 		--[[
-		
 		VJ.AddNPC("Guardchav","npc_vj_hlrcl_guardchav",vCat)
 		https://www.youtube.com/watch?v=MUDMSzMjAdg
 		https://cdn.discordapp.com/attachments/638363780161732608/949350315415715891/unknown.png
-		
 		--]]
+		
+		-- 1.3
+		VJ.AddNPC("Black Meat Guard","npc_vj_hlrcl10_securityguard",vCat2)
+		VJ.AddNPC("Black Meat Scientist","npc_vj_hlrcl10_scientist",vCat2)
+		VJ.AddNPC("Chronic Smoker","npc_vj_hlrcl10_gus",vCat2)
+		VJ.AddNPC("Cringe Compilator","npc_vj_hlrcl10_camerasci",vCat2)
+		VJ.AddNPC("Drill","npc_vj_hlrcl10_dicksucker",vCat2)
+		VJ.AddNPC("Extra Clean","npc_vj_hlrcl10_extraclean",vCat2)
+		VJ.AddNPC("Fairy Grunt","npc_vj_hlrcl10_fairygrunt",vCat2)
+		VJ.AddNPC("Forklifter","npc_vj_hlrcl10_forklift",vCat2)
+		VJ.AddNPC("Gentlezombie","npc_vj_hlrcl10_zombie",vCat2)
+		VJ.AddNPC("Glowie","npc_vj_hlrcl10_ciaman",vCat2)
+		VJ.AddNPC("Internet Tough Guy","npc_vj_hlrcl10_fedorasci",vCat2)
+		VJ.AddNPC("JMan","npc_vj_hlrcl10_jman",vCat2)
+		VJ.AddNPC("Mercenary Grunt","npc_vj_hlrcl10_hgrunt",vCat2)
+		VJ.AddNPC("Monkey","npc_vj_hlrcl10_monkey",vCat2)
+		VJ.AddNPC("Rocket Gina","npc_vj_hlrcl10_rocketgina",vCat2)
+		VJ.AddNPC("UN Peacekeeper","npc_vj_hlrcl10_unbarney",vCat2)
+		VJ.AddNPC("Vaccinator","npc_vj_hlrcl10_vaccinator",vCat2)
+		
 		
 		VJ.AddConVar("vj_hlrcl_skipufointro", 0, {FCVAR_ARCHIVE})
 		VJ.AddConVar("vj_hlrcl_oldchavsounds", 0, {FCVAR_ARCHIVE})
