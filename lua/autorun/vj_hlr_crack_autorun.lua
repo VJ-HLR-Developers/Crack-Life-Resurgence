@@ -20,7 +20,7 @@ if VJExists == true then
 	VJ.AddCategoryInfo(vCat, {Icon = "vj_hl/icons/clcampaign.png"})
 	VJ.AddCategoryInfo(vCat2, {Icon = "vj_hl/icons/cl10.png"})
 
-		--VJ.AddNPC("Adolf Hitler","npc_vj_hlrcl_hitleranth",vCat)
+		--VJ.AddNPC("Adolf Hitler","npc_vj_hlrcl_hitleranth",vCat)	-- won't do this one, there's a reason why there can't be more than 1 nihilanth.
 		VJ.AddNPC("Annoying Houndeye","npc_vj_hlrcl_houndeye",vCat)
 		VJ.AddNPC("Big Smoke","npc_vj_hlrcl_smoke",vCat)
 		VJ.AddNPC("Bonewheel","npc_vj_hlrcl_bonewheel",vCat)
@@ -79,7 +79,7 @@ if VJExists == true then
 		VJ.AddNPC("Drill","npc_vj_hlrcl10_drill",vCat2)
 		VJ.AddNPC("Extra Clean","npc_vj_hlrcl10_extraclean",vCat2)
 		VJ.AddNPC("Fairy Grunt","npc_vj_hlrcl10_fairygrunt",vCat2)
-		VJ.AddNPC("Forklifter","npc_vj_hlrcl10_forklift",vCat2)
+		VJ.AddNPC("Forklift","npc_vj_hlrcl10_forklift",vCat2)
 		VJ.AddNPC("Gentlezombie","npc_vj_hlrcl10_zombie",vCat2)
 		VJ.AddNPC("Glowie","npc_vj_hlrcl10_ciaman",vCat2)
 		VJ.AddNPC("Internet Tough Guy","npc_vj_hlrcl10_fedorasci",vCat2)

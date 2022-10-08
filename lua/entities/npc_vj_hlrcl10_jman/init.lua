@@ -18,8 +18,10 @@ ENT.CustomBlood_Particle = {"vj_hlr_blood_red"}
 ENT.CustomBlood_Decal = {"VJ_HLR_Blood_Red"} -- Decals to spawn when it's damaged
 ENT.HasBloodPool = false -- Does it have a blood pool?
 
-//ENT.VJ_NPC_Class = {"CLASS_CRACKLIFE_JMAN"} -- NPCs with the same class with be allied to each other
-ENT.Behavior = VJ_BEHAVIOR_PASSIVE_NATURE -- The behavior of the SNPC
+ENT.VJ_NPC_Class = {"CLASS_CRACKLIFE_JMAN"} -- NPCs with the same class with be allied to each other
+ENT.Behavior = VJ_BEHAVIOR_NEUTRAL -- The behavior of the SNPC
+ENT.HasMeleeAttack = false -- Should the SNPC have a melee attack?
+ENT.MeleeAttackDistance = 150
 
 //ENT.IsGuard = true
 ENT.DisableWandering = true
@@ -28,9 +30,10 @@ ENT.Passive_RunOnDamage = false
 ENT.HideOnUnknownDamage = false
 
 ENT.HasDeathRagdoll = false
+ENT.HasDeathAnimation = false
 ENT.GibOnDeathDamagesTable = {"All"}
 
-ENT.ConstantlyFaceEnemy = true
+//ENT.ConstantlyFaceEnemy = true
 
 ENT.DisableFootStepSoundTimer = true -- If set to true, it will disable the time system for the footstep sound code, allowing you to use other ways like model events
 	-- ====== Sound File Paths ====== --
