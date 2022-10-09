@@ -53,12 +53,12 @@ function ENT:CustomOnAcceptInput(key, activator, caller, data)
 		self:FootStepSoundCode()
 	elseif key == "lift" then
         self:MeleeAttackCode()
-        VJ_EmitSound(self, "vj_hlr/crack10_fx/doormove4.wav", 85, 100)
+        VJ_EmitSound(self, "vj_hlr/crack10_fx/doormove4.wav", 100, 100)
 	end
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:MeleeAttackKnockbackVelocity(hitEnt)
-	return self:GetUp()*300
+	return self:GetForward()*-1 + self:GetUp()*300
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 local gibsCollideSd = {"vj_hlr/fx/metal1.wav","vj_hlr/fx/metal2.wav","vj_hlr/fx/metal3.wav","vj_hlr/fx/metal4.wav","vj_hlr/fx/metal5.wav"}
@@ -112,7 +112,7 @@ function ENT:SetUpGibesOnDeath(dmginfo, hitgroup)
 	for _ = 1, 30 do
 			local gib = ents.Create("obj_vj_gib")
 			gib:SetModel(VJ_PICK(computerGibs))
-			gib:SetPos(self:GetPos() + Vector(math.random(-40, 40), math.random(-40, 40), math.random(10, 50)))
+			gib:SetPos(self:GetPos() + Vector(math.random(-35, 35), math.random(-35, 35), math.random(10, 100)))
 			gib:SetAngles(Angle(math.Rand(-180, 180), math.Rand(-180, 180), math.Rand(-180, 180)))
 			gib.Collide_Decal = ""
 			gib.CollideSound = gibsCollideSd
@@ -132,8 +132,8 @@ end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomGibOnDeathSounds(dmginfo, hitgroup)
 	VJ_EmitSound(self, "vj_hlr/crack10_fx/bustmetal"..math.random(1,2)..".wav", 100, 100)
-    //VJ_EmitSound(self,"vj_hlr/crack_fx/bodysplat.wav", 90, math.random(100,100))
-	//VJ_EmitSound(self, "vj_hlr/hl1_npc/rgrunt/rb_gib.wav", 90, 100)
+    VJ_EmitSound(self,"vj_hlr/crack_fx/bodysplat.wav", 90, math.random(100,100))
+	VJ_EmitSound(self, "vj_hlr/hl1_npc/rgrunt/rb_gib.wav", 90, 85)
 	return false
 end
 /*-----------------------------------------------
