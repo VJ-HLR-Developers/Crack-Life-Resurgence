@@ -22,6 +22,7 @@ ENT.VJ_NPC_Class = {"CLASS_CRACKLIFE_JMAN"} -- NPCs with the same class with be 
 ENT.Behavior = VJ_BEHAVIOR_NEUTRAL -- The behavior of the SNPC
 ENT.HasMeleeAttack = false -- Should the SNPC have a melee attack?
 ENT.MeleeAttackDistance = 150
+ENT.SightAngle = 180
 
 //ENT.IsGuard = true
 ENT.DisableWandering = true
@@ -39,7 +40,7 @@ ENT.DisableFootStepSoundTimer = true -- If set to true, it will disable the time
 	-- ====== Sound File Paths ====== --
 -- Leave blank if you don't want any sounds to play
 ENT.SoundTbl_FootStep = {"vj_hlr/crack_fx/npc_step1.wav","vj_hlr/crack_fx/npc_step2.wav","vj_hlr/crack_fx/npc_step3.wav","vj_hlr/crack_fx/npc_step4.wav"}
-ENT.SoundTbl_Idle = {"vj_hlr/crack10_npc/jman/jman_wisdom1.wav","vj_hlr/crack10_npc/jman/jman_wisdom2.wav","vj_hlr/crack10_npc/jman/jman_wisdom3.wav","vj_hlr/crack10_npc/jman/jman_wisdom4.wav","vj_hlr/crack10_npc/jman/jman_wisdom5.wav"}
+ENT.SoundTbl_Idle = {"vj_hlr/crack10_npc/jman/jman_wisdom1.wav","vj_hlr/crack10_npc/jman/jman_wisdom2.wav","vj_hlr/crack10_npc/jman/jman_wisdom3.wav","vj_hlr/crack10_npc/jman/jman_wisdom4.wav","vj_hlr/crack10_npc/jman/jman_wisdom5.wav","vj_hlr/crack_npc/gman/gman_choose1.wav"}
 
 ENT.IdleSoundChance = 1
 ENT.NextSoundTime_Idle = VJ_Set(4, 7)
