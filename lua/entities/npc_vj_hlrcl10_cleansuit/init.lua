@@ -65,8 +65,7 @@ ENT.SCI_NextMouthDistance = 0
 ENT.SpawnHat = true
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomOnInitialize()
-	local randBG = math.random(0, 3)
-	self:SetBodygroup(1, randBG)
+	self:SetBodygroup(1, math.random(0, 3))
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomOnAcceptInput(key, activator, caller, data)
