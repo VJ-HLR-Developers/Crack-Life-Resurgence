@@ -58,7 +58,7 @@ function ENT:CustomOnAcceptInput(key, activator, caller, data)
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:MeleeAttackKnockbackVelocity(hitEnt)
-	return self:GetForward()*-1 + self:GetUp()*300
+	return self:GetForward()*-25 + self:GetUp()*300
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 local gibsCollideSd = {"vj_hlr/fx/metal1.wav","vj_hlr/fx/metal2.wav","vj_hlr/fx/metal3.wav","vj_hlr/fx/metal4.wav","vj_hlr/fx/metal5.wav"}
@@ -108,7 +108,6 @@ function ENT:SetUpGibesOnDeath(dmginfo, hitgroup)
 	self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/hgib_lung.mdl",{BloodDecal="VJ_HLR_Blood_Red",Pos=self:LocalToWorld(Vector(0,0,45))})
 	self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/hgib_skull.mdl",{BloodDecal="VJ_HLR_Blood_Red",Pos=self:LocalToWorld(Vector(0,0,60))})
 	self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/hgib_legbone.mdl",{BloodDecal="VJ_HLR_Blood_Red",Pos=self:LocalToWorld(Vector(0,0,15))})
-    self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/metalgib_p1.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,5)),CollideSound=gibsCollideSd})
 	for _ = 1, 30 do
 			local gib = ents.Create("obj_vj_gib")
 			gib:SetModel(VJ_PICK(computerGibs))
