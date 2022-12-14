@@ -14,7 +14,7 @@ ENT.Contact 		= "http://steamcommunity.com/groups/vrejgaming"
 ENT.Information		= "Projectiles for my addons"
 ENT.Category		= "VJ Base"
 
-ENT.Spawnable = true
+ENT.Spawnable = false
 ENT.AdminOnly = false
 
 ENT.VJ_IsDetectableDanger = true
