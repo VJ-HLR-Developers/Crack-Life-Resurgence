@@ -515,7 +515,7 @@ function ENT:CustomOnRemove()
 	VJ_STOPSOUND(self.UFOSD_IntroSound)
 	VJ_STOPSOUND(self.UFOSD_Engine)
 	VJ_STOPSOUND(self.UFOSD_Laser)
-	if self.Dead == false then
+	if !self.Dead then
 		if IsValid(self.UFOAlly1) then self.UFOAlly1:Remove() end
 		if IsValid(self.UFOAlly2) then self.UFOAlly2:Remove() end
 		if IsValid(self.SnarkAlly1) then self.SnarkAlly1:Remove() end

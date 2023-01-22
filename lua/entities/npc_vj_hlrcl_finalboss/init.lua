@@ -218,7 +218,7 @@ function ENT:F_SpawnAlly()
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomOnRemove()
-	if self.Dead == false then
+	if !self.Dead then
 		if IsValid(self.F_Ally1) then self.F_Ally1:Remove() end
 		if IsValid(self.F_Ally2) then self.F_Ally2:Remove() end
 		if IsValid(self.F_Ally3) then self.F_Ally3:Remove() end

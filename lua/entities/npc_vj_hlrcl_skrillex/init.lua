@@ -298,7 +298,7 @@ function ENT:CustomOnRemove()
 	if IsValid(self.Radio2) then self.Radio2:Remove() end
 	
 	-- Remove allies if we were removed without being killed
-	if self.Dead == false then
+	if !self.Dead then
 		if IsValid(self.ChavAlly1) then self.ChavAlly1:Remove() end
 		if IsValid(self.ChavAlly2) then self.ChavAlly2:Remove() end
 		if IsValid(self.ChavAlly3) then self.ChavAlly3:Remove() end

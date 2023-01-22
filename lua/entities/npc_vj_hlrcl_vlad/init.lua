@@ -261,7 +261,7 @@ function ENT:CustomOnRemove()
 		self.Gunner:Remove()
 	end
 	timer.Remove("vlad_spawnracists"..self:EntIndex())
-	if self.Dead == false then
+	if !self.Dead then
 		if IsValid(self.SovietAlly1) then self.SovietAlly1:Remove() end
 		if IsValid(self.SovietAlly2) then self.SovietAlly2:Remove() end
 		if IsValid(self.SovietAlly3) then self.SovietAlly3:Remove() end
