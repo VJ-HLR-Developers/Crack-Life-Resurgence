@@ -12,6 +12,7 @@ ENT.StartHealth = 200
 ENT.VJ_IsHugeMonster = true
 
 --ENT.FlinchChance = 30 
+ENT.EntitiesToNoCollide = {"npc_vj_hlrcl_spooky","npc_vj_hlrcl_bonewheel"}
 ENT.MeleeAttackDistance = 40
 
 ENT.HasSoundTrack = true

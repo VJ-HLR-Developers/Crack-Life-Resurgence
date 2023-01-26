@@ -74,7 +74,7 @@ if VJExists == true then
 		-- 1.3
 		VJ.AddNPC("Black Meat Guard","npc_vj_hlrcl10_securityguard",vCat2)
 		VJ.AddNPC("Black Meat Scientist","npc_vj_hlrcl10_scientist",vCat2)
-		VJ.AddNPC("Chronic Smoker","npc_vj_hlrcl10_gus",vCat2)
+		VJ.AddNPC("Gus","npc_vj_hlrcl10_gus",vCat2)
 		VJ.AddNPC("Cringe Compilator","npc_vj_hlrcl10_camerasci",vCat2)
 		VJ.AddNPC("Drill","npc_vj_hlrcl10_drill",vCat2)
 		VJ.AddNPC("Extra Clean","npc_vj_hlrcl10_extraclean",vCat2)
@@ -110,7 +110,7 @@ if CLIENT then
 			Panel:ControlHelp("Skips the 19 second long intro when spawning JOJ UFO.")
 			Panel:AddControl("Checkbox", {Label = "Old Chav Sounds", Command = "vj_hlrcl_oldchavsounds"})
 			Panel:ControlHelp("Force old Chav voice acting from original Crack-Life.\nDoesn't affect Mega & Super Chavs.")
-			Panel:AddControl("Checkbox", {Label = "Anti-Cancel Culture mode", Command = "vj_hlrcl_disableracism"})
+			Panel:AddControl("Checkbox", {Label = "Disable spicy words", Command = "vj_hlrcl_disableracism"})
 			Panel:ControlHelp("Affects only the Soviet Grunts.")
 			Panel:AddControl("Label", {Text = "BOSS ALLY SPAWNING OPTIONS:"})
 			Panel:AddControl("Checkbox", {Label = "Allow Skrillyd to spawn allies", Command = "vj_hlrcl_allyspawn_skrillex"})

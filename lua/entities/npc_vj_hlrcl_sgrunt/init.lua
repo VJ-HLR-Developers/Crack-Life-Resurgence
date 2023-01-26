@@ -26,15 +26,27 @@ function ENT:HECU_CustomOnInitialize()
 	self.SoundTbl_GrenadeAttack = {"vj_hlr/crack_npc/hgrunt/taunt3.wav","vj_hlr/crack_npc/hgrunt/throw1.wav","vj_hlr/crack_npc/hgrunt/throw2.wav","vj_hlr/crack_npc/hgrunt/throw3.wav"}
 	self.SoundTbl_OnGrenadeSight = {"vj_hlr/crack_npc/hgrunt/cover1.wav","vj_hlr/crack_npc/hgrunt/cover2.wav","vj_hlr/crack_npc/hgrunt/cover3.wav","vj_hlr/crack_npc/hgrunt/grenade1.wav","vj_hlr/crack_npc/hgrunt/grenade2.wav","vj_hlr/crack_npc/hgrunt/grenade3.wav"}
 	self.SoundTbl_AllyDeath = {"vj_hlr/crack_npc/hgrunt/cover3.wav","vj_hlr/crack_npc/hgrunt/cover2.wav"}
+	if GetConVar("vj_hlrcl_disableracism"):GetInt() == 1 then
+		self.SoundTbl_CombatIdle = {"vj_hlr/crack_npc/hgrunt/taunt1.wav","vj_hlr/crack_npc/hgrunt/taunt2.wav","vj_hlr/crack_npc/hgrunt/taunt4.wav","vj_hlr/crack_npc/hgrunt/taunt5.wav","vj_hlr/crack_npc/hgrunt/taunt6_c.wav"}
+		self.SoundTbl_OnGrenadeSight = {"vj_hlr/crack_npc/hgrunt/cover1.wav","vj_hlr/crack_npc/hgrunt/cover2.wav","vj_hlr/crack_npc/hgrunt/cover3_c.wav","vj_hlr/crack_npc/hgrunt/grenade1.wav","vj_hlr/crack_npc/hgrunt/grenade2.wav","vj_hlr/crack_npc/hgrunt/grenade3.wav"}	
+	end
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomOnAlert(ent)
 	if math.random(1,2) == 1 then
 		if ent:GetClass() == "npc_vj_hlrcl_german" then
-			self:PlaySoundSystem("Alert", {"vj_hlr/crack_npc/hgrunt/alien1.wav"})
+			if GetConVar("vj_hlrcl_disableracism"):GetInt() == 1 then
+				self:PlaySoundSystem("Alert", {"vj_hlr/crack_npc/hgrunt/alien1_c.wav"})
+			else
+				self:PlaySoundSystem("Alert", {"vj_hlr/crack_npc/hgrunt/alien1.wav"})
+			end
 			return
 		elseif ent:IsPlayer() then
-			self:PlaySoundSystem("Alert", {"vj_hlr/crack_npc/hgrunt/freeman1.wav","vj_hlr/crack_npc/hgrunt/freeman2.wav","vj_hlr/crack_npc/hgrunt/freeman3.wav"})
+			if GetConVar("vj_hlrcl_disableracism"):GetInt() == 1 then
+				self:PlaySoundSystem("Alert", {"vj_hlr/crack_npc/hgrunt/freeman1.wav","vj_hlr/crack_npc/hgrunt/freeman2_c.wav","vj_hlr/crack_npc/hgrunt/freeman3.wav"})
+			else
+				self:PlaySoundSystem("Alert", {"vj_hlr/crack_npc/hgrunt/freeman1.wav","vj_hlr/crack_npc/hgrunt/freeman2.wav","vj_hlr/crack_npc/hgrunt/freeman3.wav"})
+			end
 			return
 		end
 	end
