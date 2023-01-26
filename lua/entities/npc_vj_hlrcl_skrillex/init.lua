@@ -16,6 +16,8 @@ ENT.BloodColor = "Red" -- The blood type, this will determine what it should use
 ENT.CustomBlood_Particle = {"vj_hlr_blood_red"}
 ENT.CustomBlood_Decal = {"VJ_HLR_Blood_Red"}
 
+ENT.EntitiesToNoCollide = {"npc_vj_hlrcl_gopnik","npc_vj_hlrcl_gopnik_mega","npc_vj_hlrcl_gopnik_super"}
+
 ENT.DisableWandering = true
 ENT.DisableChasingEnemy = true
 
