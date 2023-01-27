@@ -11,7 +11,7 @@ ENT.VJC_Data = {
     FirstP_Bone = "Bip02 Head", -- If left empty, the base will attempt to calculate a position for first person
     FirstP_Offset = Vector(5, 0, 5), -- The offset for the controller when the camera is in first person
 }
-ENT.StartHealth = 150
+ENT.StartHealth = 100
 ENT.HullType = HULL_HUMAN
 ENT.BloodColor = "Red" -- The blood type, this will determine what it should use (decal, particle, etc.)
 ENT.CustomBlood_Particle = {"vj_hlr_blood_red"}

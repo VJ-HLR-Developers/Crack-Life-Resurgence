@@ -16,7 +16,7 @@ ENT.HasSoundTrack = true
 ENT.PropAP_MaxSize = 10
 ENT.SoundTbl_SoundTrack = {"vj_hlr/crack_npc/finalboss/finalboss.mp3"}
 
-ENT.EntitiesToNoCollide = {"npc_vj_hlrcl_bonewheel","npc_vj_hlrcl_zombozo","npc_vj_hlrcl_pinkpanther","npc_vj_hlrcl_evilsci","npc_vj_hlrcl_terror","npc_vj_hlrcl_houndeye","npc_vj_hlrcl_alienslave"}
+ENT.EntitiesToNoCollide = {"npc_vj_hlrcl_bonewheel","npc_vj_hlrcl_zombozo","npc_vj_hlrcl_pinkpanther","npc_vj_hlrcl_evilsci","npc_vj_hlrcl_terror","npc_vj_hlrcl_houndeye","npc_vj_hlrcl_alienslave","npc_vj_hlrcl10_zombie"}
 
 ENT.Garg_Type = 2
 ENT.F_NextSpawn = 0 -- Max 4
@@ -174,7 +174,7 @@ function ENT:F_CreateAlly()
 		mask = MASK_ALL,
 	})
 	local spawnpos = tr.HitPos + tr.HitNormal*30
-	local type = VJ_PICK({"npc_vj_hlrcl_bonewheel","npc_vj_hlrcl_zombozo","npc_vj_hlrcl_pinkpanther","npc_vj_hlrcl_evilsci","npc_vj_hlrcl_terror","npc_vj_hlrcl_houndeye","npc_vj_hlrcl_alienslave"})
+	local type = VJ_PICK({"npc_vj_hlrcl_bonewheel","npc_vj_hlrcl_zombozo","npc_vj_hlrcl_pinkpanther","npc_vj_hlrcl_evilsci","npc_vj_hlrcl_terror","npc_vj_hlrcl_houndeye","npc_vj_hlrcl_alienslave","npc_vj_hlrcl10_zombie"})
 	local ally = ents.Create(type)
 	ally:SetPos(spawnpos)
 	ally:SetAngles(self:GetAngles())
