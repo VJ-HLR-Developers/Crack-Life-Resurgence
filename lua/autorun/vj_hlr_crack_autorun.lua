@@ -20,9 +20,9 @@ if VJExists == true then
 	VJ.HLRCLR_VERSION = "1.2b"
 	
 	local vCat = "HL Resurgence: Crack-Life"
-	local vCat2 = "HL Resurgence: Crack-Life: Anniversary"
+	--local vCat2 = "HL Resurgence: Crack-Life: Anniversary"
 	VJ.AddCategoryInfo(vCat, {Icon = "vj_hl/icons/clcampaign.png"})
-	VJ.AddCategoryInfo(vCat2, {Icon = "vj_hl/icons/cl10.png"})
+	--VJ.AddCategoryInfo(vCat2, {Icon = "vj_hl/icons/cl10.png"})
 
 		--VJ.AddNPC("Adolf Hitler","npc_vj_hlrcl_hitleranth",vCat)	-- won't do this one, there's a reason why there can't be more than 1 nihilanth.
 		VJ.AddNPC("Annoying Houndeye","npc_vj_hlrcl_houndeye",vCat)
