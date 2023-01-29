@@ -14,6 +14,10 @@ local VJExists = file.Exists("lua/autorun/vj_base_autorun.lua","GAME")
 local HLRExists = file.Exists("lua/autorun/vj_hlr_autorun.lua","GAME")
 if VJExists == true then
 	include('autorun/vj_controls.lua')
+
+	if !VJ then VJ = {} end -- If VJ isn't initialized, initialize it!
+	
+	VJ.HLRCLR_VERSION = "1.3"
 	
 	local vCat = "HL Resurgence: Crack-Life"
 	local vCat2 = "HL Resurgence: Crack-Life: Anniversary"
@@ -48,7 +52,7 @@ if VJExists == true then
 		VJ.AddNPC("Soviet Grunt","npc_vj_hlrcl_sgrunt",vCat)
 		VJ.AddNPC("Suicide Bomber","npc_vj_hlrcl_terror",vCat)
 		VJ.AddNPC("Skellington","npc_vj_hlrcl_spooky",vCat)
-		VJ.AddNPC("The Nimrod Force Fuckshit Triple Mafia Smasher of Crackheads X5000 Alpha Version 133.7","npc_vj_hlrcl_finalboss",vCat)
+		VJ.AddNPC("The Final Boss","npc_vj_hlrcl_finalboss",vCat)
 		VJ.AddNPC("Viking Gargantua","npc_vj_hlrcl_garg_viking",vCat)
 		VJ.AddNPC("Zombozo","npc_vj_hlrcl_zombozo",vCat)
 		
