@@ -1,27 +1,27 @@
 Changelog for a future update which is coming out at the same time as HL:R's latest update.
 
-[h1][b] 1.3 [/b][/h1]
+[h1][b] 1.2b [/b][/h1]
 [list]
 [*] Pack updated to use latest HL:R features.
-[*] Added Crack-Life: Anniversary SNPCs.
-[*] Added toggleable ally spawning for all bosses to Crack-Life: Resurgence SNPC Configures menu under DrVrej tab.
-[*] Retarded Scientists can now complain about constantly getting asked if they can lift (replaces the "ridiculous tie" behavior).
 [*] Marked JOJ UFO's laser as "dangerous", making all VJ human based SNPCs run away from it.
 [*] Marked Pepsinade as "dangerous", making all VJ human based SNPCs run away from it.
+[*] Added toggleable ally spawning for all bosses to Crack-Life: Resurgence SNPC Configures menu under DrVrej tab.
+[*] Scientists can now complain about constantly getting asked if they can lift (replaces the "ridiculous tie" behavior).
 [*] Skrillyd will not chase any enemies until all music players are destroyed.
 [*] Reduced the amount of spawned Foundation Repairmen from JOJ UFO.
 [*] Regular Chavs have a small chance to have old voice from the original Crack-Life.
-[*] Fixed JOJ UFO's, Skrilly's and Final Boss' spawned allies colliding with each other.
+[*] Fixed JOJ UFO's, Skrillyd's and Final Boss' spawned allies colliding with each other.
 [*] Fixed options in Crack-Life: Resurgence configures not saving after quitting/reloading the game.
 [*] Fixed desynced Foundation Repairman's firing sounds.
 [*] Fixed all skeleton based SNPCs using alien gibs when gibbed.
 [*] Fixed SNPCs spawned by bosses not obeying the VJ relationship tool.
 [*] Fixed Skellington Master occasionally summoning a copy of itself during it's death animations.
-[*] Fixed Skrillex not playing any death animations when killed via a headshot.
-[*] Fixed Skrillex's music players acting weird when dissolved by Combine Balls or used with material/color tools.
-[*] Fixed weird/broken head movement for all of the Chavs.
+[*] Fixed Skrillyd not playing any death animations when killed via a headshot.
+[*] Fixed Skrillyd's music players acting weird when dissolved by Combine Balls or used with material/color tools.
+[*] Fixed weird/ head movement for all of the Chavs.
 [*] Fixed Soviet Grunt's bad headshot hitbox.
 [*] Fixed Mario Zombie's hitboxes not covering the whole head.
 [*] Fixed weird/very dark lighting on some models.
 [*] Fixed Steveman slightly levitating off the ground.
+[*] Other miscellaneous unnoticeable changes, bug fixes and polish.
 [/list]

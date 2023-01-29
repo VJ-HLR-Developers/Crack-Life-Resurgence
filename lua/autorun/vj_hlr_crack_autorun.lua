@@ -17,7 +17,7 @@ if VJExists == true then
 
 	if !VJ then VJ = {} end -- If VJ isn't initialized, initialize it!
 	
-	VJ.HLRCLR_VERSION = "1.3"
+	VJ.HLRCLR_VERSION = "1.2b"
 	
 	local vCat = "HL Resurgence: Crack-Life"
 	local vCat2 = "HL Resurgence: Crack-Life: Anniversary"
@@ -76,6 +76,7 @@ if VJExists == true then
 		--]]
 		
 		-- 1.3
+		--[[
 		VJ.AddNPC("Black Meat Guard","npc_vj_hlrcl10_securityguard",vCat2)
 		VJ.AddNPC("Black Meat Scientist","npc_vj_hlrcl10_scientist",vCat2)
 		VJ.AddNPC("Gus","npc_vj_hlrcl10_gus",vCat2)
@@ -93,7 +94,7 @@ if VJExists == true then
 		VJ.AddNPC("Rocket Gina","npc_vj_hlrcl10_rocketgina",vCat2)
 		VJ.AddNPC("UN Peacekeeper","npc_vj_hlrcl10_unbarney",vCat2)
 		VJ.AddNPC("Vaccinator","npc_vj_hlrcl10_cleansuit",vCat2)
-		
+		--]]
 		
 		VJ.AddConVar("vj_hlrcl_skipufointro", 0, {FCVAR_ARCHIVE})
 		VJ.AddConVar("vj_hlrcl_oldchavsounds", 0, {FCVAR_ARCHIVE})
