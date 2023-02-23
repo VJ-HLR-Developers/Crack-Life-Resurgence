@@ -13,6 +13,9 @@ ENT.Contact 		= "http://steamcommunity.com/groups/vrejgaming"
 ENT.Purpose 		= "Used to make simple props and animate them, since prop_dynamic doesn't work properly in Garry's Mod."
 ENT.Instructions 	= "Don't change anything."
 ENT.Category		= "VJ Base"
+if CLIENT then
+	language.Add("sent_vj_hlrcl_recorder_huge", "Skrillyd's Player" )
+end
 
 function ENT:Draw() self:DrawModel() end
 ---------------------------------------------------------------------------------------------------------------------------------------------
@@ -30,6 +33,7 @@ end
 if (!SERVER) then return end
 
 ENT.VJ_NPC_Class = {"CLASS_CRACKLIFE_CHAV"} -- NPCs with the same class with be allied to each other
+--ENT.VJ_IsHugeMonster = true
 
 -- Custom
 ENT.Assignee = NULL -- Is another entity the owner of this recorder?
