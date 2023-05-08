@@ -135,7 +135,7 @@ function ENT:CreateGibEntity(class, models, extraOptions, customFunc)
 	end
 	gib:Spawn()
 	gib:Activate()
-	gib.IsVJBase_Gib = true
+	gib.IsVJBaseCorpse_Gib = true
 	gib.RemoveOnCorpseDelete = removeOnCorpseDelete
 	if GetConVar("vj_npc_gibcollidable"):GetInt() == 0 then gib:SetCollisionGroup(1) end
 	local phys = gib:GetPhysicsObject()
