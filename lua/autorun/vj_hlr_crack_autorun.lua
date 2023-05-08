@@ -24,7 +24,7 @@ if VJExists == true then
 	VJ.AddCategoryInfo(vCat, {Icon = "vj_hl/icons/clcampaign.png"})
 	VJ.AddCategoryInfo(vCat2, {Icon = "vj_hl/icons/cl10.png"})
 
-		--VJ.AddNPC("Adolf Hitler","npc_vj_hlrcl_hitleranth",vCat)	-- won't do this one, there's a reason why there can't be more than 1 nihilanth.
+		--VJ.AddNPC("Adolf Hitler","npc_vj_hlrcl_hitleranth",vCat)	-- won't do this one, there's a reason why there can't be more than 1 nihilanth in a map.
 		VJ.AddNPC("Annoying Houndeye","npc_vj_hlrcl_houndeye",vCat)
 		VJ.AddNPC("Big Smoke","npc_vj_hlrcl_smoke",vCat)
 		VJ.AddNPC("Bonewheel","npc_vj_hlrcl_bonewheel",vCat)

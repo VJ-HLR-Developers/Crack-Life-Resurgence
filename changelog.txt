@@ -1,4 +1,7 @@
-Changelog for a future update which is coming out at the same time as HL:R's latest update.
+[h1][b] 1.3 [/b][/h1]
+[list]
+[*] Added Crack-Life: 10th Anniversary SNPCs
+[/list]
 
 [h1][b] 1.2b [/b][/h1]
 [list]
