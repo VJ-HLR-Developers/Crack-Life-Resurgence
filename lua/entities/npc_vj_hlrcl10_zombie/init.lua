@@ -149,6 +149,11 @@ function ENT:CustomGibOnDeathSounds(dmginfo,hitgroup)
 	VJ_EmitSound(self, "vj_gib/default_gib_splat.wav", 90, math.random(100,100))
 	return false
 end
+---------------------------------------------------------------------------------------------------------------------------------------------
+function ENT:CustomOnInitialKilled(dmginfo, hitgroup)
+	self.DrawnShotgun = false
+	self:SetBodygroup(1,0)
+end
 /*-----------------------------------------------
 	*** Copyright (c) 2012-2023 by DrVrej, All rights reserved. ***
 	No parts of this code or any of its contents may be reproduced, copied, modified or adapted,
