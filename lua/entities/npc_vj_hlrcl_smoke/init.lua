@@ -123,12 +123,12 @@ function ENT:CustomGibOnDeathSounds(dmginfo, hitgroup)
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomDeathAnimationCode(dmginfo, hitgroup)
-	self:DropWeaponOnDeathCode(dmginfo, hitgroup)
+	self:DoDropWeaponOnDeath(dmginfo, hitgroup)
 	if IsValid(self:GetActiveWeapon()) then self:GetActiveWeapon():Remove() end
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomOnDeath_AfterCorpseSpawned(dmginfo, hitgroup, corpseEnt)
-	VJ_HLR_ApplyCorpseEffects(self, corpseEnt)
+	VJ.HLR_ApplyCorpseSystem(self, corpseEnt)
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomOnDropWeapon_AfterWeaponSpawned(dmginfo, hitgroup, wepEnt)

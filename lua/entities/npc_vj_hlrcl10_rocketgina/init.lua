@@ -129,7 +129,7 @@ function ENT:CustomGibOnDeathSounds(dmginfo, hitgroup)
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomOnDeath_AfterCorpseSpawned(dmginfo, hitgroup, corpseEnt)
-	VJ_HLR_ApplyCorpseEffects(self, corpseEnt)
+	VJ.HLR_ApplyCorpseSystem(self, corpseEnt)
 end
 /*-----------------------------------------------
 	*** Copyright (c) 2010-2023 by oteek, All rights reserved. ***
