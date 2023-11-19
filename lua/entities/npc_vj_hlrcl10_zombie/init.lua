@@ -1,7 +1,7 @@
 AddCSLuaFile("shared.lua")
 include('shared.lua')
 /*-----------------------------------------------
-	*** Copyright (c) 2012-2023 by DrVrej, All rights reserved. ***
+	*** Copyright (c) 2010-2023 by oteek, All rights reserved. ***
 	No parts of this code or any of its contents may be reproduced, copied, modified or adapted,
 	without the prior written consent of the author, unless otherwise indicated for stand-alone materials.
 -----------------------------------------------*/
@@ -30,6 +30,10 @@ ENT.SoundTbl_Death = {"vj_hlr/crack10_npc/zombie/zo_death1.wav","vj_hlr/crack10_
 ENT.CanUseHD = false
 ENT.DrawnShotgun = false
 ENT.DroppedHat = false
+
+---------------------------------------------------------------------------------------------------------------------------------------------
+function ENT:CustomOnSchedule()
+end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomOnAcceptInput(key,activator,caller,data)
 	//print(key)
@@ -56,13 +60,19 @@ function ENT:CustomOnAcceptInput(key,activator,caller,data)
 	end
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
+function ENT:CustomOnThink()
+
+end
+---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomRangeAttackCode()
 	local att = self:GetAttachment(1)
 	local ene = self:GetEnemy()
-	if self:IsValid() && IsValid(self:GetEnemy()) then
+	local sdir = (ene:GetPos() + ene:OBBCenter() - att.Pos):Angle():Forward()
+
+	if IsValid(self) then
 		self:FireBullets({
 			Attacker = self,
-			Dir = (ene:GetPos() + ene:OBBCenter() - att.Pos):Angle():Forward(),
+			Dir = sdir,
 			Spread = Vector(0.1,0.1,0),
 			TracerName = "VJ_HLR_Tracer",
 			AmmoType = "Shotgun",
@@ -155,7 +165,7 @@ function ENT:CustomOnInitialKilled(dmginfo, hitgroup)
 	self:SetBodygroup(1,0)
 end
 /*-----------------------------------------------
-	*** Copyright (c) 2012-2023 by DrVrej, All rights reserved. ***
+	*** Copyright (c) 2010-2023 by oteek, All rights reserved. ***
 	No parts of this code or any of its contents may be reproduced, copied, modified or adapted,
 	without the prior written consent of the author, unless otherwise indicated for stand-alone materials.
 -----------------------------------------------*/
