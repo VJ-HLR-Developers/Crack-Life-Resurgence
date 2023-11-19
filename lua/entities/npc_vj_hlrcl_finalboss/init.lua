@@ -184,7 +184,7 @@ function ENT:F_CreateAlly()
 	//ally:SetMaxHealth(ally:GetHealth() + 100)
 	//ally:SetHealth(ally:GetHealth() + 100)
 	
-	local effectTeleport = VJ_HLR_Effect_PortalSpawn(spawnpos + Vector(0,0,20))
+	local effectTeleport = VJ.HLR_Effect_Portal(spawnpos + Vector(0,0,20))
 	effectTeleport:Fire("Kill","",1)
 	
 	return ally
