@@ -1,4 +1,4 @@
-ENT.Base 			= "npc_vj_hlr1_alienslave"
+ENT.Base 			= "npc_vj_creature_base"
 ENT.Type 			= "ai"
 ENT.PrintName 		= "Disco Vortigaunt"
 ENT.Author 			= "oteek"

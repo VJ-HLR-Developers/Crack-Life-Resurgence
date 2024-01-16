@@ -109,7 +109,7 @@ function ENT:S_CreateAlly()
 	return ally
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
-function ENT:S_SpawnAlly()
+function ENT:S_SpawnAlly()			-- edit 2023: turns out i didnt know what tables are when this was coded
 	if !IsValid(self.SkAlly1) then
 		self.SkAlly1 = self:S_CreateAlly()
 		return 15

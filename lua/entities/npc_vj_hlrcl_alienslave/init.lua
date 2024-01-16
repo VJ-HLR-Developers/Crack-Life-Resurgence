@@ -1,5 +1,6 @@
 AddCSLuaFile("shared.lua")
 include('shared.lua')
+include("entities/npc_vj_hlr1_alienslave/init.lua")
 /*-----------------------------------------------
 	*** Copyright (c) 2010-2023 by oteek, All rights reserved. ***
 	No parts of this code or any of its contents may be reproduced, copied, modified or adapted,
@@ -59,6 +60,16 @@ function ENT:CustomRangeAttackCode()
 	util.Effect("VJ_HLR_Electric_Disco",elec)
 	
 	util.VJ_SphereDamage(self, self, hitpos, 30, 40, DMG_SHOCK, true, false, {Force=90})
+end
+---------------------------------------------------------------------------------------------------------------------------------------------
+function ENT:SelectSchedule()
+	self.BaseClass.SelectSchedule(self, sched)
+	-- Hide after being attacked
+	if !self.Dead && self.Vort_RunAway == true && !self:IsBusy() && !self.VJ_IsBeingControlled then
+		self.Vort_RunAway = false
+		self:VJ_TASK_COVER_FROM_ENEMY("TASK_RUN_PATH", function(x) x.RunCode_OnFail = function() self.NextDoAnyAttackT = 0 end end)
+		self.NextDoAnyAttackT = CurTime() + 5
+	end
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomGibOnDeathSounds(dmginfo, hitgroup)
