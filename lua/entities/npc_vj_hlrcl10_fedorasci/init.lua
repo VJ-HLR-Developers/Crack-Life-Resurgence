@@ -91,15 +91,15 @@ function ENT:CustomRangeAttackCode()
     if IsValid(enemy) and IsValid(self) then
         local enePos = enemy:GetPos()
         local eneForward = enemy:EyeAngles():Forward() * -120
+        local mins, maxs = enemy:GetCollisionBounds()
 
         -- Calculate the position behind the player
-        local newPos = enePos + eneForward// * offset
+        local newPos = enePos + eneForward - (mins)// * offset
 
         -- Set the new position for the entity
         self:SetPos(newPos)
 
         -- Check for collisions and adjust the position if needed
-        local mins, maxs = enemy:GetCollisionBounds()
         local trace = util.TraceHull({
             start = newPos,
             endpos = newPos,
@@ -110,7 +110,7 @@ function ENT:CustomRangeAttackCode()
 
         if trace.Hit then
             -- Adjust the position to avoid collisions
-            self:SetPos(trace.HitPos + trace.HitNormal * 5)
+            self:SetPos(enemy:GetPos() + enemy:GetForward() * 50)
         end
 
         local lookAt = (enePos - self:GetPos()):Angle()
