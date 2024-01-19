@@ -1,6 +1,6 @@
-ENT.Base 			= "npc_vj_creature_base"
+ENT.Base 			= "npc_vj_hlr1_zombie"
 ENT.Type 			= "ai"
-ENT.PrintName 		= "Rocket Gina"
+ENT.PrintName 		= "Redditor"
 ENT.Author 			= "oteek"
 ENT.Contact 		= "http://steamcommunity.com/groups/vrejgaming"
 ENT.Purpose 		= "Spawn it and fight with it!"
