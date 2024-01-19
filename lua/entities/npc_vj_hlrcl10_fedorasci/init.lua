@@ -51,6 +51,8 @@ ENT.SoundTbl_Pain = {"vj_hlr/hl1_npc/scientist/sci_pain1.wav","vj_hlr/hl1_npc/sc
 ENT.SoundTbl_Death = {"vj_hlr/hl1_npc/scientist/sci_pain1.wav","vj_hlr/hl1_npc/scientist/sci_pain2.wav","vj_hlr/hl1_npc/scientist/sci_pain3.wav","vj_hlr/hl1_npc/scientist/sci_pain4.wav","vj_hlr/hl1_npc/scientist/sci_pain5.wav"}
 
 ENT.MeleeAttackDamage = 33
+
+ENT.NextLeapAttackTime = 0.5
 ENT.LeapAttackDamage = 60
 
 -- Custom
@@ -88,11 +90,10 @@ function ENT:CustomRangeAttackCode()
     enemy = self:GetEnemy()
     if IsValid(enemy) and IsValid(self) then
         local enePos = enemy:GetPos()
-        local eneForward = enemy:EyeAngles():Forward()
-        local offset = Vector(0, -150, 0) -- Adjust this vector to control how far behind the player the entity should be
+        local eneForward = enemy:EyeAngles():Forward() * -120
 
         -- Calculate the position behind the player
-        local newPos = enePos + eneForward * offset
+        local newPos = enePos + eneForward// * offset
 
         -- Set the new position for the entity
         self:SetPos(newPos)
@@ -109,10 +110,11 @@ function ENT:CustomRangeAttackCode()
 
         if trace.Hit then
             -- Adjust the position to avoid collisions
-            self:SetPos(trace.HitPos + trace.HitNormal * 15)
+            self:SetPos(trace.HitPos + trace.HitNormal * 5)
         end
 
         local lookAt = (enePos - self:GetPos()):Angle()
+        lookAt.p = 0 -- Lock pitch to avoid tilting
 
         -- Set the new angles for the entity
         self:SetAngles(lookAt)
