@@ -1,5 +1,5 @@
 AddCSLuaFile("shared.lua")
-include('shared.lua')
+include("shared.lua")
 /*-----------------------------------------------
 	*** Copyright (c) 2010-2024 by oteek, All rights reserved. ***
 	No parts of this code or any of its contents may be reproduced, copied, modified or adapted,
@@ -31,14 +31,13 @@ ENT.AnimTbl_WeaponAttack = {ACT_RANGE_ATTACK1}
 ENT.AnimTbl_WeaponAim = {ACT_COMBAT_IDLE} -- Animations played when the NPC is aiming | EX: Gun is out of ammo OR waiting for the enemy to peak
 ENT.AnimTbl_ShootWhileMovingRun = {ACT_RUN} -- Animations it will play when shooting while running | NOTE: Weapon may translate the animation that they see fit!
 ENT.AnimTbl_ShootWhileMovingWalk = {ACT_RUN} -- Animations it will play when shooting while walking | NOTE: Weapon may translate the animation that they see fit!
-ENT.HasLostWeaponSightAnimation = true -- Set to true if you would like the SNPC to play a different animation when it has lost sight of the enemy and can't fire at it
 ENT.AllowWeaponReloading = false -- If false, the SNPC will no longer reload
 
 ENT.DisableFootStepSoundTimer = true -- If set to true, it will disable the time system for the footstep sound code, allowing you to use other ways like model events
 //ENT.DropWeaponOnDeathAttachment = "rhand" -- Which attachment should it use for the weapon's position
 ENT.HasDeathAnimation = true -- Does it play an animation when it dies?
 ENT.DeathAnimationTime = 0.9 -- Time until the SNPC spawns its corpse and gets removed
-ENT.AnimTbl_Death = {ACT_DIESIMPLE} -- Death Animations
+ENT.AnimTbl_Death = ACT_DIESIMPLE -- Death Animations
 
 
 ENT.SoundTbl_FootStep = {"vj_hlr/crack_fx/npc_step1.wav","vj_hlr/crack_fx/npc_step2.wav","vj_hlr/crack_fx/npc_step3.wav","vj_hlr/crack_fx/npc_step4.wav"}

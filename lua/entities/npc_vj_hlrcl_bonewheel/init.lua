@@ -1,5 +1,5 @@
 AddCSLuaFile("shared.lua")
-include('shared.lua')
+include("shared.lua")
 /*-----------------------------------------------
 	*** Copyright (c) 2010-2024 by oteek, All rights reserved. ***
 	No parts of this code or any of its contents may be reproduced, copied, modified or adapted,
@@ -12,7 +12,7 @@ ENT.VJC_Data = {
     FirstP_Bone = "MDLDEC_Bone27", -- If left empty, the base will attempt to calculate a position for first person
     FirstP_Offset = Vector(5, 0, 5), -- The offset for the controller when the camera is in first person
 }
-ENT.AnimTbl_Death = {ACT_DIESIMPLE}
+ENT.AnimTbl_Death = ACT_DIESIMPLE
 ENT.SpawnHat = true
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomOnAcceptInput(key, activator, caller, data)

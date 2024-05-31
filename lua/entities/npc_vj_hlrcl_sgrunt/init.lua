@@ -1,5 +1,6 @@
+include("entities/npc_vj_hlr1_hgrunt/init.lua")
 AddCSLuaFile("shared.lua")
-include('shared.lua')
+include("shared.lua")
 /*-----------------------------------------------
 	*** Copyright (c) 2010-2024 by oteek, All rights reserved. ***
 	No parts of this code or any of its contents may be reproduced, copied, modified or adapted,
@@ -12,7 +13,7 @@ ENT.GrenadeAttackEntity = "obj_vj_hlrcl_pepsinade" -- The entity that the SNPC t
 ENT.CanUseHD = false
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:HECU_CustomOnInitialize()
-	self:SetBodygroup(1,math.random(0,1))
+	self:SetBodygroup(1, math.random(0, 1))
 	self.SoundTbl_FootStep = {"vj_hlr/crack_fx/npc_step1.wav","vj_hlr/crack_fx/npc_step2.wav","vj_hlr/crack_fx/npc_step3.wav","vj_hlr/crack_fx/npc_step4.wav"}
 	self.SoundTbl_Death = {"vj_hlr/crack_npc/hgrunt/gr_die1.wav","vj_hlr/crack_npc/hgrunt/gr_die2.wav","vj_hlr/crack_npc/hgrunt/gr_die3.wav"}
 	self.SoundTbl_Pain = {"vj_hlr/crack_npc/hgrunt/gr_pain1.wav","vj_hlr/crack_npc/hgrunt/gr_pain2.wav","vj_hlr/crack_npc/hgrunt/gr_pain4.wav","vj_hlr/crack_npc/hgrunt/gr_pain5.wav"}
@@ -73,8 +74,3 @@ function ENT:CustomGibOnDeathSounds(dmginfo,hitgroup)
 	VJ_EmitSound(self, "vj_gib/default_gib_splat.wav", 90, math.random(100,100))
 	return false
 end
-/*-----------------------------------------------
-	*** Copyright (c) 2010-2024 by oteek, All rights reserved. ***
-	No parts of this code or any of its contents may be reproduced, copied, modified or adapted,
-	without the prior written consent of the author, unless otherwise indicated for stand-alone materials.
------------------------------------------------*/

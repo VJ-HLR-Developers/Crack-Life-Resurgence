@@ -1,4 +1,4 @@
-ENT.Base 			= "npc_vj_hlr1_gonarch"
+ENT.Base 			= "npc_vj_creature_base"
 ENT.Type 			= "ai"
 ENT.PrintName 		= "Corrupted Gonarch"
 ENT.Author 			= "oteek"

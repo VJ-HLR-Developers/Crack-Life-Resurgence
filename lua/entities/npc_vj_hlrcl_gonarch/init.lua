@@ -1,8 +1,9 @@
+include("entities/npc_vj_hlr1_gonarch/init.lua")
 AddCSLuaFile("shared.lua")
-include('shared.lua')
+include("shared.lua")
 /*-----------------------------------------------
 	*** Copyright (c) 2010-2024 by oteek, All rights reserved. ***
-	No parts of this code or any of its contselfs may be reproduced, copied, modified or adapted,
+	No parts of this code or any of its contents may be reproduced, copied, modified or adapted,
 	without the prior written consself of the author, unless otherwise indicated for stand-alone materials.
 -----------------------------------------------*/
 ENT.Model = {"models/vj_hlr/cracklife/big_mom.mdl"} -- The game will pick a random model from the table when the SNPC is spawned | Add as many as you want
@@ -45,7 +46,7 @@ function ENT:CustomOnAcceptInput(key, activator, caller, data)
 					bCrab:SetPos(self:GetPos() + self:GetUp()*20 + self:GetRight()*-25)
 				end
 				bCrab:SetAngles(self:GetAngles())
-				bCrab.BabH_Mother = self
+				bCrab.BabyH_MotherEnt = self
 				bCrab:Spawn()
 				bCrab:Activate()
 				bCrab:SetOwner(self)
@@ -81,8 +82,3 @@ function ENT:CustomGibOnDeathSounds(dmginfo,hitgroup)
 	VJ_EmitSound(self, "vj_gib/default_gib_splat.wav", 90, math.random(100,100))
 	return false
 end
-/*-----------------------------------------------
-	*** Copyright (c) 2010-2024 by oteek, All rights reserved. ***
-	No parts of this code or any of its contselfs may be reproduced, copied, modified or adapted,
-	without the prior written consself of the author, unless otherwise indicated for stand-alone materials.
------------------------------------------------*/

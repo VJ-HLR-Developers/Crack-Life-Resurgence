@@ -1,14 +1,18 @@
+include("entities/npc_vj_hlr1_securityguard/init.lua")
 AddCSLuaFile("shared.lua")
-include('shared.lua')
+include("shared.lua")
 /*-----------------------------------------------
 	*** Copyright (c) 2010-2024 by oteek, All rights reserved. ***
 	No parts of this code or any of its contents may be reproduced, copied, modified or adapted,
 	without the prior written consent of the author, unless otherwise indicated for stand-alone materials.
 -----------------------------------------------*/
-ENT.Model = {"models/vj_hlr/cracklife/barney.mdl"} -- The game will pick a random model from the table when the SNPC is spawned | Add as many as you want
+ENT.Model = "models/vj_hlr/cracklife/barney.mdl" -- The game will pick a random model from the table when the SNPC is spawned | Add as many as you want
 ENT.CanUseHD = false
 ---------------------------------------------------------------------------------------------------------------------------------------------
-function ENT:Security_CustomOnInitialize()
+local baseInit = ENT.CustomOnInitialize
+--
+function ENT:CustomOnInitialize()
+	baseInit(self)
 	self.SoundTbl_FootStep = {"vj_hlr/crack_fx/npc_step1.wav","vj_hlr/crack_fx/npc_step2.wav","vj_hlr/crack_fx/npc_step3.wav","vj_hlr/crack_fx/npc_step4.wav"}
 	self.SoundTbl_Idle = {"vj_hlr/hl1_npc/barney/whatisthat.wav","vj_hlr/hl1_npc/barney/somethingstinky.wav","vj_hlr/hl1_npc/barney/somethingdied.wav","vj_hlr/hl1_npc/barney/guyresponsible.wav","vj_hlr/hl1_npc/barney/coldone.wav","vj_hlr/hl1_npc/barney/ba_gethev.wav","vj_hlr/hl1_npc/barney/badfeeling.wav","vj_hlr/hl1_npc/barney/bigmess.wav","vj_hlr/hl1_npc/barney/bigplace.wav"}
 	self.SoundTbl_IdleDialogue = {"vj_hlr/hl1_npc/barney/youeverseen.wav","vj_hlr/hl1_npc/barney/workingonstuff.wav","vj_hlr/hl1_npc/barney/whatsgoingon.wav","vj_hlr/hl1_npc/barney/thinking.wav","vj_hlr/hl1_npc/barney/survive.wav","vj_hlr/hl1_npc/barney/stench.wav","vj_hlr/hl1_npc/barney/somethingmoves.wav","vj_hlr/hl1_npc/barney/of1a5_ba01.wav","vj_hlr/hl1_npc/barney/nodrill.wav","vj_hlr/hl1_npc/barney/missingleg.wav","vj_hlr/hl1_npc/barney/luckwillturn.wav","vj_hlr/hl1_npc/barney/gladof38.wav","vj_hlr/hl1_npc/barney/gettingcloser.wav","vj_hlr/hl1_npc/barney/crewdied.wav","vj_hlr/hl1_npc/barney/ba_idle0.wav","vj_hlr/hl1_npc/barney/badarea.wav","vj_hlr/hl1_npc/barney/beertopside.wav"}
@@ -27,8 +31,6 @@ function ENT:Security_CustomOnInitialize()
 	self.SoundTbl_Pain = {"vj_hlr/crack_npc/barney/ba_pain1.wav","vj_hlr/hl1_npc/barney/ba_pain2.wav","vj_hlr/crack_npc/barney/ba_pain3.wav"}
 	self.SoundTbl_DamageByPlayer = {"vj_hlr/crack_npc/barney/ba_dontmake.wav","vj_hlr/crack_npc/barney/ba_dotoyou.wav","vj_hlr/crack_npc/barney/ba_friends.wav","vj_hlr/crack_npc/barney/ba_pissme.wav","vj_hlr/crack_npc/barney/ba_stepoff.wav","vj_hlr/crack_npc/barney/ba_watchit.wav","vj_hlr/crack_npc/barney/ba_whatyou.wav"}
 	self.SoundTbl_Death = {"vj_hlr/crack_npc/barney/ba_die1.wav","vj_hlr/crack_npc/barney/ba_die2.wav","vj_hlr/hl1_npc/barney/ba_die3.wav"}
-
-	self.AnimTbl_Death = {ACT_DIEBACKWARD, ACT_DIEFORWARD, ACT_DIE_GUTSHOT, ACT_DIE_HEADSHOT, ACT_DIESIMPLE} -- Death Animations
 	
 	self:Give("weapon_vj_hlr1_glock17")
 end
@@ -48,12 +50,7 @@ function ENT:CustomOnAcceptInput(key, activator, caller, data)
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomGibOnDeathSounds(dmginfo,hitgroup)
-	VJ_EmitSound(self,"vj_hlr/crack_fx/bodysplat.wav", 90, math.random(100,100))
-	VJ_EmitSound(self, "vj_gib/default_gib_splat.wav", 90, math.random(100,100))
+	VJ_EmitSound(self,"vj_hlr/crack_fx/bodysplat.wav", 90, 100)
+	VJ_EmitSound(self, "vj_gib/default_gib_splat.wav", 90, 100)
 	return false
 end
-/*-----------------------------------------------
-	*** Copyright (c) 2010-2024 by oteek, All rights reserved. ***
-	No parts of this code or any of its contents may be reproduced, copied, modified or adapted,
-	without the prior written consent of the author, unless otherwise indicated for stand-alone materials.
------------------------------------------------*/

@@ -1,6 +1,6 @@
-AddCSLuaFile("shared.lua")
-include('shared.lua')
 include("entities/npc_vj_hlr1_alienslave/init.lua")
+AddCSLuaFile("shared.lua")
+include("shared.lua")
 /*-----------------------------------------------
 	*** Copyright (c) 2010-2024 by oteek, All rights reserved. ***
 	No parts of this code or any of its contents may be reproduced, copied, modified or adapted,
@@ -11,7 +11,7 @@ ENT.HullType = HULL_HUMAN
 ENT.VJ_NPC_Class = {"CLASS_CRACKLIFE_GERMAN"} -- NPCs with the same class with be allied to each other
 
 ENT.RangeDistance = 3020 -- This is how far away it can shoot
-ENT.MeleeAttackDistance = 20 -- How close does it have to be until it attacks?
+ENT.MeleeAttackDistance = 20 -- How close an enemy has to be to trigger a melee attack | false = Let the base auto calculate on initialize based on the NPC's collision bounds
 
 ENT.VJC_Data = {
     ThirdP_Offset = Vector(-5, 0, -15), -- The offset for the controller when the camera is in third person

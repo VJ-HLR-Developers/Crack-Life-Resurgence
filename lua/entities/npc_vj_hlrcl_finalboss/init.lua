@@ -1,11 +1,12 @@
+include("entities/npc_vj_hlr1_garg/init.lua")
 AddCSLuaFile("shared.lua")
-include('shared.lua')
+include("shared.lua")
 /*-----------------------------------------------
 	*** Copyright (c) 2010-2024 by oteek, All rights reserved. ***
 	No parts of this code or any of its contents may be reproduced, copied, modified or adapted,
 	without the prior written consent of the author, unless otherwise indicated for stand-alone materials.
 -----------------------------------------------*/
-ENT.Model = {"models/vj_hlr/cracklife/finalboss.mdl"}
+ENT.Model = "models/vj_hlr/cracklife/finalboss.mdl"
 ENT.BloodColor = ""
 ENT.HasBloodParticle = false
 ENT.HasBloodDecal = false
@@ -229,8 +230,3 @@ function ENT:CustomOnRemove()
 		if IsValid(self.F_Ally6) then self.F_Ally6:Remove() end
 	end
 end
-/*-----------------------------------------------
-	*** Copyright (c) 2010-2024 by oteek, All rights reserved. ***
-	No parts of this code or any of its contents may be reproduced, copied, modified or adapted,
-	without the prior written consent of the author, unless otherwise indicated for stand-alone materials.
------------------------------------------------*/

@@ -1,5 +1,5 @@
 AddCSLuaFile("shared.lua")
-include('shared.lua')
+include("shared.lua")
 /*-----------------------------------------------
 	*** Copyright (c) 2010-2024 by oteek, All rights reserved. ***
 	No parts of this code or any of its contents may be reproduced, copied, modified or adapted,
@@ -20,12 +20,12 @@ ENT.VJ_NPC_Class = {"CLASS_CRACKLIFE_SCHIZO"} -- NPCs with the same class with b
 
 ENT.HasMeleeAttack = true -- Should the SNPC have a melee attack?
 ENT.TimeUntilMeleeAttackDamage = false -- This counted in seconds | This calculates the time until it hits something
-ENT.MeleeAttackDistance = 30 -- How close does it have to be until it attacks?
-ENT.MeleeAttackDamageDistance = 50 -- How far does the damage go?
+ENT.MeleeAttackDistance = 30 -- How close an enemy has to be to trigger a melee attack | false = Let the base auto calculate on initialize based on the NPC's collision bounds
+ENT.MeleeAttackDamageDistance = 50 -- How far does the damage go | false = Let the base auto calculate on initialize based on the NPC's collision bounds
 ENT.MeleeAttackDamage = 40
 
 ENT.HasRangeAttack = true -- Should the SNPC have a range attack?
-ENT.AnimTbl_RangeAttack = {ACT_RANGE_ATTACK1} -- Range Attack Animations
+ENT.AnimTbl_RangeAttack = ACT_RANGE_ATTACK1 -- Range Attack Animations
 ENT.RangeAttackEntityToSpawn = "obj_vj_hlr1_rocket" -- The entity that is spawned when range attacking
 ENT.TimeUntilRangeAttackProjectileRelease = false
 ENT.NextRangeAttackTime = 5 -- How much time until it can use a range attack?
@@ -41,8 +41,8 @@ ENT.HasDeathAnimation = true -- Does it play an animation when it dies?
 //ENT.DeathAnimationTime = 0.8 -- Time until the SNPC spawns its corpse and gets removed
 	-- ====== Flinching Variables ====== --
 ENT.CanFlinch = 1 -- 0 = Don't flinch | 1 = Flinch at any damage | 2 = Flinch only from certain damages
-ENT.AnimTbl_Flinch = {ACT_SMALL_FLINCH} -- If it uses normal based animation, use this
-ENT.AnimTbl_Death = {ACT_DIESIMPLE}
+ENT.AnimTbl_Flinch = ACT_SMALL_FLINCH -- If it uses normal based animation, use this
+ENT.AnimTbl_Death = ACT_DIESIMPLE
 
 ENT.HasExtraMeleeAttackSounds = true
 	-- ====== Sound File Paths ====== --

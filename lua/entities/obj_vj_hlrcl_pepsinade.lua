@@ -73,8 +73,8 @@ function ENT:CustomOnTakeDamage(dmginfo)
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomOnPhysicsCollide(data,phys)
-	getvelocity = phys:GetVelocity()
-	velocityspeed = getvelocity:Length()
+	local getvelocity = phys:GetVelocity()
+	local velocityspeed = getvelocity:Length()
 	//print(velocityspeed)
 	if velocityspeed > 500 then -- Or else it will go flying!
 		phys:SetVelocity(getvelocity * 0.9)
@@ -104,7 +104,7 @@ function ENT:DeathEffects()
 		spr:Fire("Kill","",0.9)
 		timer.Simple(0.9,function() if IsValid(spr) then spr:Remove() end end)
 		
-		light = ents.Create("light_dynamic")
+		local light = ents.Create("light_dynamic")
 		light:SetKeyValue("brightness", "4")
 		light:SetKeyValue("distance", "300")
 		light:SetLocalPos(self:GetPos())

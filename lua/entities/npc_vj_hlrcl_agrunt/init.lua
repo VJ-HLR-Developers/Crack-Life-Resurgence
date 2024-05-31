@@ -1,11 +1,12 @@
+include("entities/npc_vj_hlr1_aliengrunt/init.lua")
 AddCSLuaFile("shared.lua")
-include('shared.lua')
+include("shared.lua")
 /*-----------------------------------------------
 	*** Copyright (c) 2010-2024 by oteek, All rights reserved. ***
 	No parts of this code or any of its contents may be reproduced, copied, modified or adapted,
 	without the prior written consent of the author, unless otherwise indicated for stand-alone materials.
 -----------------------------------------------*/
-ENT.Model = {"models/vj_hlr/cracklife/agrunt.mdl"} -- The game will pick a random model from the table when the SNPC is spawned | Add as many as you want
+ENT.Model = "models/vj_hlr/cracklife/agrunt.mdl" -- The game will pick a random model from the table when the SNPC is spawned | Add as many as you want
 ENT.VJ_NPC_Class = {"CLASS_CRACKLIFE"}
 ENT.EntitiesToNoCollide = {"npc_vj_hlrcl_joj"}
 ENT.CanUseHD = false
@@ -83,8 +84,3 @@ function ENT:CustomGibOnDeathSounds(dmginfo, hitgroup)
 	VJ_EmitSound(self, "vj_gib/default_gib_splat.wav", 90, 100)
 	return false
 end
-/*-----------------------------------------------
-	*** Copyright (c) 2010-2024 by oteek, All rights reserved. ***
-	No parts of this code or any of its contents may be reproduced, copied, modified or adapted,
-	without the prior written consent of the author, unless otherwise indicated for stand-alone materials.
------------------------------------------------*/

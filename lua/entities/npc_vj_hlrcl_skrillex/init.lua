@@ -1,5 +1,5 @@
 AddCSLuaFile("shared.lua")
-include('shared.lua')
+include("shared.lua")
 include("entities/npc_vj_hlr1_alienslave/init.lua")
 /*-----------------------------------------------
 	*** Copyright (c) 2010-2024 by oteek, All rights reserved. ***
@@ -115,7 +115,7 @@ function ENT:CustomOnTakeDamage_BeforeDamage(dmginfo, hitgroup)
 		local rico = EffectData()
 		rico:SetOrigin(dmginfo:GetDamagePosition())
 		rico:SetScale(5) -- Size
-		rico:SetMagnitude(math.random(1,2)) -- Effect type | 1 = Animated | 2 = Basic
+		rico:SetMagnitude(math.random(1, 2)) -- Effect type | 1 = Animated | 2 = Basic
 		util.Effect("VJ_HLR_Rico", rico)
 	return end
 end end

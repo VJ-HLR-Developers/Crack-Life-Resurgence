@@ -1,4 +1,4 @@
-ENT.Base 			= "npc_vj_hlr1_garg"
+ENT.Base 			= "npc_vj_creature_base"
 ENT.Type 			= "ai"
 ENT.PrintName 		= "The Final Boss"
 ENT.Author 			= "oteek"

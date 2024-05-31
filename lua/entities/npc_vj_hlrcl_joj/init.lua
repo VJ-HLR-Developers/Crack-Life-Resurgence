@@ -34,7 +34,7 @@ ENT.VJC_Data = {
 ENT.VJ_NPC_Class = {"CLASS_CRACKLIFE"} -- NPCs with the same class with be allied to each other
 ENT.FindEnemy_UseSphere = true -- Should the SNPC be able to see all around him? (360) | Objects and walls can still block its sight!
 ENT.AnimTbl_IdleStand = {ACT_IDLE} -- The idle animation table when AI is enabled | DEFAULT: {ACT_IDLE}
-ENT.PoseParameterLooking_InvertYaw = true -- Inverts the yaw poseparameters (Y)
+ENT.PoseParameterLooking_InvertYaw = true -- Inverts the yaw pose parameters (Y)
 ENT.ConstantlyFaceEnemy = true -- Should it face the enemy constantly?
 ENT.NoChaseAfterCertainRange = true -- Should the SNPC not be able to chase when it"s between number x and y?
 ENT.NoChaseAfterCertainRange_FarDistance = combatDistance -- How far until it can chase again? | "UseRangeDistance" = Use the number provided by the range attack instead

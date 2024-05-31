@@ -1,5 +1,5 @@
 AddCSLuaFile("shared.lua")
-include('shared.lua')
+include("shared.lua")
 /*-----------------------------------------------
 	*** Copyright (c) 2010-2024 by oteek, All rights reserved. ***
 	No parts of this code or any of its contents may be reproduced, copied, modified or adapted,
@@ -151,7 +151,7 @@ function ENT:CustomOnTakeDamage_BeforeImmuneChecks(dmginfo, hitgroup)
 		rico:SetOrigin(dmginfo:GetDamagePosition())
 		rico:SetScale(5) -- Size
 		rico:SetMagnitude(math.random(1, 2)) -- Effect type | 1 = Animated | 2 = Basic
-		util.Effect("VJ_HLR_Rico",rico)
+		util.Effect("VJ_HLR_Rico", rico)
 	end
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------

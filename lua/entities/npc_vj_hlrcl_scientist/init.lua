@@ -1,15 +1,16 @@
+include("entities/npc_vj_hlr1_scientist/init.lua")
 AddCSLuaFile("shared.lua")
-include('shared.lua')
+include("shared.lua")
 /*-----------------------------------------------
 	*** Copyright (c) 2010-2024 by oteek, All rights reserved. ***
 	No parts of this code or any of its contents may be reproduced, copied, modified or adapted,
 	without the prior written consent of the author, unless otherwise indicated for stand-alone materials.
 -----------------------------------------------*/
-ENT.Model = {"models/vj_hlr/cracklife/scientist.mdl"} -- The game will pick a random model from the table when the SNPC is spawned | Add as many as you want
+ENT.Model = "models/vj_hlr/cracklife/scientist.mdl" -- The game will pick a random model from the table when the SNPC is spawned | Add as many as you want
 ENT.SpawnShit = 0
 ENT.CanUseHD = false
 ---------------------------------------------------------------------------------------------------------------------------------------------
-function ENT:SCI_CustomOnInitialize()
+function ENT:CustomOnInitialize()
 	self.SoundTbl_FootStep = {"vj_hlr/crack_fx/npc_step1.wav","vj_hlr/crack_fx/npc_step2.wav","vj_hlr/crack_fx/npc_step3.wav","vj_hlr/crack_fx/npc_step4.wav"}
 	self.SoundTbl_Idle = {"vj_hlr/hl1_npc/scientist/administrator.wav","vj_hlr/hl1_npc/scientist/c1a0_sci_stall.wav","vj_hlr/hl1_npc/scientist/c1a1_sci_3scan.wav","vj_hlr/hl1_npc/scientist/c1a1_sci_2scan.wav","vj_hlr/hl1_npc/scientist/c1a1_sci_1scan.wav","vj_hlr/hl1_npc/scientist/c1a4_sci_trainend.wav","vj_hlr/hl1_npc/scientist/containfail.wav","vj_hlr/hl1_npc/scientist/cough.wav","vj_hlr/hl1_npc/scientist/fusionshunt.wav","vj_hlr/hl1_npc/scientist/hopenominal.wav","vj_hlr/hl1_npc/scientist/hideglasses.wav","vj_hlr/hl1_npc/scientist/howinteresting.wav","vj_hlr/hl1_npc/scientist/ipredictedthis.wav","vj_hlr/hl1_npc/scientist/needsleep.wav","vj_hlr/hl1_npc/scientist/neverseen.wav","vj_hlr/hl1_npc/scientist/nogrant.wav","vj_hlr/hl1_npc/scientist/organicmatter.wav","vj_hlr/hl1_npc/scientist/peculiarmarks.wav","vj_hlr/hl1_npc/scientist/peculiarodor.wav","vj_hlr/hl1_npc/scientist/reportflux.wav","vj_hlr/hl1_npc/scientist/runtest.wav","vj_hlr/hl1_npc/scientist/shutdownchart.wav","vj_hlr/hl1_npc/scientist/somethingfoul.wav","vj_hlr/hl1_npc/scientist/sneeze.wav","vj_hlr/hl1_npc/scientist/sniffle.wav","vj_hlr/hl1_npc/scientist/stench.wav","vj_hlr/hl1_npc/scientist/thatsodd.wav","vj_hlr/hl1_npc/scientist/thatsmell.wav","vj_hlr/hl1_npc/scientist/allnominal.wav","vj_hlr/hl1_npc/scientist/importantspecies.wav","vj_hlr/hl1_npc/scientist/yawn.wav","vj_hlr/hl1_npc/scientist/whoresponsible.wav","vj_hlr/crack_npc/scientist/c3a2_sci_fool.wav"}
 	self.SoundTbl_IdleDialogue = {"vj_hlr/crack_npc/scientist/lvl20speak1.wav","vj_hlr/crack_npc/scientist/c3a2_sci_1glu.wav","vj_hlr/crack_npc/scientist/lvl20speak4.wav","vj_hlr/crack_npc/scientist/lvl20speak2.wav","vj_hlr/crack_npc/scientist/lvl20speak3.wav","vj_hlr/crack_npc/scientist/lvl20speak5.wav","vj_hlr/crack_npc/scientist/fuckoff1.wav","vj_hlr/crack_npc/scientist/fuckoff2.wav"}
@@ -34,7 +35,6 @@ function ENT:SCI_CustomOnInitialize()
 	if randBG == 2 && self.SCI_Type == 0 then
 		self:SetSkin(1)
 	end
-	//self:GetPoseParameters(true)
 	
 	self.SCI_NextTieAnnoyanceT = CurTime() + math.Rand(20, 100)
 end
@@ -91,8 +91,3 @@ function ENT:CustomGibOnDeathSounds(dmginfo,hitgroup)
 	VJ_EmitSound(self, "vj_gib/default_gib_splat.wav", 90, math.random(100,100))
 	return false
 end
-/*-----------------------------------------------
-	*** Copyright (c) 2010-2024 by oteek, All rights reserved. ***
-	No parts of this code or any of its contents may be reproduced, copied, modified or adapted,
-	without the prior written consent of the author, unless otherwise indicated for stand-alone materials.
------------------------------------------------*/

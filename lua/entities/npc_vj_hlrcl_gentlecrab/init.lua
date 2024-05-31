@@ -1,11 +1,12 @@
+include("entities/npc_vj_hlr1_headcrab/init.lua")
 AddCSLuaFile("shared.lua")
-include('shared.lua')
+include("shared.lua")
 /*-----------------------------------------------
 	*** Copyright (c) 2010-2024 by oteek, All rights reserved. ***
 	No parts of this code or any of its contents may be reproduced, copied, modified or adapted,
 	without the prior written consent of the author, unless otherwise indicated for stand-alone materials.
 -----------------------------------------------*/
-ENT.Model = {"models/vj_hlr/cracklife/headcrab.mdl"} -- The game will pick a random model from the table when the SNPC is spawned | Add as many as you want
+ENT.Model = "models/vj_hlr/cracklife/headcrab.mdl" -- The game will pick a random model from the table when the SNPC is spawned | Add as many as you want
 ENT.VJ_NPC_Class = {"CLASS_CRACKLIFE"} -- NPCs with the same class with be allied to each other
 
 ENT.SoundTbl_Idle = {"vj_hlr/hl1_npc/headcrab/hc_idle1.wav","vj_hlr/hl1_npc/headcrab/hc_idle2.wav","vj_hlr/crack_npc/headcrab/hc_idle3.wav","vj_hlr/hl1_npc/headcrab/hc_idle4.wav","vj_hlr/hl1_npc/headcrab/hc_idle5.wav"}
@@ -17,13 +18,13 @@ ENT.SoundTbl_Death = {"vj_hlr/crack_npc/headcrab/hc_die1.wav","vj_hlr/crack_npc/
 
 ENT.SpawnHat = true
 ---------------------------------------------------------------------------------------------------------------------------------------------
-function ENT:CustomGibOnDeathSounds(dmginfo,hitgroup)
-	VJ_EmitSound(self,"vj_hlr/crack_fx/bodysplat.wav", 90, math.random(100,100))
-	VJ_EmitSound(self, "vj_gib/default_gib_splat.wav", 90, math.random(100,100))
+function ENT:CustomGibOnDeathSounds(dmginfo, hitgroup)
+	VJ_EmitSound(self,"vj_hlr/crack_fx/bodysplat.wav", 90, 100)
+	VJ_EmitSound(self, "vj_gib/default_gib_splat.wav", 90, 100)
 	return false
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
-function ENT:CustomOnDeath_BeforeCorpseSpawned(dmginfo,hitgroup)
+function ENT:CustomOnDeath_BeforeCorpseSpawned(dmginfo, hitgroup)
 	if self.SpawnHat == true then
 		self:SetBodygroup(0,1)
 		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/cracklife/headcrab_hat.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,5)),CollideSound={""}})
@@ -39,7 +40,7 @@ function ENT:CustomDeathAnimationCode(dmginfo, hitgroup)
 	end
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
-function ENT:SetUpGibesOnDeath(dmginfo,hitgroup)
+function ENT:SetUpGibesOnDeath(dmginfo, hitgroup)
 	self.HasDeathSounds = false
 	if self.HasGibDeathParticles == true then
 		local bloodeffect = EffectData()
@@ -76,8 +77,3 @@ function ENT:SetUpGibesOnDeath(dmginfo,hitgroup)
 	end
 	return true -- Return to true if it gibbed!
 end
-/*-----------------------------------------------
-	*** Copyright (c) 2010-2024 by oteek, All rights reserved. ***
-	No parts of this code or any of its contents may be reproduced, copied, modified or adapted,
-	without the prior written consent of the author, unless otherwise indicated for stand-alone materials.
------------------------------------------------*/

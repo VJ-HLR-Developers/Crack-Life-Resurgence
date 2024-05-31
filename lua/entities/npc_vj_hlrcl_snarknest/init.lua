@@ -1,11 +1,12 @@
+include("entities/npc_vj_hlr1_snarknest/init.lua")
 AddCSLuaFile("shared.lua")
-include('shared.lua')
+include("shared.lua")
 /*-----------------------------------------------
 	*** Copyright (c) 2010-2024 by oteek, All rights reserved. ***
 	No parts of this code or any of its contents may be reproduced, copied, modified or adapted,
 	without the prior written consent of the author, unless otherwise indicated for stand-alone materials.
 -----------------------------------------------*/
-ENT.Model = {"models/vj_hlr/cracklife/sqknest.mdl"}
+ENT.Model = "models/vj_hlr/cracklife/sqknest.mdl"
 ENT.VJ_NPC_Class = {"CLASS_CRACKLIFE"}
 ENT.EntitiesToNoCollide = {"npc_vj_hlrcl_joj"}
 ---------------------------------------------------------------------------------------------------------------------------------------------

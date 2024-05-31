@@ -1,8 +1,9 @@
+include("entities/npc_vj_hlr1_bullsquid/init.lua")
 AddCSLuaFile("shared.lua")
-include('shared.lua')
+include("shared.lua")
 /*-----------------------------------------------
 	*** Copyright (c) 2010-2024 by oteek, All rights reserved. ***
-	No parts of this code or any of its contselfs may be reproduced, copied, modified or adapted,
+	No parts of this code or any of its contents may be reproduced, copied, modified or adapted,
 	without the prior written consself of the author, unless otherwise indicated for stand-alone materials.
 -----------------------------------------------*/
 ENT.Model = {"models/vj_hlr/cracklife/bullsquid.mdl"} -- The game will pick a random model from the table when the SNPC is spawned | Add as many as you want
@@ -39,8 +40,3 @@ function ENT:CustomGibOnDeathSounds(dmginfo, hitgroup)
 	VJ_EmitSound(self, "vj_gib/default_gib_splat.wav", 90, 100)
 	return false
 end
-/*-----------------------------------------------
-	*** Copyright (c) 2010-2024 by oteek, All rights reserved. ***
-	No parts of this code or any of its contselfs may be reproduced, copied, modified or adapted,
-	without the prior written consself of the author, unless otherwise indicated for stand-alone materials.
------------------------------------------------*/

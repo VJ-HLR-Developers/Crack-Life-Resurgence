@@ -1,5 +1,5 @@
 AddCSLuaFile("shared.lua")
-include('shared.lua')
+include("shared.lua")
 /*-----------------------------------------------
 	*** Copyright (c) 2010-2024 by oteek, All rights reserved. ***
 	No parts of this code or any of its contents may be reproduced, copied, modified or adapted,
@@ -18,10 +18,10 @@ ENT.HasBloodPool = false -- Does it have a blood pool?
 
 ENT.HasMeleeAttack = true -- Should the SNPC have a melee attack?
 ENT.TimeUntilMeleeAttackDamage = false -- This counted in seconds | This calculates the time until it hits something
-ENT.MeleeAttackDamage = 90 -- How close does it have to be until it attacks?
-ENT.MeleeAttackDamageType = DMG_CRUSH -- How close does it have to be until it attacks?
-ENT.MeleeAttackDistance = 65 -- How close does it have to be until it attacks?
-ENT.MeleeAttackDamageDistance = 165 -- How far does the damage go?
+ENT.MeleeAttackDamage = 90 -- How close an enemy has to be to trigger a melee attack | false = Let the base auto calculate on initialize based on the NPC's collision bounds
+ENT.MeleeAttackDamageType = DMG_CRUSH -- How close an enemy has to be to trigger a melee attack | false = Let the base auto calculate on initialize based on the NPC's collision bounds
+ENT.MeleeAttackDistance = 65 -- How close an enemy has to be to trigger a melee attack | false = Let the base auto calculate on initialize based on the NPC's collision bounds
+ENT.MeleeAttackDamageDistance = 165 -- How far does the damage go | false = Let the base auto calculate on initialize based on the NPC's collision bounds
 ENT.MeleeAttackKnockBack_Forward1 = 500 -- How far it will push you forward | First in math.random
 ENT.MeleeAttackKnockBack_Forward2 = 500 -- How far it will push you forward | Second in math.random
 
@@ -40,12 +40,12 @@ ENT.DisableFootStepSoundTimer = true -- If set to true, it will disable the time
 ENT.GibOnDeathDamagesTable = {"All"} -- Damages that it gibs from | "UseDefault" = Uses default damage types | "All" = Gib from any damage
 ENT.HasDeathAnimation = true -- Does it play an animation when it dies?
 ENT.DeathAnimationTime = 3.7 -- Time until the SNPC spawns its corpse and gets removed
-ENT.AnimTbl_Death = {ACT_DIESIMPLE} -- Death Animations
+ENT.AnimTbl_Death = ACT_DIESIMPLE -- Death Animations
 	-- ====== Flinching Variables ====== --
 ENT.CanFlinch = 2 -- 0 = Don't flinch | 1 = Flinch at any damage | 2 = Flinch only from certain damages
 ENT.FlinchDamageTypes = {DMG_BLAST} -- If it uses damage-based flinching, which types of damages should it flinch from?
 ENT.FlinchChance = 2 -- Chance of it flinching from 1 to x | 1 will make it always flinch
-ENT.AnimTbl_Flinch = {ACT_BIG_FLINCH} -- If it uses normal based animation, use this
+ENT.AnimTbl_Flinch = ACT_BIG_FLINCH -- If it uses normal based animation, use this
 	-- ====== Sound File Paths ====== --
 -- Leave blank if you don't want any sounds to play
 ENT.SoundTbl_FootStep = {"vj_hlr/hl1_npc/garg/gar_step1.wav","vj_hlr/hl1_npc/garg/gar_step2.wav"}
@@ -148,8 +148,8 @@ function ENT:CustomOnTakeDamage_BeforeImmuneChecks(dmginfo,hitgroup)
 	local rico = EffectData()
 	rico:SetOrigin(dmginfo:GetDamagePosition())
 	rico:SetScale(5) -- Size
-	rico:SetMagnitude(math.random(1,2)) -- Effect type | 1 = Animated | 2 = Basic
-	util.Effect("VJ_HLR_Rico",rico)
+	rico:SetMagnitude(math.random(1, 2)) -- Effect type | 1 = Animated | 2 = Basic
+	util.Effect("VJ_HLR_Rico", rico)
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:SetUpGibesOnDeath(dmginfo,hitgroup)

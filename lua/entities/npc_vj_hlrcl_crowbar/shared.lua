@@ -1,4 +1,4 @@
-ENT.Base 			= "npc_vj_hlr1_xen_tree"
+ENT.Base 			= "npc_vj_creature_base"
 ENT.Type 			= "ai"
 ENT.PrintName 		= "The Crowbar"
 ENT.Author 			= "oteek"

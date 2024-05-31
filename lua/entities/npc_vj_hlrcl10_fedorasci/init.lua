@@ -1,5 +1,6 @@
+include("entities/npc_vj_hlr1_zombie/init.lua")
 AddCSLuaFile("shared.lua")
-include('shared.lua')
+include("shared.lua")
 /*-----------------------------------------------
 	*** Copyright (c) 2010-2024 by oteek, All rights reserved. ***
 	No parts of this code or any of its contents may be reproduced, copied, modified or adapted,
@@ -87,7 +88,7 @@ function ENT:CustomRangeAttackCode()
     spr:Fire("Kill", "", 1)
 
 
-    enemy = self:GetEnemy()
+    local enemy = self:GetEnemy()
     if IsValid(enemy) and IsValid(self) then
         local enePos = enemy:GetPos()
         local eneForward = enemy:EyeAngles():Forward() * -120
@@ -215,8 +216,3 @@ function ENT:CustomDeathAnimationCode(dmginfo, hitgroup)
 		self.AnimTbl_Death = {ACT_DIEBACKWARD,ACT_DIEFORWARD,ACT_DIESIMPLE}
 	end
 end
-/*-----------------------------------------------
-	*** Copyright (c) 2010-2024 by oteek, All rights reserved. ***
-	No parts of this code or any of its contents may be reproduced, copied, modified or adapted,
-	without the prior written consent of the author, unless otherwise indicated for stand-alone materials.
------------------------------------------------*/
