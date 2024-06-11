@@ -1,4 +1,4 @@
-ENT.Base 			= "npc_vj_hlrcl_gopnik"
+ENT.Base 			= "npc_vj_creature_base"
 ENT.Type 			= "ai"
 ENT.PrintName 		= "Super Chav"
 ENT.Author 			= "oteek"
