@@ -31,8 +31,6 @@ ENT.LeapAttackVelocityUp = 150 -- How much upward force should it apply?
 
 ENT.TimeUntilLeapAttackDamage = false
 
-ENT.AnimTbl_Run = {ACT_RUN}
-
 ENT.HasRangeAttack = true
 ENT.NextRangeAttackTime = 5
 ENT.TimeUntilRangeAttackProjectileRelease = 0.4
