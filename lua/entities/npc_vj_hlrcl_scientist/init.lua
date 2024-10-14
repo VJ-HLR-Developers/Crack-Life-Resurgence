@@ -88,6 +88,6 @@ end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomGibOnDeathSounds(dmginfo,hitgroup)
 	VJ_EmitSound(self,"vj_hlr/crack_fx/bodysplat.wav", 90, math.random(100,100))
-	VJ_EmitSound(self, "vj_gib/default_gib_splat.wav", 90, math.random(100,100))
+	VJ_EmitSound(self, "vj_base/gib/splat.wav", 90, math.random(100,100))
 	return false
 end
