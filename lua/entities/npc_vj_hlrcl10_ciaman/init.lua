@@ -104,6 +104,7 @@ function ENT:CustomOnThink()
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomRangeAttackCode()
+	if self.Dead then return end
 	local startpos = self:GetAttachment(self:LookupAttachment("rhand")).Pos + Vector(0,0,100)
 	local tr = util.TraceLine({
 		start = startpos,
