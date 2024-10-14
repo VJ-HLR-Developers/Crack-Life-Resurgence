@@ -1,4 +1,3 @@
-include("entities/npc_vj_hlr1_alienslave/init.lua")
 AddCSLuaFile("shared.lua")
 include("shared.lua")
 /*-----------------------------------------------
@@ -10,7 +9,6 @@ ENT.Model = {"models/vj_hlr/cracklife/german1.mdl","models/vj_hlr/cracklife/germ
 ENT.HullType = HULL_HUMAN
 ENT.VJ_NPC_Class = {"CLASS_CRACKLIFE_GERMAN"} -- NPCs with the same class with be allied to each other
 
-ENT.RangeDistance = 3020 -- This is how far away it can shoot
 ENT.MeleeAttackDistance = 20 -- How close an enemy has to be to trigger a melee attack | false = Let the base auto calculate on initialize based on the NPC's collision bounds
 
 ENT.VJC_Data = {
@@ -22,9 +20,28 @@ ENT.StartHealth = 80
 ENT.BloodColor = "Red" -- The blood type, this will determine what it should use (decal, particle, etc.)
 ENT.CustomBlood_Particle = {"vj_hlr_blood_red"}
 ENT.CustomBlood_Decal = {"VJ_HLR_Blood_Red"}
+ENT.HasBloodPool = false -- Does it have a blood pool?
+
+ENT.HasRangeAttack = true -- Can this NPC range attack?
+ENT.AnimTbl_RangeAttack = ACT_RANGE_ATTACK1 -- Range Attack Animations
+ENT.RangeDistance = 1020 -- This is how far away it can shoot
+ENT.RangeToMeleeDistance = 100 -- How close does it have to be until it uses melee?
+ENT.TimeUntilRangeAttackProjectileRelease = false -- How much time until the projectile code is ran?
+ENT.NextRangeAttackTime = 3 -- How much time until it can use a range attack?
+ENT.DisableDefaultRangeAttackCode = true -- When true, it won't spawn the range attack entity, allowing you to make your own
+
+ENT.HasDeathAnimation = true -- Does it play an animation when it dies?
+ENT.AnimTbl_Death = {ACT_DIEBACKWARD, ACT_DIEFORWARD, ACT_DIESIMPLE} -- Death Animations
+ENT.DeathAnimationTime = false -- Time until the NPC spawns its corpse and gets removed
+ENT.DisableFootStepSoundTimer = true -- If set to true, it will disable the time system for the footstep sound code, allowing you to use other ways like model events
+ENT.HasExtraMeleeAttackSounds = true -- Set to true to use the extra melee attack sounds
+	-- ====== Flinching Code ====== --
+ENT.CanFlinch = 1 -- 0 = Don't flinch | 1 = Flinch at any damage | 2 = Flinch only from certain damages
+ENT.AnimTbl_Flinch = ACT_SMALL_FLINCH -- If it uses normal based animation, use this
+ENT.HitGroupFlinching_Values = {{HitGroup = {HITGROUP_LEFTARM}, Animation = {ACT_FLINCH_LEFTARM}},{HitGroup = {HITGROUP_RIGHTARM}, Animation = {ACT_FLINCH_RIGHTARM}},{HitGroup = {HITGROUP_LEFTLEG}, Animation = {ACT_FLINCH_LEFTLEG}},{HitGroup = {HITGROUP_RIGHTLEG}, Animation = {ACT_FLINCH_RIGHTLEG}}}
 
 ENT.AnimTbl_Death = {ACT_DIEBACKWARD,ACT_DIEFORWARD,ACT_DIESIMPLE,ACT_DIE_GUTSHOT} -- Death Animations
-ENT.NextRangeAttackTime = 0
+ENT.NextRangeAttackTime = 0.3
 ENT.SpawnHat = true
 ENT.CanUseHD = false
 ---------------------------------------------------------------------------------------------------------------------------------------------
@@ -38,6 +55,8 @@ function ENT:CustomOnInitialize()
 	self.SoundTbl_Alert = {"vj_hlr/crack_npc/germansoldier/slv_alert1.wav","vj_hlr/crack_npc/germansoldier/slv_alert2.wav","vj_hlr/crack_npc/germansoldier/slv_alert4.wav"}
 	self.SoundTbl_Pain = {"vj_hlr/crack_npc/germansoldier/slv_pain1.wav"}
 	self.SoundTbl_Death = {"vj_hlr/crack_npc/germansoldier/slv_die1.wav","vj_hlr/crack_npc/germansoldier/slv_die2.wav"}
+	self.SoundTbl_MeleeAttackExtra = {"vj_hlr/hl1_npc/zombie/claw_strike1.wav","vj_hlr/hl1_npc/zombie/claw_strike2.wav","vj_hlr/hl1_npc/zombie/claw_strike3.wav"}
+	self.SoundTbl_MeleeAttackMiss = {"vj_hlr/hl1_npc/zombie/claw_miss1.wav","vj_hlr/hl1_npc/zombie/claw_miss2.wav"}
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomOnAcceptInput(key, activator, caller, data)
@@ -54,56 +73,26 @@ function ENT:CustomOnAcceptInput(key, activator, caller, data)
 	end
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
-function ENT:Vort_DoElecEffect(sp, hp, hn, a, t)
-	local elec = EffectData()
-	elec:SetStart(sp)
-	elec:SetOrigin(hp)
-	elec:SetNormal(hn)
-	elec:SetEntity(self)
-	elec:SetAttachment(a)
-	elec:SetScale(2.2 - t)
-	util.Effect("VJ_HLR_Electric_Charge", elec)
-end
----------------------------------------------------------------------------------------------------------------------------------------------
-function ENT:CustomOnRangeAttack_AfterStartTimer() end
----------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomRangeAttackCode()
-	local startpos = self:GetPos() + self:GetUp()*45 + self:GetForward()*40
+	local startPos = self:GetPos() + self:GetUp()*45 + self:GetForward()*40
 	local tr = util.TraceLine({
-		start = startpos,
-		endpos = self:GetEnemy():GetPos() + self:GetEnemy():OBBCenter(),
+		start = startPos,
+		endpos = self:GetAimPosition(self:GetEnemy(), startPos, 0),
 		filter = self
 	})
-	local hitpos = tr.HitPos
+	local hitPos = tr.HitPos
 	
+	-- Fire 2 electric beams at the enemy
 	local elec = EffectData()
-	elec:SetStart(startpos)
-	elec:SetOrigin(hitpos)
+	elec:SetStart(startPos)
+	elec:SetOrigin(hitPos)
 	elec:SetEntity(self)
 	elec:SetAttachment(1)
-	util.Effect("VJ_HLR_Electric",elec)
-	
-	elec = EffectData()
-	elec:SetStart(startpos)
-	elec:SetOrigin(hitpos)
-	elec:SetEntity(self)
+	util.Effect("VJ_HLR_Electric", elec)
 	elec:SetAttachment(2)
-	util.Effect("VJ_HLR_Electric",elec)
+	util.Effect("VJ_HLR_Electric", elec)
 	
-	util.VJ_SphereDamage(self, self, hitpos, 30, 10, DMG_SHOCK, true, false, {Force=90})
-end
----------------------------------------------------------------------------------------------------------------------------------------------
-function ENT:CustomOnSchedule()
-	if !self.Dead && self.Vort_RunAway == true && !self:IsBusy() && !self.VJ_IsBeingControlled then
-		self.Vort_RunAway = false
-		self:VJ_TASK_COVER_FROM_ENEMY("TASK_RUN_PATH",function(x) x.RunCode_OnFail = function() self.NextDoAnyAttackT = 0 end end)
-		self.NextDoAnyAttackT = CurTime() + 5
-	end
-end
----------------------------------------------------------------------------------------------------------------------------------------------
-function ENT:CustomOnTakeDamage_AfterDamage(dmginfo, hitgroup)
-	if (self.NextDoAnyAttackT + 2) > CurTime() then return end
-	self.Vort_RunAway = true
+	VJ.ApplyRadiusDamage(self, self, hitPos, 30, 10, DMG_SHOCK, true, false, {Force = 90})
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:SetUpGibesOnDeath(dmginfo, hitgroup)

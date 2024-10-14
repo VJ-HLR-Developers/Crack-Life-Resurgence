@@ -62,6 +62,7 @@ ENT.SoundTbl_SoundTrack = {"vj_hlr/crack_npc/blackscary/bendrowned.mp3"}
 ENT.UseCloak = true
 ENT.ControlledCloak = false
 ENT.BossCloak = 0
+ENT._slowWalk = false
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomOnInitialize()
 	self:SetCollisionBounds(Vector(16,16,80),Vector(-16,-16,0))
@@ -86,22 +87,31 @@ function ENT:CustomOnInitialize()
 	self:AddFlags(FL_NOTARGET)
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
+function ENT:TranslateActivity(act)
+	if act == ACT_RUN && self._slowWalk then
+		return ACT_WALK
+	else
+		return ACT_RUN
+	end
+	return self.BaseClass.TranslateActivity(self, act)
+end
+---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomOnThink_AIEnabled()
 	local controlled = self.VJ_IsBeingControlled
 	if IsValid(self) && controlled == true && self.VJ_TheController:KeyDown(IN_JUMP) then
 			self.UseCloak = false
 			if !self.ControlledCloak then
-				self.AnimTbl_Run = {ACT_WALK}
+				self._slowWalk = false
 				self:SetColor(Color(0,0,0,3))
 				self:AddFlags(FL_NOTARGET)
 				self.ControlledCloak = true
-				//print("cloak enabled")
+				print("cloak enabled")
 			else
-				self.AnimTbl_Run = {ACT_RUN}
+				self._slowWalk = true
 				self:SetColor(Color(0,0,0,255))
 				self:RemoveFlags(FL_NOTARGET)
 				self.ControlledCloak = false
-				//print("cloak disabled")
+				print("cloak disabled")
 			end
 	end
 	if IsValid(self) && !self.Dead && self.BossCloak == 0 && !controlled then
@@ -112,20 +122,20 @@ function ENT:CustomOnThink_AIEnabled()
 		if IsValid(self:GetEnemy()) && !controlled then
 			local dist = self:VJ_GetNearestPointToEntityDistance(self:GetEnemy())
 			if !(self:GetEnemy():GetForward():Dot((self:GetPos() -self:GetEnemy():GetPos()):GetNormalized()) > math.cos(math.rad(60))) && dist > 350 then
-				// Stalk the player
-				self.AnimTbl_Run = {ACT_RUN}
+				self._slowWalk = false
 				self:SetColor(Color(0,0,0,255))
 				self:RemoveFlags(FL_NOTARGET)
 				timer.Create("blackscary_camo"..self:EntIndex(), 1, 1, function() self:SetColor(Color(0,0,0,0)) self:AddFlags(FL_NOTARGET) end)
-				//print("behind you")
+				print("behind you")
 			else
-				self.AnimTbl_Run = {ACT_WALK}
+				// slow walk if close
+				self._slowWalk = true
 				self:SetColor(Color(0,0,0,3))
 				self:AddFlags(FL_NOTARGET)
-				//print("you didn't see anything")
+				print("you didn't see anything")
 			end
 		else
-			self.AnimTbl_Run = {ACT_RUN}
+			self._slowWalk = false
 			self:SetColor(Color(0,0,0,255))
 			self:RemoveFlags(FL_NOTARGET)
 		end

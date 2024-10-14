@@ -26,7 +26,6 @@ ENT.MeleeAttackDamage = 40
 
 ENT.HasRangeAttack = true -- Should the SNPC have a range attack?
 ENT.AnimTbl_RangeAttack = ACT_RANGE_ATTACK1 -- Range Attack Animations
-ENT.RangeAttackEntityToSpawn = "obj_vj_hlr1_rocket" -- The entity that is spawned when range attacking
 ENT.TimeUntilRangeAttackProjectileRelease = false
 ENT.NextRangeAttackTime = 5 -- How much time until it can use a range attack?
 ENT.RangeDistance = 2048 -- This is how far away it can shoot
@@ -35,6 +34,8 @@ ENT.RangeUseAttachmentForPos = false -- Should the projectile spawn on a attachm
 ENT.RangeAttackPos_Up = 60 -- Up/Down spawning position for range attack
 ENT.RangeAttackPos_Forward = 0 -- Forward/ Backward spawning position for range attack
 ENT.RangeAttackPos_Right = 10 -- Right/Left spawning position for range attack
+
+ENT.DisableDefaultRangeAttackCode = true
 
 ENT.DisableFootStepSoundTimer = true -- If set to true, it will disable the time system for the footstep sound code, allowing you to use other ways like model events
 ENT.HasDeathAnimation = true -- Does it play an animation when it dies?
@@ -59,6 +60,10 @@ ENT.GeneralSoundPitch1 = 100
 ENT.SCI_NextMouthMove = 0
 ENT.SCI_NextMouthDistance = 0
 ---------------------------------------------------------------------------------------------------------------------------------------------
+function ENT:RangeAttackProjSpawnPos(projectile)
+	return self:GetAttachment(self:LookupAttachment("rhand")).Pos
+end
+---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomOnAcceptInput(key, activator, caller, data)
 	//print(key)
 	if key == "step" then
@@ -70,6 +75,23 @@ function ENT:CustomOnAcceptInput(key, activator, caller, data)
     elseif key == "fire" then
         self:RangeAttackCode()
         VJ_EmitSound(self, "vj_hlr/hl1_weapon/rpg/rocketfire1.wav", 75, 100)
+	end
+end
+---------------------------------------------------------------------------------------------------------------------------------------------
+function ENT:CustomRangeAttackCode()
+	local ene = self:GetEnemy()
+	local projectile = ents.Create("obj_vj_hlr1_rocket")
+	local attPos = self:GetAttachment(self:LookupAttachment("rhand")).Pos
+	projectile:SetPos(self:RangeAttackProjSpawnPos(projectile))
+	projectile:SetAngles((ene:GetPos() - projectile:GetPos()):Angle())
+	projectile:SetOwner(self)
+	projectile:SetPhysicsAttacker(self)
+	projectile:Spawn()
+	projectile:Activate()
+	local phys = projectile:GetPhysicsObject()
+	if IsValid(phys) then
+		phys:Wake()
+		phys:SetVelocity(self:CalculateProjectile("Line", attPos, self:GetAimPosition(ene, attPos, 1, 1500), 1500))
 	end
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------

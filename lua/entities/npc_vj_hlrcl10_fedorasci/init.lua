@@ -121,8 +121,23 @@ function ENT:CustomRangeAttackCode()
 
         -- Set the new angles for the entity
         self:SetAngles(lookAt)
-    end
 
+		timer.Simple(0.1, function()
+			if IsValid(self) then
+				local spr2 = ents.Create("env_sprite")
+				spr2:SetKeyValue("model", "vj_hl/sprites/fexplo1.vmt")
+				spr2:SetKeyValue("scale", ""..size)
+				spr2:SetKeyValue("rendercolor", color or "77 210 130")
+				spr2:SetKeyValue("rendermode", "5") -- 5 = Additive render mode
+				spr2:SetKeyValue("renderamt", "255")
+				spr2:SetKeyValue("framerate", "10.0")
+				spr2:SetKeyValue("spawnflags", "2") -- 2 (SF_SPRITE_ONCE) = Makes it animate / display only once
+				spr2:SetPos(self:GetAttachment(self:LookupAttachment("__illumPosition")).Pos)
+				spr2:Spawn()
+				spr2:Fire("Kill", "", 1)
+			end
+		end)
+    end
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomOnAcceptInput(key,activator,caller,data)
