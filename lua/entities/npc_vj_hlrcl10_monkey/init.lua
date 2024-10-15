@@ -62,7 +62,7 @@ ENT.SoundTbl_LeapAttackDamageMiss = {"vj_hlr/hl1_npc/zombie/claw_miss1.wav","vj_
 ENT.SoundTbl_Pain = {"vj_hlr/crack10_npc/monkey/monke_pain1.wav", "vj_hlr/crack10_npc/monkey/monke_pain2.wav", "vj_hlr/crack10_npc/monkey/monke_pain3.wav", "vj_hlr/crack10_npc/monkey/monke_pain4.wav", "vj_hlr/crack10_npc/monkey/monke_pain5.wav"}
 ENT.SoundTbl_Death = {"vj_hlr/crack10_npc/monkey/monke_pain1.wav", "vj_hlr/crack10_npc/monkey/monke_pain2.wav", "vj_hlr/crack10_npc/monkey/monke_pain3.wav", "vj_hlr/crack10_npc/monkey/monke_pain4.wav", "vj_hlr/crack10_npc/monkey/monke_pain5.wav"}
 ENT.SoundTbl_BeforeLeapAttack = {"vj_hlr/crack10_npc/monkey/monke_pain2.wav"}
-ENT.SoundTbl_BeforeRangeAttack = {"vj_hlr/crack10_npc/monkey/monke_alert1.wav", "vj_hlr/crack10_npc/monkey/monke_alert2.wav", "vj_hlr/crack10_npc/monkey/monke_alert3.wav"}
+ENT.SoundTbl_BeforeRangeAttack = {"vj_hlr/crack10_npc/monkey/monke_pain1.wav", "vj_hlr/crack10_npc/monkey/monke_alert2.wav", "vj_hlr/crack10_npc/monkey/monke_alert3.wav"}
 
 ENT.DungThrowSnd = {"vj_hlr/fx/flesh1.wav", "vj_hlr/fx/flesh2.wav", "vj_hlr/fx/flesh3.wav", "vj_hlr/fx/flesh5.wav", "vj_hlr/fx/flesh6.wav", "vj_hlr/fx/flesh7.wav"}
 

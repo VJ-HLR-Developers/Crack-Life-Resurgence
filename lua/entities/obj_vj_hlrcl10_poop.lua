@@ -26,8 +26,8 @@ if !SERVER then return end
 
 ENT.Model = { "models/vj_hlr/cracklife10/poop1.mdl", "models/vj_hlr/cracklife10/poop2.mdl", "models/vj_hlr/cracklife10/poop3.mdl" } -- The models it should spawn with | Picks a random one from the table
 ENT.DoesRadiusDamage = true -- Should it do a blast damage when it hits something?
-ENT.RadiusDamageRadius = 70 -- How far the damage go? The farther away it's from its enemy, the less damage it will do | Counted in world units
-ENT.RadiusDamage = 15 -- How much damage should it deal? Remember this is a radius damage, therefore it will do less damage the farther away the entity is from its enemy
+ENT.RadiusDamageRadius = 90 -- How far the damage go? The farther away it's from its enemy, the less damage it will do | Counted in world units
+ENT.RadiusDamage = 17 -- How much damage should it deal? Remember this is a radius damage, therefore it will do less damage the farther away the entity is from its enemy
 ENT.RadiusDamageUseRealisticRadius = true -- Should the damage decrease the farther away the enemy is from the position that the projectile hit?
 ENT.RadiusDamageType = DMG_ACID -- Damage type
 ENT.DecalTbl_DeathDecals = {"VJ_HLR_Spit_Acid"}
@@ -39,7 +39,7 @@ function ENT:CustomPhysicsObjectOnInitialize(phys)
 	phys:SetBuoyancyRatio(0)
 	phys:EnableDrag(false)
 	phys:EnableGravity(true)
-    phys:AddAngleVelocity(Vector(math.random(300,400),math.random(300,400),math.random(300,400)))
+    phys:AddAngleVelocity(Vector(math.random(-400,400),math.random(-400,400),math.random(-400,400)))
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomOnInitialize()
@@ -79,7 +79,7 @@ function ENT:DeathEffects(data, phys)
 	spr:SetKeyValue("maxdxlevel","0")
 	spr:SetKeyValue("framerate","15.0")
 	spr:SetKeyValue("spawnflags","0")
-	spr:SetKeyValue("scale",tostring(self.Scale *0.3))
+	spr:SetKeyValue("scale",tostring(self.Scale *0.6))
 	spr:SetPos(data.HitPos + Vector(0,0,10))
 	spr:Spawn()
 	spr:Fire("Kill","",0.3)
