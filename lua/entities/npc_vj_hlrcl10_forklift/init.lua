@@ -80,7 +80,7 @@ local computerGibs = {
     "models/vj_hlr/gibs/computergibs_comp12.mdl",
     "models/vj_hlr/gibs/computergibs_comp13.mdl",
 }
-function ENT:SetUpGibesOnDeath(dmginfo, hitgroup)
+function ENT:HandleGibOnDeath(dmginfo, hitgroup)
 	self.HasDeathSounds = false
 	if self.HasGibDeathParticles == true then
         local spr = ents.Create("env_sprite")

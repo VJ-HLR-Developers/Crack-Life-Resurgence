@@ -26,6 +26,7 @@ ENT.DeathCorpseFadeTime = 0.1 -- How much time until the ragdoll fades | Unit = 
 ENT.AllowedToGib = false
 
 ENT.HasMeleeAttack = true -- Should the SNPC have a melee attack?
+ENT.AnimTbl_MeleeAttack = {ACT_MELEE_ATTACK1, ACT_MELEE_ATTACK2}
 ENT.TimeUntilMeleeAttackDamage = false -- This counted in seconds | This calculates the time until it hits something
 ENT.MeleeAttackDistance = 50 -- How close an enemy has to be to trigger a melee attack | false = Let the base auto calculate on initialize based on the NPC's collision bounds
 ENT.MeleeAttackDamageDistance = 80 -- How far does the damage go | false = Let the base auto calculate on initialize based on the NPC's collision bounds
@@ -64,6 +65,14 @@ ENT.ControlledCloak = false
 ENT.BossCloak = 0
 ENT._slowWalk = false
 ---------------------------------------------------------------------------------------------------------------------------------------------
+function ENT:OnInput(key, activator, caller, data)
+	//print(key)
+	if key == "event_mattack right" or key == "event_mattack left" or key == "event_mattack both" then
+		self.MeleeAttackDamage = self:GetActivity() == ACT_MELEE_ATTACK1 and 10 or 25
+		self:MeleeAttackCode()
+	end
+end
+---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomOnInitialize()
 	self:SetCollisionBounds(Vector(16,16,80),Vector(-16,-16,0))
 	local randmusic = math.random(1,50)
@@ -90,8 +99,6 @@ end
 function ENT:TranslateActivity(act)
 	if act == ACT_RUN && self._slowWalk then
 		return ACT_WALK
-	else
-		return ACT_RUN
 	end
 	return self.BaseClass.TranslateActivity(self, act)
 end
@@ -120,7 +127,7 @@ function ENT:CustomOnThink_AIEnabled()
 	end
 	if self.UseCloak then
 		if IsValid(self:GetEnemy()) && !controlled then
-			local dist = self:VJ_GetNearestPointToEntityDistance(self:GetEnemy())
+			local dist = self:GetNearestDistance(self:GetEnemy())
 			if !(self:GetEnemy():GetForward():Dot((self:GetPos() -self:GetEnemy():GetPos()):GetNormalized()) > math.cos(math.rad(60))) && dist > 350 then
 				self._slowWalk = false
 				self:SetColor(Color(0,0,0,255))
@@ -144,23 +151,6 @@ end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:Controller_IntMsg(ply, controlEnt)
 	ply:ChatPrint("JUMP: Toggle Cloak")
-end
----------------------------------------------------------------------------------------------------------------------------------------------
-function ENT:CustomOnAcceptInput(key, activator, caller, data)
-	//print(key)
-	if key == "event_mattack right" or key == "event_mattack left" or key == "event_mattack both" then
-		self:MeleeAttackCode()
-	end
-end
----------------------------------------------------------------------------------------------------------------------------------------------
-function ENT:MultipleMeleeAttacks()
-	if math.random(1, 2) == 1 then
-		self.AnimTbl_MeleeAttack = {ACT_MELEE_ATTACK1}
-		self.MeleeAttackDamage = 10
-	else
-		self.AnimTbl_MeleeAttack = {ACT_MELEE_ATTACK2}
-		self.MeleeAttackDamage = 25
-	end
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomOnRemove()

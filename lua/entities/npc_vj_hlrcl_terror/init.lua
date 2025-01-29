@@ -84,7 +84,7 @@ end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 local ExpPos = Vector(0, 0, 90)
 ---------------------------------------------------------------------------------------------------------------------------------------------
-function ENT:SetUpGibesOnDeath(dmginfo, hitgroup)
+function ENT:HandleGibOnDeath(dmginfo, hitgroup)
 	self.HasDeathSounds = false
 	//if self.SB_VestHit == true then
 		util.BlastDamage(self, self, self:GetPos(), 130, 300)

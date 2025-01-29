@@ -84,7 +84,7 @@ function ENT:CustomOnPriorToKilled(dmginfo, hitgroup)
 	self:SetBodygroup(0, 1)
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
-function ENT:SetUpGibesOnDeath(dmginfo, hitgroup)
+function ENT:HandleGibOnDeath(dmginfo, hitgroup)
 	self.HasDeathSounds = false
 	if self.HasGibDeathParticles == true then
 		local effectBlood = EffectData()

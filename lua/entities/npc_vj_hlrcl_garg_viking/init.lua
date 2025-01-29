@@ -152,7 +152,7 @@ function ENT:CustomOnTakeDamage_BeforeImmuneChecks(dmginfo,hitgroup)
 	util.Effect("VJ_HLR_Rico", rico)
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
-function ENT:SetUpGibesOnDeath(dmginfo,hitgroup)
+function ENT:HandleGibOnDeath(dmginfo,hitgroup)
 	timer.Simple(3.6,function()
 		if IsValid(self) then
 			if self.HasGibDeathParticles == true then

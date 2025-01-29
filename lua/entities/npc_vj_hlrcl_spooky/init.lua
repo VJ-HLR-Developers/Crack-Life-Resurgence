@@ -41,7 +41,7 @@ function ENT:CustomGibOnDeathSounds(dmginfo,hitgroup)
 	return false
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
-function ENT:SetUpGibesOnDeath(dmginfo,hitgroup)
+function ENT:HandleGibOnDeath(dmginfo,hitgroup)
 	self.HasDeathSounds = false
 	
 	self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/abone_template1.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,40))})

@@ -64,8 +64,6 @@ function ENT:CustomOnAcceptInput(key, activator, caller, data)
 	end
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
---  mouth movement looks terrible
----------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomOnThink()
 	if CurTime() < self.SCI_NextMouthMove then
 		if self.SCI_NextMouthDistance == 0 then
@@ -111,7 +109,7 @@ function ENT:CustomDeathAnimationCode(dmginfo, hitgroup)
 	end
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
-function ENT:SetUpGibesOnDeath(dmginfo,hitgroup)
+function ENT:HandleGibOnDeath(dmginfo,hitgroup)
 	self.HasDeathSounds = false
 		if self.HasGibDeathParticles == true then
 			local bloodeffect = EffectData()

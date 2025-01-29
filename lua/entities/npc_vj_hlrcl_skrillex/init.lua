@@ -263,7 +263,7 @@ function ENT:CustomRangeAttackCode()
 	util.VJ_SphereDamage(self, self, hitpos, 30, 100, DMG_SHOCK, true, false, {Force=90})
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
-function ENT:SetUpGibesOnDeath(dmginfo, hitgroup)
+function ENT:HandleGibOnDeath(dmginfo, hitgroup)
 	if self.HasGibDeathParticles == true then
 		local bloodeffect = EffectData()
 		bloodeffect:SetOrigin(self:GetPos() + self:OBBCenter())

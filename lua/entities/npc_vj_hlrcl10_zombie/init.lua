@@ -116,7 +116,7 @@ function ENT:CustomRangeAttackCode()
 		self:DeleteOnRemove(flash)
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
-function ENT:SetUpGibesOnDeath(dmginfo,hitgroup)
+function ENT:HandleGibOnDeath(dmginfo,hitgroup)
 	self.HasDeathSounds = false
 	if self.HasGibDeathParticles == true then
 		local bloodeffect = EffectData()
