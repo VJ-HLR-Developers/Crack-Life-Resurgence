@@ -16,11 +16,11 @@ ENT.Tank_TurningSpeed = 10 -- How fast the gun moves as it's aiming towards an e
 -- Tank Base
 ENT.Tank_SoundTbl_Turning = {"vj_hlr/hl1_npc/tanks/abrams_turret_rot.wav"}
 ENT.Tank_SoundTbl_ReloadShell = {"vj_hlr/hl1_npc/tanks/tank_reload.wav"}
-ENT.Tank_SoundTbl_FireShell = {"vj_hlr/hl1_npc/tanks/shoot.wav"}
+ENT.Tank_SoundTbl_FireShell = "vj_hlr/hl1_npc/tanks/shoot.wav"
 
 ENT.Tank_AngleDiffuseNumber = 0
 ENT.Tank_Shell_SpawnPos = Vector(220, 0, 210)
-ENT.Tank_Shell_EntityToSpawn = "obj_vj_hlr1_rocket" -- The entity that is spawned when the shell is fired
+ENT.Tank_Shell_Entity = "obj_vj_hlr1_rocket" -- The entity that is spawned when the shell is fired
 ENT.Tank_Shell_VelocitySpeed = 3000 -- How fast should the tank shell travel?
 ENT.Tank_Shell_DynamicLightPos = Vector(220, 0, 210)
 ENT.Tank_Shell_MuzzleFlashPos = Vector(220, 0, 210)
@@ -37,7 +37,7 @@ function ENT:StartShootEffects()
 	net.Broadcast()
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
-function ENT:CustomInitialize_CustomTank() 
+function ENT:Tank_Init()
 	timer.Create("vlad_rapidassfuck"..self:EntIndex(), 2, 0, function() self.RapidFire = math.random(0,1) end)
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------

@@ -127,19 +127,19 @@ function ENT:CustomOnThink_AIEnabled()
 	end
 	if self.UseCloak then
 		if IsValid(self:GetEnemy()) && !controlled then
-			local dist = self:GetNearestDistance(self:GetEnemy())
+			local dist = VJ.GetNearestDistance(self, self:GetEnemy(), true)
 			if !(self:GetEnemy():GetForward():Dot((self:GetPos() -self:GetEnemy():GetPos()):GetNormalized()) > math.cos(math.rad(60))) && dist > 350 then
 				self._slowWalk = false
 				self:SetColor(Color(0,0,0,255))
 				self:RemoveFlags(FL_NOTARGET)
 				timer.Create("blackscary_camo"..self:EntIndex(), 1, 1, function() self:SetColor(Color(0,0,0,0)) self:AddFlags(FL_NOTARGET) end)
-				print("behind you")
+				//print("behind you")
 			else
 				// slow walk if close
 				self._slowWalk = true
 				self:SetColor(Color(0,0,0,3))
 				self:AddFlags(FL_NOTARGET)
-				print("you didn't see anything")
+				//print("you didn't see anything")
 			end
 		else
 			self._slowWalk = false
