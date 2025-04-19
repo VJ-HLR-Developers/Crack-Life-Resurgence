@@ -81,7 +81,7 @@ function ENT:CustomOnInitialize()
 		self:SetHealth(1000)
 		self:SetMaxHealth(1000)
 		self.VJ_IsHugeMonster = true
-		if GetConVar("vj_npc_sd_soundtrack"):GetInt() == 0 then
+		if GetConVar("vj_npc_snd_track"):GetInt() == 0 then
 				self.HasSoundTrack = true
 				self:StartSoundTrack()
 		end

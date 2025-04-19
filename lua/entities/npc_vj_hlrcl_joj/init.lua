@@ -78,7 +78,7 @@ function ENT:CustomOnInitialize()
 	self.Immune_Bullet = true
 	self.Immune_Blast = true
 	if GetConVar("vj_hlrcl_skipufointro"):GetInt() == 1 then
-		if GetConVar("vj_npc_sd_soundtrack"):GetInt() == 0 then
+		if GetConVar("vj_npc_snd_track"):GetInt() == 0 then
 			self.HasSoundTrack = true
 			self:StartSoundTrack()
 		end
@@ -107,7 +107,7 @@ function ENT:CustomOnInitialize()
 		self:SetState(VJ_STATE_FREEZE)
 		timer.Create("jojufo_intro"..self:EntIndex(), 19, 1, function() 
 			self:SetParent(NULL)
-			if GetConVar("vj_npc_sd_soundtrack"):GetInt() == 0 then
+			if GetConVar("vj_npc_snd_track"):GetInt() == 0 then
 				self.HasSoundTrack = true
 				self:StartSoundTrack()
 			end
