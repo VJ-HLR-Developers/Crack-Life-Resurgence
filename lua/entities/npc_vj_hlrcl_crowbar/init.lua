@@ -2,7 +2,7 @@ include("entities/npc_vj_hlr1_xen_tree/init.lua")
 AddCSLuaFile("shared.lua")
 include("shared.lua")
 /*-----------------------------------------------
-	*** Copyright (c) 2010-2024 by oteek, All rights reserved. ***
+	*** Copyright (c) 2010-2025 by oteek, All rights reserved. ***
 	No parts of this code or any of its contents may be reproduced, copied, modified or adapted,
 	without the prior written consent of the author, unless otherwise indicated for stand-alone materials.
 -----------------------------------------------*/
@@ -46,7 +46,7 @@ function ENT:CustomOnTakeDamage_BeforeImmuneChecks(dmginfo, hitgroup)
 	end
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
-local gibsCollideSd = {"vj_hlr/fx/metal1.wav","vj_hlr/fx/metal2.wav","vj_hlr/fx/metal3.wav","vj_hlr/fx/metal4.wav","vj_hlr/fx/metal5.wav"}
+local gibsCollideSd = {"vj_hlr/gsrc/fx/metal1.wav","vj_hlr/gsrc/fx/metal2.wav","vj_hlr/gsrc/fx/metal3.wav","vj_hlr/gsrc/fx/metal4.wav","vj_hlr/gsrc/fx/metal5.wav"}
 --
 function ENT:HandleGibOnDeath(dmginfo, hitgroup)
 	self.HasDeathSounds = false

@@ -1,5 +1,5 @@
 /*--------------------------------------------------
-	*** Copyright (c) 2010-2024 by oteek, All rights reserved. ***
+	*** Copyright (c) 2010-2025 by oteek, All rights reserved. ***
 	No parts of this code or any of its contents may be reproduced, copied, modified or adapted,
 	without the prior written consent of the author, unless otherwise indicated for stand-alone materials.
 --------------------------------------------------*/
@@ -58,7 +58,7 @@ end
 function ENT:OnTakeDamage(dmginfo)
 	local gibsCollideSd = {"vj_hlr/crack_fx/metal1.wav"}
 	self:SetHealth(self:Health() - dmginfo:GetDamage())
-	self:EmitSound(VJ_PICK({"vj_hlr/fx/metal1.wav","vj_hlr/fx/metal3.wav"}), 70)
+	self:EmitSound(VJ_PICK({"vj_hlr/gsrc/fx/metal1.wav","vj_hlr/gsrc/fx/metal3.wav"}), 70)
 	if self:Health() <= 0 then
 		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/metalgib_p1.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,5)),CollideSound=gibsCollideSd})
 		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/metalgib_p2.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,10)),CollideSound=gibsCollideSd})

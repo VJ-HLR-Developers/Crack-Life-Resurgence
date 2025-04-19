@@ -1,7 +1,7 @@
 AddCSLuaFile("shared.lua")
 include("shared.lua")
 /*-----------------------------------------------
-	*** Copyright (c) 2010-2024 by oteek, All rights reserved. ***
+	*** Copyright (c) 2010-2025 by oteek, All rights reserved. ***
 	No parts of this code or any of its contents may be reproduced, copied, modified or adapted,
 	without the prior written consent of the author, unless otherwise indicated for stand-alone materials.
 -----------------------------------------------*/
@@ -16,7 +16,7 @@ ENT.Tank_TurningSpeed = 10 -- How fast the gun moves as it's aiming towards an e
 -- Tank Base
 ENT.Tank_SoundTbl_Turning = {"vj_hlr/hl1_npc/tanks/abrams_turret_rot.wav"}
 ENT.Tank_SoundTbl_ReloadShell = {"vj_hlr/hl1_npc/tanks/tank_reload.wav"}
-ENT.Tank_SoundTbl_FireShell = "vj_hlr/hl1_npc/tanks/shoot.wav"
+ENT.Tank_SoundTbl_FireShell = {"vj_hlr/hl1_npc/tanks/shoot.wav"}
 
 ENT.Tank_AngleDiffuseNumber = 0
 ENT.Tank_Shell_SpawnPos = Vector(220, 0, 210)
@@ -41,7 +41,7 @@ function ENT:Tank_Init()
 	timer.Create("vlad_rapidassfuck"..self:EntIndex(), 2, 0, function() self.RapidFire = math.random(0,1) end)
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
-function ENT:Tank_CustomOnThink() 
+function ENT:Tank_OnThinkActive()
 	if self.RapidFire == 1 then
 		self.Tank_Shell_TimeUntilFire = 0.2
 	else

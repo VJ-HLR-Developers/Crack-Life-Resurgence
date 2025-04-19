@@ -1,7 +1,7 @@
 AddCSLuaFile("shared.lua")
 include("shared.lua")
 /*-----------------------------------------------
-	*** Copyright (c) 2010-2024 by oteek, All rights reserved. ***
+	*** Copyright (c) 2010-2025 by oteek, All rights reserved. ***
 	No parts of this code or any of its contents may be reproduced, copied, modified or adapted,
 	without the prior written consent of the author, unless otherwise indicated for stand-alone materials.
 -----------------------------------------------*/
@@ -112,17 +112,13 @@ function ENT:HandleGibOnDeath(dmginfo, hitgroup)
 	self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/hgib_lung.mdl",{BloodDecal="VJ_HLR_Blood_Red",Pos=self:LocalToWorld(Vector(1,0,45))})
 	self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/hgib_skull.mdl",{BloodDecal="VJ_HLR_Blood_Red",Pos=self:LocalToWorld(Vector(0,0,60))})
 	self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/hgib_legbone.mdl",{BloodDecal="VJ_HLR_Blood_Red",Pos=self:LocalToWorld(Vector(0,0,15))})
-	return true
-end
----------------------------------------------------------------------------------------------------------------------------------------------
-function ENT:CustomGibOnDeathSounds(dmginfo, hitgroup)
-	VJ_EmitSound(self,"vj_hlr/crack_fx/bodysplat.wav", 90, math.random(100,100))
-	VJ_EmitSound(self, "vj_base/gib/splat.wav", 90, 100)
-	return false
+	self:PlaySoundSystem("Gib", "vj_base/gib/splat.wav")
+	self:PlaySoundSystem("Gib", "vj_hlr/crack_fx/bodysplat.wav")
+	return true, {AllowSound = false}
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomDeathAnimationCode(dmginfo, hitgroup)
-	self:DoDropWeaponOnDeath(dmginfo, hitgroup)
+	self:DeathWeaponDrop(dmginfo, hitgroup)
 	if IsValid(self:GetActiveWeapon()) then self:GetActiveWeapon():Remove() end
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
@@ -135,7 +131,7 @@ function ENT:CustomOnDropWeapon_AfterWeaponSpawned(dmginfo, hitgroup, wepEnt)
 	wepEnt:SetNW2Bool("VJ_WorldModel_Invisible", false)
 end
 /*-----------------------------------------------
-	*** Copyright (c) 2010-2024 by oteek, All rights reserved. ***
+	*** Copyright (c) 2010-2025 by oteek, All rights reserved. ***
 	No parts of this code or any of its contents may be reproduced, copied, modified or adapted,
 	without the prior written consent of the author, unless otherwise indicated for stand-alone materials.
 -----------------------------------------------*/

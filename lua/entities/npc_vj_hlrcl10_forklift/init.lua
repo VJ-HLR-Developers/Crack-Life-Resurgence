@@ -1,7 +1,7 @@
 AddCSLuaFile("shared.lua")
 include("shared.lua")
 /*-----------------------------------------------
-	*** Copyright (c) 2010-2024 by oteek, All rights reserved. ***
+	*** Copyright (c) 2010-2025 by oteek, All rights reserved. ***
 	No parts of this code or any of its contents may be reproduced, copied, modified or adapted,
 	without the prior written consent of the author, unless otherwise indicated for stand-alone materials.
 -----------------------------------------------*/
@@ -65,7 +65,7 @@ function ENT:MeleeAttackKnockbackVelocity(hitEnt)
 	end
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
-local gibsCollideSd = {"vj_hlr/fx/metal1.wav","vj_hlr/fx/metal2.wav","vj_hlr/fx/metal3.wav","vj_hlr/fx/metal4.wav","vj_hlr/fx/metal5.wav"}
+local gibsCollideSd = {"vj_hlr/gsrc/fx/metal1.wav","vj_hlr/gsrc/fx/metal2.wav","vj_hlr/gsrc/fx/metal3.wav","vj_hlr/gsrc/fx/metal4.wav","vj_hlr/gsrc/fx/metal5.wav"}
 local computerGibs = {
     "models/vj_hlr/gibs/computergibs_comp1.mdl",
     "models/vj_hlr/gibs/computergibs_comp2.mdl",
@@ -140,7 +140,7 @@ function ENT:CustomGibOnDeathSounds(dmginfo, hitgroup)
 	return false
 end
 /*-----------------------------------------------
-	*** Copyright (c) 2010-2024 by oteek, All rights reserved. ***
+	*** Copyright (c) 2010-2025 by oteek, All rights reserved. ***
 	No parts of this code or any of its contents may be reproduced, copied, modified or adapted,
 	without the prior written consent of the author, unless otherwise indicated for stand-alone materials.
 -----------------------------------------------*/

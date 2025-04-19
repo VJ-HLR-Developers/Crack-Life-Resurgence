@@ -2,7 +2,7 @@ include("entities/npc_vj_hlr1_zombie/init.lua")
 AddCSLuaFile("shared.lua")
 include("shared.lua")
 /*-----------------------------------------------
-	*** Copyright (c) 2010-2024 by oteek, All rights reserved. ***
+	*** Copyright (c) 2010-2025 by oteek, All rights reserved. ***
 	No parts of this code or any of its contents may be reproduced, copied, modified or adapted,
 	without the prior written consent of the author, unless otherwise indicated for stand-alone materials.
 -----------------------------------------------*/
@@ -41,7 +41,7 @@ ENT.DisableDefaultRangeAttackCode = true
 
 ENT.SoundTbl_FootStep = {"vj_hlr/crack_fx/npc_step1.wav","vj_hlr/crack_fx/npc_step2.wav","vj_hlr/crack_fx/npc_step3.wav","vj_hlr/crack_fx/npc_step4.wav"}
 ENT.SoundTbl_Idle = {"vj_hlr/crack10_npc/scientist/amogus.wav","vj_hlr/crack10_npc/scientist/africa.wav","vj_hlr/crack10_npc/scientist/reddit.wav","vj_hlr/crack10_npc/scientist/cringe2.wav"}
-ENT.SoundTbl_BeforeMeleeAttack = {"vj_hlr/fx/null.wav","vj_hlr/fx/null.wav"}
+ENT.SoundTbl_BeforeMeleeAttack = {"vj_hlr/gsrc/fx/null.wav","vj_hlr/gsrc/fx/null.wav"}
 ENT.SoundTbl_Alert = {"vj_hlr/crack10_npc/scientist/fedora1.wav","vj_hlr/crack10_npc/scientist/fedora2.wav","vj_hlr/crack10_npc/scientist/fedora3.wav","vj_hlr/crack10_npc/scientist/fedora4.wav","vj_hlr/crack10_npc/scientist/fedora5.wav","vj_hlr/crack10_npc/scientist/fedora6.wav"}
 ENT.SoundTbl_RangeAttack = {"vj_hlr/crack10_npc/scientist/fedora1.wav"}
 ENT.SoundTbl_MeleeAttackExtra = {"vj_hlr/hl1_npc/zombie/claw_strike1.wav","vj_hlr/hl1_npc/zombie/claw_strike2.wav","vj_hlr/hl1_npc/zombie/claw_strike3.wav"}
@@ -73,7 +73,7 @@ function ENT:TranslateActivity(act) end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomRangeAttackCode()
 
-    VJ_EmitSound(self, "vj_hlr/fx/beamstart8.wav", 85, 100)
+    VJ_EmitSound(self, "vj_hlr/gsrc/fx/beamstart8.wav", 85, 100)
 
     local size = 1.5
 

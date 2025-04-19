@@ -2,7 +2,7 @@ include("entities/npc_vj_hlr1_zombie/init.lua")
 AddCSLuaFile("shared.lua")
 include("shared.lua")
 /*-----------------------------------------------
-	*** Copyright (c) 2010-2024 by oteek, All rights reserved. ***
+	*** Copyright (c) 2010-2025 by oteek, All rights reserved. ***
 	No parts of this code or any of its contents may be reproduced, copied, modified or adapted,
 	without the prior written consent of the author, unless otherwise indicated for stand-alone materials.
 -----------------------------------------------*/
@@ -56,8 +56,10 @@ function ENT:HandleGibOnDeath(dmginfo,hitgroup)
 	self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/bleachbones_riblet1.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,45))})
 	self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/bleachbones_riblet1.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,25))})
 	self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/bleachbones_riblet1.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,35))})
+	self:PlaySoundSystem("Gib", "vj_base/gib/splat.wav")
+	self:PlaySoundSystem("Gib", "vj_hlr/crack_fx/bodysplat.wav")
 
-	return true -- Return to true if it gibbed!
+	return true, {AllowSound = false}
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 local gibs = {"models/vj_hlr/gibs/abone_template1.mdl","models/vj_hlr/gibs/abone_template1.mdl","models/vj_hlr/gibs/abone_template1.mdl","models/vj_hlr/gibs/abone_template1.mdl","models/vj_hlr/gibs/abone_template1.mdl","models/vj_hlr/gibs/bleachbones_pelvis_template1.mdl","models/vj_hlr/gibs/bleachbones_jawbone1.mdl","models/vj_hlr/gibs/bleachbones_bskull_template1.mdl","models/vj_hlr/gibs/bleachbones_ribcage1.mdl","models/vj_hlr/gibs/bleachbones_riblet1.mdl","models/vj_hlr/gibs/bleachbones_riblet1.mdl","models/vj_hlr/gibs/bleachbones_riblet1.mdl"}
@@ -66,7 +68,7 @@ function ENT:CustomOnDeath_AfterCorpseSpawned(dmginfo, hitgroup, corpseEnt)
 	VJ.HLR_ApplyCorpseSystem(self, corpseEnt, gibs)
 end
 /*-----------------------------------------------
-	*** Copyright (c) 2010-2024 by oteek, All rights reserved. ***
+	*** Copyright (c) 2010-2025 by oteek, All rights reserved. ***
 	No parts of this code or any of its contents may be reproduced, copied, modified or adapted,
 	without the prior written consent of the author, unless otherwise indicated for stand-alone materials.
 -----------------------------------------------*/

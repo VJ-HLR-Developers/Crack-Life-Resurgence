@@ -1,6 +1,7 @@
 [h1][b] 1.3 [/b][/h1]
 [list]
 [*] Added Crack-Life: 10th Anniversary SNPCs
+[*] Updated to latest HLR and VJ Base
 [/list]
 
 [h1][b] 1.2b [/b][/h1]

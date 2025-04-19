@@ -1,7 +1,7 @@
 AddCSLuaFile("shared.lua")
 include("shared.lua")
 /*-----------------------------------------------
-	*** Copyright (c) 2010-2024 by oteek, All rights reserved. ***
+	*** Copyright (c) 2010-2025 by oteek, All rights reserved. ***
 	No parts of this code or any of its contents may be reproduced, copied, modified or adapted,
 	without the prior written consent of the author, unless otherwise indicated for stand-alone materials.
 -----------------------------------------------*/
@@ -64,7 +64,7 @@ ENT.SoundTbl_Death = {"vj_hlr/crack10_npc/monkey/monke_pain1.wav", "vj_hlr/crack
 ENT.SoundTbl_BeforeLeapAttack = {"vj_hlr/crack10_npc/monkey/monke_pain2.wav"}
 ENT.SoundTbl_BeforeRangeAttack = {"vj_hlr/crack10_npc/monkey/monke_pain1.wav", "vj_hlr/crack10_npc/monkey/monke_alert2.wav", "vj_hlr/crack10_npc/monkey/monke_alert3.wav"}
 
-ENT.DungThrowSnd = {"vj_hlr/fx/flesh1.wav", "vj_hlr/fx/flesh2.wav", "vj_hlr/fx/flesh3.wav", "vj_hlr/fx/flesh5.wav", "vj_hlr/fx/flesh6.wav", "vj_hlr/fx/flesh7.wav"}
+ENT.DungThrowSnd = {"vj_hlr/gsrc/fx/flesh1.wav", "vj_hlr/gsrc/fx/flesh2.wav", "vj_hlr/gsrc/fx/flesh3.wav", "vj_hlr/gsrc/fx/flesh5.wav", "vj_hlr/gsrc/fx/flesh6.wav", "vj_hlr/gsrc/fx/flesh7.wav"}
 
 ENT.MeleeAttackDamage = 10
 
