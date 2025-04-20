@@ -15,7 +15,7 @@ ENT.StartHealth = 3000
 
 ENT.BloodColor = "Red" -- The blood type, this will determine what it should use (decal, particle, etc.)
 ENT.CustomBlood_Particle = {"vj_hlr_blood_red"}
-ENT.CustomBlood_Decal = {"VJ_HLR_Blood_Red"}
+ENT.CustomBlood_Decal = {"VJ_HLR1_Blood_Red"}
 
 ENT.EntitiesToNoCollide = {"npc_vj_hlrcl_gopnik","npc_vj_hlrcl_gopnik_mega","npc_vj_hlrcl_gopnik_super"}
 
@@ -238,30 +238,33 @@ function ENT:CustomOnRangeAttack_AfterStartTimer()
 	end
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
-function ENT:CustomRangeAttackCode()
-	local startpos = self:GetPos() + self:GetUp()*45 + self:GetForward()*40
-	local tr = util.TraceLine({
-		start = startpos,
-		endpos = self:GetEnemy():GetPos() + self:GetEnemy():OBBCenter(),
-		filter = self
-	})
-	local hitpos = tr.HitPos
-	
-	local elec = EffectData()
-	elec:SetStart(startpos)
-	elec:SetOrigin(hitpos)
-	elec:SetEntity(self)
-	elec:SetAttachment(1)
-	util.Effect("VJ_HLR_Electric_Skrilly",elec)
-	
-	elec = EffectData()
-	elec:SetStart(startpos)
-	elec:SetOrigin(hitpos)
-	elec:SetEntity(self)
-	elec:SetAttachment(2)
-	util.Effect("VJ_HLR_Electric_Skrilly",elec)
-	
-	util.VJ_SphereDamage(self, self, hitpos, 30, 100, DMG_SHOCK, true, false, {Force=90})
+function ENT:OnRangeAttackExecute(status, enemy, projectile)
+	if status == "Init" then
+		local startpos = self:GetPos() + self:GetUp()*45 + self:GetForward()*40
+		local tr = util.TraceLine({
+			start = startpos,
+			endpos = enemy:GetPos() + enemy:OBBCenter(),
+			filter = self
+		})
+		local hitpos = tr.HitPos
+		
+		local elec = EffectData()
+		elec:SetStart(startpos)
+		elec:SetOrigin(hitpos)
+		elec:SetEntity(self)
+		elec:SetAttachment(1)
+		util.Effect("VJ_HLR_Electric_Skrilly",elec)
+		
+		elec = EffectData()
+		elec:SetStart(startpos)
+		elec:SetOrigin(hitpos)
+		elec:SetEntity(self)
+		elec:SetAttachment(2)
+		util.Effect("VJ_HLR_Electric_Skrilly",elec)
+		
+		util.VJ_SphereDamage(self, self, hitpos, 30, 40, DMG_SHOCK, true, false, {Force=90})
+		return true
+	end
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:HandleGibOnDeath(dmginfo, hitgroup)
@@ -281,17 +284,17 @@ function ENT:HandleGibOnDeath(dmginfo, hitgroup)
 		util.Effect("bloodspray",bloodspray)
 		
 	end
-	self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/flesh1.mdl",{BloodDecal="VJ_HLR_Blood_Red",Pos=self:LocalToWorld(Vector(0,0,40))})
-	self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/flesh2.mdl",{BloodDecal="VJ_HLR_Blood_Red",Pos=self:LocalToWorld(Vector(0,0,40))})
-	self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/flesh3.mdl",{BloodDecal="VJ_HLR_Blood_Red",Pos=self:LocalToWorld(Vector(0,0,40))})
-	self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/flesh4.mdl",{BloodDecal="VJ_HLR_Blood_Red",Pos=self:LocalToWorld(Vector(0,0,40))})
-	self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/hgib_b_bone.mdl",{BloodDecal="VJ_HLR_Blood_Red",Pos=self:LocalToWorld(Vector(0,0,50))})
-	self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/hgib_b_gib.mdl",{BloodDecal="VJ_HLR_Blood_Red",Pos=self:LocalToWorld(Vector(0,0,40))})
-	self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/hgib_guts.mdl",{BloodDecal="VJ_HLR_Blood_Red",Pos=self:LocalToWorld(Vector(0,0,40))})
-	self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/hgib_hmeat.mdl",{BloodDecal="VJ_HLR_Blood_Red",Pos=self:LocalToWorld(Vector(0,0,45))})
-	self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/hgib_lung.mdl",{BloodDecal="VJ_HLR_Blood_Red",Pos=self:LocalToWorld(Vector(0,0,45))})
-	self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/hgib_skull.mdl",{BloodDecal="VJ_HLR_Blood_Red",Pos=self:LocalToWorld(Vector(0,0,60))})
-	self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/hgib_legbone.mdl",{BloodDecal="VJ_HLR_Blood_Red",Pos=self:LocalToWorld(Vector(0,0,15))})
+	self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/flesh1.mdl",{CollisionDecal="VJ_HLR1_Blood_Red",Pos=self:LocalToWorld(Vector(0,0,40))})
+	self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/flesh2.mdl",{CollisionDecal="VJ_HLR1_Blood_Red",Pos=self:LocalToWorld(Vector(0,0,40))})
+	self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/flesh3.mdl",{CollisionDecal="VJ_HLR1_Blood_Red",Pos=self:LocalToWorld(Vector(0,0,40))})
+	self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/flesh4.mdl",{CollisionDecal="VJ_HLR1_Blood_Red",Pos=self:LocalToWorld(Vector(0,0,40))})
+	self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/hgib_b_bone.mdl",{CollisionDecal="VJ_HLR1_Blood_Red",Pos=self:LocalToWorld(Vector(0,0,50))})
+	self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/hgib_b_gib.mdl",{CollisionDecal="VJ_HLR1_Blood_Red",Pos=self:LocalToWorld(Vector(0,0,40))})
+	self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/hgib_guts.mdl",{CollisionDecal="VJ_HLR1_Blood_Red",Pos=self:LocalToWorld(Vector(0,0,40))})
+	self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/hgib_hmeat.mdl",{CollisionDecal="VJ_HLR1_Blood_Red",Pos=self:LocalToWorld(Vector(0,0,45))})
+	self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/hgib_lung.mdl",{CollisionDecal="VJ_HLR1_Blood_Red",Pos=self:LocalToWorld(Vector(0,0,45))})
+	self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/hgib_skull.mdl",{CollisionDecal="VJ_HLR1_Blood_Red",Pos=self:LocalToWorld(Vector(0,0,60))})
+	self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/hgib_legbone.mdl",{CollisionDecal="VJ_HLR1_Blood_Red",Pos=self:LocalToWorld(Vector(0,0,15))})
 	return true
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------

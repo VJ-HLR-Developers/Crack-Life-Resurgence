@@ -159,8 +159,8 @@ function ENT:CreateGibEntity(class, models, extraOptions, customFunc)
 		gib.BloodType = bloodType
 		if extraOptions.CollisionDecal != nil then
 			gib.CollisionDecal = extraOptions.CollisionDecal
-		elseif extraOptions.BloodDecal then -- Backwards compatibility
-			gib.CollisionDecal = extraOptions.BloodDecal
+		elseif extraOptions.CollisionDecal then -- Backwards compatibility
+			gib.CollisionDecal = extraOptions.CollisionDecal
 		end
 		if extraOptions.CollisionSound != nil then
 			gib.CollisionSound = extraOptions.CollisionSound

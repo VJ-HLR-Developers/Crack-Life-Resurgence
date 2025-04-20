@@ -51,7 +51,7 @@ end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:Think()
 	util.VJ_SphereDamage(self, self, self:GetPos(), 1024, 2, DMG_NEVERGIB, true, true)
-	self:NextThink(CurTime() + 0.25)
+	self:NextThink(CurTime() + 0.5)
 	return true
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
@@ -131,8 +131,8 @@ function ENT:CreateGibEntity(class, models, extraOptions, customFunc)
 		gib.BloodType = bloodType
 		if extraOptions.CollisionDecal != nil then
 			gib.CollisionDecal = extraOptions.CollisionDecal
-		elseif extraOptions.BloodDecal then -- Backwards compatibility
-			gib.CollisionDecal = extraOptions.BloodDecal
+		elseif extraOptions.CollisionDecal then -- Backwards compatibility
+			gib.CollisionDecal = extraOptions.CollisionDecal
 		end
 		if extraOptions.CollisionSound != nil then
 			gib.CollisionSound = extraOptions.CollisionSound

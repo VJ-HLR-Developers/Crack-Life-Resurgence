@@ -20,7 +20,7 @@ function ENT:CustomOnInitialize()
 	self.SoundTbl_UnFollowPlayer = {"vj_hlr/gsrc/npc/scientist/whyleavehere.wav","vj_hlr/gsrc/npc/scientist/slowingyou.wav","vj_hlr/gsrc/npc/scientist/reconsider.wav","vj_hlr/gsrc/npc/scientist/leavingme.wav","vj_hlr/gsrc/npc/scientist/istay.wav","vj_hlr/gsrc/npc/scientist/illwaithere.wav","vj_hlr/gsrc/npc/scientist/illwait.wav","vj_hlr/gsrc/npc/scientist/fine.wav","vj_hlr/gsrc/npc/scientist/d01_sci14_right.wav","vj_hlr/gsrc/npc/scientist/crowbar.wav","vj_hlr/gsrc/npc/scientist/cantbeserious.wav","vj_hlr/gsrc/npc/scientist/c1a3_sci_1man.wav","vj_hlr/gsrc/npc/scientist/c1a1_sci_5scan.wav","vj_hlr/gsrc/npc/scientist/asexpected.wav","vj_hlr/gsrc/npc/scientist/beenaburden.wav"}
 	self.SoundTbl_MoveOutOfPlayersWay = {"vj_hlr/gsrc/npc/scientist/sorryimleaving.wav","vj_hlr/gsrc/npc/scientist/excuse.wav"}
 	self.SoundTbl_MedicBeforeHeal = {"vj_hlr/gsrc/npc/scientist/youlookbad.wav","vj_hlr/gsrc/npc/scientist/youlookbad2.wav","vj_hlr/gsrc/npc/scientist/youneedmedic.wav","vj_hlr/gsrc/npc/scientist/youwounded.wav","vj_hlr/gsrc/npc/scientist/thiswillhelp.wav","vj_hlr/gsrc/npc/scientist/letstrythis.wav","vj_hlr/gsrc/npc/scientist/letmehelp.wav","vj_hlr/gsrc/npc/scientist/holdstill.wav","vj_hlr/gsrc/npc/scientist/heal1.wav","vj_hlr/gsrc/npc/scientist/heal2.wav","vj_hlr/gsrc/npc/scientist/heal3.wav","vj_hlr/gsrc/npc/scientist/heal4.wav","vj_hlr/gsrc/npc/scientist/heal5.wav"}
-	self.SoundTbl_OnPlayerSight = {"vj_hlr/gsrc/npc/scientist/undertest.wav","vj_hlr/gsrc/npc/scientist/sci_somewhere.wav","vj_hlr/gsrc/npc/scientist/saved.wav","vj_hlr/gsrc/npc/scientist/newhevsuit.wav","vj_hlr/gsrc/npc/scientist/keller.wav","vj_hlr/gsrc/npc/scientist/inmesstoo.wav","vj_hlr/gsrc/npc/scientist/hellothere.wav","vj_hlr/gsrc/npc/scientist/hellofromlab.wav","vj_hlr/gsrc/npc/scientist/hellofreeman.wav","vj_hlr/gsrc/npc/scientist/hello.wav","vj_hlr/gsrc/npc/scientist/greetings.wav","vj_hlr/gsrc/npc/scientist/greetings2.wav","vj_hlr/gsrc/npc/scientist/goodtoseeyou.wav","vj_hlr/gsrc/npc/scientist/freemanalive.wav","vj_hlr/gsrc/npc/scientist/freeman.wav","vj_hlr/gsrc/npc/scientist/fix.wav","vj_hlr/gsrc/npc/scientist/corporal.wav","vj_hlr/gsrc/npc/scientist/c3a2_sci_1surv.wav","vj_hlr/crack_npc/scientist/c3a2_sci_position.wav","vvj_hlr/crack_npc/scientist/c1a4_sci_rocket.wav","vj_hlr/crack_npc/scientist/c1a1_sci_5scan.wav","vj_hlr/crack_npc/scientist/c1a0_sci_gm.wav","vj_hlr/crack_npc/scientist/c1a0_sci_ctrl4a.wav","vj_hlr/crack_npc/scientist/c1a0_sci_ctrl3a.wav","vj_hlr/crack_npc/scientist/c1a0_sci_ctrl2a.wav","vj_hlr/crack_npc/scientist/c1a0_sci_crit3a.wav","vj_hlr/crack_npc/scientist/c1a0_sci_crit2a.wav"}
+	self.SoundTbl_OnPlayerSight = {"vj_hlr/gsrc/npc/scientist/undertest.wav","vj_hlr/gsrc/npc/scientist/sci_somewhere.wav","vj_hlr/gsrc/npc/scientist/saved.wav","vj_hlr/gsrc/npc/scientist/newhevsuit.wav","vj_hlr/gsrc/npc/scientist/keller.wav","vj_hlr/gsrc/npc/scientist/inmesstoo.wav","vj_hlr/gsrc/npc/scientist/hellothere.wav","vj_hlr/gsrc/npc/scientist/hellofromlab.wav","vj_hlr/gsrc/npc/scientist/hellofreeman.wav","vj_hlr/gsrc/npc/scientist/hello.wav","vj_hlr/gsrc/npc/scientist/greetings.wav","vj_hlr/gsrc/npc/scientist/greetings2.wav","vj_hlr/gsrc/npc/scientist/goodtoseeyou.wav","vj_hlr/gsrc/npc/scientist/freemanalive.wav","vj_hlr/gsrc/npc/scientist/freeman.wav","vj_hlr/gsrc/npc/scientist/fix.wav","vj_hlr/gsrc/npc/scientist/corporal.wav","vj_hlr/gsrc/npc/scientist/c3a2_sci_1surv.wav","vj_hlr/crack_npc/scientist/c3a2_sci_position.wav","vj_hlr/crack_npc/scientist/c1a4_sci_rocket.wav","vj_hlr/crack_npc/scientist/c1a1_sci_5scan.wav","vj_hlr/crack_npc/scientist/c1a0_sci_gm.wav","vj_hlr/crack_npc/scientist/c1a0_sci_ctrl4a.wav","vj_hlr/crack_npc/scientist/c1a0_sci_ctrl3a.wav","vj_hlr/crack_npc/scientist/c1a0_sci_ctrl2a.wav","vj_hlr/crack_npc/scientist/c1a0_sci_crit3a.wav","vj_hlr/crack_npc/scientist/c1a0_sci_crit2a.wav"}
 	self.SoundTbl_Investigate = {"vj_hlr/gsrc/npc/scientist/whatissound.wav","vj_hlr/gsrc/npc/scientist/overhere.wav","vj_hlr/gsrc/npc/scientist/lowervoice.wav","vj_hlr/gsrc/npc/scientist/ihearsomething.wav","vj_hlr/gsrc/npc/scientist/hello2.wav","vj_hlr/gsrc/npc/scientist/hearsomething.wav","vj_hlr/gsrc/npc/scientist/didyouhear.wav","vj_hlr/gsrc/npc/scientist/d01_sci10_interesting.wav","vj_hlr/gsrc/npc/scientist/c3a2_sci_1glu.wav"}
 	self.SoundTbl_Alert = {"vj_hlr/crack_npc/scientist/sci6.wav","vj_hlr/crack_npc/scientist/c1a3_sci_team.wav","vj_hlr/crack_npc/scientist/c1a3_sci_rescued.wav"}
 	self.SoundTbl_BecomeEnemyToPlayer = {"vj_hlr/crack_npc/scientist/sci_aftertest.wav","vj_hlr/crack_npc/scientist/fuckoff1.wav","vj_hlr/crack_npc/scientist/fuckoff2.wav"}
@@ -65,15 +65,29 @@ function ENT:Controller_IntMsg(ply, controlEnt)
 	ply:ChatPrint("LMOUSE: Question everyone if they even lift (if not scared & possible)")
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
-function ENT:CustomOnMedic_OnHeal(ent)
-	if IsValid(ent) then
-		ent.SoundTbl_MedicReceiveHeal = {""}
-		local d = DamageInfo()
-		d:SetAttacker(ent)
-		d:SetDamageType(DMG_NERVEGAS) 
-		d:SetDamage(ent:Health())
-		ent:TakeDamageInfo(d)
-		return true
+function ENT:OnMedicBehavior(status, statusData)
+	if status == "BeforeHeal" then
+		-- Healing animation (3)
+		self:PlayAnim(ACT_ARM, true, false, false, 0, {OnFinish=function(interrupted, anim)
+			if interrupted then return end
+			self:PlayAnim(ACT_MELEE_ATTACK1, true, false, false, 0, {OnFinish=function(interrupted2, anim2)
+
+
+				local ent = self.MedicData.Target
+				self.SoundTbl_MedicReceiveHeal = {""}
+				local d = DamageInfo()
+				d:SetAttacker(ent)
+				d:SetInflictor(self)
+				d:SetDamageType(DMG_NERVEGAS) 
+				d:SetDamage(ent:Health())
+				ent:TakeDamageInfo(d)
+
+				if interrupted2 then return end
+				self:PlayAnim(ACT_DISARM, true, false)
+			end})
+		end})
+	elseif status == "OnReset" then
+		timer.Simple(1.5, function() if IsValid(self) then self:SetBodygroup(2, 0) end end)
 	end
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------

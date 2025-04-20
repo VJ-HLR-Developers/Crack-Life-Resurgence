@@ -12,6 +12,19 @@ local AutorunFile = "autorun/vj_hlr_crack_autorun.lua"
 -------------------------------------------------------
 local VJExists = file.Exists("lua/autorun/vj_base_autorun.lua","GAME")
 local HLRExists = file.Exists("lua/autorun/vj_hlr_autorun.lua","GAME")
+
+
+-- sound.Add( {
+-- 	name = "HLRCL_UFOSD_IntroSound",
+-- 	channel = CHAN_VOICE,
+-- 	volume = 1.0,
+-- 	level = 100,
+-- 	pitch = 100,
+-- 	sound = "vj_hlr/crack_npc/joj/JOJbossintro.wav"
+-- } )
+
+-- util.PrecacheSound("HLRCL_UFOSD_IntroSound")
+
 if VJExists == true then
 	include('autorun/vj_controls.lua')
 

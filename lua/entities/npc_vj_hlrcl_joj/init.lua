@@ -9,7 +9,7 @@ local combatDistance = 3000 -- When closer then this, it will stop chasing and s
 
 ENT.Model = {"models/vj_hlr/cracklife/ufo.mdl"} -- The game will pick a random model from the table when the SNPC is spawned | Add as many as you want
 ENT.VJ_IsHugeMonster = true
-ENT.StartHealth = 6000 -- The starting health of the NPC
+ENT.StartHealth = 3000 -- The starting health of the NPC
 ENT.HullType = HULL_LARGE
 ENT.SightAngle = 180 -- The sight angle | Example: 180 would make the it see all around it | Measured in degrees and then converted to radians
 ENT.TurningSpeed = 20 -- How fast it can turn
@@ -78,7 +78,7 @@ function ENT:CustomOnInitialize()
 	self.Immune_Bullet = true
 	self.Immune_Blast = true
 	if GetConVar("vj_hlrcl_skipufointro"):GetInt() == 1 then
-		if GetConVar("vj_npc_snd_track"):GetInt() == 0 then
+		if GetConVar("vj_npc_snd_track"):GetInt() == 1 then
 			self.HasSoundTrack = true
 			self:StartSoundTrack()
 		end
@@ -93,6 +93,7 @@ function ENT:CustomOnInitialize()
 	
 	if IsValid(self) && GetConVar("vj_hlrcl_skipufointro"):GetInt() == 0 then
 		self.UFOSD_IntroSound = VJ_CreateSound(self, "vj_hlr/crack_npc/joj/JOJbossintro.wav", 100)
+		//self.UFOSD_IntroSound = CreateSound(self, "HLRCL_UFOSD_IntroSound")
 		self.shield = ents.Create("prop_dynamic")
 		self.shield:SetPos(self:GetPos())
 		self.shield:SetAngles(self:GetAngles())
@@ -107,7 +108,7 @@ function ENT:CustomOnInitialize()
 		self:SetState(VJ_STATE_FREEZE)
 		timer.Create("jojufo_intro"..self:EntIndex(), 19, 1, function() 
 			self:SetParent(NULL)
-			if GetConVar("vj_npc_snd_track"):GetInt() == 0 then
+			if GetConVar("vj_npc_snd_track"):GetInt() == 1 then
 				self.HasSoundTrack = true
 				self:StartSoundTrack()
 			end
@@ -357,8 +358,8 @@ function ENT:CustomOnInitialKilled(dmginfo, hitgroup)
 			gib:SetModel(VJ_PICK(gibTbl))
 			gib:SetPos(self:GetPos() + Vector(math.random(-100, 100), math.random(-100, 100), math.random(20, 150)))
 			gib:SetAngles(Angle(math.Rand(-180, 180), math.Rand(-180, 180), math.Rand(-180, 180)))
-			gib.Collide_Decal = ""
-			gib.CollideSound = sdGibCollide
+			gib.CollisionDecal = false
+			gib.CollisionSound = sdGibCollide
 			gib:Spawn()
 			gib:Activate()
 			local myPhys = gib:GetPhysicsObject()
@@ -512,6 +513,7 @@ function ENT:CustomOnRemove()
 	timer.Remove("jojufo_snarksp"..self:EntIndex())
 	if IsValid(self.shield) then self.shield:Remove() end
 	if IsValid(self.HackyShitBecauseIAmLazy) then self.HackyShitBecauseIAmLazy:Remove() end
+	//if IsValid(self.UFOSD_IntroSound) then self.UFOSD_IntroSound:Stop() end
 	VJ_STOPSOUND(self.UFOSD_IntroSound)
 	VJ_STOPSOUND(self.UFOSD_Engine)
 	VJ_STOPSOUND(self.UFOSD_Laser)

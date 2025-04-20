@@ -6,7 +6,7 @@
 AddCSLuaFile()
 
 ENT.Type 			= "anim"
-ENT.Base 			= "obj_vj_projectile_base"
+ENT.Base 			= "obj_vj_grenade"
 ENT.PrintName		= "Grenade"
 ENT.Author 			= "DrVrej"
 ENT.Contact 		= "http://steamcommunity.com/groups/vrejgaming"
@@ -16,7 +16,8 @@ ENT.Category		= "VJ Base"
 ENT.Spawnable = false
 ENT.AdminOnly = false
 
-ENT.VJTag_ID_Danger = true
+ENT.VJ_ID_Grenade = true
+ENT.VJ_ID_Grabbable = true
 
 if (CLIENT) then
 	local Name = "Pepsi Can"
@@ -33,6 +34,7 @@ ENT.Model = {"models/vj_hlr/cracklife/pepsinade.mdl"} -- The models it should sp
 ENT.MoveCollideType = nil -- Move type | Some examples: MOVECOLLIDE_FLY_BOUNCE, MOVECOLLIDE_FLY_SLIDE
 ENT.CollisionGroupType = nil -- Collision type, recommended to keep it as it is
 ENT.SolidType = SOLID_VPHYSICS -- Solid type, recommended to keep it as it is
+ENT.ProjectileType = VJ.PROJ_TYPE_PROP
 ENT.RemoveOnHit = false -- Should it remove itself when it touches something? | It will run the hit sound, place a decal, etc.
 ENT.DoesRadiusDamage = true -- Should it do a blast damage when it hits something?
 ENT.RadiusDamageRadius = 250 -- How far the damage go? The farther away it's from its enemy, the less damage it will do | Counted in world units
@@ -72,7 +74,7 @@ function ENT:CustomOnTakeDamage(dmginfo)
 	end
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
-function ENT:CustomOnPhysicsCollide(data,phys)
+function ENT:OnCollision(data,phys)
 	local getvelocity = phys:GetVelocity()
 	local velocityspeed = getvelocity:Length()
 	//print(velocityspeed)

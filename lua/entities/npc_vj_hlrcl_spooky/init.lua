@@ -11,7 +11,7 @@ ENT.VJ_NPC_Class = {"CLASS_CRACKLIFE"} -- NPCs with the same class with be allie
 ENT.Bleeds = false
 ENT.BloodColor = ""
 ENT.HasBloodParticle = false
-ENT.HasBloodDecal = false
+ENT.HasCollisionDecal = false
 
 ENT.HasIdleSounds = false
 ENT.HasAlertSounds = false

@@ -9,7 +9,7 @@ include("shared.lua")
 ENT.Model = "models/vj_hlr/cracklife/finalboss.mdl"
 ENT.BloodColor = ""
 ENT.HasBloodParticle = false
-ENT.HasBloodDecal = false
+ENT.HasCollisionDecal = false
 ENT.Bleeds = false
 ENT.VJ_NPC_Class = {"CLASS_CRACKLIFE"} -- NPCs with the same class with be allied to each other
 ENT.StartHealth = 66666

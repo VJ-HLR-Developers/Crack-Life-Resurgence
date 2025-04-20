@@ -17,7 +17,7 @@ ENT.VJC_Data = {
 ENT.Bleeds = false
 //ENT.BloodColor = ""
 ENT.HasBloodParticle = false
-ENT.HasBloodDecal = false
+ENT.HasCollisionDecal = false
 ENT.VJ_NPC_Class = {"CLASS_CRACKLIFE_IT"} -- NPCs with the same class with be allied to each other
 ENT.HasDeathRagdoll = false
 

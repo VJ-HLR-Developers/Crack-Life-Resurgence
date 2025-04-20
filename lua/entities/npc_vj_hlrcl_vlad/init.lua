@@ -7,7 +7,7 @@ include("shared.lua")
 -----------------------------------------------*/
 ENT.Model = {"models/vj_hlr/cracklife/vlad_tank_bdy.mdl"} -- The game will pick a random model from the table when the SNPC is spawned | Add as many as you want 
 ENT.DeathCorpseModel = {"models/vj_hlr/hl1/tank_body_destroyed.mdl"} -- The game will pick a random model from the table when the SNPC is spawned | Add as many as you want 
-ENT.StartHealth = 5000
+ENT.StartHealth = 4000
 ENT.VJC_Data = {
     ThirdP_Offset = Vector(-20, 0, 40), -- The offset for the controller when the camera is in third person
     FirstP_Bone = "static _prop", -- If left empty, the base will attempt to calculate a position for first person
