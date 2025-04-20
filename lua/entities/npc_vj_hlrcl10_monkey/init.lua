@@ -55,10 +55,10 @@ ENT.AnimTbl_Death = ACT_DIESIMPLE
 ENT.SoundTbl_FootStep = {"vj_hlr/crack_fx/npc_step1.wav","vj_hlr/crack_fx/npc_step2.wav","vj_hlr/crack_fx/npc_step3.wav","vj_hlr/crack_fx/npc_step4.wav"}
 ENT.SoundTbl_Idle = {"vj_hlr/crack10_npc/monkey/monke_idle1.wav","vj_hlr/crack10_npc/monkey/monke_idle2.wav","vj_hlr/crack10_npc/monkey/monke_idle3.wav"}
 ENT.SoundTbl_Alert = {"vj_hlr/crack10_npc/monkey/monke_alert1.wav", "vj_hlr/crack10_npc/monkey/monke_alert2.wav", "vj_hlr/crack10_npc/monkey/monke_alert3.wav"}
-ENT.SoundTbl_MeleeAttackExtra = {"vj_hlr/hl1_npc/zombie/claw_strike1.wav","vj_hlr/hl1_npc/zombie/claw_strike2.wav","vj_hlr/hl1_npc/zombie/claw_strike3.wav"}
-ENT.SoundTbl_LeapAttackDamage = {"vj_hlr/hl1_npc/zombie/claw_strike1.wav","vj_hlr/hl1_npc/zombie/claw_strike2.wav","vj_hlr/hl1_npc/zombie/claw_strike3.wav"}
-ENT.SoundTbl_MeleeAttackMiss = {"vj_hlr/hl1_npc/zombie/claw_miss1.wav","vj_hlr/hl1_npc/zombie/claw_miss2.wav"}
-ENT.SoundTbl_LeapAttackDamageMiss = {"vj_hlr/hl1_npc/zombie/claw_miss1.wav","vj_hlr/hl1_npc/zombie/claw_miss2.wav"}
+ENT.SoundTbl_MeleeAttackExtra = {"vj_hlr/gsrc/npc/zombie/claw_strike1.wav","vj_hlr/gsrc/npc/zombie/claw_strike2.wav","vj_hlr/gsrc/npc/zombie/claw_strike3.wav"}
+ENT.SoundTbl_LeapAttackDamage = {"vj_hlr/gsrc/npc/zombie/claw_strike1.wav","vj_hlr/gsrc/npc/zombie/claw_strike2.wav","vj_hlr/gsrc/npc/zombie/claw_strike3.wav"}
+ENT.SoundTbl_MeleeAttackMiss = {"vj_hlr/gsrc/npc/zombie/claw_miss1.wav","vj_hlr/gsrc/npc/zombie/claw_miss2.wav"}
+ENT.SoundTbl_LeapAttackDamageMiss = {"vj_hlr/gsrc/npc/zombie/claw_miss1.wav","vj_hlr/gsrc/npc/zombie/claw_miss2.wav"}
 ENT.SoundTbl_Pain = {"vj_hlr/crack10_npc/monkey/monke_pain1.wav", "vj_hlr/crack10_npc/monkey/monke_pain2.wav", "vj_hlr/crack10_npc/monkey/monke_pain3.wav", "vj_hlr/crack10_npc/monkey/monke_pain4.wav", "vj_hlr/crack10_npc/monkey/monke_pain5.wav"}
 ENT.SoundTbl_Death = {"vj_hlr/crack10_npc/monkey/monke_pain1.wav", "vj_hlr/crack10_npc/monkey/monke_pain2.wav", "vj_hlr/crack10_npc/monkey/monke_pain3.wav", "vj_hlr/crack10_npc/monkey/monke_pain4.wav", "vj_hlr/crack10_npc/monkey/monke_pain5.wav"}
 ENT.SoundTbl_BeforeLeapAttack = {"vj_hlr/crack10_npc/monkey/monke_pain2.wav"}
@@ -139,7 +139,7 @@ end
 function ENT:CustomOnPriorToKilled(dmginfo, hitgroup)
 	if self.Legbone == true then
 		self:SetBodygroup(0,1)
-		self:CreateGibEntity("obj_vj_gib", "models/vj_hlr/gibs/hgib_legbone.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,0)),CollideSound={""}})
+		self:CreateGibEntity("obj_vj_gib", "models/vj_hlr/gibs/hgib_legbone.mdl",{CollisionDecal=false,Pos=self:LocalToWorld(Vector(0,0,0)),CollideSound={""}})
 	end
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------

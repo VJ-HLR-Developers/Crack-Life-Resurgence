@@ -43,8 +43,8 @@ function ENT:CustomOnInitialize()
 	self.SoundTbl_Idle = {"vj_hlr/null.wav"}
 	self.SoundTbl_Alert = {"vj_hlr/crack_npc/shrek/bc_attackgrowl.wav"}
 	self.SoundTbl_BeforeMeleeAttack = {"vj_hlr/crack_npc/shrek/bc_attackgrowl.wav"}
-	self.SoundTbl_MeleeAttack = {"vj_hlr/hl1_npc/bullchicken/bc_bite1.wav","vj_hlr/hl1_npc/bullchicken/bc_bite2.wav","vj_hlr/hl1_npc/bullchicken/bc_bite3.wav"}
-	self.SoundTbl_MeleeAttackMiss = {"vj_hlr/hl1_npc/zombie/claw_miss1.wav","vj_hlr/hl1_npc/zombie/claw_miss2.wav"}
+	self.SoundTbl_MeleeAttack = {"vj_hlr/gsrc/npc/bullchicken/bc_bite1.wav","vj_hlr/gsrc/npc/bullchicken/bc_bite2.wav","vj_hlr/gsrc/npc/bullchicken/bc_bite3.wav"}
+	self.SoundTbl_MeleeAttackMiss = {"vj_hlr/gsrc/npc/zombie/claw_miss1.wav","vj_hlr/gsrc/npc/zombie/claw_miss2.wav"}
 	self.SoundTbl_Pain = {"vj_hlr/crack_npc/shrek/bc_pain1.wav","vj_hlr/crack_npc/shrek/bc_pain2.wav","vj_hlr/crack_npc/shrek/bc_pain3.wav"}
 	self.SoundTbl_Death = {"vj_hlr/crack_npc/shrek/bc_die1.wav","vj_hlr/crack_npc/shrek/bc_die2.wav","vj_hlr/crack_npc/shrek/bc_die2.wav"}
 end

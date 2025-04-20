@@ -39,6 +39,8 @@ ENT.HasDeathAnimation = true -- Does it play an animation when it dies?
 ENT.DeathAnimationTime = 0.9 -- Time until the SNPC spawns its corpse and gets removed
 ENT.AnimTbl_Death = ACT_DIESIMPLE -- Death Animations
 
+ENT.Weapon_IgnoreSpawnMenu = true
+
 
 ENT.SoundTbl_FootStep = {"vj_hlr/crack_fx/npc_step1.wav","vj_hlr/crack_fx/npc_step2.wav","vj_hlr/crack_fx/npc_step3.wav","vj_hlr/crack_fx/npc_step4.wav"}
 ENT.SoundTbl_Alert = {"vj_hlr/crack_npc/bigsmoke/bs3.wav","vj_hlr/crack_npc/bigsmoke/bs4.wav","vj_hlr/crack_npc/bigsmoke/bs5.wav","vj_hlr/crack_npc/bigsmoke/bs6.wav"}

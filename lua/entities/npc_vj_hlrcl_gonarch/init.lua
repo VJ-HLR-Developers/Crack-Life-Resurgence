@@ -19,7 +19,7 @@ function ENT:CustomOnInitialize()
 	self.SoundTbl_Idle = {"vj_hlr/crack_npc/gonarch/gon_sack1.wav","vj_hlr/crack_npc/gonarch/gon_sack2.wav","vj_hlr/crack_npc/gonarch/gon_sack3.wav"}
 	self.SoundTbl_Alert = {"vj_hlr/crack_npc/gonarch/gon_alert1.wav","vj_hlr/crack_npc/gonarch/gon_alert2.wav","vj_hlr/crack_npc/gonarch/gon_alert3.wav"}
 	self.SoundTbl_BeforeMeleeAttack = {"vj_hlr/crack_npc/gonarch/gon_attack1.wav","vj_hlr/crack_npc/gonarch/gon_attack2.wav","vj_hlr/crack_npc/gonarch/gon_attack3.wav"}
-	self.SoundTbl_MeleeAttackMiss = {"vj_hlr/hl1_npc/zombie/claw_miss1.wav","vj_hlr/hl1_npc/zombie/claw_miss2.wav"}
+	self.SoundTbl_MeleeAttackMiss = {"vj_hlr/gsrc/npc/zombie/claw_miss1.wav","vj_hlr/gsrc/npc/zombie/claw_miss2.wav"}
 	self.SoundTbl_BeforeRangeAttack = {"vj_hlr/crack_npc/gonarch/gon_attack1.wav","vj_hlr/crack_npc/gonarch/gon_attack2.wav","vj_hlr/crack_npc/gonarch/gon_attack3.wav"}
 	self.SoundTbl_RangeAttack = {"vj_hlr/crack_npc/gonarch/gon_sack1.wav","vj_hlr/crack_npc/gonarch/gon_sack2.wav","vj_hlr/crack_npc/gonarch/gon_sack3.wav"}
 	self.SoundTbl_Pain = {"vj_hlr/crack_npc/gonarch/gon_pain2.wav","vj_hlr/crack_npc/gonarch/gon_pain4.wav","vj_hlr/crack_npc/gonarch/gon_pain5.wav"}

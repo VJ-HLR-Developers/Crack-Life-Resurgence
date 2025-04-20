@@ -51,8 +51,8 @@ ENT.AnimTbl_Death = {ACT_DIE_HEADSHOT, ACT_DIEFORWARD}
 //ENT.SoundTbl_SoundTrack = {"vj_hlr/crack_npc/blackscary/bendrowned.mp3"}
 ENT.SoundTbl_Death = {"vj_hlr/crack_npc/blackscary/die.wav"}
 ENT.SoundTbl_Breath = {"vj_hlr/crack_npc/blackscary/breathe1.wav"}
-ENT.SoundTbl_BeforeMeleeAttack = {"vj_hlr/hl1_npc/zombie/zo_attack1.wav","vj_hlr/hl1_npc/zombie/zo_attack2.wav"}
-ENT.SoundTbl_MeleeAttackExtra = {"vj_hlr/hl1_npc/zombie/claw_strike1.wav","vj_hlr/hl1_npc/zombie/claw_strike2.wav","vj_hlr/hl1_npc/zombie/claw_strike3.wav"}
+ENT.SoundTbl_BeforeMeleeAttack = {"vj_hlr/gsrc/npc/zombie/zo_attack1.wav","vj_hlr/gsrc/npc/zombie/zo_attack2.wav"}
+ENT.SoundTbl_MeleeAttackExtra = {"vj_hlr/gsrc/npc/zombie/claw_strike1.wav","vj_hlr/gsrc/npc/zombie/claw_strike2.wav","vj_hlr/gsrc/npc/zombie/claw_strike3.wav"}
 
 ENT.GeneralSoundPitch1 = 100
 ENT.BeforeMeleeAttackSoundPitch = VJ_Set(30, 50)

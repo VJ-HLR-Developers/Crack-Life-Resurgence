@@ -44,12 +44,12 @@ ENT.SoundTbl_Idle = {"vj_hlr/crack10_npc/scientist/amogus.wav","vj_hlr/crack10_n
 ENT.SoundTbl_BeforeMeleeAttack = {"vj_hlr/gsrc/fx/null.wav","vj_hlr/gsrc/fx/null.wav"}
 ENT.SoundTbl_Alert = {"vj_hlr/crack10_npc/scientist/fedora1.wav","vj_hlr/crack10_npc/scientist/fedora2.wav","vj_hlr/crack10_npc/scientist/fedora3.wav","vj_hlr/crack10_npc/scientist/fedora4.wav","vj_hlr/crack10_npc/scientist/fedora5.wav","vj_hlr/crack10_npc/scientist/fedora6.wav"}
 ENT.SoundTbl_RangeAttack = {"vj_hlr/crack10_npc/scientist/fedora1.wav"}
-ENT.SoundTbl_MeleeAttackExtra = {"vj_hlr/hl1_npc/zombie/claw_strike1.wav","vj_hlr/hl1_npc/zombie/claw_strike2.wav","vj_hlr/hl1_npc/zombie/claw_strike3.wav"}
-ENT.SoundTbl_LeapAttackDamage = {"vj_hlr/hl1_npc/zombie/claw_strike1.wav","vj_hlr/hl1_npc/zombie/claw_strike2.wav","vj_hlr/hl1_npc/zombie/claw_strike3.wav"}
-ENT.SoundTbl_MeleeAttackMiss = {"vj_hlr/hl1_npc/zombie/claw_miss1.wav","vj_hlr/hl1_npc/zombie/claw_miss2.wav"}
-ENT.SoundTbl_LeapAttackDamageMiss = {"vj_hlr/hl1_npc/zombie/claw_miss1.wav","vj_hlr/hl1_npc/zombie/claw_miss2.wav"}
-ENT.SoundTbl_Pain = {"vj_hlr/hl1_npc/scientist/sci_pain1.wav","vj_hlr/hl1_npc/scientist/sci_pain2.wav","vj_hlr/hl1_npc/scientist/sci_pain3.wav","vj_hlr/hl1_npc/scientist/sci_pain4.wav","vj_hlr/hl1_npc/scientist/sci_pain5.wav"}
-ENT.SoundTbl_Death = {"vj_hlr/hl1_npc/scientist/sci_pain1.wav","vj_hlr/hl1_npc/scientist/sci_pain2.wav","vj_hlr/hl1_npc/scientist/sci_pain3.wav","vj_hlr/hl1_npc/scientist/sci_pain4.wav","vj_hlr/hl1_npc/scientist/sci_pain5.wav"}
+ENT.SoundTbl_MeleeAttackExtra = {"vj_hlr/gsrc/npc/zombie/claw_strike1.wav","vj_hlr/gsrc/npc/zombie/claw_strike2.wav","vj_hlr/gsrc/npc/zombie/claw_strike3.wav"}
+ENT.SoundTbl_LeapAttackDamage = {"vj_hlr/gsrc/npc/zombie/claw_strike1.wav","vj_hlr/gsrc/npc/zombie/claw_strike2.wav","vj_hlr/gsrc/npc/zombie/claw_strike3.wav"}
+ENT.SoundTbl_MeleeAttackMiss = {"vj_hlr/gsrc/npc/zombie/claw_miss1.wav","vj_hlr/gsrc/npc/zombie/claw_miss2.wav"}
+ENT.SoundTbl_LeapAttackDamageMiss = {"vj_hlr/gsrc/npc/zombie/claw_miss1.wav","vj_hlr/gsrc/npc/zombie/claw_miss2.wav"}
+ENT.SoundTbl_Pain = {"vj_hlr/gsrc/npc/scientist/sci_pain1.wav","vj_hlr/gsrc/npc/scientist/sci_pain2.wav","vj_hlr/gsrc/npc/scientist/sci_pain3.wav","vj_hlr/gsrc/npc/scientist/sci_pain4.wav","vj_hlr/gsrc/npc/scientist/sci_pain5.wav"}
+ENT.SoundTbl_Death = {"vj_hlr/gsrc/npc/scientist/sci_pain1.wav","vj_hlr/gsrc/npc/scientist/sci_pain2.wav","vj_hlr/gsrc/npc/scientist/sci_pain3.wav","vj_hlr/gsrc/npc/scientist/sci_pain4.wav","vj_hlr/gsrc/npc/scientist/sci_pain5.wav"}
 
 ENT.MeleeAttackDamage = 33
 
@@ -221,7 +221,7 @@ end
 function ENT:CustomOnPriorToKilled(dmginfo, hitgroup)
 	if self.SpawnHat == true then
 		self:SetBodygroup(0,1)
-		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/cracklife10/katana.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,0)),CollideSound={""}})
+		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/cracklife10/katana.mdl",{CollisionDecal=false,Pos=self:LocalToWorld(Vector(0,0,0)),CollideSound={""}})
 		self.SpawnHat = false
 	end
 end

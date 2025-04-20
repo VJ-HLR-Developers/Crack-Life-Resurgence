@@ -25,7 +25,7 @@ function ENT:CustomOnAcceptInput(key, activator, caller, data)
 			wep:NPCShoot_Primary()
 		end
 	elseif key == "land" then
-		VJ_EmitSound(self, "vj_hlr/hl1_npc/player/pl_jumpland2.wav", 70)
+		VJ_EmitSound(self, "vj_hlr/gsrc/npc/player/pl_jumpland2.wav", 70)
 	elseif key == "body" then
 		VJ_EmitSound(self, "vj_hlr/crack_fx/bodydrop.wav", 75, 100)
 	end

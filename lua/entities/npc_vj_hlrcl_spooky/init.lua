@@ -44,21 +44,20 @@ end
 function ENT:HandleGibOnDeath(dmginfo,hitgroup)
 	self.HasDeathSounds = false
 	
-	self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/abone_template1.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,40))})
-	self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/abone_template1.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,20))})
-	self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/abone_template1.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,30))})
-	self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/abone_template1.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,15))})
-	self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/abone_template1.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,35))})
-	self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/bleachbones_pelvis_template1.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,35))})
-	self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/bleachbones_jawbone1.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,50))})
-	self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/bleachbones_bskull_template1.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,55))})
-	self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/bleachbones_ribcage1.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,40))})
-	self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/bleachbones_riblet1.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,45))})
-	self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/bleachbones_riblet1.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,25))})
-	self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/bleachbones_riblet1.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,35))})
+	self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/abone_template1.mdl",{CollisionDecal=false,Pos=self:LocalToWorld(Vector(0,0,40))})
+	self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/abone_template1.mdl",{CollisionDecal=false,Pos=self:LocalToWorld(Vector(0,0,20))})
+	self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/abone_template1.mdl",{CollisionDecal=false,Pos=self:LocalToWorld(Vector(0,0,30))})
+	self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/abone_template1.mdl",{CollisionDecal=false,Pos=self:LocalToWorld(Vector(0,0,15))})
+	self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/abone_template1.mdl",{CollisionDecal=false,Pos=self:LocalToWorld(Vector(0,0,35))})
+	self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/bleachbones_pelvis_template1.mdl",{CollisionDecal=false,Pos=self:LocalToWorld(Vector(0,0,35))})
+	self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/bleachbones_jawbone1.mdl",{CollisionDecal=false,Pos=self:LocalToWorld(Vector(0,0,50))})
+	self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/bleachbones_bskull_template1.mdl",{CollisionDecal=false,Pos=self:LocalToWorld(Vector(0,0,55))})
+	self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/bleachbones_ribcage1.mdl",{CollisionDecal=false,Pos=self:LocalToWorld(Vector(0,0,40))})
+	self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/bleachbones_riblet1.mdl",{CollisionDecal=false,Pos=self:LocalToWorld(Vector(0,0,45))})
+	self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/bleachbones_riblet1.mdl",{CollisionDecal=false,Pos=self:LocalToWorld(Vector(0,0,25))})
+	self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/bleachbones_riblet1.mdl",{CollisionDecal=false,Pos=self:LocalToWorld(Vector(0,0,35))})
 	self:PlaySoundSystem("Gib", "vj_base/gib/splat.wav")
 	self:PlaySoundSystem("Gib", "vj_hlr/crack_fx/bodysplat.wav")
-
 	return true, {AllowSound = false}
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------

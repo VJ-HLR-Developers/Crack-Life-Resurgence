@@ -13,11 +13,11 @@ ENT.CanUseHD = false
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomOnInitialize()
 	self:SetCollisionBounds(Vector(25,25,95), Vector(-25,-25,0))
-	self.SoundTbl_FootStep = {"vj_hlr/hl1_npc/player/pl_ladder1.wav","vj_hlr/hl1_npc/player/pl_ladder2.wav","vj_hlr/hl1_npc/player/pl_ladder3.wav","vj_hlr/hl1_npc/player/pl_ladder4.wav"}
+	self.SoundTbl_FootStep = {"vj_hlr/gsrc/npc/player/pl_ladder1.wav","vj_hlr/gsrc/npc/player/pl_ladder2.wav","vj_hlr/gsrc/npc/player/pl_ladder3.wav","vj_hlr/gsrc/npc/player/pl_ladder4.wav"}
 	self.SoundTbl_Idle = {"vj_hlr/crack_npc/agrunt/ag_idle1.wav","vj_hlr/crack_npc/agrunt/ag_idle2.wav","vj_hlr/crack_npc/agrunt/ag_idle3.wav","vj_hlr/crack_npc/agrunt/ag_idle4.wav","vj_hlr/crack_npc/agrunt/ag_idle5.wav"}
 	self.SoundTbl_Alert = {"vj_hlr/crack_npc/agrunt/ag_alert1.wav","vj_hlr/crack_npc/agrunt/ag_alert2.wav","vj_hlr/crack_npc/agrunt/ag_alert3.wav","vj_hlr/crack_npc/agrunt/ag_alert4.wav","vj_hlr/crack_npc/agrunt/ag_alert5.wav"}
-	self.SoundTbl_MeleeAttackExtra = {"vj_hlr/hl1_npc/zombie/claw_strike1.wav","vj_hlr/hl1_npc/zombie/claw_strike2.wav","vj_hlr/hl1_npc/zombie/claw_strike3.wav"}
-	self.SoundTbl_MeleeAttackMiss = {"vj_hlr/hl1_npc/zombie/claw_miss1.wav","vj_hlr/hl1_npc/zombie/claw_miss2.wav"}
+	self.SoundTbl_MeleeAttackExtra = {"vj_hlr/gsrc/npc/zombie/claw_strike1.wav","vj_hlr/gsrc/npc/zombie/claw_strike2.wav","vj_hlr/gsrc/npc/zombie/claw_strike3.wav"}
+	self.SoundTbl_MeleeAttackMiss = {"vj_hlr/gsrc/npc/zombie/claw_miss1.wav","vj_hlr/gsrc/npc/zombie/claw_miss2.wav"}
 	self.SoundTbl_BeforeMeleeAttack = {"vj_hlr/crack_npc/agrunt/ag_attack1.wav","vj_hlr/crack_npc/agrunt/ag_attack2.wav","vj_hlr/crack_npc/agrunt/ag_attack3.wav"}
 	self.SoundTbl_BeforeRangeAttack = {"vj_hlr/crack_npc/agrunt/ag_attack1.wav"}
 	self.SoundTbl_Pain = {"vj_hlr/crack_npc/agrunt/ag_pain1.wav","vj_hlr/crack_npc/agrunt/ag_pain2.wav","vj_hlr/crack_npc/agrunt/ag_pain3.wav","vj_hlr/crack_npc/agrunt/ag_pain4.wav","vj_hlr/crack_npc/agrunt/ag_pain5.wav"}

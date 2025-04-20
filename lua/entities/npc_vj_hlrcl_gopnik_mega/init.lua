@@ -63,7 +63,7 @@ function ENT:CustomOnThink()
 	end
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
-function ENT:OnPlayCreateSound(SoundData,SoundFile)
+function ENT:OnCreateSound(SoundData,SoundFile)
 	self.SCI_NextMouthMove = CurTime() + SoundDuration(SoundFile)
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
@@ -121,7 +121,9 @@ function ENT:HandleGibOnDeath(dmginfo,hitgroup)
 		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/hgib_lung.mdl",{BloodDecal="VJ_HLR_Blood_Red",Pos=self:LocalToWorld(Vector(0,0,45))})
 		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/hgib_legbone.mdl",{BloodDecal="VJ_HLR_Blood_Red",Pos=self:LocalToWorld(Vector(0,0,15))})
 		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/hgib_skull.mdl",{BloodDecal="VJ_HLR_Blood_Red",Pos=self:LocalToWorld(Vector(0,0,90))})
-		return true
+		self:PlaySoundSystem("Gib", "vj_hlr/crack_fx/bodysplat.wav")
+		self:PlaySoundSystem("Gib", "vj_base/gib/splat.wav")
+		return true, {AllowSound = false}
 end
 /*-----------------------------------------------
 	*** Copyright (c) 2010-2025 by oteek, All rights reserved. ***

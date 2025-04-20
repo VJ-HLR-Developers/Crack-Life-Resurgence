@@ -36,36 +36,33 @@ function ENT:Vort_DoElecEffect(sp, hp, hn, a, t)
 	util.Effect("VJ_HLR_Electric_Charge_Disco", elec)
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
-function ENT:CustomRangeAttackCode()
-	local startpos = self:GetPos() + self:GetUp()*45 + self:GetForward()*40
-	local tr = util.TraceLine({
-		start = startpos,
-		endpos = self:GetEnemy():GetPos() + self:GetEnemy():OBBCenter(),
-		filter = self
-	})
-	local hitpos = tr.HitPos
-	
-	local elec = EffectData()
-	elec:SetStart(startpos)
-	elec:SetOrigin(hitpos)
-	elec:SetEntity(self)
-	elec:SetAttachment(1)
-	util.Effect("VJ_HLR_Electric_Disco",elec)
-	
-	elec = EffectData()
-	elec:SetStart(startpos)
-	elec:SetOrigin(hitpos)
-	elec:SetEntity(self)
-	elec:SetAttachment(2)
-	util.Effect("VJ_HLR_Electric_Disco",elec)
-	
-	util.VJ_SphereDamage(self, self, hitpos, 30, 40, DMG_SHOCK, true, false, {Force=90})
-end
----------------------------------------------------------------------------------------------------------------------------------------------
-function ENT:CustomGibOnDeathSounds(dmginfo, hitgroup)
-	VJ_EmitSound(self, "vj_hlr/crack_fx/bodysplat.wav", 90, 100)
-	VJ_EmitSound(self, "vj_base/gib/splat.wav", 90, 100)
-	return false
+function ENT:OnRangeAttackExecute(status, enemy, projectile)
+	if status == "Init" then
+		local startpos = self:GetPos() + self:GetUp()*45 + self:GetForward()*40
+		local tr = util.TraceLine({
+			start = startpos,
+			endpos = enemy:GetPos() + enemy:OBBCenter(),
+			filter = self
+		})
+		local hitpos = tr.HitPos
+		
+		local elec = EffectData()
+		elec:SetStart(startpos)
+		elec:SetOrigin(hitpos)
+		elec:SetEntity(self)
+		elec:SetAttachment(1)
+		util.Effect("VJ_HLR_Electric_Disco",elec)
+		
+		elec = EffectData()
+		elec:SetStart(startpos)
+		elec:SetOrigin(hitpos)
+		elec:SetEntity(self)
+		elec:SetAttachment(2)
+		util.Effect("VJ_HLR_Electric_Disco",elec)
+		
+		util.VJ_SphereDamage(self, self, hitpos, 30, 40, DMG_SHOCK, true, false, {Force=90})
+		return true
+	end
 end
 /*-----------------------------------------------
 	*** Copyright (c) 2010-2025 by oteek, All rights reserved. ***

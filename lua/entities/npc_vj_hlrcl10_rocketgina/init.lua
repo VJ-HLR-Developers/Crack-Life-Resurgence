@@ -51,7 +51,7 @@ ENT.HasExtraMeleeAttackSounds = true
 ENT.SoundTbl_FootStep = {"vj_hlr/crack_fx/npc_step1.wav","vj_hlr/crack_fx/npc_step2.wav","vj_hlr/crack_fx/npc_step3.wav","vj_hlr/crack_fx/npc_step4.wav"}
 ENT.SoundTbl_Alert = {"vj_hlr/crack10_npc/rocketgina/alert1.wav", "vj_hlr/crack10_npc/rocketgina/alert2.wav", "vj_hlr/crack10_npc/rocketgina/alert3.wav","vj_hlr/crack10_npc/rocketgina/alert4.wav","vj_hlr/crack10_npc/rocketgina/alert5.wav","vj_hlr/crack10_npc/rocketgina/alert6.wav","vj_hlr/crack10_npc/rocketgina/alert7.wav","vj_hlr/crack10_npc/rocketgina/alert8.wav","vj_hlr/crack10_npc/rocketgina/alert9.wav"}
 ENT.SoundTbl_Death = {"vj_hlr/crack10_npc/rocketgina/chkdeth1.wav","vj_hlr/crack10_npc/rocketgina/chkdeth2.wav"}
-ENT.SoundTbl_MeleeAttackExtra = {"vj_hlr/hl1_npc/zombie/claw_strike1.wav","vj_hlr/hl1_npc/zombie/claw_strike2.wav","vj_hlr/hl1_npc/zombie/claw_strike3.wav"}
+ENT.SoundTbl_MeleeAttackExtra = {"vj_hlr/gsrc/npc/zombie/claw_strike1.wav","vj_hlr/gsrc/npc/zombie/claw_strike2.wav","vj_hlr/gsrc/npc/zombie/claw_strike3.wav"}
 ENT.SoundTbl_BeforeRangeAttack = {"vj_hlr/crack10_npc/rocketgina/chkatck1.wav"}
 ENT.SoundTbl_BeforeMeleeAttack = {"vj_hlr/crack10_npc/rocketgina/chkatck3.wav"}
 

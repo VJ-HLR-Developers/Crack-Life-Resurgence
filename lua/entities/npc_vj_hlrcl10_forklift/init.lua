@@ -126,8 +126,8 @@ function ENT:HandleGibOnDeath(dmginfo, hitgroup)
 				myPhys:AddVelocity(Vector(math.Rand(-300, 300), math.Rand(-300, 300), math.Rand(150, 250)))
 				myPhys:AddAngleVelocity(Vector(math.Rand(-200, 200), math.Rand(-200, 200), math.Rand(-200, 200)))
 			end
-			if GetConVar("vj_npc_fadegibs"):GetInt() == 1 then
-				timer.Simple(GetConVar("vj_npc_fadegibstime"):GetInt(), function() SafeRemoveEntity(gib) end)
+			if GetConVar("vj_npc_gib_fade"):GetInt() == 1 then
+				timer.Simple(GetConVar("vj_npc_gib_fadetime"):GetInt(), function() SafeRemoveEntity(gib) end)
 			end
 	end
 	return true -- Return to true if it gibbed!
@@ -136,7 +136,7 @@ end
 function ENT:CustomGibOnDeathSounds(dmginfo, hitgroup)
 	VJ_EmitSound(self, "vj_hlr/crack10_fx/bustmetal"..math.random(1,2)..".wav", 100, 100)
     VJ_EmitSound(self,"vj_hlr/crack_fx/bodysplat.wav", 90, math.random(100,100))
-	VJ_EmitSound(self, "vj_hlr/hl1_npc/rgrunt/rb_gib.wav", 90, 85)
+	VJ_EmitSound(self, "vj_hlr/gsrc/npc/rgrunt/rb_gib.wav", 90, 85)
 	return false
 end
 /*-----------------------------------------------

@@ -20,13 +20,13 @@ ENT.CustomBlood_Decal = {"VJ_HLR_Blood_Red"}
 ENT.VJ_NPC_Class = {"CLASS_CRACKLIFE"} -- NPCs with the same class with be allied to each other
 
 ENT.SoundTbl_FootStep = {"vj_hlr/crack_fx/npc_step1.wav","vj_hlr/crack_fx/npc_step2.wav","vj_hlr/crack_fx/npc_step3.wav","vj_hlr/crack_fx/npc_step4.wav"}
-ENT.SoundTbl_Idle = {"vj_hlr/hl1_npc/scientist/smellburn.wav","vj_hlr/hl1_npc/scientist/peculiarmarks.wav","vj_hlr/hl1_npc/scientist/getoutalive.wav","vj_hlr/hl1_npc/scientist/cantbeworse.wav","vj_hlr/hl1_npc/scientist/hearsomething.wav","vj_hlr/hl1_npc/scientist/ihearsomething.wav"}
-ENT.SoundTbl_Alert = {"vj_hlr/hl1_npc/scientist/letsgo.wav","vj_hlr/hl1_npc/scientist/heal5.wav","vj_hlr/hl1_npc/scientist/startle4.wav","vj_hlr/hl1_npc/scientist/sci_fear2.wav","vj_hlr/hl1_npc/scientist/startle2.wav","vj_hlr/hl1_npc/scientist/sci_fear14.wav"}
-ENT.SoundTbl_BeforeMeleeAttack = {"vj_hlr/crack_npc/scientist/evil_die.wav","vj_hlr/hl1_npc/scientist/c3a2_sci_fool.wav"}
-ENT.SoundTbl_MeleeAttackExtra = {"vj_hlr/hl1_npc/zombie/claw_strike1.wav","vj_hlr/hl1_npc/zombie/claw_strike2.wav","vj_hlr/hl1_npc/zombie/claw_strike3.wav"}
-ENT.SoundTbl_MeleeAttackMiss = {"vj_hlr/hl1_npc/zombie/claw_miss1.wav","vj_hlr/hl1_npc/zombie/claw_miss2.wav"}
-ENT.SoundTbl_Pain = {"vj_hlr/hl1_npc/scientist/sci_pain1.wav","vj_hlr/hl1_npc/scientist/sci_pain2.wav","vj_hlr/hl1_npc/scientist/sci_pain3.wav","vj_hlr/hl1_npc/scientist/sci_pain4.wav","vj_hlr/hl1_npc/scientist/sci_pain5.wav"}
-ENT.SoundTbl_Death = {"vj_hlr/hl1_npc/scientist/sci_pain1.wav","vj_hlr/hl1_npc/scientist/sci_pain2.wav","vj_hlr/hl1_npc/scientist/sci_pain3.wav","vj_hlr/hl1_npc/scientist/sci_pain4.wav","vj_hlr/hl1_npc/scientist/sci_pain5.wav"}
+ENT.SoundTbl_Idle = {"vj_hlr/gsrc/npc/scientist/smellburn.wav","vj_hlr/gsrc/npc/scientist/peculiarmarks.wav","vj_hlr/gsrc/npc/scientist/getoutalive.wav","vj_hlr/gsrc/npc/scientist/cantbeworse.wav","vj_hlr/gsrc/npc/scientist/hearsomething.wav","vj_hlr/gsrc/npc/scientist/ihearsomething.wav"}
+ENT.SoundTbl_Alert = {"vj_hlr/gsrc/npc/scientist/letsgo.wav","vj_hlr/gsrc/npc/scientist/heal5.wav","vj_hlr/gsrc/npc/scientist/startle4.wav","vj_hlr/gsrc/npc/scientist/sci_fear2.wav","vj_hlr/gsrc/npc/scientist/startle2.wav","vj_hlr/gsrc/npc/scientist/sci_fear14.wav"}
+ENT.SoundTbl_BeforeMeleeAttack = {"vj_hlr/crack_npc/scientist/evil_die.wav","vj_hlr/gsrc/npc/scientist/c3a2_sci_fool.wav"}
+ENT.SoundTbl_MeleeAttackExtra = {"vj_hlr/gsrc/npc/zombie/claw_strike1.wav","vj_hlr/gsrc/npc/zombie/claw_strike2.wav","vj_hlr/gsrc/npc/zombie/claw_strike3.wav"}
+ENT.SoundTbl_MeleeAttackMiss = {"vj_hlr/gsrc/npc/zombie/claw_miss1.wav","vj_hlr/gsrc/npc/zombie/claw_miss2.wav"}
+ENT.SoundTbl_Pain = {"vj_hlr/gsrc/npc/scientist/sci_pain1.wav","vj_hlr/gsrc/npc/scientist/sci_pain2.wav","vj_hlr/gsrc/npc/scientist/sci_pain3.wav","vj_hlr/gsrc/npc/scientist/sci_pain4.wav","vj_hlr/gsrc/npc/scientist/sci_pain5.wav"}
+ENT.SoundTbl_Death = {"vj_hlr/gsrc/npc/scientist/sci_pain1.wav","vj_hlr/gsrc/npc/scientist/sci_pain2.wav","vj_hlr/gsrc/npc/scientist/sci_pain3.wav","vj_hlr/gsrc/npc/scientist/sci_pain4.wav","vj_hlr/gsrc/npc/scientist/sci_pain5.wav"}
 
 -- Custom
 ENT.SCI_NextMouthMove = 0
@@ -123,7 +123,7 @@ end
 function ENT:CustomOnPriorToKilled(dmginfo, hitgroup)
 	if self.SpawnHat == true then
 		self:SetBodygroup(2,1)
-		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/cracklife/bigneedle.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,0)),CollideSound={""}})
+		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/cracklife/bigneedle.mdl",{CollisionDecal=false,Pos=self:LocalToWorld(Vector(0,0,0)),CollideSound={""}})
 		self.SpawnHat = false
 	end
 end

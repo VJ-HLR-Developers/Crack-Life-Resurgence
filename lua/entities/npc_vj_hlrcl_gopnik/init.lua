@@ -77,10 +77,9 @@ function ENT:CustomOnThink()
 	end
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
-function ENT:OnPlayCreateSound(SoundData,SoundFile)
-	self.SCI_NextMouthMove = CurTime() + SoundDuration(SoundFile)
+function ENT:OnCreateSound(sdData, sdFile)
+	self.SCI_NextMouthMove = CurTime() + SoundDuration(sdFile)
 end
---]]
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomGibOnDeathSounds(dmginfo,hitgroup)
 	VJ_EmitSound(self,"vj_hlr/crack_fx/bodysplat.wav", 90, math.random(100,100))
@@ -91,7 +90,7 @@ end
 function ENT:CustomOnDeath_BeforeCorpseSpawned(dmginfo,hitgroup)
 	if self.SpawnHat == true then
 		self:SetBodygroup(0,1)
-		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/cracklife/chav_bat.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(8,-8,10)),CollideSound={""}})
+		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/cracklife/chav_bat.mdl",{CollisionDecal=false,Pos=self:LocalToWorld(Vector(8,-8,10)),CollideSound={""}})
 		self.SpawnHat = false
 	end
 end
@@ -99,7 +98,7 @@ end
 function ENT:CustomDeathAnimationCode(dmginfo, hitgroup)
 	if self.SpawnHat == true then
 		self:SetBodygroup(0,1)
-		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/cracklife/chav_bat.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(8,-8,10)),CollideSound={""}})
+		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/cracklife/chav_bat.mdl",{CollisionDecal=false,Pos=self:LocalToWorld(Vector(8,-8,10)),CollideSound={""}})
 		self.SpawnHat = false
 	end
 	if hitgroup == HITGROUP_HEAD then
@@ -136,7 +135,9 @@ function ENT:HandleGibOnDeath(dmginfo,hitgroup)
 		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/hgib_hmeat.mdl",{BloodDecal="VJ_HLR_Blood_Red",Pos=self:LocalToWorld(Vector(0,0,45))})
 		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/hgib_lung.mdl",{BloodDecal="VJ_HLR_Blood_Red",Pos=self:LocalToWorld(Vector(0,0,45))})
 		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/hgib_legbone.mdl",{BloodDecal="VJ_HLR_Blood_Red",Pos=self:LocalToWorld(Vector(0,0,15))})
-		return true
+		self:PlaySoundSystem("Gib", "vj_hlr/crack_fx/bodysplat.wav")
+		self:PlaySoundSystem("Gib", "vj_base/gib/splat.wav")
+		return true, {AllowSound = false}
 end
 		
 /*-----------------------------------------------

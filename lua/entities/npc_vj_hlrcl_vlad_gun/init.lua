@@ -14,9 +14,9 @@ ENT.Tank_Shell_TimeUntilFire = 0.7
 ENT.Tank_TurningSpeed = 10 -- How fast the gun moves as it's aiming towards an enemy
 
 -- Tank Base
-ENT.Tank_SoundTbl_Turning = {"vj_hlr/hl1_npc/tanks/abrams_turret_rot.wav"}
-ENT.Tank_SoundTbl_ReloadShell = {"vj_hlr/hl1_npc/tanks/tank_reload.wav"}
-ENT.Tank_SoundTbl_FireShell = {"vj_hlr/hl1_npc/tanks/shoot.wav"}
+ENT.Tank_SoundTbl_Turning = {"vj_hlr/gsrc/npc/tanks/abrams_turret_rot.wav"}
+ENT.Tank_SoundTbl_ReloadShell = {"vj_hlr/gsrc/npc/tanks/tank_reload.wav"}
+ENT.Tank_SoundTbl_FireShell = {"vj_hlr/gsrc/npc/tanks/shoot.wav"}
 
 ENT.Tank_AngleDiffuseNumber = 0
 ENT.Tank_Shell_SpawnPos = Vector(220, 0, 210)

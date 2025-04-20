@@ -9,7 +9,7 @@ include("shared.lua")
 ENT.Model = "models/vj_hlr/cracklife/headcrab.mdl" -- The game will pick a random model from the table when the SNPC is spawned | Add as many as you want
 ENT.VJ_NPC_Class = {"CLASS_CRACKLIFE"} -- NPCs with the same class with be allied to each other
 
-ENT.SoundTbl_Idle = {"vj_hlr/hl1_npc/headcrab/hc_idle1.wav","vj_hlr/hl1_npc/headcrab/hc_idle2.wav","vj_hlr/crack_npc/headcrab/hc_idle3.wav","vj_hlr/hl1_npc/headcrab/hc_idle4.wav","vj_hlr/hl1_npc/headcrab/hc_idle5.wav"}
+ENT.SoundTbl_Idle = {"vj_hlr/gsrc/npc/headcrab/hc_idle1.wav","vj_hlr/gsrc/npc/headcrab/hc_idle2.wav","vj_hlr/crack_npc/headcrab/hc_idle3.wav","vj_hlr/gsrc/npc/headcrab/hc_idle4.wav","vj_hlr/gsrc/npc/headcrab/hc_idle5.wav"}
 ENT.SoundTbl_Alert = {"vj_hlr/crack_npc/headcrab/hc_alert1.wav","vj_hlr/crack_npc/headcrab/hc_attack2.wav"}
 ENT.SoundTbl_LeapAttackJump = {"vj_hlr/crack_npc/headcrab/hc_attack2.wav","vj_hlr/crack_npc/headcrab/hc_attack3.wav","vj_hlr/crack_npc/headcrab/hc_attack3.wav"}
 ENT.SoundTbl_LeapAttackDamage = {"vj_hlr/crack_npc/headcrab/hc_headbite.wav"}
@@ -18,16 +18,39 @@ ENT.SoundTbl_Death = {"vj_hlr/crack_npc/headcrab/hc_die1.wav","vj_hlr/crack_npc/
 
 ENT.SpawnHat = true
 ---------------------------------------------------------------------------------------------------------------------------------------------
-function ENT:CustomGibOnDeathSounds(dmginfo, hitgroup)
-	VJ_EmitSound(self,"vj_hlr/crack_fx/bodysplat.wav", 90, 100)
-	VJ_EmitSound(self, "vj_base/gib/splat.wav", 90, 100)
-	return false
+local colorYellow = VJ.Color2Byte(Color(255, 221, 35))
+local gibs_regular_extra = {"models/vj_hlr/gibs/agib1.mdl", "models/vj_hlr/gibs/agib3.mdl"}
+--
+function ENT:HandleGibOnDeath(dmginfo, hitgroup)
+	self.HasDeathSounds = false
+	if self.HasGibOnDeathEffects then
+		local myCenterPos = self:GetPos() + self:OBBCenter()
+		local effectData = EffectData()
+		effectData:SetOrigin(myCenterPos)
+		effectData:SetColor(colorYellow)
+		effectData:SetScale(50)
+		util.Effect("VJ_Blood1", effectData)
+		effectData:SetOrigin(myCenterPos)
+		effectData:SetScale(8)
+		effectData:SetFlags(3)
+		effectData:SetColor(1)
+		util.Effect("bloodspray", effectData)
+		util.Effect("bloodspray", effectData)
+	end
+
+	self:CreateGibEntity("obj_vj_gib", "models/vj_hlr/gibs/agib5.mdl", {BloodType="Yellow", CollisionDecal="VJ_HLR1_Blood_Yellow", Pos=self:LocalToWorld(Vector(1, 0, 5))})
+	self:CreateGibEntity("obj_vj_gib", "models/vj_hlr/gibs/agib7.mdl", {BloodType="Yellow", CollisionDecal="VJ_HLR1_Blood_Yellow", Pos=self:LocalToWorld(Vector(0, 1, 5))})
+	self:CreateGibEntity("obj_vj_gib", "models/vj_hlr/gibs/agib9.mdl", {BloodType="Yellow", CollisionDecal="VJ_HLR1_Blood_Yellow", Pos=self:LocalToWorld(Vector(2, 0, 5))})
+	self:CreateGibEntity("obj_vj_gib", "models/vj_hlr/gibs/agib10.mdl", {BloodType="Yellow", CollisionDecal="VJ_HLR1_Blood_Yellow", Pos=self:LocalToWorld(Vector(0, 2, 5))})
+	self:PlaySoundSystem("Gib", "vj_base/gib/splat.wav")
+	self:PlaySoundSystem("Gib", "vj_hlr/crack_fx/bodysplat.wav")
+	return true, {AllowSound = false}
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomOnDeath_BeforeCorpseSpawned(dmginfo, hitgroup)
 	if self.SpawnHat == true then
 		self:SetBodygroup(0,1)
-		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/cracklife/headcrab_hat.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,5)),CollideSound={""}})
+		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/cracklife/headcrab_hat.mdl",{CollisionDecal=false,Pos=self:LocalToWorld(Vector(0,0,5)),CollideSound={""}})
 		self.SpawnHat = false
 	end
 end
@@ -35,7 +58,7 @@ end
 function ENT:CustomDeathAnimationCode(dmginfo, hitgroup)
 	if self.SpawnHat == true then
 		self:SetBodygroup(0,1)
-		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/cracklife/headcrab_hat.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,5)),CollideSound={""}})
+		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/cracklife/headcrab_hat.mdl",{CollisionDecal=false,Pos=self:LocalToWorld(Vector(0,0,5)),CollideSound={""}})
 		self.SpawnHat = false
 	end
 end
@@ -72,7 +95,7 @@ function ENT:HandleGibOnDeath(dmginfo, hitgroup)
 	self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/agib9.mdl",{BloodType="Yellow",BloodDecal="VJ_HLR_Blood_Yellow",Pos=self:LocalToWorld(Vector(0,0,5))})
 	self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/agib10.mdl",{BloodType="Yellow",BloodDecal="VJ_HLR_Blood_Yellow",Pos=self:LocalToWorld(Vector(0,0,5))})
 	if self.SpawnHat == true then
-		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/cracklife/headcrab_hat.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,0)),CollideSound={""}})
+		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/cracklife/headcrab_hat.mdl",{CollisionDecal=false,Pos=self:LocalToWorld(Vector(0,0,0)),CollideSound={""}})
 		self.SpawnHat = false
 	end
 	return true -- Return to true if it gibbed!

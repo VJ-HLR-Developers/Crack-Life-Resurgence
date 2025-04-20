@@ -51,37 +51,37 @@ end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:Think()
 	util.VJ_SphereDamage(self, self, self:GetPos(), 1024, 2, DMG_NEVERGIB, true, true)
-	self:NextThink(CurTime() + 0.5)
+	self:NextThink(CurTime() + 0.25)
 	return true
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:OnTakeDamage(dmginfo)
 	local gibsCollideSd = {"vj_hlr/crack_fx/metal1.wav"}
 	self:SetHealth(self:Health() - dmginfo:GetDamage())
-	self:EmitSound(VJ_PICK({"vj_hlr/gsrc/fx/metal1.wav","vj_hlr/gsrc/fx/metal3.wav"}), 70)
+	self:EmitSound(VJ_PICK({"vj_hlr/gsrc/fx/metal1.wav","vj_hlr/gsrc/fx/metal3.wav"}), 80)
 	if self:Health() <= 0 then
-		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/metalgib_p1.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,5)),CollideSound=gibsCollideSd})
-		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/metalgib_p2.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,10)),CollideSound=gibsCollideSd})
-		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/metalgib_p3.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,20)),CollideSound=gibsCollideSd})
-		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/metalgib_p4.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,30)),CollideSound=gibsCollideSd})
-		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/metalgib_p5.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,40)),CollideSound=gibsCollideSd})
-		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/metalgib_p6.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,45)),CollideSound=gibsCollideSd})
-		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/metalgib_p7.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,55)),CollideSound=gibsCollideSd})
-		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/metalgib_p8.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,65)),CollideSound=gibsCollideSd})
-		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/metalgib_p9.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,85)),CollideSound=gibsCollideSd})
-		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/metalgib_p10.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,100)),CollideSound=gibsCollideSd})
-		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/metalgib_p11.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,120)),CollideSound=gibsCollideSd})
-		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/metalgib_p1.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,5)),CollideSound=gibsCollideSd})
-		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/metalgib_p2.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,10)),CollideSound=gibsCollideSd})
-		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/metalgib_p3.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,20)),CollideSound=gibsCollideSd})
-		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/metalgib_p4.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,30)),CollideSound=gibsCollideSd})
-		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/metalgib_p5.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,40)),CollideSound=gibsCollideSd})
-		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/metalgib_p6.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,45)),CollideSound=gibsCollideSd})
-		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/metalgib_p7.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,55)),CollideSound=gibsCollideSd})
-		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/metalgib_p8.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,65)),CollideSound=gibsCollideSd})
-		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/metalgib_p9.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,85)),CollideSound=gibsCollideSd})
-		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/metalgib_p10.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,100)),CollideSound=gibsCollideSd})
-		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/metalgib_p11.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,120)),CollideSound=gibsCollideSd})
+		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/metalgib_p1.mdl",{CollisionDecal=false,Pos=self:LocalToWorld(Vector(0,0,5)),CollideSound=gibsCollideSd})
+		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/metalgib_p2.mdl",{CollisionDecal=false,Pos=self:LocalToWorld(Vector(1,0,10)),CollideSound=gibsCollideSd})
+		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/metalgib_p3.mdl",{CollisionDecal=false,Pos=self:LocalToWorld(Vector(0,0,20)),CollideSound=gibsCollideSd})
+		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/metalgib_p4.mdl",{CollisionDecal=false,Pos=self:LocalToWorld(Vector(1,0,30)),CollideSound=gibsCollideSd})
+		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/metalgib_p5.mdl",{CollisionDecal=false,Pos=self:LocalToWorld(Vector(0,0,40)),CollideSound=gibsCollideSd})
+		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/metalgib_p6.mdl",{CollisionDecal=false,Pos=self:LocalToWorld(Vector(2,0,45)),CollideSound=gibsCollideSd})
+		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/metalgib_p7.mdl",{CollisionDecal=false,Pos=self:LocalToWorld(Vector(0,0,55)),CollideSound=gibsCollideSd})
+		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/metalgib_p8.mdl",{CollisionDecal=false,Pos=self:LocalToWorld(Vector(1,0,65)),CollideSound=gibsCollideSd})
+		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/metalgib_p9.mdl",{CollisionDecal=false,Pos=self:LocalToWorld(Vector(0,0,85)),CollideSound=gibsCollideSd})
+		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/metalgib_p10.mdl",{CollisionDecal=false,Pos=self:LocalToWorld(Vector(0,0,100)),CollideSound=gibsCollideSd})
+		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/metalgib_p11.mdl",{CollisionDecal=false,Pos=self:LocalToWorld(Vector(1,0,120)),CollideSound=gibsCollideSd})
+		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/metalgib_p1.mdl",{CollisionDecal=false,Pos=self:LocalToWorld(Vector(0,0,5)),CollideSound=gibsCollideSd})
+		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/metalgib_p2.mdl",{CollisionDecal=false,Pos=self:LocalToWorld(Vector(0,0,10)),CollideSound=gibsCollideSd})
+		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/metalgib_p3.mdl",{CollisionDecal=false,Pos=self:LocalToWorld(Vector(0,0,20)),CollideSound=gibsCollideSd})
+		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/metalgib_p4.mdl",{CollisionDecal=false,Pos=self:LocalToWorld(Vector(1,0,30)),CollideSound=gibsCollideSd})
+		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/metalgib_p5.mdl",{CollisionDecal=false,Pos=self:LocalToWorld(Vector(0,0,40)),CollideSound=gibsCollideSd})
+		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/metalgib_p6.mdl",{CollisionDecal=false,Pos=self:LocalToWorld(Vector(0,0,45)),CollideSound=gibsCollideSd})
+		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/metalgib_p7.mdl",{CollisionDecal=false,Pos=self:LocalToWorld(Vector(-1,0,55)),CollideSound=gibsCollideSd})
+		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/metalgib_p8.mdl",{CollisionDecal=false,Pos=self:LocalToWorld(Vector(0,0,65)),CollideSound=gibsCollideSd})
+		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/metalgib_p9.mdl",{CollisionDecal=false,Pos=self:LocalToWorld(Vector(0,0,85)),CollideSound=gibsCollideSd})
+		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/metalgib_p10.mdl",{CollisionDecal=false,Pos=self:LocalToWorld(Vector(0,0,100)),CollideSound=gibsCollideSd})
+		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/metalgib_p11.mdl",{CollisionDecal=false,Pos=self:LocalToWorld(Vector(0,0,120)),CollideSound=gibsCollideSd})
 		self:EmitSound(VJ_PICK({"vj_hlr/crack_fx/bustmetal1.wav","vj_hlr/crack_fx/bustmetal2.wav"}), 100)
 		self:Remove()
 	end
@@ -92,24 +92,23 @@ function ENT:OnRemove()
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CreateGibEntity(class, models, extraOptions, customFunc)
-	// self:CreateGibEntity("prop_ragdoll", "", {Pos=self:LocalToWorld(Vector(0,3,0)), Ang=self:GetAngles(), Vel=})
-	if self.AllowedToGib == false then return end
-	local bloodType = "Red"
-	class = class or "obj_vj_gib"
+	local bloodType = false
 	if models == "UseAlien_Small" then
-		models =  VJ_PICK(gib_mdlASmall)
-		bloodType = "Yellow"
+		models =  VJ.PICK(gib_mdlASmall)
+		bloodType = VJ.BLOOD_COLOR_YELLOW
 	elseif models == "UseAlien_Big" then
-		models =  VJ_PICK(gib_mdlABig)
-		bloodType = "Yellow"
+		models =  VJ.PICK(gib_mdlABig)
+		bloodType = VJ.BLOOD_COLOR_YELLOW
 	elseif models == "UseHuman_Small" then
-		models =  VJ_PICK(gib_mdlHSmall)
+		models =  VJ.PICK(gib_mdlHSmall)
+		bloodType = VJ.BLOOD_COLOR_RED
 	elseif models == "UseHuman_Big" then
-		models =  VJ_PICK(gib_mdlHBig)
+		models =  VJ.PICK(gib_mdlHBig)
+		bloodType = VJ.BLOOD_COLOR_RED
 	else -- Custom models
-		models = VJ_PICK(models)
-		if VJ_HasValue(gib_mdlAAll, models) then
-			bloodType = "Yellow"
+		models = VJ.PICK(models)
+		if VJ.HasValue(gib_mdlAAll, models) then
+			bloodType = VJ.BLOOD_COLOR_YELLOW
 		end
 	end
 	extraOptions = extraOptions or {}
@@ -122,34 +121,46 @@ function ENT:CreateGibEntity(class, models, extraOptions, customFunc)
 				vel = dmgForce
 			end
 		end
-		bloodType = extraOptions.BloodType or bloodType -- Certain entities such as the VJ Gib entity, you can use this to set its gib type
-		local removeOnCorpseDelete = extraOptions.RemoveOnCorpseDelete or false -- Should the entity get removed if the corpse is removed?
-	local gib = ents.Create(class)
+		bloodType = (extraOptions.BloodType or bloodType or self.BloodColor) -- Certain entities such as the VJ Gib entity, you can use this to set its gib type
+	
+	local gib = ents.Create(class or "obj_vj_gib")
 	gib:SetModel(models)
 	gib:SetPos(extraOptions.Pos or (self:GetPos() + self:OBBCenter()))
 	gib:SetAngles(extraOptions.Ang or Angle(math.Rand(-180, 180), math.Rand(-180, 180), math.Rand(-180, 180)))
 	if gib:GetClass() == "obj_vj_gib" then
 		gib.BloodType = bloodType
-		gib.Collide_Decal = extraOptions.BloodDecal or "Default"
-		gib.CollideSound = extraOptions.CollideSound or "Default"
+		if extraOptions.CollisionDecal != nil then
+			gib.CollisionDecal = extraOptions.CollisionDecal
+		elseif extraOptions.BloodDecal then -- Backwards compatibility
+			gib.CollisionDecal = extraOptions.BloodDecal
+		end
+		if extraOptions.CollisionSound != nil then
+			gib.CollisionSound = extraOptions.CollisionSound
+		elseif extraOptions.CollideSound then -- Backwards compatibility
+			gib.CollisionSound = extraOptions.CollideSound
+		end
+		//gib.BloodData = {Color = bloodType, Particle = self.BloodParticle, Decal = self.CollisionDecal} -- For eating system
 	end
 	gib:Spawn()
 	gib:Activate()
 	gib.IsVJBaseCorpse_Gib = true
-	gib.RemoveOnCorpseDelete = removeOnCorpseDelete
-	if GetConVar("vj_npc_gibcollidable"):GetInt() == 0 then gib:SetCollisionGroup(1) end
+	local vj_npc_gib_collision = GetConVar("vj_npc_gib_collision")
+	local vj_npc_gib_fade = GetConVar("vj_npc_gib_fade")
+	local vj_npc_gib_fadetime = GetConVar("vj_npc_gib_fadetime")
+	if vj_npc_gib_collision:GetInt() == 0 then gib:SetCollisionGroup(COLLISION_GROUP_DEBRIS) end
 	local phys = gib:GetPhysicsObject()
 	if IsValid(phys) then
 		phys:AddVelocity(vel)
 		phys:AddAngleVelocity(extraOptions.AngVel or Vector(math.Rand(-200, 200), math.Rand(-200, 200), math.Rand(-200, 200)))
 	end
-	if extraOptions.NoFade != true && GetConVar("vj_npc_fadegibs"):GetInt() == 1 then
-		if gib:GetClass() == "obj_vj_gib" then timer.Simple(GetConVar("vj_npc_fadegibstime"):GetInt(), function() SafeRemoveEntity(gib) end)
-		elseif gib:GetClass() == "prop_ragdoll" then gib:Fire("FadeAndRemove", "", GetConVar("vj_npc_fadegibstime"):GetInt())
-		elseif gib:GetClass() == "prop_physics" then gib:Fire("kill", "", GetConVar("vj_npc_fadegibstime"):GetInt()) end
+	if extraOptions.NoFade != true && vj_npc_gib_fade:GetInt() == 1 then
+		if gib:GetClass() == "obj_vj_gib" then timer.Simple(vj_npc_gib_fadetime:GetInt(), function() SafeRemoveEntity(gib) end)
+		elseif gib:GetClass() == "prop_ragdoll" then gib:Fire("FadeAndRemove", "", vj_npc_gib_fadetime:GetInt())
+		elseif gib:GetClass() == "prop_physics" then gib:Fire("kill", "", vj_npc_gib_fadetime:GetInt()) end
 	end
-	if removeOnCorpseDelete == true then //self.Corpse:DeleteOnRemove(extraent)
-		self.ExtraCorpsesToRemove_Transition[#self.ExtraCorpsesToRemove_Transition + 1] = gib
+	if removeOnCorpseDelete then //self.Corpse:DeleteOnRemove(extraent)
+		if !self.DeathCorpse_ChildEnts then self.DeathCorpse_ChildEnts = {} end -- If it doesn't exist, then create it!
+		self.DeathCorpse_ChildEnts[#self.DeathCorpse_ChildEnts + 1] = gib
 	end
 	if (customFunc) then customFunc(gib) end
 end

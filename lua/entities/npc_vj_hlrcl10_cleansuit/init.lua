@@ -54,8 +54,8 @@ ENT.SoundTbl_FootStep = {"vj_hlr/crack_fx/npc_step1.wav","vj_hlr/crack_fx/npc_st
 ENT.SoundTbl_Idle = {"vj_hlr/crack10_npc/cleansuit/cs_idle1.wav","vj_hlr/crack10_npc/cleansuit/cs_idle2.wav","vj_hlr/crack10_npc/cleansuit/cs_idle3.wav","vj_hlr/crack10_npc/cleansuit/cs_idle4.wav","vj_hlr/crack10_npc/cleansuit/cs_idle5.wav"}
 ENT.SoundTbl_CombatIdle = {"vj_hlr/crack10_npc/cleansuit/cs_alert3.wav","vj_hlr/crack10_npc/cleansuit/cs_alert5.wav","vj_hlr/crack10_npc/cleansuit/cs_idle1.wav","vj_hlr/crack10_npc/cleansuit/cs_idle3.wav","vj_hlr/crack10_npc/cleansuit/cs_idle4.wav"}
 ENT.SoundTbl_Alert = {"vj_hlr/crack10_npc/cleansuit/cs_alert1.wav", "vj_hlr/crack10_npc/cleansuit/cs_alert2.wav", "vj_hlr/crack10_npc/cleansuit/cs_alert3.wav","vj_hlr/crack10_npc/cleansuit/cs_alert4.wav","vj_hlr/crack10_npc/cleansuit/cs_alert5.wav","vj_hlr/crack10_npc/cleansuit/cs_alert6.wav","vj_hlr/crack10_npc/cleansuit/cs_alert7.wav"}
-ENT.SoundTbl_Pain = {"vj_hlr/hl1_npc/scientist/sci_pain1.wav","vj_hlr/hl1_npc/scientist/sci_pain2.wav","vj_hlr/hl1_npc/scientist/sci_pain3.wav","vj_hlr/hl1_npc/scientist/sci_pain4.wav","vj_hlr/hl1_npc/scientist/sci_pain5.wav"}
-ENT.SoundTbl_Death = {"vj_hlr/hl1_npc/scientist/sci_pain1.wav","vj_hlr/hl1_npc/scientist/sci_pain2.wav","vj_hlr/hl1_npc/scientist/sci_pain3.wav","vj_hlr/hl1_npc/scientist/sci_pain4.wav","vj_hlr/hl1_npc/scientist/sci_pain5.wav"}
+ENT.SoundTbl_Pain = {"vj_hlr/gsrc/npc/scientist/sci_pain1.wav","vj_hlr/gsrc/npc/scientist/sci_pain2.wav","vj_hlr/gsrc/npc/scientist/sci_pain3.wav","vj_hlr/gsrc/npc/scientist/sci_pain4.wav","vj_hlr/gsrc/npc/scientist/sci_pain5.wav"}
+ENT.SoundTbl_Death = {"vj_hlr/gsrc/npc/scientist/sci_pain1.wav","vj_hlr/gsrc/npc/scientist/sci_pain2.wav","vj_hlr/gsrc/npc/scientist/sci_pain3.wav","vj_hlr/gsrc/npc/scientist/sci_pain4.wav","vj_hlr/gsrc/npc/scientist/sci_pain5.wav"}
 
 ENT.GeneralSoundPitch1 = 100
 
@@ -78,7 +78,7 @@ function ENT:CustomOnAcceptInput(key, activator, caller, data)
         self:MeleeAttackCode()
     elseif key == "spray" then
         self:RangeAttackCode()
-        VJ_EmitSound(self, "vj_hlr/hl1_npc/bullchicken/bc_attack2.wav", 75, 100)
+        VJ_EmitSound(self, "vj_hlr/gsrc/npc/bullchicken/bc_attack2.wav", 75, 100)
 	end
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
@@ -145,8 +145,8 @@ end
 function ENT:CustomOnPriorToKilled(dmginfo, hitgroup)
 	if self.SpawnHat == true then
 		self:SetBodygroup(2,1)
-		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/cracklife10/needle.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(4,15,10)),CollideSound={""}})
-        self:CreateGibEntity("obj_vj_gib","models/vj_hlr/cracklife10/spray.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(4,-15,10)),CollideSound={""}})
+		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/cracklife10/needle.mdl",{CollisionDecal=false,Pos=self:LocalToWorld(Vector(4,15,10)),CollideSound={""}})
+        self:CreateGibEntity("obj_vj_gib","models/vj_hlr/cracklife10/spray.mdl",{CollisionDecal=false,Pos=self:LocalToWorld(Vector(4,-15,10)),CollideSound={""}})
 		self.SpawnHat = false
 	end
 end

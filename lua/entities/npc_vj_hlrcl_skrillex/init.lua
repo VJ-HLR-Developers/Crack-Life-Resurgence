@@ -159,7 +159,8 @@ function ENT:F_CreateAlly()
 		//ally:SetMaxHealth(ally:GetHealth() + 100)
 		//ally:SetHealth(ally:GetHealth() + 100)
 		
-		local effectTeleport = VJ.HLR_Effect_Portal(spawnpos + Vector(0,0,20))
+		local effectTeleport = VJ.HLR1_Effect_Portal(spawnpos + Vector(0,0,20))
+		
 		effectTeleport:Fire("Kill","",1)
 		
 		return ally
@@ -312,7 +313,7 @@ function ENT:CustomOnPriorToKilled(dmginfo, hitgroup)
 	--print("test")
 	if self.SpawnHat == true then
 		self:SetBodygroup(1,1)
-		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/cracklife/mac.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,0)),CollideSound={""}})
+		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/cracklife/mac.mdl",{CollisionDecal=false,Pos=self:LocalToWorld(Vector(0,0,0)),CollideSound={""}})
 		self.SpawnHat = false
 	end
 end

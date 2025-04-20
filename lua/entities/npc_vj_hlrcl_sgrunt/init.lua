@@ -17,7 +17,7 @@ function ENT:HECU_CustomOnInitialize()
 	self.SoundTbl_FootStep = {"vj_hlr/crack_fx/npc_step1.wav","vj_hlr/crack_fx/npc_step2.wav","vj_hlr/crack_fx/npc_step3.wav","vj_hlr/crack_fx/npc_step4.wav"}
 	self.SoundTbl_Death = {"vj_hlr/crack_npc/hgrunt/gr_die1.wav","vj_hlr/crack_npc/hgrunt/gr_die2.wav","vj_hlr/crack_npc/hgrunt/gr_die3.wav"}
 	self.SoundTbl_Pain = {"vj_hlr/crack_npc/hgrunt/gr_pain1.wav","vj_hlr/crack_npc/hgrunt/gr_pain2.wav","vj_hlr/crack_npc/hgrunt/gr_pain4.wav","vj_hlr/crack_npc/hgrunt/gr_pain5.wav"}
-	self.SoundTbl_Idle = {"vj_hlr/hl1_npc/hgrunt/gr_alert1.wav","vj_hlr/hl1_npc/hgrunt/gr_idle1.wav","vj_hlr/hl1_npc/hgrunt/gr_idle2.wav","vj_hlr/hl1_npc/hgrunt/gr_idle3.wav"}
+	self.SoundTbl_Idle = {"vj_hlr/gsrc/npc/hgrunt/gr_alert1.wav","vj_hlr/gsrc/npc/hgrunt/gr_idle1.wav","vj_hlr/gsrc/npc/hgrunt/gr_idle2.wav","vj_hlr/gsrc/npc/hgrunt/gr_idle3.wav"}
 	self.SoundTbl_CombatIdle = {"vj_hlr/crack_npc/hgrunt/taunt1.wav","vj_hlr/crack_npc/hgrunt/taunt2.wav","vj_hlr/crack_npc/hgrunt/taunt4.wav","vj_hlr/crack_npc/hgrunt/taunt5.wav","vj_hlr/crack_npc/hgrunt/taunt6.wav"}
 	self.SoundTbl_Suppressing = {"vj_hlr/crack_npc/hgrunt/charge1.wav","vj_hlr/crack_npc/hgrunt/charge2.wav","vj_hlr/crack_npc/hgrunt/charge3.wav","vj_hlr/crack_npc/hgrunt/charge4.wav"}
 	self.SoundTbl_OnReceiveOrder = {"vj_hlr/crack_npc/hgrunt/charge1.wav","vj_hlr/crack_npc/hgrunt/charge2.wav"}

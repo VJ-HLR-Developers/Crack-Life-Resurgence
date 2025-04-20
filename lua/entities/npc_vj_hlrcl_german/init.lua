@@ -55,8 +55,8 @@ function ENT:CustomOnInitialize()
 	self.SoundTbl_Alert = {"vj_hlr/crack_npc/germansoldier/slv_alert1.wav","vj_hlr/crack_npc/germansoldier/slv_alert2.wav","vj_hlr/crack_npc/germansoldier/slv_alert4.wav"}
 	self.SoundTbl_Pain = {"vj_hlr/crack_npc/germansoldier/slv_pain1.wav"}
 	self.SoundTbl_Death = {"vj_hlr/crack_npc/germansoldier/slv_die1.wav","vj_hlr/crack_npc/germansoldier/slv_die2.wav"}
-	self.SoundTbl_MeleeAttackExtra = {"vj_hlr/hl1_npc/zombie/claw_strike1.wav","vj_hlr/hl1_npc/zombie/claw_strike2.wav","vj_hlr/hl1_npc/zombie/claw_strike3.wav"}
-	self.SoundTbl_MeleeAttackMiss = {"vj_hlr/hl1_npc/zombie/claw_miss1.wav","vj_hlr/hl1_npc/zombie/claw_miss2.wav"}
+	self.SoundTbl_MeleeAttackExtra = {"vj_hlr/gsrc/npc/zombie/claw_strike1.wav","vj_hlr/gsrc/npc/zombie/claw_strike2.wav","vj_hlr/gsrc/npc/zombie/claw_strike3.wav"}
+	self.SoundTbl_MeleeAttackMiss = {"vj_hlr/gsrc/npc/zombie/claw_miss1.wav","vj_hlr/gsrc/npc/zombie/claw_miss2.wav"}
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomOnAcceptInput(key, activator, caller, data)
@@ -67,7 +67,7 @@ function ENT:CustomOnAcceptInput(key, activator, caller, data)
 		self:MeleeAttackCode()
 	elseif key == "shoot" then
 		self:RangeAttackCode()
-		VJ_EmitSound(self, "vj_hlr/hl1_npc/hassault/hw_shoot1.wav", 75, 150)
+		VJ_EmitSound(self, "vj_hlr/gsrc/npc/hassault/hw_shoot1.wav", 75, 150)
 	elseif key == "body" then
 		VJ_EmitSound(self, "vj_hlr/crack_fx/bodydrop.wav", 75, 100)
 	end
@@ -146,7 +146,7 @@ end
 function ENT:CustomOnPriorToKilled(dmginfo, hitgroup)
 	if self.SpawnHat == true then
 		self:SetBodygroup(1,1)
-		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/cracklife/w_mp44.mdl",{BloodDecal="",Pos=self:LocalToWorld(Vector(0,0,0)),CollideSound={""}})
+		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/cracklife/w_mp44.mdl",{CollisionDecal=false,Pos=self:LocalToWorld(Vector(0,0,0)),CollideSound={""}})
 		self.SpawnHat = false
 	end
 end

@@ -366,8 +366,8 @@ function ENT:CustomOnInitialKilled(dmginfo, hitgroup)
 				myPhys:AddVelocity(Vector(math.Rand(-300, 300), math.Rand(-300, 300), math.Rand(150, 250)))
 				myPhys:AddAngleVelocity(Vector(math.Rand(-200, 200), math.Rand(-200, 200), math.Rand(-200, 200)))
 			end
-			if GetConVar("vj_npc_fadegibs"):GetInt() == 1 then
-				timer.Simple(GetConVar("vj_npc_fadegibstime"):GetInt(), function() SafeRemoveEntity(gib) end)
+			if GetConVar("vj_npc_gib_fade"):GetInt() == 1 then
+				timer.Simple(GetConVar("vj_npc_gib_fadetime"):GetInt(), function() SafeRemoveEntity(gib) end)
 			end
 		end
 		
@@ -447,7 +447,7 @@ function ENT:F_CreateAlly()
 	//ally:SetMaxHealth(ally:GetHealth() + 100)
 	//ally:SetHealth(ally:GetHealth() + 100)
 	
-	local effectTeleport = VJ.HLR_Effect_Portal(spawnpos + Vector(0,0,20))
+	local effectTeleport = VJ.HLR1_Effect_Portal(spawnpos + Vector(0,0,20))
 	effectTeleport:Fire("Kill","",1)
 	
 	return ally
@@ -476,7 +476,7 @@ function ENT:S_CreateAlly()
 	//ally:SetMaxHealth(ally:GetHealth() + 100)
 	//ally:SetHealth(ally:GetHealth() + 100)
 	
-	local effectTeleport = VJ.HLR_Effect_Portal(spawnpos + Vector(0,0,20))
+	local effectTeleport = VJ.HLR1_Effect_Portal(spawnpos + Vector(0,0,20))
 	effectTeleport:Fire("Kill","",1)
 	
 	return ally
