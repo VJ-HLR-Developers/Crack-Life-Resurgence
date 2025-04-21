@@ -8,7 +8,7 @@ include("shared.lua")
 -----------------------------------------------*/
 ENT.Model = {"models/vj_hlr/cracklife10/zombie.mdl"} -- The game will pick a random model from the table when the SNPC is spawned | Add as many as you want
 ENT.BloodColor = "Yellow" -- The blood type, this will determine what it should use (decal, particle, etc.)
-ENT.CustomBlood_Particle = {"VJ_HLR1_Blood_yellow"}
+ENT.CustomBlood_Particle = {"vj_hlr_blood_yellow"}
 ENT.CustomBlood_Decal = {"VJ_HLR1_Blood_Yellow"} -- Decals to spawn when it's damaged
 ENT.VJ_NPC_Class = {"CLASS_CRACKLIFE"} -- NPCs with the same class with be allied to each other
 ENT.StartHealth = 200
@@ -31,10 +31,6 @@ ENT.SoundTbl_Death = {"vj_hlr/crack10_npc/zombie/zo_death1.wav","vj_hlr/crack10_
 ENT.CanUseHD = false
 ENT.DrawnShotgun = false
 ENT.DroppedHat = false
-
----------------------------------------------------------------------------------------------------------------------------------------------
-function ENT:CustomOnSchedule()
-end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomOnAcceptInput(key,activator,caller,data)
 	//print(key)
@@ -152,7 +148,9 @@ function ENT:HandleGibOnDeath(dmginfo,hitgroup)
 	self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/agib10.mdl",{BloodType="Yellow",CollisionDecal="VJ_HLR1_Blood_Yellow",Pos=self:LocalToWorld(Vector(0,0,15))})
 	self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/zombiegib.mdl",{BloodType="Red",CollisionDecal="VJ_HLR1_Blood_Red",Pos=self:LocalToWorld(Vector(0,0,15))})
 
-	return true -- Return to true if it gibbed!
+	self:PlaySoundSystem("Gib", "vj_base/gib/splat.wav")
+	self:PlaySoundSystem("Gib", "vj_hlr/crack_fx/bodysplat.wav")
+	return true, {AllowSound = false}
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomGibOnDeathSounds(dmginfo,hitgroup)
@@ -161,9 +159,19 @@ function ENT:CustomGibOnDeathSounds(dmginfo,hitgroup)
 	return false
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
-function ENT:CustomOnInitialKilled(dmginfo, hitgroup)
+local animDeathHead = {ACT_DIE_GUTSHOT, ACT_DIE_HEADSHOT}
+local animDeathDef = {ACT_DIEBACKWARD, ACT_DIEFORWARD, ACT_DIESIMPLE}
+--
+function ENT:OnDeath(dmginfo, hitgroup, status)
 	self.DrawnShotgun = false
 	self:SetBodygroup(1,0)
+	if status == "DeathAnim" then
+		if hitgroup == HITGROUP_HEAD then
+			self.AnimTbl_Death = animDeathHead
+		else
+			self.AnimTbl_Death = animDeathDef
+		end
+	end
 end
 /*-----------------------------------------------
 	*** Copyright (c) 2010-2025 by oteek, All rights reserved. ***

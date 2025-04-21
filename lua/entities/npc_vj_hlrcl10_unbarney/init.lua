@@ -13,7 +13,7 @@ ENT.CanUseHD = false
 local baseInit = ENT.CustomOnInitialize
 --
 function ENT:CustomOnInitialize()
-	baseInit(self)
+	//baseInit(self)
     self.SoundTbl_FootStep = {"vj_hlr/crack_fx/npc_step1.wav","vj_hlr/crack_fx/npc_step2.wav","vj_hlr/crack_fx/npc_step3.wav","vj_hlr/crack_fx/npc_step4.wav"}
     self.SoundTbl_Idle = {"vj_hlr/crack10_npc/barney/c1a0_ba_button.wav"}
 	self.SoundTbl_IdleDialogue = {"vj_hlr/crack10_npc/barney/c1a0_ba_button.wav"}

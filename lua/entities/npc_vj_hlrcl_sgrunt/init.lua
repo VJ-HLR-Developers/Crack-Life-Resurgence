@@ -12,7 +12,7 @@ ENT.VJ_NPC_Class = {"CLASS_CRACKLIFE_SOVIET"}
 ENT.GrenadeAttackEntity = "obj_vj_hlrcl_pepsinade" -- The entity that the SNPC throws | Half Life 2 Grenade: "npc_grenade_frag"
 ENT.CanUseHD = false
 ---------------------------------------------------------------------------------------------------------------------------------------------
-function ENT:HECU_CustomOnInitialize()
+function ENT:HECU_OnInit()
 	self:SetBodygroup(1, math.random(0, 1))
 	self.SoundTbl_FootStep = {"vj_hlr/crack_fx/npc_step1.wav","vj_hlr/crack_fx/npc_step2.wav","vj_hlr/crack_fx/npc_step3.wav","vj_hlr/crack_fx/npc_step4.wav"}
 	self.SoundTbl_Death = {"vj_hlr/crack_npc/hgrunt/gr_die1.wav","vj_hlr/crack_npc/hgrunt/gr_die2.wav","vj_hlr/crack_npc/hgrunt/gr_die3.wav"}
