@@ -26,16 +26,8 @@ ENT.Tank_Shell_DynamicLightPos = Vector(220, 0, 210)
 ENT.Tank_Shell_MuzzleFlashPos = Vector(220, 0, 210)
 ENT.Tank_Shell_ParticlePos = Vector(220, 0, 210)
 
-util.AddNetworkString("vj_hlr1_m1a1abrams_shooteffects")
-
 -- Custom --
 ENT.RapidFire = 0
----------------------------------------------------------------------------------------------------------------------------------------------
-function ENT:StartShootEffects()
-	net.Start("vj_hlr1_m1a1abrams_shooteffects")
-	net.WriteEntity(self)
-	net.Broadcast()
-end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:Tank_Init()
 	timer.Create("vlad_rapidassfuck"..self:EntIndex(), 2, 0, function() self.RapidFire = math.random(0,1) end)

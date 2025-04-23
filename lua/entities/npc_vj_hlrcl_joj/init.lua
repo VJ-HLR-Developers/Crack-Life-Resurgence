@@ -61,7 +61,7 @@ ENT.Medic_CanBeHealed = false -- If set to false, this SNPC can't be healed!\
 ENT.SoundTbl_SoundTrack = {"vj_hlr/crack_npc/joj/xfiles.mp3"}
 	-- ====== Sound File Paths ====== --
 -- Leave blank if you don't want any sounds to play
-ENT.SoundTbl_Death = {"vj_hlr/hl1_weapon/mortar/mortarhit.wav"}
+ENT.SoundTbl_Death = {"vj_hlr/gsrc/wep/mortar/mortarhit.wav"}
 local sdExplosions = {"vj_hlr/crack_fx/explode3.wav","vj_hlr/crack_fx/explode4.wav","vj_hlr/crack_fx/explode5.wav"}
 
 ENT.GeneralSoundPitch1 = 100

@@ -43,7 +43,7 @@ ENT.RadiusDamageUseRealisticRadius = true -- Should the damage decrease the fart
 ENT.RadiusDamageType = DMG_BLAST -- Damage type
 ENT.RadiusDamageForce = 90 -- Put the force amount it should apply | false = Don't apply any force
 ENT.DecalTbl_DeathDecals = {"VJ_HLR_Scorch"}
-ENT.SoundTbl_OnCollide = {"vj_hlr/hl1_weapon/grenade/grenade_hit1.wav","vj_hlr/hl1_weapon/grenade/grenade_hit2.wav","vj_hlr/hl1_weapon/grenade/grenade_hit3.wav"}
+ENT.SoundTbl_OnCollide = {"vj_hlr/gsrc/wep/grenade/grenade_hit1.wav","vj_hlr/gsrc/wep/grenade/grenade_hit2.wav","vj_hlr/gsrc/wep/grenade/grenade_hit3.wav"}
 ENT.SoundTbl_OnRemove = {"vj_hlr/crack_fx/explode3.wav","vj_hlr/crack_fx/explode4.wav","vj_hlr/crack_fx/explode5.wav"}
 ENT.OnRemoveSoundLevel = 100
 
@@ -128,7 +128,7 @@ function ENT:DeathEffects()
 		
 		self:DoDamageCode()
 		self:SetDeathVariablesTrue(nil,nil,false)
-		VJ_EmitSound(self, "vj_hlr/hl1_weapon/explosion/debris"..math.random(1,3)..".wav", 80, math.random(100,100))
+		VJ_EmitSound(self, "vj_hlr/gsrc/wep/explosion/debris1"..math.random(1,3)..".wav", 80, math.random(100,100))
 		self:Remove()
 end
 /*-----------------------------------------------

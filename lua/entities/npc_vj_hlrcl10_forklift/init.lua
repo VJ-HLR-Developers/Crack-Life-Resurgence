@@ -26,7 +26,7 @@ ENT.HasMeleeAttack = true -- Should the SNPC have a melee attack?
 ENT.TimeUntilMeleeAttackDamage = false -- This counted in seconds | This calculates the time until it hits something
 ENT.MeleeAttackDistance = 90 -- How close an enemy has to be to trigger a melee attack | false = Let the base auto calculate on initialize based on the NPC's collision bounds
 ENT.MeleeAttackDamageDistance = 120 -- How far does the damage go | false = Let the base auto calculate on initialize based on the NPC's collision bounds
-ENT.MeleeAttackDamage = 5
+ENT.MeleeAttackDamage = 2
 ENT.HasMeleeAttackKnockBack = true
 
 ENT.DisableFootStepSoundTimer = true -- If set to true, it will disable the time system for the footstep sound code, allowing you to use other ways like model events
@@ -117,8 +117,8 @@ function ENT:HandleGibOnDeath(dmginfo, hitgroup)
 			gib:SetModel(VJ_PICK(computerGibs))
 			gib:SetPos(self:GetPos() + Vector(math.random(-35, 35), math.random(-35, 35), math.random(10, 100)))
 			gib:SetAngles(Angle(math.Rand(-180, 180), math.Rand(-180, 180), math.Rand(-180, 180)))
-			gib.Collide_Decal = ""
-			gib.CollideSound = gibsCollideSd
+			gib.CollisionDecal = ""
+			gib.CollisionSound = gibsCollideSd
 			gib:Spawn()
 			gib:Activate()
 			local myPhys = gib:GetPhysicsObject()
@@ -130,14 +130,11 @@ function ENT:HandleGibOnDeath(dmginfo, hitgroup)
 				timer.Simple(GetConVar("vj_npc_gib_fadetime"):GetInt(), function() SafeRemoveEntity(gib) end)
 			end
 	end
-	return true -- Return to true if it gibbed!
-end
----------------------------------------------------------------------------------------------------------------------------------------------
-function ENT:CustomGibOnDeathSounds(dmginfo, hitgroup)
-	VJ_EmitSound(self, "vj_hlr/crack10_fx/bustmetal"..math.random(1,2)..".wav", 100, 100)
-    VJ_EmitSound(self,"vj_hlr/crack_fx/bodysplat.wav", 90, math.random(100,100))
-	VJ_EmitSound(self, "vj_hlr/gsrc/npc/rgrunt/rb_gib.wav", 90, 85)
-	return false
+	self:PlaySoundSystem("Gib", "vj_base/gib/splat.wav")
+	self:PlaySoundSystem("Gib", "vj_hlr/crack_fx/bodysplat.wav")
+	self:PlaySoundSystem("Gib", "vj_hlr/gsrc/npc/rgrunt/rb_gib.wav")
+	self:PlaySoundSystem("Gib", "vj_hlr/crack10_fx/bustmetal"..math.random(1,2)..".wav")
+	return true, {AllowSound = false}
 end
 /*-----------------------------------------------
 	*** Copyright (c) 2010-2025 by oteek, All rights reserved. ***

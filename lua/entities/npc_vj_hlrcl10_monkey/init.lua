@@ -76,35 +76,29 @@ ENT.SCI_NextMouthMove = 0
 ENT.SCI_NextMouthDistance = 0
 ENT.Legbone = false
 ---------------------------------------------------------------------------------------------------------------------------------------------
-function ENT:CustomOnInitialize()
+function ENT:Init()
 	self:SetCollisionBounds(Vector(24, 20 , 30), Vector(-24, -20, 0))
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
-function ENT:CustomOnAcceptInput(key,activator,caller,data)
+function ENT:OnInput(key,activator,caller,data)
 	//print(key)
 	if key == "step" then
 		self:FootStepSoundCode()
     elseif key == "melee" then
-		self:MeleeAttackCode()
+		self:ExecuteMeleeAttack()
     //elseif key == "leap" then
 		//self:LeapDamageCode()
     elseif key == "range" then
 		self:RangeAttackCode()
-        VJ_EmitSound(self, table.Random(self.DungThrowSnd), 85, 100)
+        VJ.EmitSound(self, table.Random(self.DungThrowSnd), 85, 100)
 	elseif key == "body" then
-		VJ_EmitSound(self, "vj_hlr/crack_fx/bodydrop.wav", 85, 100)
+		VJ.EmitSound(self, "vj_hlr/crack_fx/bodydrop.wav", 85, 100)
 	end
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:RangeAttackProjVelocity(projectile)
 	local projPos = projectile:GetPos()
 	return self:CalculateProjectile("Curve", projPos, self:GetAimPosition(self:GetEnemy(), projPos, 1, 1000), 1000)
-end
----------------------------------------------------------------------------------------------------------------------------------------------
-function ENT:CustomGibOnDeathSounds(dmginfo,hitgroup)
-	VJ_EmitSound(self,"vj_hlr/crack_fx/bodysplat.wav", 90, math.random(100,100))
-	VJ_EmitSound(self, "vj_base/gib/splat.wav", 90, math.random(100,100))
-	return false
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:HandleGibOnDeath(dmginfo, hitgroup)
@@ -133,7 +127,9 @@ function ENT:HandleGibOnDeath(dmginfo, hitgroup)
 	self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/hgib_guts.mdl",{CollisionDecal="VJ_HLR1_Blood_Red",Pos=self:LocalToWorld(Vector(0,0,20))})
 	self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/hgib_hmeat.mdl",{CollisionDecal="VJ_HLR1_Blood_Red",Pos=self:LocalToWorld(Vector(0,0,7))})
 	self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/hgib_lung.mdl",{CollisionDecal="VJ_HLR1_Blood_Red",Pos=self:LocalToWorld(Vector(0,0,5))})
-	return true
+	self:PlaySoundSystem("Gib", "vj_base/gib/splat.wav")
+	self:PlaySoundSystem("Gib", "vj_hlr/crack_fx/bodysplat.wav")
+	return true, {AllowSound = false}
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomOnPriorToKilled(dmginfo, hitgroup)

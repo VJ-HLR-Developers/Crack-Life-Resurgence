@@ -10,7 +10,7 @@ ENT.Model = "models/vj_hlr/cracklife/tree.mdl" -- The game will pick a random mo
 ENT.SightDistance = 300
 
 ENT.MeleeAttackDamage = 60
-ENT.MeleeAttackDistance = 120 -- How close an enemy has to be to trigger a melee attack | false = Let the base auto calculate on initialize based on the NPC's collision bounds
+ENT.MeleeAttackDistance = 160 -- How close an enemy has to be to trigger a melee attack | false = Let the base auto calculate on initialize based on the NPC's collision bounds
 ENT.MeleeAttackAngleRadius = 15 -- What is the attack angle radius? | 100 = In front of the SNPC | 180 = All around the SNPC
 
 ENT.BloodColor = ""

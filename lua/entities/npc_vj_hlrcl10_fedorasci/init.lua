@@ -33,11 +33,10 @@ ENT.TimeUntilLeapAttackDamage = false
 
 ENT.HasRangeAttack = true
 ENT.NextRangeAttackTime = 5
+ENT.AnimTbl_RangeAttack = ACT_RANGE_ATTACK1
 ENT.TimeUntilRangeAttackProjectileRelease = 0.4
 ENT.RangeDistance = 400 -- This is how far away it can shoot
 ENT.RangeToMeleeDistance = 200 -- How close does it have to be until it uses melee?
-ENT.DisableDefaultRangeAttackCode = true
-
 
 ENT.SoundTbl_FootStep = {"vj_hlr/crack_fx/npc_step1.wav","vj_hlr/crack_fx/npc_step2.wav","vj_hlr/crack_fx/npc_step3.wav","vj_hlr/crack_fx/npc_step4.wav"}
 ENT.SoundTbl_Idle = {"vj_hlr/crack10_npc/scientist/amogus.wav","vj_hlr/crack10_npc/scientist/africa.wav","vj_hlr/crack10_npc/scientist/reddit.wav","vj_hlr/crack10_npc/scientist/cringe2.wav"}
@@ -61,7 +60,7 @@ ENT.SCI_NextMouthMove = 0
 ENT.SCI_NextMouthDistance = 0
 ENT.SpawnHat = true
 ---------------------------------------------------------------------------------------------------------------------------------------------
-function ENT:CustomOnInitialize()
+function ENT:Init()
 	local randBG = math.random(0, 3)
 	self:SetBodygroup(1, randBG)
 	if randBG == 2 then
@@ -69,93 +68,95 @@ function ENT:CustomOnInitialize()
 	end
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
-function ENT:TranslateActivity(act) end
----------------------------------------------------------------------------------------------------------------------------------------------
-function ENT:CustomRangeAttackCode()
-
-    VJ_EmitSound(self, "vj_hlr/gsrc/fx/beamstart8.wav", 85, 100)
-
-    local size = 1.5
-
-    local spr = ents.Create("env_sprite")
-    spr:SetKeyValue("model", "vj_hl/sprites/fexplo1.vmt")
-    spr:SetKeyValue("scale", ""..size)
-    spr:SetKeyValue("rendercolor", color or "77 210 130")
-    spr:SetKeyValue("rendermode", "5") -- 5 = Additive render mode
-    spr:SetKeyValue("renderamt", "255")
-    spr:SetKeyValue("framerate", "10.0")
-    spr:SetKeyValue("spawnflags", "2") -- 2 (SF_SPRITE_ONCE) = Makes it animate / display only once
-    spr:SetPos(self:GetAttachment(self:LookupAttachment("__illumPosition")).Pos)
-    spr:Spawn()
-    spr:Fire("Kill", "", 1)
-
-
-    local enemy = self:GetEnemy()
-    if IsValid(enemy) and IsValid(self) then
-        local enePos = enemy:GetPos()
-        local eneForward = enemy:EyeAngles():Forward() * -120
-        local mins, maxs = enemy:GetCollisionBounds()
-
-        -- Calculate the position behind the player
-        local newPos = enePos + eneForward - (mins)// * offset
-
-        -- Set the new position for the entity
-        self:SetPos(newPos)
-
-        -- Check for collisions and adjust the position if needed
-        local trace = util.TraceHull({
-            start = newPos,
-            endpos = newPos,
-            mins = mins,
-            maxs = maxs,
-            filter = self
-        })
-
-        if trace.Hit then
-            -- Adjust the position to avoid collisions
-            self:SetPos(enemy:GetPos() + enemy:GetForward() * 50)
-        end
-
-        local lookAt = (enePos - self:GetPos()):Angle()
-        lookAt.p = 0 -- Lock pitch to avoid tilting
-
-        -- Set the new angles for the entity
-        self:SetAngles(lookAt)
-
-		timer.Simple(0.1, function()
-			if IsValid(self) then
-				local spr2 = ents.Create("env_sprite")
-				spr2:SetKeyValue("model", "vj_hl/sprites/fexplo1.vmt")
-				spr2:SetKeyValue("scale", ""..size)
-				spr2:SetKeyValue("rendercolor", color or "77 210 130")
-				spr2:SetKeyValue("rendermode", "5") -- 5 = Additive render mode
-				spr2:SetKeyValue("renderamt", "255")
-				spr2:SetKeyValue("framerate", "10.0")
-				spr2:SetKeyValue("spawnflags", "2") -- 2 (SF_SPRITE_ONCE) = Makes it animate / display only once
-				spr2:SetPos(self:GetAttachment(self:LookupAttachment("__illumPosition")).Pos)
-				spr2:Spawn()
-				spr2:Fire("Kill", "", 1)
-			end
-		end)
-    end
+function ENT:TranslateActivity(act)
+	return self.BaseClass.TranslateActivity(self, act)
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
-function ENT:CustomOnAcceptInput(key,activator,caller,data)
+function ENT:OnRangeAttackExecute(status, enemy, projectile)
+	//print("nothing personnel, kid.")
+	if status == "Init" then
+		VJ.EmitSound(self, "vj_hlr/gsrc/fx/beamstart8.wav", 85, 100)
+
+		local size = 1.5
+
+		local spr = ents.Create("env_sprite")
+		spr:SetKeyValue("model", "vj_hl/sprites/fexplo1.vmt")
+		spr:SetKeyValue("scale", ""..size)
+		spr:SetKeyValue("rendercolor", color or "77 210 130")
+		spr:SetKeyValue("rendermode", "5") -- 5 = Additive render mode
+		spr:SetKeyValue("renderamt", "255")
+		spr:SetKeyValue("framerate", "10.0")
+		spr:SetKeyValue("spawnflags", "2") -- 2 (SF_SPRITE_ONCE) = Makes it animate / display only once
+		spr:SetPos(self:GetAttachment(self:LookupAttachment("__illumPosition")).Pos)
+		spr:Spawn()
+		spr:Fire("Kill", "", 1)
+
+
+		local enemy = self:GetEnemy()
+		if IsValid(enemy) and IsValid(self) then
+			local enePos = enemy:GetPos()
+			local eneForward = enemy:EyeAngles():Forward() * -120
+			local mins, maxs = enemy:GetCollisionBounds()
+
+			-- Calculate the position behind the player
+			local newPos = enePos + eneForward - (mins)// * offset
+
+			-- Set the new position for the entity
+			self:SetPos(newPos)
+
+			-- Check for collisions and adjust the position if needed
+			local trace = util.TraceHull({
+				start = newPos,
+				endpos = newPos,
+				mins = mins,
+				maxs = maxs,
+				filter = self
+			})
+
+			if trace.Hit then
+				-- Adjust the position to avoid collisions
+				self:SetPos(enemy:GetPos() + enemy:GetForward() * 50)
+			end
+
+			local lookAt = (enePos - self:GetPos()):Angle()
+			lookAt.p = 0 -- Lock pitch to avoid tilting
+
+			-- Set the new angles for the entity
+			self:SetAngles(lookAt)
+
+			timer.Simple(0.1, function()
+				if IsValid(self) then
+					local spr2 = ents.Create("env_sprite")
+					spr2:SetKeyValue("model", "vj_hl/sprites/fexplo1.vmt")
+					spr2:SetKeyValue("scale", ""..size)
+					spr2:SetKeyValue("rendercolor", color or "77 210 130")
+					spr2:SetKeyValue("rendermode", "5") -- 5 = Additive render mode
+					spr2:SetKeyValue("renderamt", "255")
+					spr2:SetKeyValue("framerate", "10.0")
+					spr2:SetKeyValue("spawnflags", "2") -- 2 (SF_SPRITE_ONCE) = Makes it animate / display only once
+					spr2:SetPos(self:GetAttachment(self:LookupAttachment("__illumPosition")).Pos)
+					spr2:Spawn()
+					spr2:Fire("Kill", "", 1)
+				end
+			end)
+		end
+		return true
+	end
+end
+---------------------------------------------------------------------------------------------------------------------------------------------
+function ENT:OnInput(key,activator,caller,data)
 	//print(key)
 	if key == "step" then
-		self:FootStepSoundCode()
+		self:PlayFootstepSound()
     elseif key == "melee" then
-		self:MeleeAttackCode()
+		self:ExecuteMeleeAttack()
     elseif key == "jumpmelee" then
-		self:LeapDamageCode()
+		self:ExecuteLeapAttack()
     elseif key == "teleport" then
 		//self:RangeAttackCode()
 	elseif key == "body" then
 		VJ_EmitSound(self, "vj_hlr/crack_fx/bodydrop.wav", 85, 100)
 	end
-end
----------------------------------------------------------------------------------------------------------------------------------------------
-function ENT:MultipleMeleeAttacks()
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:MeleeAttackKnockbackVelocity(hitEnt)
@@ -215,21 +216,25 @@ function ENT:HandleGibOnDeath(dmginfo, hitgroup)
 	self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/hgib_lung.mdl",{CollisionDecal="VJ_HLR1_Blood_Red",Pos=self:LocalToWorld(Vector(0,0,45))})
 	self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/hgib_skull.mdl",{CollisionDecal="VJ_HLR1_Blood_Red",Pos=self:LocalToWorld(Vector(0,0,60))})
 	self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/hgib_legbone.mdl",{CollisionDecal="VJ_HLR1_Blood_Red",Pos=self:LocalToWorld(Vector(0,0,15))})
-	return true
+	self:PlaySoundSystem("Gib", "vj_base/gib/splat.wav")
+	self:PlaySoundSystem("Gib", "vj_hlr/crack_fx/bodysplat.wav")
+	return true, {AllowSound = false}
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
-function ENT:CustomOnPriorToKilled(dmginfo, hitgroup)
+local animDeathHead = {ACT_DIE_GUTSHOT, ACT_DIE_HEADSHOT}
+local animDeathDef = {ACT_DIEBACKWARD, ACT_DIEFORWARD, ACT_DIESIMPLE}
+--
+function ENT:OnDeath(dmginfo, hitgroup, status)
 	if self.SpawnHat == true then
 		self:SetBodygroup(0,1)
 		self:CreateGibEntity("obj_vj_gib","models/vj_hlr/cracklife10/katana.mdl",{CollisionDecal=false,Pos=self:LocalToWorld(Vector(0,0,0)),CollideSound={""}})
 		self.SpawnHat = false
 	end
-end
----------------------------------------------------------------------------------------------------------------------------------------------
-function ENT:CustomDeathAnimationCode(dmginfo, hitgroup)
-	if hitgroup == HITGROUP_HEAD then
-		self.AnimTbl_Death = {ACT_DIE_GUTSHOT,ACT_DIE_HEADSHOT}
-	else
-		self.AnimTbl_Death = {ACT_DIEBACKWARD,ACT_DIEFORWARD,ACT_DIESIMPLE}
+	if status == "DeathAnim" then
+		if hitgroup == HITGROUP_HEAD then
+			self.AnimTbl_Death = animDeathHead
+		else
+			self.AnimTbl_Death = animDeathDef
+		end
 	end
 end
