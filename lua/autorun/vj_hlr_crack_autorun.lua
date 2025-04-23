@@ -109,7 +109,7 @@ if VJExists == true then
 		
 		VJ.AddConVar("vj_hlrcl_skipufointro", 0, {FCVAR_ARCHIVE})
 		VJ.AddConVar("vj_hlrcl_oldchavsounds", 0, {FCVAR_ARCHIVE})
-		VJ.AddConVar("vj_hlrcl_disableracism", 1, {FCVAR_ARCHIVE})
+		VJ.AddConVar("vj_hlrcl_disableracism", 1, {FCVAR_NONE})
 		-----------------------------------------------------------------------------
 		VJ.AddConVar("vj_hlrcl_allyspawn_2spooky", 1, {FCVAR_ARCHIVE})
 		VJ.AddConVar("vj_hlrcl_selfspawn_2spooky", 1, {FCVAR_ARCHIVE})
