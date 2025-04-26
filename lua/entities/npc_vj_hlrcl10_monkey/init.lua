@@ -39,7 +39,7 @@ ENT.NextRangeAttackTime = 4
 ENT.TimeUntilRangeAttackProjectileRelease = false
 
 ENT.RangeDistance = 784 -- This is how far away it can shoot
-ENT.RangeToMeleeDistance = 200 -- How close does it have to be until it uses melee?
+ENT.RangeToMeleeDistance = 230 -- How close does it have to be until it uses melee?
 ENT.RangeAttackEntityToSpawn = "obj_vj_hlrcl10_poop"
 
 ENT.HasExtraMeleeAttackSounds = true
