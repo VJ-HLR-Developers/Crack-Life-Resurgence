@@ -74,7 +74,7 @@ function ENT:CustomOnAcceptInput(key, activator, caller, data)
         self:MeleeAttackCode()
     elseif key == "fire" then
         self:RangeAttackCode()
-        VJ_EmitSound(self, "vj_hlr/hl1_weapon/rpg/rocketfire1.wav", 75, 100)
+        VJ_EmitSound(self, "vj_hlr/gsrc/wep/rpg/rocketfire1.wav", 75, 100)
 	end
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
