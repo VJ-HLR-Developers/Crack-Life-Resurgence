@@ -65,7 +65,7 @@ function ENT:Pepsi()
 		if phys:IsValid() then
 			phys:Wake()
 			--phys:SetVelocity(self:GetOwner():CalculateProjectile("Curve", pos, self:GetOwner():GetEnemy():GetPos() + self:GetOwner():GetEnemy():OBBCenter(), 1000))
-			phys:SetVelocity(self:GetOwner():CalculateProjectile("Line", self:GetPos() + self:GetUp(), self:GetEnemy():GetPos() + self:GetEnemy():OBBCenter(), 1500))
+			phys:SetVelocity(VJ.CalculateTrajectory(self, NULL, "Line", self:GetPos() + self:GetUp(), self:GetEnemy():GetPos() + self:GetEnemy():OBBCenter(), 1500))
 		end
 	end
 end
