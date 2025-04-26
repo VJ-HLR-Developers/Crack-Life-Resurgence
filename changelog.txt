@@ -1,6 +1,11 @@
-[h1][b] 1.3-beta1 [/b][/h1]
+[h1][b] 1.3-beta2 [/b][/h1]
+[list]
+[*] More bug fixes.
+[/list]
 
-- Added finished Crack-Life: 10th Anniversary SNPCs:
+[h1][b] 1.3-beta1 [/b][/h1]
+[list]
+[*] Added finished Crack-Life: 10th Anniversary SNPCs:
 [list]
 [*] - CIA Man
 [*] - Forklift
@@ -12,9 +17,10 @@
 [*] - UN Peacekeeper
 [*] - Vaccinator
 [/list]
-- Updated to latest HLR and VJ Base.
-- Final Boss no longer spawns Gentlezombie.
-- Bug fixes.
+[*] Updated to latest HLR and VJ Base.
+[*] Final Boss no longer spawns Gentlezombie.
+[*] Bug fixes.
+[/list]
 
 [h1][b] 1.2b [/b][/h1]
 [list]

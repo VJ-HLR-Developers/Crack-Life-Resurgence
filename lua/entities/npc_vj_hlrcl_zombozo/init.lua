@@ -26,13 +26,14 @@ ENT.PainSoundLevel = 90
 ENT.DeathSoundLevel = 90
 ENT.CanUseHD = false
 ---------------------------------------------------------------------------------------------------------------------------------------------
-function ENT:CustomOnAcceptInput(key,activator,caller,data)
+function ENT:OnInput(key,activator,caller,data)
 	//print(key)
 	if key == "event_emit step" then
 		self:FootStepSoundCode()
 	end
 	if key == "event_mattack right" or key == "event_mattack left" or key == "event_mattack both" then
-		self:MeleeAttackCode()
+		self.MeleeAttackDamage = self:GetActivity() == ACT_MELEE_ATTACK1 and 20 or 35
+		self:ExecuteMeleeAttack()
 		if self:IsValid() then
 			self:Pepsi()
 		end
@@ -50,12 +51,6 @@ end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomOnTakeDamage_AfterDamage(dmginfo, hitgroup)
 	self.MainSoundPitchValue = self.MainSoundPitchValue + 1
-end
----------------------------------------------------------------------------------------------------------------------------------------------
-function ENT:CustomGibOnDeathSounds(dmginfo,hitgroup)
-	VJ_EmitSound(self,"vj_hlr/crack_fx/bodysplat.wav", 90, math.random(100,100))
-	VJ_EmitSound(self, "vj_base/gib/splat.wav", 90, math.random(100,100))
-	return false
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:Pepsi()
@@ -112,7 +107,9 @@ function ENT:HandleGibOnDeath(dmginfo,hitgroup)
 	self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/hgib_skull.mdl",{BloodType="Red",CollisionDecal="VJ_HLR1_Blood_Red",Pos=self:LocalToWorld(Vector(0,0,60))})
 	self:CreateGibEntity("obj_vj_gib","models/vj_hlr/gibs/zombiegib.mdl",{BloodType="Red",CollisionDecal="VJ_HLR1_Blood_Red",Pos=self:LocalToWorld(Vector(0,0,15))})
 
-	return true -- Return to true if it gibbed!
+	self:PlaySoundSystem("Gib", "vj_base/gib/splat.wav")
+	self:PlaySoundSystem("Gib", "vj_hlr/crack_fx/bodysplat.wav")
+	return true, {AllowSound = false}
 end
 
 local extraGibs = {"models/vj_hlr/gibs/zombiegib.mdl","models/vj_hlr/gibs/hgib_skull.mdl"}
