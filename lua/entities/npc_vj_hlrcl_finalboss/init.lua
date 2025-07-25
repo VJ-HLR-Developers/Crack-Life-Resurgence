@@ -87,7 +87,7 @@ function ENT:Shelling()
 			phys:Wake()
 			--phys:SetVelocity(self:GetOwner():CalculateProjectile("Curve", pos, self:GetOwner():GetEnemy():GetPos() + self:GetOwner():GetEnemy():OBBCenter(), 1000))
 			--phys:SetVelocity(self:GetOwner():CalculateProjectile("Curve", self:GetPos() + self:GetUp(), self:GetEnemy():GetPos() + self:GetEnemy():OBBCenter(), 1000))
-			phys:SetVelocity(VJ.CalculateTrajectory(self, self:GetEnemy(), "Curve", self:GetPos(), 1, 1000))
+			phys:SetVelocity(VJ.CalculateTrajectory(self, self:GetEnemy(), "Curve", self:GetPos(), self:GetEnemy():GetPos() + self:GetEnemy():OBBCenter(), 1000))
 		end
 		VJ.EmitSound(self, {"vj_hlr/gsrc/wep/mp5/glauncher.wav","vj_hlr/gsrc/wep/mp5/glauncher2.wav"}, 90)
 	end

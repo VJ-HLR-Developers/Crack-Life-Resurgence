@@ -9,8 +9,6 @@ ENT.Model = {"models/vj_hlr/cracklife/german1.mdl","models/vj_hlr/cracklife/germ
 ENT.HullType = HULL_HUMAN
 ENT.VJ_NPC_Class = {"CLASS_CRACKLIFE_GERMAN"} -- NPCs with the same class with be allied to each other
 
-ENT.MeleeAttackDistance = 20 -- How close an enemy has to be to trigger a melee attack | false = Let the base auto calculate on initialize based on the NPC's collision bounds
-
 ENT.ControllerParams = {
     ThirdP_Offset = Vector(-5, 0, -15), -- The offset for the controller when the camera is in third person
     FirstP_Bone = "Bip01 Head", -- If left empty, the base will attempt to calculate a position for first person
@@ -24,11 +22,11 @@ ENT.HasBloodPool = false -- Does it have a blood pool?
 
 ENT.HasRangeAttack = true -- Can this NPC range attack?
 ENT.AnimTbl_RangeAttack = ACT_RANGE_ATTACK1 -- Range Attack Animations
-ENT.RangeDistance = 1020 -- This is how far away it can shoot
-ENT.RangeToMeleeDistance = 100 -- How close does it have to be until it uses melee?
+ENT.RangeAttackMaxDistance = 1020 -- This is how far away it can shoot
+ENT.RangeAttackMinDistance = 50
+
 ENT.TimeUntilRangeAttackProjectileRelease = false -- How much time until the projectile code is ran?
-ENT.NextRangeAttackTime = 3 -- How much time until it can use a range attack?
-ENT.DisableDefaultRangeAttackCode = true -- When true, it won't spawn the range attack entity, allowing you to make your own
+//ENT.DisableDefaultRangeAttackCode = true -- When true, it won't spawn the range attack entity, allowing you to make your own
 
 ENT.HasDeathAnimation = true -- Does it play an animation when it dies?
 ENT.AnimTbl_Death = {ACT_DIEBACKWARD, ACT_DIEFORWARD, ACT_DIESIMPLE} -- Death Animations
@@ -41,11 +39,22 @@ ENT.AnimTbl_Flinch = ACT_SMALL_FLINCH -- If it uses normal based animation, use 
 ENT.HitGroupFlinching_Values = {{HitGroup = {HITGROUP_LEFTARM}, Animation = {ACT_FLINCH_LEFTARM}},{HitGroup = {HITGROUP_RIGHTARM}, Animation = {ACT_FLINCH_RIGHTARM}},{HitGroup = {HITGROUP_LEFTLEG}, Animation = {ACT_FLINCH_LEFTLEG}},{HitGroup = {HITGROUP_RIGHTLEG}, Animation = {ACT_FLINCH_RIGHTLEG}}}
 
 ENT.AnimTbl_Death = {ACT_DIEBACKWARD,ACT_DIEFORWARD,ACT_DIESIMPLE,ACT_DIE_GUTSHOT} -- Death Animations
-ENT.NextRangeAttackTime = 0.3
+ENT.NextRangeAttackTime = 0.5
 ENT.SpawnHat = true
 ENT.CanUseHD = false
+
+ENT.HasMeleeAttack = true
+ENT.MeleeAttackDamage = 20
+ENT.TimeUntilMeleeAttackDamage = false
+ENT.MeleeAttackDistance = 40
+ENT.MeleeAttackDamageDistance = 70
 ---------------------------------------------------------------------------------------------------------------------------------------------
-function ENT:CustomOnInitialize()
+function ENT:TranslateActivity(act)
+	-- Overwrite it to do nothing
+	return self.BaseClass.TranslateActivity(self, act)
+end
+---------------------------------------------------------------------------------------------------------------------------------------------
+function ENT:Init()
 	self.SoundTbl_FootStep = {"vj_hlr/crack_fx/npc_step1.wav","vj_hlr/crack_fx/npc_step2.wav","vj_hlr/crack_fx/npc_step3.wav","vj_hlr/crack_fx/npc_step4.wav"}
 	self.SoundTbl_BeforeRangeAttack = {""}
 	self.SoundTbl_RangeAttack = {""}
@@ -62,37 +71,40 @@ end
 function ENT:CustomOnAcceptInput(key, activator, caller, data)
 	//print(key)
 	if key == "event_emit step" or key == "step" then
-		self:FootStepSoundCode()
+		self:PlayFootstepSound()
 	elseif key == "right" or key == "left" then
-		self:MeleeAttackCode()
+		self:ExecuteMeleeAttack()
 	elseif key == "shoot" then
-		self:RangeAttackCode()
+		self:ExecuteRangeAttack()
 		VJ_EmitSound(self, "vj_hlr/gsrc/npc/hassault/hw_shoot1.wav", 75, 150)
 	elseif key == "body" then
 		VJ_EmitSound(self, "vj_hlr/crack_fx/bodydrop.wav", 75, 100)
 	end
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
-function ENT:CustomRangeAttackCode()
-	local startPos = self:GetPos() + self:GetUp()*45 + self:GetForward()*40
-	local tr = util.TraceLine({
-		start = startPos,
-		endpos = self:GetAimPosition(self:GetEnemy(), startPos, 0),
-		filter = self
-	})
-	local hitPos = tr.HitPos
-	
-	-- Fire 2 electric beams at the enemy
-	local elec = EffectData()
-	elec:SetStart(startPos)
-	elec:SetOrigin(hitPos)
-	elec:SetEntity(self)
-	elec:SetAttachment(1)
-	util.Effect("VJ_HLR_Electric", elec)
-	elec:SetAttachment(2)
-	util.Effect("VJ_HLR_Electric", elec)
-	
-	VJ.ApplyRadiusDamage(self, self, hitPos, 30, 10, DMG_SHOCK, true, false, {Force = 90})
+function ENT:OnRangeAttackExecute(status, enemy, projectile)
+	if status == "Init" then
+		local startPos = self:GetPos() + self:GetUp()*45 + self:GetForward()*40
+		local tr = util.TraceLine({
+			start = startPos,
+			endpos = self:GetAimPosition(self:GetEnemy(), startPos, 0),
+			filter = self
+		})
+		local hitPos = tr.HitPos
+		
+		-- Fire 2 electric beams at the enemy
+		local elec = EffectData()
+		elec:SetStart(startPos)
+		elec:SetOrigin(hitPos)
+		elec:SetEntity(self)
+		elec:SetAttachment(1)
+		util.Effect("VJ_HLR_Electric", elec)
+		elec:SetAttachment(2)
+		util.Effect("VJ_HLR_Electric", elec)
+		
+		VJ.ApplyRadiusDamage(self, self, hitPos, 30, 10, DMG_SHOCK, true, false, {Force = 90})
+		return true
+	end
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:HandleGibOnDeath(dmginfo, hitgroup)
