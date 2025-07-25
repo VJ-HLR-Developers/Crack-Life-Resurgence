@@ -10,6 +10,12 @@ ENT.Model = {"models/vj_hlr/cracklife/hgrunt.mdl"} -- The game will pick a rando
 ENT.VJ_NPC_Class = {"CLASS_CRACKLIFE_SOVIET"}
 
 ENT.GrenadeAttackEntity = "obj_vj_hlrcl_pepsinade" -- The entity that the SNPC throws | Half Life 2 Grenade: "npc_grenade_frag"
+ENT.AnimTbl_GrenadeAttack = ACT_SPECIAL_ATTACK2
+ENT.GrenadeAttackAttachment = "lhand"
+ENT.GrenadeAttackThrowTime = false
+ENT.NextGrenadeAttackTime = VJ.SET(10, 12)
+ENT.GrenadeAttackChance = 3
+
 ENT.CanUseHD = false
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:HECU_OnInit()
@@ -98,6 +104,8 @@ function ENT:CustomOnAcceptInput(key, activator, caller, data)
 		if IsValid(wep) then
 			wep:NPCShoot_Primary()
 		end
+	elseif key == "throwgrenade" then
+		timer.Adjust("attack_grenade_start" .. self:EntIndex(), 0)
 	elseif key == "body" then
 		VJ_EmitSound(self, "vj_hlr/crack_fx/bodydrop.wav", 75, 100)
 	end

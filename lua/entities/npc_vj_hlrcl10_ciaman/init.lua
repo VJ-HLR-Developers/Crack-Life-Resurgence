@@ -7,7 +7,7 @@ include("shared.lua")
 -----------------------------------------------*/
 ENT.Model = {"models/vj_hlr/cracklife10/ciaman.mdl"} -- The game will pick a random model from the table when the SNPC is spawned | Add as many as you want
 ENT.StartHealth = 130
-ENT.VJC_Data = {
+ENT.ControllerParams = {
     ThirdP_Offset = Vector(-5, 0, -15), -- The offset for the controller when the camera is in third person
     FirstP_Bone = "Bip01 Head", -- If left empty, the base will attempt to calculate a position for first person
     FirstP_Offset = Vector(5, 0, 5), -- The offset for the controller when the camera is in first person

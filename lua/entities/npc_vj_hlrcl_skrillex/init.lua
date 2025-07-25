@@ -26,7 +26,7 @@ ENT.RangeToMeleeDistance = 0
 ENT.NextRangeAttackTime = 5
 ENT.RangeDistance = 1000
 
-ENT.VJC_Data = {
+ENT.ControllerParams = {
     ThirdP_Offset = Vector(-5, 0, -15), -- The offset for the controller when the camera is in third person
     FirstP_Bone = "Bip02 Head", -- If left empty, the base will attempt to calculate a position for first person
     FirstP_Offset = Vector(5, 0, 5), -- The offset for the controller when the camera is in first person

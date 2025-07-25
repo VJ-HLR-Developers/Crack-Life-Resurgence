@@ -11,7 +11,7 @@ ENT.VJ_NPC_Class = {"CLASS_CRACKLIFE_GERMAN"} -- NPCs with the same class with b
 
 ENT.MeleeAttackDistance = 20 -- How close an enemy has to be to trigger a melee attack | false = Let the base auto calculate on initialize based on the NPC's collision bounds
 
-ENT.VJC_Data = {
+ENT.ControllerParams = {
     ThirdP_Offset = Vector(-5, 0, -15), -- The offset for the controller when the camera is in third person
     FirstP_Bone = "Bip01 Head", -- If left empty, the base will attempt to calculate a position for first person
     FirstP_Offset = Vector(5, 0, 5), -- The offset for the controller when the camera is in first person

@@ -61,8 +61,32 @@ function ENT:CustomOnAcceptInput(key, activator, caller, data)
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:Controller_IntMsg(ply, controlEnt)
+	
+end
+---------------------------------------------------------------------------------------------------------------------------------------------
+function ENT:Controller_Initialize(ply, controlEnt)
 	ply:ChatPrint("RELOAD: Toggle scared animations")
 	ply:ChatPrint("LMOUSE: Question everyone if they even lift (if not scared & possible)")
+	
+	self.SCI_ControllerAnim = 0
+	self.SCI_NextTieAnnoyanceT = 0
+	
+	function controlEnt:OnKeyBindPressed(key)
+		local npc = self.VJCE_NPC
+		-- Toggle behavior setting (Idle / Alert)
+		if key == IN_RELOAD then
+			if npc.SCI_ControllerAnim == 0 then
+				npc.SCI_ControllerAnim = 1
+				self.VJCE_Player:ChatPrint("I am scared!")
+			else
+				npc.SCI_ControllerAnim = 0
+				self.VJCE_Player:ChatPrint("Calming down...")
+			end
+		elseif key == IN_ATTACK && CurTime() > npc.SCI_NextTieAnnoyanceT then
+			npc:PlayAnim(ACT_VM_IDLE_1, true, false)
+			npc.SCI_NextTieAnnoyanceT = CurTime() + 4
+		end
+	end
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:OnMedicBehavior(status, statusData)

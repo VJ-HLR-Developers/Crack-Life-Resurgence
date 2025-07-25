@@ -24,7 +24,7 @@ ENT.AA_GroundLimit = 500 -- If the NPC's distance from itself to the ground is l
 ENT.AA_MinWanderDist = 200 -- Minimum distance that the NPC should go to when wandering
 ENT.AA_MoveAccelerate = 8 -- The NPC will gradually speed up to the max movement speed as it moves towards its destination | Calculation = FrameTime * x
 ENT.AA_MoveDecelerate = 4 -- The NPC will slow down as it approaches its destination | Calculation = MaxSpeed / x
-ENT.VJC_Data = {
+ENT.ControllerParams = {
 	ThirdP_Offset = Vector(-400, 0, -15), -- The offset for the controller when the camera is in third person
     FirstP_Bone = "Bone14", -- If left empty, the base will attempt to calculate a position for first person
     FirstP_Offset = Vector(-50, 0, -40), -- The offset for the controller when the camera is in first person

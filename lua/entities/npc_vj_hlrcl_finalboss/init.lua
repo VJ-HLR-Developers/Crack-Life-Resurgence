@@ -53,7 +53,7 @@ function ENT:OnInput(key,activator,caller,data)
 		self:RangeAttackCode()
 		for i = 0, 0.5, 0.1 do
 			timer.Simple(i,function()
-				if self:IsValid() then
+				if IsValid(self) && IsValid(self:GetEnemy()) then
 					self:Shelling()
 					if GetConVar("vj_hlrcl_allyspawn_finalboss"):GetInt() == 1 then
 						self:F_SpawnAlly()
@@ -64,7 +64,7 @@ function ENT:OnInput(key,activator,caller,data)
 		timer.Simple(0.5,function()
 			for i = 0, 0.1, 0.05 do
 				timer.Simple(i,function()
-					if self:IsValid() then
+					if IsValid(self) && IsValid(self:GetEnemy()) then
 						self:Shelling()
 					end
 				end)
@@ -74,7 +74,7 @@ function ENT:OnInput(key,activator,caller,data)
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:Shelling()
-	if self:IsValid() && IsValid(self:GetEnemy()) then
+	if IsValid(self) && IsValid(self:GetEnemy()) then
 		local proj = ents.Create("obj_vj_hlr1_grenade_40mm")
 		proj:SetPos(self:GetAttachment(self:LookupAttachment("eyes")).Pos + Vector(math.random(-10,10),math.random(-100,100),math.random(-50,10)))
 		proj:SetAngles(self:GetAngles())
@@ -86,7 +86,8 @@ function ENT:Shelling()
 		if phys:IsValid() then
 			phys:Wake()
 			--phys:SetVelocity(self:GetOwner():CalculateProjectile("Curve", pos, self:GetOwner():GetEnemy():GetPos() + self:GetOwner():GetEnemy():OBBCenter(), 1000))
-			phys:SetVelocity(self:GetOwner():CalculateProjectile("Curve", self:GetPos() + self:GetUp(), self:GetEnemy():GetPos() + self:GetEnemy():OBBCenter(), 1000))
+			--phys:SetVelocity(self:GetOwner():CalculateProjectile("Curve", self:GetPos() + self:GetUp(), self:GetEnemy():GetPos() + self:GetEnemy():OBBCenter(), 1000))
+			phys:SetVelocity(VJ.CalculateTrajectory(self, self:GetEnemy(), "Curve", self:GetPos(), 1, 1000))
 		end
 		VJ.EmitSound(self, {"vj_hlr/gsrc/wep/mp5/glauncher.wav","vj_hlr/gsrc/wep/mp5/glauncher2.wav"}, 90)
 	end
