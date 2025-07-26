@@ -138,6 +138,35 @@ function ENT:CustomRangeAttackCode()
 	self:DeleteOnRemove(muzzleFlash)
 
 	VJ.ApplyRadiusDamage(self, self, hitpos, 30, 4, DMG_ENERGYBEAM, true, false, {Force=20})
+
+    local slowDuration = 0.7 -- seconds
+    local slowAmount = 0.5 -- 50% speed
+
+    for _, ent in ipairs(ents.FindInSphere(hitpos, 30)) do
+		if ent._slowed then return end
+        if ent:IsPlayer() && !ent._slowed then
+			ent._slowed = true
+
+            ent._originalRunSpeed = ent:GetRunSpeed()
+            ent._originalWalkSpeed = ent:GetWalkSpeed()
+
+            if ent:IsPlayer() then
+                ent:SetRunSpeed(ent:GetRunSpeed() * slowAmount)
+                ent:SetWalkSpeed(ent:GetWalkSpeed() * slowAmount)
+            end
+
+            -- restore
+            timer.Simple(slowDuration, function()
+                if IsValid(ent) then
+                    if ent:IsPlayer() then
+                        if ent._originalRunSpeed then ent:SetRunSpeed(ent._originalRunSpeed) end
+                        if ent._originalWalkSpeed then ent:SetWalkSpeed(ent._originalWalkSpeed) end
+                    end
+					ent._slowed = false
+                end
+            end)
+        end
+	end
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomOnFlinch_BeforeFlinch(dmginfo, hitgroup)

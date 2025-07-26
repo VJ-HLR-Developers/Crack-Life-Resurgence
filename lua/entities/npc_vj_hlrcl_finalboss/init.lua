@@ -76,7 +76,7 @@ end
 function ENT:Shelling()
 	if IsValid(self) && IsValid(self:GetEnemy()) then
 		local proj = ents.Create("obj_vj_hlr1_grenade_40mm")
-		proj:SetPos(self:GetAttachment(self:LookupAttachment("eyes")).Pos + Vector(math.random(-10,10),math.random(-100,100),math.random(-50,10)))
+		proj:SetPos(self:GetAttachment(self:LookupAttachment("eyes")).Pos + Vector(math.random(-10,10),math.random(-100,100),math.random(-10,10)))
 		proj:SetAngles(self:GetAngles())
 		proj:SetOwner(self)
 		proj:Spawn()
@@ -87,7 +87,7 @@ function ENT:Shelling()
 			phys:Wake()
 			--phys:SetVelocity(self:GetOwner():CalculateProjectile("Curve", pos, self:GetOwner():GetEnemy():GetPos() + self:GetOwner():GetEnemy():OBBCenter(), 1000))
 			--phys:SetVelocity(self:GetOwner():CalculateProjectile("Curve", self:GetPos() + self:GetUp(), self:GetEnemy():GetPos() + self:GetEnemy():OBBCenter(), 1000))
-			phys:SetVelocity(VJ.CalculateTrajectory(self, self:GetEnemy(), "Curve", self:GetPos(), self:GetEnemy():GetPos() + self:GetEnemy():OBBCenter(), 1000))
+			phys:SetVelocity(VJ.CalculateTrajectory(self, self:GetEnemy(), "Curve", self:GetPos(), self:GetEnemy():GetPos() + self:GetEnemy():GetForward() * 30, 200))
 		end
 		VJ.EmitSound(self, {"vj_hlr/gsrc/wep/mp5/glauncher.wav","vj_hlr/gsrc/wep/mp5/glauncher2.wav"}, 90)
 	end
@@ -212,7 +212,7 @@ function ENT:F_CreateAlly()
 		mask = MASK_ALL,
 	})
 	local spawnpos = tr.HitPos + tr.HitNormal*30
-	local type = VJ_PICK({"npc_vj_hlrcl_bonewheel","npc_vj_hlrcl_zombozo","npc_vj_hlrcl_pinkpanther","npc_vj_hlrcl_evilsci","npc_vj_hlrcl_terror","npc_vj_hlrcl_houndeye","npc_vj_hlrcl_alienslave","npc_vj_hlrcl10_zombie"})
+	local type = VJ_PICK({"npc_vj_hlrcl_bonewheel","npc_vj_hlrcl_zombozo","npc_vj_hlrcl_pinkpanther","npc_vj_hlrcl_evilsci","npc_vj_hlrcl_terror","npc_vj_hlrcl_houndeye","npc_vj_hlrcl_alienslave"})
 	local ally = ents.Create(type)
 	ally:SetPos(spawnpos)
 	ally:SetAngles(self:GetAngles())

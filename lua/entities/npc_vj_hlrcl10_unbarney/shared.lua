@@ -1,6 +1,6 @@
 ENT.Base 			= "npc_vj_human_base"
 ENT.Type 			= "ai"
-ENT.PrintName 		= "Retarded Security Guard"
+ENT.PrintName 		= "UN Peacekeeper"
 ENT.Author 			= "oteek"
 ENT.Contact 		= "http://steamcommunity.com/groups/vrejgaming"
 ENT.Purpose 		= "Spawn it and fight with it!"

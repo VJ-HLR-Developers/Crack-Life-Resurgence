@@ -7,7 +7,7 @@ include("shared.lua")
 	without the prior written consself of the author, unless otherwise indicated for stand-alone materials.
 -----------------------------------------------*/
 ENT.Model = {"models/vj_hlr/cracklife/bullsquid.mdl"} -- The game will pick a random model from the table when the SNPC is spawned | Add as many as you want
-ENT.VJ_NPC_Class = {"CLASS_CRACKLIFE"}
+ENT.VJ_NPC_Class = {"CLASS_CRACKLIFE_POLLO"}
 ENT.CanUseHD = false
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomOnInitialize()
@@ -65,4 +65,14 @@ function ENT:HandleGibOnDeath(dmginfo, hitgroup)
 	self:PlaySoundSystem("Gib", "vj_hlr/crack_fx/bodysplat.wav")
 	self:PlaySoundSystem("Gib", "vj_base/gib/splat.wav")
 	return true, {AllowSound = false}
+end
+
+---------------------------------------------------------------------------------------------------------------------------------------------
+function ENT:CustomOnPriorToKilled(dmginfo, hitgroup)
+	self:SetBodygroup(0,1)
+	local pollo = ents.Create("npc_vj_hlrcl10_chicken")
+	pollo:SetPos(self:GetPos() + Vector(0, 0, 50))
+	pollo:SetVelocity(self:GetForward() * 100 + self:GetUp() * 200)
+	pollo:SetAngles(self:GetAngles())
+	pollo:Spawn()
 end
