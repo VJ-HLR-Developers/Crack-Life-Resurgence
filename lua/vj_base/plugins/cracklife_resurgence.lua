@@ -4,7 +4,7 @@
 	No parts of this code or any of its contents may be reproduced, copied, modified or adapted,
 	without the prior written consent of the author, unless otherwise indicated for stand-alone materials.
 --------------------------------------------------*/
-local clrVersion = "1.3-beta1"
+local clrVersion = "1.3-beta1-hotfix2"
 VJ.AddPlugin("Crack-Life Resurgence", "NPC", clrVersion)
 
 VJ.HLR_VERSION = clrVersion
