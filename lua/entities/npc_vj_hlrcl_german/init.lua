@@ -5,7 +5,7 @@ include("shared.lua")
 	No parts of this code or any of its contents may be reproduced, copied, modified or adapted,
 	without the prior written consent of the author, unless otherwise indicated for stand-alone materials.
 -----------------------------------------------*/
-ENT.Model = {"models/vj_hlr/cracklife/german1.mdl","models/vj_hlr/cracklife/german2.mdl","models/vj_hlr/cracklife/german3.mdl"} -- The game will pick a random model from the table when the SNPC is spawned | Add as many as you want
+ENT.Model = {"models/vj_hlr/cracklife/german.mdl"} -- The game will pick a random model from the table when the SNPC is spawned | Add as many as you want
 ENT.HullType = HULL_HUMAN
 ENT.VJ_NPC_Class = {"CLASS_CRACKLIFE_GERMAN"} -- NPCs with the same class with be allied to each other
 
@@ -49,11 +49,6 @@ ENT.TimeUntilMeleeAttackDamage = false
 ENT.MeleeAttackDistance = 40
 ENT.MeleeAttackDamageDistance = 70
 ---------------------------------------------------------------------------------------------------------------------------------------------
-function ENT:TranslateActivity(act)
-	-- Overwrite it to do nothing
-	return self.BaseClass.TranslateActivity(self, act)
-end
----------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:Init()
 	self.SoundTbl_FootStep = {"vj_hlr/crack_fx/npc_step1.wav","vj_hlr/crack_fx/npc_step2.wav","vj_hlr/crack_fx/npc_step3.wav","vj_hlr/crack_fx/npc_step4.wav"}
 	self.SoundTbl_BeforeRangeAttack = {""}
@@ -66,6 +61,8 @@ function ENT:Init()
 	self.SoundTbl_Death = {"vj_hlr/crack_npc/germansoldier/slv_die1.wav","vj_hlr/crack_npc/germansoldier/slv_die2.wav"}
 	self.SoundTbl_MeleeAttackExtra = {"vj_hlr/gsrc/npc/zombie/claw_strike1.wav","vj_hlr/gsrc/npc/zombie/claw_strike2.wav","vj_hlr/gsrc/npc/zombie/claw_strike3.wav"}
 	self.SoundTbl_MeleeAttackMiss = {"vj_hlr/gsrc/npc/zombie/claw_miss1.wav","vj_hlr/gsrc/npc/zombie/claw_miss2.wav"}
+
+	self:SetBodygroup(0,math.random(0,2))
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomOnAcceptInput(key, activator, caller, data)
